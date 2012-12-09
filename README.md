@@ -73,8 +73,9 @@
 
 ### 管理团队
 
-* [@saberma](https://github.com/saberma)
-* [@lgn21st](https://github.com/lgn21st)
+* [马海波 @saberma](https://github.com/saberma)
+* [吕国宁 @lgn21st](https://github.com/lgn21st)
+* [李亚飞 @windy](https://github.com/windy)
 
 ### 贡献者
 
