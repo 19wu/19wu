@@ -2,6 +2,8 @@
 
 19wu - 卖活动票的小屋
 
+有兴趣参与的同学，请点击 [这里](https://github.com/saberma/19wu/issues/2) 留名
+
 ### 项目是做什么的？
 
 有些线下活动（e.g.RubyConfChina）需要卖票，19wu 就是一个卖票的电子商务平台。
