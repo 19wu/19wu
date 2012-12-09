@@ -34,6 +34,8 @@
 
 ## 技术选型
 
+一个约定：代码不超过 **2000** 行
+
 * Rails 3
 * 数据库使用 PostgreSQL
 * 后台任务使用 delayed_job，而不使用 resque，避免对 redis 的依赖
