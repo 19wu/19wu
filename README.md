@@ -94,4 +94,4 @@
 
 ## License
 
-[GNU  Affero GPL 3](http://www.gnu.org/licenses/agpl-3.0.html)
+[The MIT License](https://github.com/saberma/19wu/blob/master/LICENSE)
