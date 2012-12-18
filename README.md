@@ -3,6 +3,7 @@
 19wu - 卖活动票的小屋
 
 有兴趣参与的同学，请点击 [这里](https://github.com/saberma/19wu/issues/2) 留名
+有兴趣加入核心研发团队的请在 [这里](https://github.com/saberma/19wu/issues/9) 申请
 
 ### 项目是做什么的？
 
