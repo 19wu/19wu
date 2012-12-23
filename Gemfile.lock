@@ -150,6 +150,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  activerecord-jdbcpostgresql-adapter
   capybara
   coffee-rails (~> 3.2.1)
   jasmine (= 1.3.0)

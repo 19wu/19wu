@@ -14,6 +14,5 @@ before_script:
 rvm:
   - 1.9.3
   - 1.9.2
-  - ree
   - ruby-head
   - jruby-head
