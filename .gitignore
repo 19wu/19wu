@@ -16,3 +16,12 @@
 
 # Secret file
 config/database.yml
+
+# pl#1 windows 7 compatible
+*.sublime-workspace
+.idea/
+.yardoc/
+doc/
+public/assets/
+.tags*
+.gemtags
