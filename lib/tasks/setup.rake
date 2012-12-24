@@ -19,6 +19,6 @@ task :setup do
     Rake::Task['db:setup'].invoke # 会调用db:schema:load(而非db:migrate),db:seed
 
     puts "\n3. Done! You can run 'rails server' now."
-    puts "\nPlease contact us if you have any probleams.Thanks."
+    puts "\nPlease contact us if you have any problems. Thanks."
   end
 end
