@@ -8,6 +8,8 @@ gem 'rails', '3.2.9'
 gem 'pg', :platform => [:ruby, :mswin, :mingw]
 gem 'activerecord-jdbcpostgresql-adapter', :platform => [:jruby]
 
+gem 'slim-rails'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
