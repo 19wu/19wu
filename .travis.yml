@@ -22,3 +22,11 @@ matrix:
     - rvm: jruby-head
       jdk: openjdk7
       env: TIMEOUT=1000
+  # Uncomment me if jruby alwyas fails by unknown causes.
+  # allow_failures:
+  #   - rvm: jruby-19mode
+  #     jdk: openjdk7
+  #     env: TIMEOUT=1000
+  #   - rvm: jruby-head
+  #     jdk: openjdk7
+  #     env: TIMEOUT=1000
