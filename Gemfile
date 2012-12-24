@@ -20,6 +20,7 @@ group :assets do
     gem 'libv8', :platforms => :ruby # therubyracer 从 0.11 开始没有依赖 lib8. http://git.io/EtMkCg
     gem 'therubyracer', :platforms => :ruby
   end
+  gem 'bootstrap-sass', '~> 2.2.2.0'
 
   gem 'uglifier', '>= 1.0.3'
 end
