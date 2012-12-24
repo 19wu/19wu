@@ -16,8 +16,10 @@ group :assets do
   gem 'jquery-rails'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  gem 'libv8', :platforms => :ruby # therubyracer 从 0.11 开始没有依赖 lib8。http://git.io/EtMkCg
-  gem 'therubyracer', :platforms => :ruby
+  unless ENV['TRAVIS'] # 编译coffee-script # 安装编译过程太慢(大概4分钟)
+    gem 'libv8', :platforms => :ruby # therubyracer 从 0.11 开始没有依赖 lib8. http://git.io/EtMkCg
+    gem 'therubyracer', :platforms => :ruby
+  end
 
   gem 'uglifier', '>= 1.0.3'
 end
