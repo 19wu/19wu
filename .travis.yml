@@ -11,11 +11,13 @@ before_script:
   - psql -c 'create database nineteen_wu_test;' -U postgres
   - "sed 's/username: nineteen_wu/username: postgres/' config/database.yml.example > config/database.yml"
 
+rvm:
+  - 1.9.3
+  - 1.9.2
+  - ruby-head
+
 matrix:
   include:
-    - rvm: 1.9.3
-    - rvm: 1.9.2
-    - rvm: ruby-head
     - rvm: jruby-19mode
       jdk: openjdk7
       env: TIMEOUT=1000
