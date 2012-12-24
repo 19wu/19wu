@@ -67,6 +67,11 @@ module NineteenWu
 
     config.generators do |g|
       g.test_framework :rspec, :fixture => true
+      g.stylesheets false
+      g.javascripts false
+      g.helper false
+      g.helper_specs false
+      g.view_specs false
     end
 
   end
