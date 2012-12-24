@@ -16,7 +16,8 @@ group :assets do
   gem 'jquery-rails'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  # gem 'therubyracer', :platforms => :ruby
+  gem 'libv8', :platforms => :ruby # therubyracer 从 0.11 开始没有依赖 lib8。http://git.io/EtMkCg
+  gem 'therubyracer', :platforms => :ruby
 
   gem 'uglifier', '>= 1.0.3'
 end
