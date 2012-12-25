@@ -1,15 +1,19 @@
 language: ruby
-bundler_args: --without development
-script: bundle exec rake spec jasmine:ci
 
-before_install:
-  - "/sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1280x1024x16"
-  - "export DISPLAY=:99.0"
-  - "export JASMINE_BROWSER=firefox"
+bundler_args: --without production development
+
+#uncomment when we start to use jasmine
+#script: bundle exec rake spec jasmine:ci
+script: bundle exec rake spec
+
+#before_install:
+  #- "/sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1280x1024x16"
+  #- "export DISPLAY=:99.0"
+  #- "export JASMINE_BROWSER=firefox"
 
 before_script:
-  - psql -c 'create database nineteen_wu_test;' -U postgres
-  - "sed 's/username: nineteen_wu/username: postgres/' config/database.yml.example > config/database.yml"
+  - "cp config/database.yml.example config/database.yml 2>&1"
+  - "bundle exec rake db:drop db:create db:schema:load --trace 2>&1"
 
 rvm:
   - 1.9.3
