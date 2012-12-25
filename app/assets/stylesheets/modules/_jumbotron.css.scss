@@ -1,13 +1,10 @@
-#content {
-  padding: 2 * $baseLineHeight 0;
-}
-
-#footer {
+.jumbotron {
+  background: $grayBackground;
   padding: 2 * $baseLineHeight 0;
 }
 
 @media (max-width: 767px) {
-  #footer {
+  .jumbotron {
     padding-left: 20px;
     padding-right: 20px;
     margin-left: -20px;

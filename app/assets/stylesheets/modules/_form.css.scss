@@ -1,0 +1,14 @@
+form {
+  &.login {
+    label {
+      display: none;
+    }
+    input {
+      @include input-block-level;
+    }
+    button {
+      @extend .btn-success;
+      @extend .btn-block;
+    }
+  }
+}
