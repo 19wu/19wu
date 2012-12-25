@@ -11,7 +11,9 @@ development:
   database: nineteen_wu_development
 
 test:
+  <<: *defaults
   database: nineteen_wu_test
 
 production:
+  <<: *defaults
   database: nineteen_wu_production
