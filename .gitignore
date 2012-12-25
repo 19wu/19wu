@@ -25,3 +25,6 @@ doc/
 public/assets/
 .tags*
 .gemtags
+
+# Ignore rvmrc configuration file
+.rvmrc
