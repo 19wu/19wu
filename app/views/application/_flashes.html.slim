@@ -1,0 +1,6 @@
+.container
+  #flash
+    - flash.each do |key, value|
+      .alert title=key.to_s.humanize class=flash_class(key)
+        = render_close_icon
+        div = value
