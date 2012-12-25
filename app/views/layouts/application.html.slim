@@ -2,9 +2,49 @@ doctype html
 html
   head
     title NineteenWu
-    = stylesheet_link_tag    "application", media: "all"
-    = javascript_include_tag "application"
+    meta name="viewport" content="width=device-width, initial-scale=1.0"
+    = stylesheet_link_tag "application", media: "all"
     = csrf_meta_tags
 
-  body
-    = yield
+  body.signed_out
+    header#header
+      .navbar.navbar-static-top
+        .navbar-inner
+          .container
+            a.btn.btn-navbar data-toggle="collapse" data-target=".nav-collapse"
+              span.icon-bar
+              span.icon-bar
+              span.icon-bar
+
+            a.brand href="#"
+              span.icon-19wu
+              span= t('layout.19wu')
+
+            .nav-collapse.collapse
+              ul.unstyled.pull-right
+                li
+                  a.btn href='#'
+                    = t('label.sign_in')
+
+    #main role="main"
+
+      = yield :before_content
+
+      #content
+        .container
+          = yield
+
+    footer#footer
+      .container
+        p.pull-right &copy; #{Date.today.year} 19wu.com
+        ul.pull-left.horizontal
+          li
+            a href="http://github.com/saberma/19wu" Github
+          li.muted
+            | / 
+          li
+            a href="http://github.com/saberma/19wu" = t('layout.contact_us')
+
+    = javascript_include_tag "application"
+    = yield :body_bottom
+yi

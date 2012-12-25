@@ -1,0 +1,10 @@
+ul, ol {
+  &.horizontal {
+    @extend .unstyled;
+    @include clearfix;
+    > li {
+      float: left;
+      padding: 4px;
+    }
+  }
+}
