@@ -1,36 +1,30 @@
-div.container
-  div.nav
-    img src="assets/ninety_wu.png"
-    button.btn 登录
-  div.content.row-fluid
-    div.span7
-      h2 卖活动票的小屋
-      p.lead
-        | 由开源社区研发的活动票务平台，在这个小屋子发起活动、卖票都是免费的。
-    div.span5
-      form
-        .controls
-          input.span9 type="text" placeholder="昵称"
-        .controls
-          input.span9 type="text" placeholder="Email 地址"
-        .controls
-          input.span9 type="text" placeholder="密码"
-        .controls
-          button.btn.btn-success.span9 注册，发起活动
-  div.declare.row-fluid
-    .span2.offset1
-      h2 完全免费
-      p.muted 我们不会收取任何费用。
-    .span2.offset2
-      h2 跟多功能
-      p.muted 更多活动管理功能正在开发中，欢迎向我们提出要求。
-    .span2.offset2
-      h2 加入我们
-      p.muted 也许你愿意和我们一起成长，请加入我们。
-  div.us
-    span.muted
-      a.muted href="javascript:;" Github
-      | /
-      a.muted href="javascript:;" 联系我们
-    span style="float:right;"
-      a.muted href="javascript:;" @2012 19wu.com
+- content_for :before_content do
+
+  .jumbotron
+    .container
+      .row-fluid
+        .span6
+          .slogan
+            h1 = t('slogan.title')
+            p = t('slogan.description')
+        .span5.offset1
+          form.login
+            label = t('label.nickname')
+            input type="text" placeholder=t('label.nickname')
+            label = t('label.email_address')
+            input type="text" placeholder=t('label.email_address')
+            label = t('label.password')
+            input type="password" placeholder=t('label.password')
+
+            button.btn type="submit" = t('label.sign_up')
+
+.row-fluid
+  .span3
+    h2 = t('highlights.free.title')
+    p = t('highlights.free.description')
+  .span3.offset1
+    h2 = t('highlights.more_features.title')
+    p = t('highlights.more_features.description')
+  .span3.offset1
+    h2 = t('highlights.join_us.title')
+    p = t('highlights.join_us.description')

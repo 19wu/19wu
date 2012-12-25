@@ -8,3 +8,22 @@ zh-CN:
 
   label:
     sign_in: "登录"
+    sign_up: "注册，发动活动"
+    nickname: "昵称"
+    email_address: "Email 地址"
+    password: "密码"
+
+  slogan:
+    title: "卖活动票的小屋"
+    description: "由开源社区研发的活动票务平台，在这个小屋子发动活动、卖票都是免费的。"
+
+  highlights:
+    free:
+      title: "完全免费"
+      description: "19屋不会收取任何费用。"
+    more_features:
+      title: "更多功能"
+      description: "更多活动管理功能正在开发中，欢迎向19屋提出要求。"
+    join_us:
+      title: "加入我们"
+      description: "也许你愿意和我们一起成长，请加入19屋"
