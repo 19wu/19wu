@@ -16,6 +16,7 @@ task :stats_setup do
   end
   ::STATS_DIRECTORIES << ['Views',  'app/views', /\.(rhtml|erb|rb|slim|jbuilder)$/]
   ::STATS_DIRECTORIES << ['JS',  'app/assets/javascripts', /\.(js|coffee)$/]
+  ::STATS_DIRECTORIES << ['CSS',  'app/assets/stylesheets', /\.(css|sass|scss)$/]
 
   ::STATS_DIRECTORIES << ['JS Test',  'spec/javascripts', /\.(js|coffee)$/]
   ::CodeStatistics::TEST_TYPES << 'JS Test'
