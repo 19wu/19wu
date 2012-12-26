@@ -1,46 +1,38 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.9'
-
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
-
+gem 'slim-rails'
 gem 'pg', :platform => [:ruby, :mswin, :mingw]
 gem 'activerecord-jdbcpostgresql-adapter', :platform => [:jruby]
-
-gem 'slim-rails'
-
-# Gems used only for assets and not required
-# in production environments by default.
-group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
-  gem 'coffee-rails', '~> 3.2.1'
-  gem 'jquery-rails'
-
-  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  unless ENV['TRAVIS'] # 编译coffee-script # 安装编译过程太慢(大概4分钟)
-    gem 'libv8', '3.11.8.3', :platforms => :ruby # therubyracer 从 0.11 开始没有依赖 lib8. http://git.io/EtMkCg
-    gem 'therubyracer', :platforms => :ruby
-  end
-  gem 'bootstrap-sass', '~> 2.2.2.0'
-
-  gem 'uglifier', '>= 1.0.3'
-end
 
 group :development do
   gem 'quiet_assets'
 end
 
 group :development, :test do
-  gem 'rspec'
   gem 'rspec-rails'
   gem 'jasmine', '1.3.0'
-  gem 'factory_girl_rails', '~> 4.0'
 end
 
 group :test do
   gem 'capybara'
+  gem 'factory_girl_rails', '~> 4.0'
 end
+
+group :assets do
+  gem 'sass-rails',     '~> 3.2.3'
+  gem 'coffee-rails',   '~> 3.2.1'
+  gem 'bootstrap-sass', '~> 2.2.2.0'
+  gem 'uglifier',       '>= 1.0.3'
+  gem 'jquery-rails'
+
+  unless ENV['TRAVIS'] # 编译coffee-script # 安装编译过程太慢(大概4分钟)
+    gem 'libv8', '3.11.8.3', :platforms => :ruby # therubyracer 从 0.11 开始没有依赖 lib8. http://git.io/EtMkCg
+    gem 'therubyracer', :platforms => :ruby
+  end
+end
+
+
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
