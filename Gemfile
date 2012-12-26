@@ -9,6 +9,7 @@ gem 'pg', :platform => [:ruby, :mswin, :mingw]
 gem 'activerecord-jdbcpostgresql-adapter', :platform => [:jruby]
 
 gem 'slim-rails'
+gem 'devise'
 
 # Gems used only for assets and not required
 # in production environments by default.
