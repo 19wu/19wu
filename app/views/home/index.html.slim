@@ -8,13 +8,12 @@
             h1 = t('slogan.title')
             p = t('slogan.description')
         .span5.offset2
-          form.login
-            label = t('label.nickname')
+          form.login action="/users" accept-charset="UTF-8" id="new_user" method="post"
+            = devise_error_messages!
             input type="text" placeholder=t('label.nickname')
-            label = t('label.email_address')
-            input type="text" placeholder=t('label.email_address')
-            label = t('label.password')
-            input type="password" placeholder=t('label.password')
+            input#user_email name="user[email]" size="30" type="email" placeholder=t('label.email_address')
+            input#user_password name="user[password]" size="30" type="password" placeholder=t('label.password')
+            input#user_password name="user[password_confirmation]" size="30" type="password" placeholder=t('label.password')
 
             button.btn type="submit" = t('label.sign_up')
 
