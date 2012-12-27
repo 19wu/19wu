@@ -12,6 +12,7 @@ zh-CN:
     nickname: "昵称"
     email_address: "Email 地址"
     password: "密码"
+    password_confirmation: "确认密码"
 
   slogan:
     title: "卖活动票的小屋"
