@@ -10,7 +10,7 @@
         .span5.offset2
           form.login action="/users" accept-charset="UTF-8" id="new_user" method="post"
             = devise_error_messages!
-            input type="text" placeholder=t('label.nickname')
+            input type="text" placeholder=t('label.login')
             input#user_email name="user[email]" size="30" type="email" placeholder=t('label.email_address')
             input#user_password name="user[password]" size="30" type="password" placeholder=t('label.password')
             input#user_password_confirmation name="user[password_confirmation]" size="30" type="password" placeholder=t('label.password_confirmation')
