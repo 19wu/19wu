@@ -8,15 +8,18 @@
             h1 = t('slogan.title')
             p = t('slogan.description')
         .span5.offset2
-          form.login
-            label = t('label.nickname')
-            input type="text" placeholder=t('label.nickname')
-            label = t('label.email_address')
-            input type="text" placeholder=t('label.email_address')
-            label = t('label.password')
-            input type="password" placeholder=t('label.password')
-
-            button.btn type="submit" = t('label.sign_up')
+          = form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
+            = devise_error_messages!
+            div
+              = f.text_field :login, :placeholder => t('label.login')
+            div
+              = f.email_field :email, :placeholder => t('label.email')
+            div
+              = f.password_field :password, :placeholder => t('label.password')
+            div
+              = f.password_field :password_confirmation, :placeholder => t('label.password_confirmation')
+            div
+              = f.submit t('label.sign_up'), :class => 'btn btn-success'
 
 .row-fluid
   .span3
