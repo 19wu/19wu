@@ -6,7 +6,7 @@ html
     = stylesheet_link_tag "application", media: "all"
     = csrf_meta_tags
 
-  body.signed_out
+  body *body_attributes
     header#header
       .navbar.navbar-static-top
         .navbar-inner

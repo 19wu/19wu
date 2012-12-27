@@ -18,4 +18,21 @@ describe ApplicationHelper do
       it { should == 'alert-error' }
     end
   end
+
+  describe 'body_attributes' do
+    subject { helper.body_attributes }
+    context 'when user has signed in' do
+      before do
+        helper.should_receive(:user_signed_in?).with().and_return(true)
+      end
+
+      its([:class]) { should include('signed_in') }
+    end
+    context 'when user has not yet signed in' do
+      before do
+        helper.should_receive(:user_signed_in?).with().and_return(false)
+      end
+      its([:class]) { should include('signed_out') }
+    end
+  end
 end
