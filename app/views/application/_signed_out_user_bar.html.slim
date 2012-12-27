@@ -1,4 +1,3 @@
 ul.user-bar.pull-right
   li
-    a.btn href='#'
-      = t('label.sign_in')
+    = link_to t('label.sign_in'), new_user_session_path, :class => "btn"
