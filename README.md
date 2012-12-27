@@ -82,6 +82,8 @@
 
 ### 贡献者
 
+[所有贡献者](https://github.com/saberma/19wu/graphs/contributors)
+
 * 持续招募中。。。
 * 加入条件：无，只要你有时间参与就行
 
@@ -92,6 +94,8 @@
 * 开发一些功能（需要带测试，以保证此功能在后续开发时不被破坏）
 * 试用已有的功能，提出建议
 * 向身边的朋友介绍 19wu
+
+[更多...](https://github.com/saberma/19wu/blob/master/CONTRIBUTING.md)
 
 ## License
 
