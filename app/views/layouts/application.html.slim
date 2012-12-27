@@ -26,6 +26,9 @@ html
                   a.btn href='#'
                     = t('label.sign_in')
 
+    = content_tag :div, flash[:error], :id => "flash_error", :class => "alert alert-error" if flash[:error]
+    = content_tag :div, flash[:notice], :id => "flash_notice", :class => "alert alert-info" if flash[:notice]
+    = content_tag :div, flash[:alert], :id => "flash_alert", :class => "alert" if flash[:alert]
     #main role="main"
 
       = yield :before_content
