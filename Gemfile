@@ -20,7 +20,7 @@ group :assets do
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   unless ENV['TRAVIS'] # 编译coffee-script # 安装编译过程太慢(大概4分钟)
-    gem 'libv8', :platforms => :ruby # therubyracer 从 0.11 开始没有依赖 lib8. http://git.io/EtMkCg
+    gem 'libv8', '3.11.8.3', :platforms => :ruby # therubyracer 从 0.11 开始没有依赖 lib8. http://git.io/EtMkCg
     gem 'therubyracer', :platforms => :ruby
   end
   gem 'bootstrap-sass', '~> 2.2.2.0'
