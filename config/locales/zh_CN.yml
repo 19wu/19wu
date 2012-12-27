@@ -10,7 +10,7 @@ zh-CN:
     sign_in: "登录"
     sign_up: "注册，发动活动"
     login: "登录名"
-    email_address: "Email 地址"
+    email: "Email 地址"
     password: "密码"
     password_confirmation: "确认密码"
 

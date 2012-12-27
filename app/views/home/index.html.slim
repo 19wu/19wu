@@ -11,7 +11,7 @@
           = form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
             = devise_error_messages!
             div
-              = f.email_field :email, :placeholder => t('label.login')
+              = f.email_field :email, :placeholder => t('label.email')
             div
               = f.password_field :password, :placeholder => t('label.password')
             div
