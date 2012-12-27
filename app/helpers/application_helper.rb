@@ -25,4 +25,12 @@ module ApplicationHelper
       :class => user_signed_in? ? 'signed_in' : 'signed_out'
     }
   end
+
+  def render_user_bar
+    if user_signed_in?
+      render 'signed_in_user_bar'
+    else
+      render 'signed_out_user_bar'
+    end
+  end
 end

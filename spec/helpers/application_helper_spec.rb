@@ -35,4 +35,31 @@ describe ApplicationHelper do
       its([:class]) { should include('signed_out') }
     end
   end
+
+  describe 'render_user_bar' do
+    def render
+      helper.render_user_bar
+    end
+
+    context 'when user has signed in' do
+      before do
+        helper.should_receive(:user_signed_in?).with().and_return(true)
+      end
+
+      it 'renders signed_in_user_bar' do
+        helper.should_receive(:render).with('signed_in_user_bar').once
+        render
+      end
+    end
+    context 'when user has not yet signed in' do
+      before do
+        helper.should_receive(:user_signed_in?).with().and_return(false)
+      end
+
+      it 'renders signed_out_user_bar' do
+        helper.should_receive(:render).with('signed_out_user_bar').once
+        render
+      end
+    end
+  end
 end
