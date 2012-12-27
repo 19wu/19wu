@@ -95,6 +95,8 @@
 * 试用已有的功能，提出建议
 * 向身边的朋友介绍 19wu
 
+[更多...](https://github.com/saberma/19wu/blob/master/CONTRIBUTING.md)
+
 ## License
 
 [The MIT License](https://github.com/saberma/19wu/blob/master/LICENSE)
