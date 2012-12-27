@@ -28,3 +28,9 @@ zh-CN:
     join_us:
       title: "加入我们"
       description: "也许你愿意和我们一起成长，请加入19屋"
+
+  text:
+    under_construction: "网站建设中"
+    visit_github_html: '在 Github 上查看19屋的<a href="%{url}">最新进展</a>。'
+    index:
+      under_construction: test
