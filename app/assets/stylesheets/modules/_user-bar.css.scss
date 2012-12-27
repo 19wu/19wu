@@ -1,0 +1,7 @@
+.user-bar {
+  @extend .horizontal;
+  margin: 0;
+  li {
+    line-height: $navbarHeight;
+  }
+}

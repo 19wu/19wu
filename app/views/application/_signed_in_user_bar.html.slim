@@ -1,0 +1,5 @@
+ul.user-bar.pull-right
+  li
+    = current_user.login
+  li
+    = link_to t('label.sign_out'), destroy_user_session_path, :method => :delete
