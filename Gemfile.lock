@@ -202,7 +202,6 @@ DEPENDENCIES
   pg
   quiet_assets
   rails (= 3.2.9)
-  rspec
   rspec-rails
   sass-rails (~> 3.2.3)
   slim-rails
