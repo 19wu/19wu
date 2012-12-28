@@ -42,6 +42,8 @@
 * 后台任务使用 delayed_job，而不使用 resque，避免对 redis 的依赖
 * 前端基于 [Bootstrap](http://twitter.github.com/bootstrap) 和 [Spine.js](http://spinejs.com)
 
+查看 [WIki:技术栈](https://github.com/saberma/19wu/wiki/技术栈) 了解更多。
+
 ## 开发计划
 
 开发时会针对一个个小的功能点提出 issue，提交的代码要与相应 issue 关联。
