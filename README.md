@@ -1,4 +1,4 @@
-# 19wu
+# 19wu [![Build Status](https://travis-ci.org/saberma/19wu.png)](https://travis-ci.org/saberma/19wu)
 
 19wu - 卖活动票的小屋
 
