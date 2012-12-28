@@ -6,8 +6,8 @@
   padding: 2 * $baseLineHeight 0;
 }
 
-#flash {
-  margin-top: $baseLineHeight;
+#flash .alert {
+  margin-top: $baseLineHeight / 2;
 }
 
 @media (max-width: 767px) {
