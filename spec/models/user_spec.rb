@@ -44,12 +44,6 @@ describe User do
 
     it "with a password < 6 chars" do
       user.password = 'a2c4e'
-      user.password_confirmation = 'a2c4e'
-      expect(user.save).to be_false
-    end
-
-    it "when password_confirmation not matched" do
-      user.password_confirmation = ''
       expect(user.save).to be_false
     end
   end
