@@ -38,11 +38,11 @@ html
         p.pull-right &copy; #{Date.current.year} 19wu.com
         ul.pull-left.horizontal
           li
-            a href="http://github.com/saberma/19wu" Github
+            a href="http://github.com/saberma/19wu" = t('layout.opensource')
           li.muted
             | / 
           li
-            a href="http://github.com/saberma/19wu" = t('layout.contact_us')
+            a href="mailto:mahb45@gmail.com" = t('layout.contact_us')
 
     = javascript_include_tag "application"
     = yield :body_bottom

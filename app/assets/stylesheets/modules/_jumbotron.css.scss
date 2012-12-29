@@ -1,6 +1,7 @@
 .jumbotron {
   background: $grayBackground;
   padding: 2 * $baseLineHeight 0;
+  border-bottom: 1px solid $borderColor;
 }
 
 @media (max-width: 767px) {

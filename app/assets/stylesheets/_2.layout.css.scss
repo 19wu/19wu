@@ -1,8 +1,15 @@
 #content {
-  padding: 2 * $baseLineHeight 0;
+  padding: 3 * $baseLineHeight 0;
+  margin-bottom: 2 * $baseLineHeight;
+}
+
+#header {
+  border-bottom: 1px solid $borderColor;
+  padding: (0.5 * $baseFontSize) 0;
 }
 
 #footer {
+  border-top: 1px solid $borderColor;
   padding: 2 * $baseLineHeight 0;
 }
 
