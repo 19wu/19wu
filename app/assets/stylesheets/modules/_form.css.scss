@@ -1,13 +1,18 @@
 form {
-  &.new_user {
-    label {
-      display: none;
-    }
+  &.form-full-width {
+    .uneditable-input,
+    select,
+    textarea,
     input {
       @include input-block-level;
     }
-    button {
-      @extend .btn-success;
+    /* override radio and checkbox */
+    input[type="radio"],
+    input[type="checkbox"] {
+      display: inline-block;
+      width: auto;
+    }
+    .btn {
       @extend .btn-block;
     }
   }
