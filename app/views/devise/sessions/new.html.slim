@@ -1,16 +1,12 @@
-h2 Sign in
-= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :class => 'form-full-width' }) do |f|
-  div
-    = f.label :email
-    br/
-    = f.email_field :email
-  div
-    = f.label :password
-    br/
-    = f.password_field :password
-  - if devise_mapping.rememberable?
-    div
-      = f.check_box :remember_me
-      = f.label :remember_me
-  div= f.submit "Sign in"
-= render "devise/shared/links"
+.row
+  .span4.offset4.well
+    = form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :class => 'form-full-width' }) do |f|
+      fieldset
+        legend 登录
+        = f.label :email
+        = f.email_field :email
+        = f.label :password
+        = f.password_field :password
+        - if devise_mapping.rememberable?
+          = f.hidden_field :remember_me, :value => true
+        = f.submit "登录", :class => ['btn', 'btn-info']
