@@ -48,6 +48,7 @@ GEM
       xpath (~> 1.0.0)
     childprocess (0.3.6)
       ffi (~> 1.0, >= 1.0.6)
+    coderay (1.0.8)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
       railties (~> 3.2.0)
@@ -94,6 +95,7 @@ GEM
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    method_source (0.8)
     mime-types (1.19)
     multi_json (1.5.0)
     nokogiri (1.5.6)
@@ -101,6 +103,12 @@ GEM
     orm_adapter (0.4.0)
     pg (0.14.1)
     polyglot (0.3.3)
+    pry (0.9.10)
+      coderay (~> 1.0.5)
+      method_source (~> 0.8)
+      slop (~> 3.3.1)
+    pry-nav (0.2.2)
+      pry (~> 0.9.10)
     quiet_assets (1.0.1)
       railties (~> 3.1)
     rack (1.4.1)
@@ -163,6 +171,7 @@ GEM
       activesupport (~> 3.0)
       railties (~> 3.0)
       slim (~> 1.0)
+    slop (3.3.3)
     sprockets (2.2.2)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -201,6 +210,8 @@ DEPENDENCIES
   jquery-rails
   libv8 (= 3.11.8.3)
   pg
+  pry
+  pry-nav
   quiet_assets
   rails (= 3.2.9)
   rspec-rails

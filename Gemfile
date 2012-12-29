@@ -14,6 +14,9 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'jasmine', '1.3.0'
   gem 'factory_girl_rails', '~> 4.0' # generator will use it in development.
+
+  gem 'pry'
+  gem 'pry-nav'
 end
 
 group :test do
