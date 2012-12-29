@@ -10,9 +10,9 @@
         .span5.offset2
           = form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :class => 'form-full-width'}) do |f|
             = devise_error_messages!
-            = f.text_field :login, :placeholder => t('label.login')
-            = f.email_field :email, :placeholder => t('label.email')
-            = f.password_field :password, :placeholder => t('label.password')
+            = f.text_field :login, :placeholder => resource.class.human_attribute_name(:login)
+            = f.email_field :email, :placeholder => resource.class.human_attribute_name(:email)
+            = f.password_field :password, :placeholder => resource.class.human_attribute_name(:password)
             = f.submit t('label.sign_up'), :class => 'btn btn-success'
 
 .row-fluid

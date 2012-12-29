@@ -11,6 +11,7 @@ form {
     input[type="checkbox"] {
       display: inline-block;
       width: auto;
+      min-height: auto;
     }
     .btn {
       @extend .btn-block;

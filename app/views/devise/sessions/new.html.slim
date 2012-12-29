@@ -2,11 +2,13 @@
   .span4.offset4.well
     = form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :class => 'form-full-width' }) do |f|
       fieldset
-        legend 登录
+        legend  = t('label.sign_in')
+        = render_flashes
         = f.label :email
         = f.email_field :email
-        = f.label :password
+        = f.label :password, t('label.password_with_forget_link_html', :url => new_password_path(resource_name))
         = f.password_field :password
-        - if devise_mapping.rememberable?
-          = f.hidden_field :remember_me, :value => true
-        = f.submit "登录", :class => ['btn', 'btn-info']
+        .control-group
+          - if devise_mapping.rememberable?
+            = f.hidden_field :remember_me, :value => true
+          = f.submit t('label.sign_in'), :class => ['btn', 'btn-info']

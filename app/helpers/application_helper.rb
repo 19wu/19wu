@@ -33,4 +33,13 @@ module ApplicationHelper
       render 'signed_out_user_bar'
     end
   end
+
+  # Allow page to place flashes in specified place.
+  # If the page did, do not render again.
+  def render_flashes
+    unless @_flahses_rendered
+      @_flahses_rendered = true
+      render 'flashes'
+    end
+  end
 end
