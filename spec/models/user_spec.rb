@@ -13,11 +13,6 @@ describe User do
       expect(user.save).to be_false
     end
 
-    it "with a login < 4 chars" do
-      user.login = 'a2b'
-      expect(user.save).to be_false
-    end
-
     it "with a duplicated login" do
       create :user
 
