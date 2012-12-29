@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe User do
-  let(:user) { build :random_user }
+  let(:user) { build :user }
 
   it "passes validation with all valid informations" do
     expect(build :user).to be_valid
@@ -14,9 +14,8 @@ describe User do
     end
 
     it "with a duplicated login" do
-      create :user
+      create :user, :login => user.login
 
-      user.login = '19WU'
       expect(user.save).to be_false
     end
 
@@ -31,9 +30,8 @@ describe User do
     end
 
     it "with a duplicated email" do
-      create :user
+      create :user, :email => user.email
 
-      user.email = '19wu@19wu.org'
       expect(user.save).to be_false
     end
 
