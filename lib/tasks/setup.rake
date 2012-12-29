@@ -18,7 +18,13 @@ task :setup do
     puts "\n2. Create database and table..."
     Rake::Task['db:setup'].invoke # 会调用db:schema:load(而非db:migrate),db:seed
 
-    puts "\n3. Done! You can run 'rails server' now."
-    puts "\nPlease contact us if you have any problems. Thanks."
+    puts "\n3. Create test table..."
+    %w(db:abort_if_pending_migrations environment db:load_config db:schema:load).each do |name|
+      Rake::Task[name].reenable # Rake 很多命令只能运行一次，之后相同的命令会被忽略。db:setup 运行后，中间命令得重新 enable
+    end
+    Rake::Task['db:test:prepare'].invoke
+
+    puts "\n4. Done! You can run 'rails server' now."
+    puts "\nPlease contact us if you have any problems. Thanks.\n"
   end
 end
