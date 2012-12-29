@@ -12,9 +12,7 @@ zh-CN:
     sign_in: "登录"
     sign_up: "注册，发动活动"
     login: "登录名"
-    email: "Email 地址"
-    password: "密码"
-    password_confirmation: "确认密码"
+    password_with_forget_link_html: '密码 <small>(<a href="%{url}">忘记密码</a>)'
 
   slogan:
     title: "卖活动票的小屋"
