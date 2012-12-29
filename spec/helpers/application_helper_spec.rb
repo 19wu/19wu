@@ -62,4 +62,15 @@ describe ApplicationHelper do
       end
     end
   end
+
+  describe 'render_flashes' do
+    context 'when it is called twice' do
+      it 'only renders flashes once' do
+        helper.should_receive(:render).with('flashes').once
+
+        helper.render_flashes
+        helper.render_flashes
+      end
+    end
+  end
 end

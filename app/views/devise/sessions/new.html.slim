@@ -3,6 +3,7 @@
     = form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :class => 'form-full-width' }) do |f|
       fieldset
         legend  = t('label.sign_in')
+        = render_flashes
         = f.label :email
         = f.email_field :email
         = f.label :password, t('label.password_with_forget_link_html', :url => new_password_path(resource_name))
