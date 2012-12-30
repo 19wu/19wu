@@ -3,11 +3,40 @@ defaults: &defaults
   time_zone: 'Beijing'
   default_locale: 'zh-CN'
 
+  email: &email
+    from: '19wu <us@19wu.com>'
+    host: '19wu.com'
+    delivery_method: :smtp
+
+    smtp_settings:
+      # port: 587
+      # address:
+      # user_name:
+      # password:
+      # domain:
+      # authentication:
+    # settings for delivery_method 'sendmail'
+    sendmail_settings:
+      location: /usr/sbin/sendmail
+      arguments: '-i -t'
+
 development:
   <<: *defaults
 
+  email:
+    <<: *email
+    host: 'localhost:3000'
+    from: 'development@19wu.com'
+    delivery_method: :smtp
+
 test:
   <<: *defaults
+
+  email:
+    <<: *email
+    host: 'localhost:3000'
+    from: 'test@19wu.com'
+    delivery_method: :test
 
 production:
   <<: *defaults
