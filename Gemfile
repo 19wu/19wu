@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.9'
@@ -6,6 +7,8 @@ gem 'pg', :platform => [:ruby, :mswin, :mingw]
 gem 'activerecord-jdbcpostgresql-adapter', :platform => [:jruby]
 
 gem 'devise'
+gem 'settingslogic'
+
 group :development do
   gem 'quiet_assets'
 end

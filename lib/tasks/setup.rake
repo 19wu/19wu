@@ -5,7 +5,7 @@ desc "Setup your 19wu development enviroment."
 task :setup do
   unless Rails.env == 'production' # 防止生产环境下执行
     puts "1. Copy config file..."
-    %w(database).each do |name|
+    %w(database settings).each do |name|
       file = "config/#{name}.yml"
       path = Rails.root.join(file)
       unless File.exists?(path)
