@@ -16,6 +16,7 @@ group :development, :test do
   gem 'factory_girl_rails', '~> 4.0' # generator will use it in development.
   gem 'thin', '~> 1.5.0'
   gem 'pry-rails'
+  gem 'guard-livereload'
 end
 
 group :test do
