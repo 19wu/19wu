@@ -25,15 +25,23 @@ matrix:
   include:
     - rvm: jruby-19mode
       jdk: openjdk7
-      env: TIMEOUT=1000
+      env:
+        - TIMEOUT=1000
+        - JRUBY_OPTS="-Xcext.enabled=true"
     - rvm: jruby-head
       jdk: openjdk7
-      env: TIMEOUT=1000
+      env:
+        - TIMEOUT=1000
+        - JRUBY_OPTS="-Xcext.enabled=true"
   # jruby alwyas fails by unknown causes.
   allow_failures:
     - rvm: jruby-19mode
       jdk: openjdk7
-      env: TIMEOUT=1000
+      env:
+        - TIMEOUT=1000
+        - JRUBY_OPTS="-Xcext.enabled=true"
     - rvm: jruby-head
       jdk: openjdk7
-      env: TIMEOUT=1000
+      env:
+        - TIMEOUT=1000
+        - JRUBY_OPTS="-Xcext.enabled=true"
