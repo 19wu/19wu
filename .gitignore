@@ -16,6 +16,7 @@
 
 # Secret file
 config/database.yml
+config/settings.yml
 
 # pl#1 windows 7 compatible
 *.sublime-workspace

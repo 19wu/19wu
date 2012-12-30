@@ -12,7 +12,8 @@ script: bundle exec rake spec
   #- "export JASMINE_BROWSER=firefox"
 
 before_script:
-  - "cp config/database.yml.example config/database.yml 2>&1"
+  - "cp -f config/database.yml.example config/database.yml"
+  - "cp -f config/settings.yml.example config/settings.yml"
   - "bundle exec rake db:drop db:create db:schema:load --trace 2>&1"
 
 rvm:

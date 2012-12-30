@@ -1,0 +1,13 @@
+# -*- yaml -*-
+defaults: &defaults
+  time_zone: 'Beijing'
+  default_locale: 'zh-CN'
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults
