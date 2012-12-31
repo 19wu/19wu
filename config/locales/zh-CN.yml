@@ -13,6 +13,9 @@ zh-CN:
     sign_up: "注册，发动活动"
     login: "登录名"
     password_with_forget_link_html: '密码 <small>(<a href="%{url}">忘记密码</a>)</small>'
+    event_new: "新活动"
+    event_submit: "发起"
+    cancel: "取消"
 
   slogan:
     title: "卖活动票的小屋"

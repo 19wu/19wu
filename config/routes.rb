@@ -1,4 +1,6 @@
 NineteenWu::Application.routes.draw do
+  resources :events # testing feature #109
+
   devise_for :users
 
   authenticated :user do
