@@ -3,8 +3,15 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.9'
 gem 'slim-rails'
-gem 'pg', :platform => [:ruby, :mswin, :mingw]
-gem 'activerecord-jdbcpostgresql-adapter', :platform => [:jruby]
+
+group :pg do
+  gem 'pg', :platform => [:ruby, :mswin, :mingw]
+  gem 'activerecord-jdbcpostgresql-adapter', :platform => [:jruby]
+end
+
+group :sqlite3 do
+  gem 'sqlite3'
+end
 
 gem 'devise'
 gem 'settingslogic'

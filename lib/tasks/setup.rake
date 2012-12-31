@@ -6,12 +6,20 @@ task :setup do
   unless Rails.env == 'production' # 防止生产环境下执行
     puts "1. Copy config file..."
     %w(database settings).each do |name|
-      file = "config/#{name}.yml"
-      path = Rails.root.join(file)
-      unless File.exists?(path)
-        source_path = Rails.root.join("#{file}.example")
-        puts "copying :#{source_path} => #{path}"
-        FileUtils.cp source_path, path
+      des_file = "config/#{name}.yml"
+      des_path = Rails.root.join(des_file)
+      unless File.exists?(des_path)
+        source_file = "#{des_file}.example"
+        if name == 'database'
+          # 如果想使用 sqlite，之前要运行 bundle install --without pg，这个 without 参数会保留到 .bundle/config 文件
+          # 根据 bundle 安装的数据库适配器直接选择相应的配置文件，默认选择 pg
+          db_adapter = Bundler.load.specs.to_hash.keys.select{|name| ['pg','sqlite3'].include?(name)}.sort_by(&:size).first
+          puts "using #{db_adapter} dabase adapter."
+          source_file += ".#{db_adapter}"
+        end
+        source_path = Rails.root.join(source_file)
+        puts "copying :#{source_path} => #{des_path}"
+        FileUtils.cp source_path, des_path
       end
     end
 
