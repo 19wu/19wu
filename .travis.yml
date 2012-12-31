@@ -2,19 +2,19 @@ language: ruby
 
 bundler_args: --without production development
 
-#uncomment when we start to use jasmine
-#script: bundle exec rake spec jasmine:ci
-script: bundle exec rake spec
+script: bundle exec rake travis:script
 
-#before_install:
-  #- "/sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1280x1024x16"
-  #- "export DISPLAY=:99.0"
-  #- "export JASMINE_BROWSER=firefox"
+before_install_disabled:
+  - "/sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1280x1024x16"
+  - "export DISPLAY=:99.0"
+  - "export JASMINE_BROWSER=firefox"
 
 before_script:
-  - "cp -f config/database.yml.example config/database.yml"
-  - "cp -f config/settings.yml.example config/settings.yml"
-  - "bundle exec rake db:drop db:create db:schema:load --trace 2>&1"
+  - "bundle exec rake travis:before_script"
+
+env:
+  - DATABASE=pg
+  - DATABASE=sqlite3
 
 rvm:
   - 1.9.3
