@@ -1,104 +1,69 @@
-# 19wu [![Build Status](https://travis-ci.org/saberma/19wu.png)](https://travis-ci.org/saberma/19wu)
+## 19wu [![Build Status](https://travis-ci.org/saberma/19wu.png)](https://travis-ci.org/saberma/19wu)
 
 19wu - 卖活动票的小屋
 
-有兴趣参与的同学，请点击 [这里](https://github.com/saberma/19wu/issues/2) 留名
-有兴趣加入核心研发团队的请在 [这里](https://github.com/saberma/19wu/issues/9) 申请
+### 项目介绍
 
-### 项目是做什么的？
+有些线下活动（e.g.RubyConfChina）需要卖票，19wu 是一个活动卖票平台。
 
-有些线下活动（e.g.RubyConfChina）需要卖票，19wu 就是一个卖票的电子商务平台。
+### 技术选型
 
-### 利用 ShopQi 也能卖票，为什么要重新做？
+基于 Rails3， 更多信息查看 [WIki:技术栈](https://github.com/saberma/19wu/wiki/技术栈) 。
 
-[ShopQi](http://github.com/saberma/shopqi) 是一个商品网上交易平台，而票务平台的购买流程会简单一些，但需要更多的细化功能，如生成电子票、签到等，重新开始一个专门的项目比在 ShopQi 的基础上修改更合适一些。
+### 如何贡献
 
-### 已经有其他售票平台了，这个有什么差异的地方？
+* 向朋友介绍 [19wu](https://github.com/saberma/19wu)
+* 完善 [Wiki](https://github.com/saberma/19wu/wiki) 文档
+* 发起 [Issue](https://github.com/saberma/19wu/issues) 讨论
+* 试用功能
+* 开发 [待领任务](https://github.com/saberma/19wu/issues?labels=%E5%BE%85%E9%A2%86%E4%BB%BB%E5%8A%A1&page=1&state=open) 的功能
+* 参与 [Rails 零基础新手任务](https://github.com/saberma/19wu/issues?labels=%E6%96%B0%E6%89%8B%E4%BB%BB%E5%8A%A1&page=1&state=open)
 
-最主要差异是完全开源免费，另外可以提供代卖公司票的服务（提供发票并快递给顾客）。
+[详细指南](https://github.com/saberma/19wu/blob/master/CONTRIBUTING.md)
 
-### 为什么开源？
+## 安装指南
 
-最好的产品是自己会去用的产品，最好的开源项目也是如此。比如说论坛，业务简单、容易理解，所以开源出来，大家可以边用边完善，可以提供很好的交流提升机会。
+`Ubuntu`, `Arch Linux`, `Windows XP / Windows 7` 等安装说明请查看 [这里](https://github.com/saberma/19wu/issues/19#issuecomment-11680772)
 
-而售票平台可以算是较简单的电子商务项目，容易上手，很适合开源出来，参与门槛也不高。
+安装过程有任何问题请在 [这里](https://github.com/saberma/19wu/issues/new?title=[%E5%AE%89%E8%A3%85%E9%97%AE%E9%A2%98]&body=%2A%2A%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F:%2A%2A%0D%0A%0D%0A%2A%2A%E6%95%B0%E6%8D%AE%E5%BA%93:%2A%2A%0D%0A%0D%0A%2A%2A%E5%AE%89%E8%A3%85%E8%BF%87%E7%A8%8B:%2A%2A%0D%0A%0D%0A%60%60%60ruby%0D%0A%E6%8A%A5%E9%94%99%E4%BF%A1%E6%81%AF%0D%0A%60%60%60) 反馈，社区会协助你解决
 
-### 现在一点代码都没有？
+<!---
+以上提交安装问题的 issue 链接可复制到 http://0xcc.net/jsescape/ 的 url 输入框查看或修改
+%0D%0A > 换行，%2A > 星号，%60 > 波浪号
+-->
 
-是的，之前做 ShopQi 时，项目功能太多，后期不少朋友想要贡献代码非常困难。
+## 功能列表
 
-所以这个项目，我觉得可以不急着写代码，先推迟 2 周，欢迎大家参与，我将于 **12月24日** 开始开发，并持续利用业余时间进行完善。
+* ~~用户注册登录~~
+* 发起免费活动
+* 用户报名参加
+* 参与者用户列表
+* 用户签到
 
-### 免费的线下活动可以用这个吗？
-
-可以的，只要把票价设置为0，就是免费活动了，通过 19wu 可以进行签到、统计等操作。
-
-## 技术选型
-
-一个约定：代码不超过 **2000** 行
-
-* Rails 3
-* 数据库使用 PostgreSQL
-* 后台任务使用 delayed_job，而不使用 resque，避免对 redis 的依赖
-* 前端基于 [Bootstrap](http://twitter.github.com/bootstrap) 和 [Spine.js](http://spinejs.com)
-
-查看 [WIki:技术栈](https://github.com/saberma/19wu/wiki/技术栈) 了解更多。
-
-## 开发计划
-
-开发时会针对一个个小的功能点提出 issue，提交的代码要与相应 issue 关联。
-
-### Week #1
-
-做出最小可用原型，不涉及支付流程等。
-
-* 主办方用户注册、发起免费活动
-* 普通用户报名参加
-* 主办方用户查看参与者用户列表
-
-域名备案通过即上线内部试用。
-
-### Week #2
-
-加入签到功能，先只支持二三十人左右的小型会议，不涉及电子票码生成。
-
-* 参与者用户到达会场后，由主办方用户直接勾选签到
-
-### Week #3
-
-支持手机访问。
-
-* 参与者用户查看活动时间、地点
-* 参与者用户查看参与者列表（独立列表，带头像），对其他参与者有个基本了解。
-
-
-以上为初步计划，待进一步讨论细化。
+[版本历史](https://github.com/saberma/19wu/blob/master/CHANGELOG.md)
 
 ## 团队
 
 ### 管理团队
 
-* [马海波 @saberma](https://github.com/saberma)
-* [吕国宁 @lgn21st](https://github.com/lgn21st)
-* [李亚飞 @windy](https://github.com/windy)
+* [@saberma](https://github.com/saberma)
+* [@lgn21st](https://github.com/lgn21st)
+* [@windy](https://github.com/windy)
 
-### 贡献者
+### 感谢以下贡献者
 
-[所有贡献者](https://github.com/saberma/19wu/graphs/contributors)
+持续更新
 
-* 持续招募中。。。
-* 加入条件：无，只要你有时间参与就行
-
-### 如何参与
-
-* 在 [Issue](https://github.com/saberma/19wu/issues) 发起讨论
-* 对提交的代码有任何疑问时发起讨论
-* 开发一些功能（需要带测试，以保证此功能在后续开发时不被破坏）
-* 试用已有的功能，提出建议
-* 向身边的朋友介绍 19wu
-
-[更多...](https://github.com/saberma/19wu/blob/master/CONTRIBUTING.md)
+* [@doitian](https://github.com/doitian)
+* [@richard-ma](https://github.com/richard-ma)
+* [@nightire](https://github.com/nightire)
+* [@leonkaiyu](https://github.com/leonkaiyu)
+* [@ywjno](https://github.com/ywjno)
+* [@alan-hjkl](https://github.com/alan-hjkl)
+* [所有贡献者](https://github.com/saberma/19wu/graphs/contributors)
 
 ## License
 
 [The MIT License](https://github.com/saberma/19wu/blob/master/LICENSE)
+
+Project is a member of the [OSS Manifesto](http://ossmanifesto.org).
