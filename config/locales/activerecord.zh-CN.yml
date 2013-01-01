@@ -2,9 +2,16 @@ zh-CN:
   activerecord:
     models:
       user: "用户"
+      event: "活动"
     attributes:
       user:
         login: "登录名"
         email: "Email 地址"
         password: "密码"
         remember_me: "记住我"
+      event:
+        title: "主题"
+        start_time: "开始时间"
+        end_time: "结束时间"
+        location: "地点"
+        content: "简介"
