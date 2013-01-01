@@ -1,5 +1,10 @@
 # -*- coding: utf-8 -*-
+#
+# Some gems cannot/should not be installed on heroku and/or travis, but
+# `bundle --without` cannot be used. Put these gems into group :development
+# in such situations
 is_travis = !!ENV['TRAVIS']
+# should work until heroku changes the HOME directory location
 is_heroku = ENV['HOME'] == '/app/'
 therubyracer_group = (is_travis || is_heroku) ? :development : :assets
 sqlite3_group = is_heroku ? :development : :sqlite3
