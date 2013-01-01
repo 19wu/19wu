@@ -5,7 +5,7 @@
 # in such situations
 is_travis = !!ENV['TRAVIS']
 # should work until heroku changes the HOME directory location
-is_heroku = ENV['HOME'] == '/app/'
+is_heroku = ['/app/','/app'].include?(ENV['HOME']) # ENV['HOME'] = '/app' in rails console or rake
 therubyracer_group = (is_travis || is_heroku) ? :development : :assets
 sqlite3_group = is_heroku ? :development : :sqlite3
 
