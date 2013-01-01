@@ -1,4 +1,9 @@
 # -*- coding: utf-8 -*-
+is_travis = !!ENV['TRAVIS']
+is_heroku = ENV['HOME'] == '/app/'
+therubyracer_group = (is_travis || is_heroku) ? :development : :assets
+sqlite3_group = is_heroku ? :development : :sqlite3
+
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.9'
@@ -9,7 +14,7 @@ group :pg do
   gem 'activerecord-jdbcpostgresql-adapter', :platform => [:jruby]
 end
 
-group :sqlite3 do
+group sqlite3_group do
   gem 'sqlite3'
 end
 
@@ -27,11 +32,6 @@ group :development, :test do
   gem 'thin', '~> 1.5.0'
   gem 'pry-rails'
   gem 'guard-livereload'
-
-  unless ENV['TRAVIS'] # 编译coffee-script # 安装编译过程太慢(大概4分钟)
-    gem 'libv8', '3.11.8.3', :platforms => :ruby # therubyracer 从 0.11 开始没有依赖 lib8. http://git.io/EtMkCg
-    gem 'therubyracer', :platforms => :ruby
-  end
 end
 
 group :test do
@@ -46,7 +46,12 @@ group :assets do
   gem 'jquery-rails'
 end
 
-
+group therubyracer_group do
+  # Travis 编译coffee-script # 安装编译过程太慢(大概4分钟)
+  # Heroku 编译失败
+  gem 'libv8', '3.11.8.3', :platforms => :ruby # therubyracer 从 0.11 开始没有依赖 lib8. http://git.io/EtMkCg
+  gem 'therubyracer', :platforms => :ruby
+end
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
