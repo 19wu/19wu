@@ -23,6 +23,10 @@ group sqlite3_group do
   gem 'sqlite3'
 end
 
+group :mysql2_group do
+  gem 'mysql2'
+end
+
 gem 'devise'
 gem 'settingslogic'
 
