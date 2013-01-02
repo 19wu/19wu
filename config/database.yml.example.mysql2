@@ -1,12 +1,11 @@
 defaults: &defaults
   adapter: mysql2
   encoding: utf8
-  database: nineteen_wu
+  host: localhost
+  port: 3306
   username: root
   passwprd:
-  host: localhost
-  port: 3306  
-  
+
 development:
   <<: *defaults
   database: nineteen_wu_development
