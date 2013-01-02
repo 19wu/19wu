@@ -3,6 +3,7 @@ defaults: &defaults
   encoding: utf8
   database: nineteen_wu
   username: root
+  passwprd:
   host: localhost
   port: 3306  
   
