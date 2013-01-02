@@ -8,6 +8,7 @@ is_travis = !!ENV['TRAVIS']
 is_heroku = ['/app/','/app'].include?(ENV['HOME']) # ENV['HOME'] = '/app' in rails console or rake
 therubyracer_group = (is_travis || is_heroku) ? :development : :assets
 sqlite3_group = is_heroku ? :development : :sqlite3
+mysql2_group = is_heroku ? :development : :mysql2
 
 source 'https://rubygems.org'
 
@@ -23,7 +24,7 @@ group sqlite3_group do
   gem 'sqlite3'
 end
 
-group :mysql2_group do
+group mysql2_group do
   gem 'mysql2'
 end
 
