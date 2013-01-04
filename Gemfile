@@ -14,7 +14,8 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.9'
 gem 'slim-rails'
-gem 'html-pipeline', :require => 'html/pipeline'
+gem 'html-pipeline', :require => false
+gem 'kramdown', :platform => [:jruby]
 
 group :pg do
   gem 'pg', :platform => [:ruby, :mswin, :mingw]
@@ -40,7 +41,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'jasmine', '1.3.0'
   gem 'factory_girl_rails', '~> 4.0' # generator will use it in development.
-  gem 'thin', '~> 1.5.0'
+  gem 'thin', '~> 1.5.0', :platform => [:ruby, :mswin, :mingw]
   gem 'pry-rails'
   gem 'guard-livereload'
 end
