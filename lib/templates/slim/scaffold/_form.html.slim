@@ -1,0 +1,9 @@
+= simple_form_for(@<%= singular_table_name %>) do |f|
+  = f.error_notification
+
+  .form-inputs
+    - attributes.each do |attribute|
+      = f.send (attribute.reference? ? :association : :input), attribute.name
+
+  .form-actions
+    = f.button :submit
