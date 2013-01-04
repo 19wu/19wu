@@ -56,7 +56,7 @@
 
 * [@doitian](https://github.com/doitian)
 * [@richard-ma](https://github.com/richard-ma)
-* [@nightire](https://github.com/nightire)
+* [@nightire](https://github.com/nightire)  主负责「原型设计」，类似 [#130](https://github.com/saberma/19wu/issues/130)
 * [@leonkaiyu](https://github.com/leonkaiyu)
 * [@ywjno](https://github.com/ywjno)
 * [@alan-hjkl](https://github.com/alan-hjkl)
