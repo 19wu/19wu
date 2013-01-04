@@ -33,6 +33,12 @@ module HasHtmlPipeline
     def register_html_pipeline(name, filters, context = {})
       registered_html_pipelines[name.to_sym] = HTML::Pipeline.new(filters, context)
     end
+
+    alias_method :register, :register_html_pipeline
+
+    def configure
+      yield self
+    end
   end
 
   def has_html_pipeline(field, pipeline_name)
