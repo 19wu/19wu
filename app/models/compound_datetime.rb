@@ -1,10 +1,23 @@
 class CompoundDatetime
+  module HasCompoundDatetime
+    def has_compound_datetime(field)
+      define_method "compound_#{field}" do
+        CompoundDatetime.new(send(field))
+      end
+
+      define_method "compound_#{field}_attributes=" do |attributes|
+        compound_datetime = CompoundDatetime.new(send(field))
+        compound_datetime.assign_attributes(attributes)
+        send("#{field}=", compound_datetime.datetime)
+      end
+    end
+  end
+
   extend Forwardable
 
-  attr_accessor :date
-  attr_accessor :time
-
   ATTRIBUTES = %w(date hour min sec meridian)
+
+  attr_reader :datetime
 
   def initialize(datetime = nil)
     @datetime = datetime || Time.zone.now
@@ -14,6 +27,8 @@ class CompoundDatetime
     attributes.slice(*ATTRIBUTES).each do |k, v|
       send "#{k}=", v
     end
+
+    self
   end
 
   # am/pm
