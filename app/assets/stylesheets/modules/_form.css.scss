@@ -25,19 +25,21 @@ form {
 }
 
 .compound-datetime {
-  input {
-    @extend .input-small;
-  }
   select {
     width: auto;
   }
   > .date {
-    margin-right: 15px;
+    margin-bottom: $baseLineHeight / 4;
     > .add-on {
       margin-top: 1px;
     }
   }
-  > .time > .time-min {
-    margin-right: 5px;
+  > .time {
+    > .time-min {
+      margin-right: 5px;
+    }
+    > select {
+      margin-bottom: $baseLineHeight / 8;
+    }
   }
 }
