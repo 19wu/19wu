@@ -14,7 +14,8 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.9'
 gem 'slim-rails'
-gem 'html-pipeline', :require => false
+# gem already added to rubygems.org, remove :git after it is available to download
+gem 'html-pipeline-no-charlock', :require => false, :git => 'git://github.com/doitian/html-pipeline'
 gem 'kramdown', :platform => [:jruby]
 
 group :pg do
