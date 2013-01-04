@@ -2,29 +2,15 @@
   .span8.offset2.well
     fieldset
       legend = t('label.event_new')
-      = form_for @event, :html => { :class => "form-horizontal" } do |f|
-        .control-group
-          = f.label :title, :class => ['control-label']
-          .controls
-            = f.text_field :title, :class => ['input-xlarge']
-        .control-group
-          = f.label :start_time, :class => ['control-label']
-          .controls
-            = f.text_field :start_time, :class => ['input-xlarge']
-        .control-group
-          = f.label :end_time, :class => ['control-label']
-          .controls
-            = f.text_field :end_time, :class => ['input-xlarge']
-        .control-group
-          = f.label :location, :class => ['control-label']
-          .controls
-            = f.text_field :location, :class => ['input-xlarge']
-        .control-group
-          = f.label :content, :class => ['control-label']
-          .controls
-            = f.text_area :content, :rows => 6
-        .control-group
-          .controls
-            = f.submit t('label.event_submit'), :class => ['btn', 'btn-info']
-            | &nbsp; 
-            button.btn = t('label.cancel')
+      = simple_form_for @event, :html => { :class => "form-horizontal" } do |f|
+        = f.error_notification
+
+        .form-inputs
+          = f.input :title
+          = f.input :start_time, :as => :string
+          = f.input :end_time, :as => :string
+          = f.input :location
+          = f.input :content, :input_html => { :rows => 12, :class => 'span5' }
+        .form-actions
+          = f.button :submit, :class => ['btn', 'btn-info']
+          button.btn= t('label.cancel')
