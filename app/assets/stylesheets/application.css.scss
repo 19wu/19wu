@@ -7,6 +7,8 @@
 
 /* mixins */
 
+@import "mixins/footer_after";
+
 /* main */
 
 @import "1.base";
@@ -24,3 +26,5 @@
 
 @import "modules/brand";
 @import "modules/jumbotron";
+
+@import "modules/event";
