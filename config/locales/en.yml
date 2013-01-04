@@ -2,4 +2,7 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
+  date:
+    weekstart: '0'
+    formats:
+      datepicker: 'yyyy-mm-dd'

@@ -63,7 +63,7 @@ class CompoundDatetime
     return unless date.present?
 
     unless date.is_a?(Time) || date.is_a?(Date)
-      date = Time.zone.parse(date)
+      date = Time.zone.parse(date).to_date
     end
 
     if @datetime

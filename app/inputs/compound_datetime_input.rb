@@ -1,5 +1,5 @@
 class CompoundDatetimeInput < SimpleForm::Inputs::Base
-  MERIDIAN_COLLECTION = [[I18n.t('time.am'), 'am'], [I18n.t('time.pm'), 'pm']]
+  MERIDIAN_COLLECTION = lambda { [[I18n.t('time.am'), 'am'], [I18n.t('time.pm'), 'pm']] }
   HOUR_COLLECTION = ([12] + (1..11).to_a).collect { |h| ['%02d' % h, h] }
   MIN_COLLECTION = (0..59).collect { |m| ['%02d' % m, m] }
 
@@ -9,15 +9,16 @@ class CompoundDatetimeInput < SimpleForm::Inputs::Base
       template.content_tag(:div, :class => 'compound-datetime') do
         result = ''
         result += template.content_tag(:span, :class => 'input-append date') do
-          f.text_field(:date, :class => 'date') + template.content_tag(:span, :class => 'add-on') do
-            template.content_tag(:i, '', :class => 'icon-calendar')
+          f.text_field(:date, :class => 'datepicker') +
+            template.content_tag(:span, :class => 'add-on') do
+            template.content_tag(:i, '', :class => 'icon-calendar datepicker-trigger')
           end
         end
         result += template.content_tag(:span, :class => 'time') do
           f.select(:hour, HOUR_COLLECTION, {:include_blank => true}, :class => 'time-hour') +
             template.content_tag(:span, ' : ', :class => 'muted') +
             f.select(:min, MIN_COLLECTION, {:include_blank => true}, :class => 'time-min') +
-            f.select(:meridian, MERIDIAN_COLLECTION, {}, :class => 'time-meridian')
+            f.select(:meridian, MERIDIAN_COLLECTION.call, {}, :class => 'time-meridian')
         end
 
         result.html_safe

@@ -1,0 +1,11 @@
+//= require bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN.js
+//= require_self
+var I18n = window.I18n = {
+  locale: 'zh-CN',
+  date: {
+    weekstart: <%= I18n.backend.translate('zh-CN', 'date.weekstart').inspect %>,
+    formats: {
+      datepicker: <%= I18n.backend.translate('zh-CN', 'date.formats.datepicker').inspect %>
+    }
+  }
+};
