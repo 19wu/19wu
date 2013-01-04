@@ -1,0 +1,28 @@
+.event {
+  header {
+    border-bottom: 1px solid $grayBackground;
+  }
+  h1 {
+    font-size: $baseFontSize * 2.25;
+  }
+  h2 {
+    font-size: $baseFontSize * 1.25;
+    color: $gray;
+  }
+}
+
+.event-body {
+  margin-top: $baseLineHeight;
+}
+
+.event-sidebar {
+  margin: $baseLineHeight / 2;
+  background-color: $grayLighter;
+  padding: $baseLineHeight;
+  > ul {
+    margin-bottom: $baseLineHeight;
+    > li {
+      margin-bottom: $baseLineHeight / 2;
+    }
+  }
+}

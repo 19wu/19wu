@@ -1,16 +1,12 @@
 #content {
   padding: 3 * $baseLineHeight 0;
-  margin-bottom: 2 * $baseLineHeight;
-}
-
-.signed_out #header {
-  border-bottom: 1px solid $borderColor;
-  padding: (0.5 * $baseFontSize) 0;
 }
 
 #footer {
   border-top: 1px solid $borderColor;
   padding: 2 * $baseLineHeight 0;
+  background: $grayBackground;
+  @include footer_after($grayBackground);
 }
 
 #flash .alert {
@@ -26,5 +22,35 @@
   }
   .navbar-static-top .container {
     width: auto;
+  }
+}
+
+.signed_out {
+  #header {
+    border-bottom: 1px solid $borderColor;
+    padding: (0.5 * $baseFontSize) 0;
+  }
+  .navbar-inner {
+    @include box-shadow(none);
+    border-width: 0;
+    background: $bodyBackground;
+  }
+}
+
+.l-event {
+  #main {
+    background: $grayBackground;
+  }
+  #content {
+    padding: 4 * $baseFontSize;
+  }
+  #content > .container {
+    background: $bodyBackground;
+    padding: $baseFontSize;
+    border: 1px solid $borderColor;
+  }
+  #footer {
+    background: $bodyBackground;
+    @include footer_after($bodyBackground);
   }
 }

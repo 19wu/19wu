@@ -34,6 +34,14 @@ describe ApplicationHelper do
       end
       its([:class]) { should include('signed_out') }
     end
+    context 'when event is show' do
+      before do
+        helper.should_receive(:user_signed_in?).and_return(false)
+        helper.should_receive(:controller_name).and_return('mockup')
+        helper.should_receive(:action_name).and_return('event')
+      end
+      its([:class]) { should include('l-event') }
+    end
   end
 
   describe 'render_user_bar' do

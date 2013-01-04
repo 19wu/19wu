@@ -1,5 +1,6 @@
 NineteenWu::Application.routes.draw do
   resources :events # testing feature #109
+  get 'mockup/:action(.:format)', :controller => 'mockup'
 
   devise_for :users
 
