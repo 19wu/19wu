@@ -14,6 +14,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.10'
 gem 'slim-rails'
+gem 'simple_form'
 
 group :pg do
   gem 'pg', :platform => [:ruby, :mswin, :mingw]
