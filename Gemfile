@@ -12,7 +12,7 @@ mysql2_group = is_heroku ? :development : :mysql2
 
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.9'
+gem 'rails', '3.2.10'
 gem 'slim-rails'
 
 group :pg do
