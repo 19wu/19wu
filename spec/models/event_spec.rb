@@ -22,5 +22,11 @@ describe Event do
       event.location = ''
       expect(event.save).to be_false
     end
+
+    it "with start_time > end_time" do
+      event.start_time = "2012-12-31 08:00:51"
+      event.end_time = "2012-12-31 08:00:50"
+      expect(event.save).to be_false
+    end
   end
 end
