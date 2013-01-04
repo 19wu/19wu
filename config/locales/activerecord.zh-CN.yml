@@ -12,6 +12,8 @@ zh-CN:
       event:
         title: "主题"
         start_time: "开始时间"
+        compound_start_time: "开始时间"
         end_time: "结束时间"
+        compound_end_time: "结束时间"
         location: "地点"
         content: "简介"

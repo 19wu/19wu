@@ -8,5 +8,6 @@ class Event < ActiveRecord::Base
   attr_accessible :compound_start_time_attributes
   attr_accessible :compound_end_time_attributes
 
-  validates :title, :start_time, :location, presence: true
+  validates :title, :location, presence: true
+  validates :compound_start_time, presence: true
 end

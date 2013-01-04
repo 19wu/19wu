@@ -2,7 +2,8 @@ class CompoundDatetime
   module HasCompoundDatetime
     def has_compound_datetime(field)
       define_method "compound_#{field}" do
-        CompoundDatetime.new(send(field))
+        datetime = send(field)
+        CompoundDatetime.new(datetime) if datetime
       end
 
       define_method "compound_#{field}_attributes=" do |attributes|
@@ -13,14 +14,12 @@ class CompoundDatetime
     end
   end
 
-  extend Forwardable
-
   ATTRIBUTES = %w(date hour min sec meridian)
 
   attr_reader :datetime
 
   def initialize(datetime = nil)
-    @datetime = datetime || Time.zone.now
+    @datetime = datetime
   end
 
   def assign_attributes(attributes)
@@ -33,11 +32,12 @@ class CompoundDatetime
 
   # am/pm
   def meridian
-    @datetime.strftime('%P')
+    @datetime.try(:strftime, '%P') || @meridian
   end
 
   # hours 1-12
   def hour
+    return nil unless @datetime.present?
     if @datetime.hour == 0
       12
     elsif @datetime.hour > 12
@@ -47,8 +47,17 @@ class CompoundDatetime
     end
   end
 
-  def_delegators :@datetime, :min, :sec
-  def_delegator :@datetime, :to_date, :date
+  def min
+    @datetime.try(:min) || @min
+  end
+
+  def sec
+    @datetime.try(:sec) || @sec
+  end
+
+  def date
+    @datetime.try(:to_date)
+  end
 
   def date=(date)
     return unless date.present?
@@ -57,30 +66,39 @@ class CompoundDatetime
       date = Time.zone.parse(date)
     end
 
-    @datetime = @datetime.change(:year => date.year, :month => date.month, :day => date.day)
+    if @datetime
+      @datetime = @datetime.change(:year => date.year, :month => date.month, :day => date.day)
+    else
+      @datetime = date.to_time
+    end
   end
 
   def hour=(hour)
-    assign_time(hour.to_i, meridian, min, sec)
+    assign_time(hour, meridian, min, sec)
   end
 
   def min=(min)
+    @min = min
     assign_time(hour, meridian, min, sec)
   end
 
   def sec=(sec)
+    @sec = sec
     assign_time(hour, meridian, min, sec)
   end
 
   def meridian=(meridian)
-    meridian = 'am' if meridian != 'pm'
-    assign_time(hour, meridian, min, sec)
+    @meridian = meridian
+    @meridian = 'am' if @meridian != 'pm'
+    assign_time(hour, @meridian, min, sec)
   end
 
   def persisted?; false; end
 
   private
   def assign_time(hour12, meridian, min, sec)
+    return unless hour12.present?
+
     hour24 = hour12.to_i
     if meridian == 'am'
       hour24 = 0 if hour24 == 12
@@ -88,6 +106,7 @@ class CompoundDatetime
       hour24 += 12 if hour24 != 12
     end
 
+    @datetime ||= Time.zone.now
     @datetime = @datetime.change(:hour => hour24, :min => min.to_i, :sec => sec.to_i)
   end
 end

@@ -7,8 +7,8 @@
 
         .form-inputs
           = f.input :title
-          = f.input :start_time, :as => :string
-          = f.input :end_time, :as => :string
+          = f.input :compound_start_time, :as => :compound_datetime
+          = f.input :compound_end_time, :as => :compound_datetime
           = f.input :location
           = f.input :content, :input_html => { :rows => 12, :class => 'span5' }
         .form-actions

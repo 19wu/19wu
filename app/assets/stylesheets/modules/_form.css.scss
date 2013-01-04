@@ -17,8 +17,24 @@ form {
       @extend .btn-block;
     }
   }
+
 }
 
 .form-actions > .btn {
   margin-right: 5px;
+}
+
+.compound-datetime {
+  input {
+    @extend .input-small;
+  }
+  select {
+    width: auto;
+  }
+  > .date {
+    margin-right: 15px;
+  }
+  > .time > .time-min {
+    margin-right: 5px;
+  }
 }
