@@ -9,6 +9,9 @@ before_install_disabled:
   - "export DISPLAY=:99.0"
   - "export JASMINE_BROWSER=firefox"
 
+before_install:
+  - sudo apt-get install -qq libicu-dev
+
 before_script:
   - "bundle exec rake travis:before_script"
 
