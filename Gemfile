@@ -14,6 +14,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.9'
 gem 'slim-rails'
+gem 'html-pipeline', :require => 'html/pipeline'
 
 group :pg do
   gem 'pg', :platform => [:ruby, :mswin, :mingw]
