@@ -27,7 +27,7 @@ development:
     <<: *email
     host: 'localhost:3000'
     from: 'development@19wu.com'
-    delivery_method: :smtp
+    delivery_method: :file
 
 test:
   <<: *defaults

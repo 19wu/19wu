@@ -35,6 +35,7 @@ gem 'devise'
 gem 'settingslogic'
 
 group :development do
+  gem 'mails_viewer'
   gem 'quiet_assets'
 end
 
