@@ -2,7 +2,8 @@
   .span3
     ul.nav.nav-list
       li
-        button.btn.btn-info href="#" 发起活动
+        span
+          = link_to t('label.event_submit'), new_event_path, :class => 'btn btn-info'
       li.divider
 
       li.nav-header 当前活动
