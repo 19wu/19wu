@@ -5,6 +5,16 @@ require 'rspec/rails'
 require 'rspec/autorun'
 require 'capybara/email/rspec'
 
+class Capybara::Email::Driver
+  def raw
+    if email.mime_type == 'multipart/alternative' && email.html_part
+      email.html_part.body.encoded
+    else
+      email.body.encoded
+    end
+  end
+end
+
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
 Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
