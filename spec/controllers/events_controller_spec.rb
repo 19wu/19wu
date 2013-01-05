@@ -7,8 +7,6 @@ describe EventsController do
       login_user
       it "builds a new event" do
         get 'new'
-        puts response.body
-        puts response.status
         assigns[:event].should be_a_kind_of(Event)
         assigns[:event].should be_a_new_record
       end
