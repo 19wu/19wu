@@ -1,9 +1,11 @@
 class Event < ActiveRecord::Base
   extend CompoundDatetime::HasCompoundDatetime
+  extend HasHtmlPipeline
   belongs_to :user
 
   has_compound_datetime :start_time
   has_compound_datetime :end_time
+  has_html_pipeline :content, :markdown
 
   attr_accessible :content, :location, :start_time, :end_time, :title
   attr_accessible :compound_start_time_attributes

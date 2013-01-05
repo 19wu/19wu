@@ -46,7 +46,7 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.save
-        format.html { redirect_to new_event_url, notice: 'event was successfully created.' } # testing feature #109. redirect to self
+        format.html { redirect_to @event, notice: I18n.t('flash.events.created') }
         format.json { render json: @event, status: :created, location: @event }
       else
         format.html { render action: "new" }

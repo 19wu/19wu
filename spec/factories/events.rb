@@ -8,5 +8,14 @@ FactoryGirl.define do
     location "Tianjin, China"
     content "Contents here"
     user
+
+    trait :markdown do
+      content <<-MD
+# Awesome Event #
+
+-   free wifi
+-   free coffee
+      MD
+    end
   end
 end

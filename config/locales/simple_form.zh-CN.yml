@@ -23,8 +23,3 @@ zh-CN:
     #   defaults:
     #     username: 'User name to sign in.'
     #     password: 'No special characters, please.'
-
-  helpers:
-    submit:
-      event:
-        create: "新活动"

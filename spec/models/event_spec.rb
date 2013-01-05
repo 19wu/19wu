@@ -29,4 +29,11 @@ describe Event do
       expect(event.save).to be_false
     end
   end
+
+  describe 'content_html' do
+    context 'when content is "# title #"' do
+      subject { build :event, :content => '# title #' }
+      its(:content_html) { should include('<h1>title</h1>') }
+    end
+  end
 end
