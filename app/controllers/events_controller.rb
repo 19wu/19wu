@@ -1,8 +1,10 @@
 class EventsController < ApplicationController
+  prepend_before_filter :authenticate_user!, except: [:show]
+
   # GET /events
   # GET /events.json
   def index
-    @events = Event.all
+    @events = current_user.events.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -24,7 +26,7 @@ class EventsController < ApplicationController
   # GET /events/new
   # GET /events/new.json
   def new
-    @event = Event.new
+    @event = current_user.events.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -34,13 +36,13 @@ class EventsController < ApplicationController
 
   # GET /events/1/edit
   def edit
-    @event = Event.find(params[:id])
+    @event = current_user.events.find(params[:id])
   end
 
   # POST /events
   # POST /events.json
   def create
-    @event = Event.new(params[:event])
+    @event = current_user.events.new(params[:event])
 
     respond_to do |format|
       if @event.save
@@ -56,7 +58,7 @@ class EventsController < ApplicationController
   # PUT /events/1
   # PUT /events/1.json
   def update
-    @event = Event.find(params[:id])
+    @event = current_user.events.find(params[:id])
 
     respond_to do |format|
       if @event.update_attributes(params[:event])
@@ -72,7 +74,7 @@ class EventsController < ApplicationController
   # DELETE /events/1
   # DELETE /events/1.json
   def destroy
-    @event = Event.find(params[:id])
+    @event = current_user.events.find(params[:id])
     @event.destroy
 
     respond_to do |format|

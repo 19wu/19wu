@@ -7,5 +7,6 @@ FactoryGirl.define do
     end_time "2012-12-31 09:00:51"
     location "Tianjin, China"
     content "Contents here"
+    user
   end
 end
