@@ -49,6 +49,9 @@ GEM
       rack-test (>= 0.5.4)
       selenium-webdriver (~> 2.0)
       xpath (~> 1.0.0)
+    capybara-email (2.0.1)
+      capybara (~> 2.0.0)
+      mail
     childprocess (0.3.6)
       ffi (~> 1.0, >= 1.0.6)
     coderay (1.0.8)
@@ -253,6 +256,7 @@ DEPENDENCIES
   bootstrap-datepicker-rails
   bootstrap-sass (~> 2.2.2.0)
   capybara
+  capybara-email
   coffee-rails (~> 3.2.1)
   devise
   factory_girl_rails (~> 4.0)
