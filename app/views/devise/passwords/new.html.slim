@@ -3,7 +3,7 @@
     = simple_form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f|
       fieldset
         legend
-          = t('titles.forget_pass')
+          = t('devise.views.passwords.new.title')
           small.pull-right
             = link_to t('devise.views.links.resend_confirmation'), new_confirmation_path(resource_name)
 

@@ -1,7 +1,7 @@
 .row
   .span8.offset2.well
     fieldset
-      legend = t('titles.new_event')
+      legend = t('.title', :scope => 'views')
       = simple_form_for @event, :html => { :class => "form-horizontal" } do |f|
         = f.error_notification
 
