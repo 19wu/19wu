@@ -7,5 +7,14 @@ FactoryGirl.define do
     end_time "2012-12-31 09:00:51"
     location "Tianjin, China"
     content "Contents here"
+
+    trait :markdown do
+      content <<-MD
+# Awesome Event #
+
+-   free wifi
+-   free coffee
+      MD
+    end
   end
 end
