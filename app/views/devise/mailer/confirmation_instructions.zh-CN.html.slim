@@ -1,0 +1,4 @@
+p
+  | #{@resource.login}，欢迎!
+p 您可以通过下面的链接来激活帐号：
+p= link_to '激活帐号', confirmation_url(@resource, :confirmation_token => @resource.confirmation_token)
