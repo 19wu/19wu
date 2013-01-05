@@ -13,6 +13,10 @@ feature 'user registration' do
     fill_in 'user_password', with: user.password
 
     click_button submit
-    expect(page).to have_content(I18n.t('devise.registrations.signed_up'))
+    expect(page).to have_content(I18n.t('devise.registrations.signed_up_but_unconfirmed'))
+
+    open_email(user.email)
+    current_email.click_link 'Confirm my account'
+    expect(page).to have_content(I18n.t('devise.confirmations.confirmed'))
   end
 end
