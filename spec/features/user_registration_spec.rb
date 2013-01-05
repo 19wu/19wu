@@ -3,7 +3,7 @@ require 'spec_helper'
 
 feature 'user registration' do
   let(:user) { build :user }
-  let(:submit) { I18n.t('label.sign_up') }
+  let(:submit) { I18n.t('labels.sign_up') }
 
   before(:each) { visit '/' }
 

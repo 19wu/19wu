@@ -13,13 +13,17 @@ zh-CN:
     contact_us: "联系我们"
     title: "19屋－卖活动票的小屋"
 
-  label:
+  labels:
     sign_in: "登录"
     sign_up: "注册，发动活动"
-    password_with_forget_link_html: '密码 <small>(<a href="%{url}">忘记密码</a>)</small>'
-    event_new: "新活动"
-    event_submit: "发起活动"
     cancel: "取消"
+
+  titles:
+    new_event: "发起活动"
+    forget_pass: "忘记密码了？"
+
+  links:
+    forget_pass: "忘记密码"
 
   slogan:
     title: "卖活动票的小屋"

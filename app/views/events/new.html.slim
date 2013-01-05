@@ -1,7 +1,7 @@
 .row
   .span8.offset2.well
     fieldset
-      legend = t('label.event_new')
+      legend = t('titles.new_event')
       = simple_form_for @event, :html => { :class => "form-horizontal" } do |f|
         = f.error_notification
 
@@ -13,4 +13,4 @@
           = f.input :content, :input_html => { :rows => 12, :class => 'span5' }
         .form-actions
           = f.button :submit, :class => ['btn', 'btn-info']
-          button.btn= t('label.cancel')
+          button.btn= t('labels.cancel')
