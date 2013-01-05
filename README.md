@@ -60,6 +60,7 @@
 * [@leonkaiyu](https://github.com/leonkaiyu)
 * [@ywjno](https://github.com/ywjno)
 * [@alan-hjkl](https://github.com/alan-hjkl)
+* [@windduke](https://github.com/windduke)
 * [所有贡献者](https://github.com/saberma/19wu/graphs/contributors)
 
 ## License
