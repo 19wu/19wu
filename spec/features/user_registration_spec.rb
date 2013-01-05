@@ -3,7 +3,7 @@ require 'spec_helper'
 
 feature 'user registration' do
   let(:user) { build :user }
-  let(:submit) { I18n.t('label.sign_up') }
+  let(:submit) { I18n.t('labels.sign_up') }
 
   before(:each) { visit '/' }
 
@@ -16,7 +16,7 @@ feature 'user registration' do
     expect(page).to have_content(I18n.t('devise.registrations.signed_up_but_unconfirmed'))
 
     open_email(user.email)
-    current_email.click_link 'Confirm my account'
+    current_email.click_link '激活帐号'
     expect(page).to have_content(I18n.t('devise.confirmations.confirmed'))
   end
 end

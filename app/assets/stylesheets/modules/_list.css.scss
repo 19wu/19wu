@@ -7,4 +7,7 @@ ul, ol {
       padding: 4px;
     }
   }
+  &.unstyled > li {
+    margin-bottom: $baseLineHeight / 4;
+  }
 }

@@ -2,13 +2,13 @@
   .span4.offset4.well
     = form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :class => 'form-full-width' }) do |f|
       fieldset
-        legend  = t('label.sign_in')
+        legend  = t('devise.views.sessions.new.title')
         = render_flashes
         = f.label :email
         = f.email_field :email
-        = f.label :password, t('label.password_with_forget_link_html', :url => new_password_path(resource_name))
+        = f.label :password, render_password_label_with_forget_link(f.object)
         = f.password_field :password
         .control-group
           - if devise_mapping.rememberable?
             = f.hidden_field :remember_me, :value => true
-          = f.submit t('label.sign_in'), :class => ['btn', 'btn-info']
+          = f.submit t('devise.views.sessions.new.submit'), :class => ['btn', 'btn-info']

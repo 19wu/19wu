@@ -13,18 +13,6 @@ zh-CN:
     contact_us: "联系我们"
     title: "19屋－卖活动票的小屋"
 
-  flash:
-    events:
-      created: '成功发起新活动'
-
-  label:
-    sign_in: "登录"
-    sign_up: "注册，发动活动"
-    password_with_forget_link_html: '密码 <small>(<a href="%{url}">忘记密码</a>)</small>'
-    event_new: "新活动"
-    event_submit: "发起活动"
-    cancel: "取消"
-
   slogan:
     title: "卖活动票的小屋"
     description: "由开源社区研发的活动票务平台，在这个小屋子发动活动、卖票都是免费的。"
@@ -45,8 +33,17 @@ zh-CN:
       event:
         create: "新活动"
 
+  labels:
+    sign_in: "登录"
+    sign_up: "注册"
+    sign_up_to_launch_event: "注册，发动活动"
+    cancel: "取消"
+
   text:
     under_construction: "网站建设中"
     visit_github_html: '在 Github 上查看19屋的<a href="%{url}">最新进展</a>。'
-    index:
-      under_construction: test
+
+  views:
+    events:
+      new:
+        title: "发起活动"

@@ -1,3 +1,7 @@
 ul.user-bar.pull-right
-  li
-    = link_to t('label.sign_in'), new_user_session_path, :class => "btn"
+  - if controller_name != 'registrations'
+    li= link_to t('labels.sign_up'), new_user_registration_path, :class => "btn btn-success"
+  - if controller_name != 'sessions'
+    li= link_to t('labels.sign_in'), new_user_session_path, :class => "btn"
+  - else
+    li= link_to t('devise.views.links.resend_confirmation'), new_confirmation_path(resource_name), :class => "btn btn-link"
