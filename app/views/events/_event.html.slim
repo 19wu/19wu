@@ -2,12 +2,11 @@ article.event
   .row-fluid
     .span8
       header
-        h1 szRubyist Meetup
+        h1 = event.title
         h2 2012年12月8号 14:00 - 17:00
 
       .event-body
-        p 暂时定为 &lt; Ruby2.0 的 Refinements 特性带来的问题 &gt;, 分享时间大约40分钟. 剩余时间自由交流.
-        p 提供干货, 我希望每一次活动让大家都有技术的收获. 这对你来说是一个锻炼的平台, 愿意分享, 提高表达能力, 请多贡献:)
+        == event.content_html
 
     .span4
       .event-sidebar
