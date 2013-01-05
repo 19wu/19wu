@@ -6,10 +6,10 @@
         = f.error_notification
 
         .form-inputs
-          = f.input :title
+          = f.input :title, :input_html => { :class => 'span5' }
           = f.input :compound_start_time, :as => :compound_datetime
           = f.input :compound_end_time, :as => :compound_datetime
-          = f.input :location
+          = f.input :location, :input_html => { :class => 'span5' }
           = f.input :content, :input_html => { :rows => 12, :class => 'span5' }
         .form-actions
           = f.button :submit, :class => ['btn', 'btn-info']
