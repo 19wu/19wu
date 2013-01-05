@@ -1,5 +1,6 @@
 class Event < ActiveRecord::Base
   extend CompoundDatetime::HasCompoundDatetime
+  belongs_to :user
 
   has_compound_datetime :start_time
   has_compound_datetime :end_time
