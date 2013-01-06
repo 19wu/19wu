@@ -28,12 +28,16 @@ module DeviseFeatureMacros
     click_button I18n.t('labels.sign_in')
   end
 
+  alias_method :login_user, :sign_in
+
   module ClassMethods
     def sign_in(&block)
       before(:each) do
         login_user block.try(:call)
       end
     end
+
+    alias_method :login_user, :sign_in
   end
 end
 
