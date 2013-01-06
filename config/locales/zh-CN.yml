@@ -37,6 +37,7 @@ zh-CN:
     sign_in: "登录"
     sign_up: "注册"
     sign_up_to_launch_event: "注册，发动活动"
+    launch_event: "发动活动"
     cancel: "取消"
 
   text:
