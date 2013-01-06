@@ -1,4 +1,4 @@
-## 19wu [![Build Status](https://travis-ci.org/saberma/19wu.png?branch=master)](https://travis-ci.org/saberma/19wu)
+## 19wu [![Build Status](https://travis-ci.org/saberma/19wu.png?branch=master)](https://travis-ci.org/saberma/19wu) [![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/saberma/19wu)
 
 19wu - 卖活动票的小屋
 
