@@ -10,7 +10,7 @@ feature 'profile settings' do
   end
 
   background do
-    visit settings_profile_path
+    visit profile_path
   end
 
   scenario "I update my profile" do
