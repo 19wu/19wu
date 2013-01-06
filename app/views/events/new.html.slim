@@ -13,4 +13,4 @@
           = f.input :content, :input_html => { :rows => 12, :class => 'span5' }
         .form-actions
           = f.button :submit, :class => ['btn', 'btn-info']
-          button.btn= t('labels.cancel')
+          a.btn href=root_path = t('labels.cancel')
