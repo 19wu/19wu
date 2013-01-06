@@ -4,17 +4,39 @@ defaults: &defaults
   default_locale: 'zh-CN'
 
   email: &email
+    # Edit according to the smtp account domain.
+    # e.g.
+    #
+    # from: '19wu staging <19wu@19wu.mailgun.org>'
     from: '19wu <us@19wu.com>'
+
+    # Used to generate URL in the email. Must be the same of the domain of the
+    # server.
+    # e.g.
+    #
+    # host: '19wu.herokuapp.com'
     host: '19wu.com'
+
     delivery_method: :smtp
 
     smtp_settings:
+      # Gmail example
       # port: 587
-      # address:
-      # user_name:
-      # password:
-      # domain:
-      # authentication:
+      # address: 'smtp.gmail.com'
+      # domain: 'gmail.com'
+      # user_name: '19wu.mailer@gmail.com'
+      # password: 'secret'
+      # authentication: 'plain'
+      # enable_starttls_auto: true
+
+      # Mailgun Example
+      # port: 587
+      # address: 'smtp.mailgun.org'
+      # user_name: 'postmaster@19wu.mailgun.org'
+      # password: 'secret'
+      # domain: '19wu.mailgun.org'
+      # authentication: :plain
+
     # settings for delivery_method 'sendmail'
     sendmail_settings:
       location: /usr/sbin/sendmail
@@ -42,3 +64,10 @@ test:
 
 production:
   <<: *defaults
+
+  # Generate a secret setting for production and do not share it in public repo
+  #
+  # The token must be at least 30 characters, otherwise the default on in
+  # config/initializers/secret_token.rb is used
+  #
+  # secret_token: ''
