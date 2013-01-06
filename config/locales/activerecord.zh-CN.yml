@@ -10,6 +10,7 @@ zh-CN:
         password: "密码"
         password_confirmation: "确认密码"
         remember_me: "记住我"
+        created_at: "注册时间"
       event:
         title: "主题"
         start_time: "开始时间"

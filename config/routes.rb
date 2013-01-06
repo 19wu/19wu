@@ -12,6 +12,9 @@ NineteenWu::Application.routes.draw do
   end
 
   # Fallback for /:login when user login is conflict with other routes
+  #
+  # Do not add :edit action or any other collection actions, the whole path is
+  # preserved for any possible login name.
   resources :users, :path => '/u', :only => [:show]
 
   get 'mockup/:action(.:format)', :controller => 'mockup'

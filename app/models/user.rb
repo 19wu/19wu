@@ -1,4 +1,8 @@
 class User < ActiveRecord::Base
+  extend FriendlyId
+
+  friendly_id :login
+
   has_many :events
   # Include default devise modules. Others available are:
   # :token_authenticatable
