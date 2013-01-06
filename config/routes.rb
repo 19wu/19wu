@@ -1,6 +1,5 @@
 NineteenWu::Application.routes.draw do
   resources :events # testing feature #109
-  get 'mockup/:action(.:format)', :controller => 'mockup'
 
   devise_for :users
 
@@ -11,6 +10,14 @@ NineteenWu::Application.routes.draw do
   as :user do
     root to: 'devise/registrations#new'
   end
+
+  # Fallback for /:login when user login is conflict with other routes
+  resources :users, :path => '/u', :only => [:show]
+
+  get 'mockup/:action(.:format)', :controller => 'mockup'
+
+  # Must be the last rule
+  get ':id(.:format)' => 'users#show'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
