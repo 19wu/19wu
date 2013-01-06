@@ -11,4 +11,9 @@ class User < ActiveRecord::Base
   attr_accessible :login, :email, :password, :password_confirmation, :remember_me
   # attr_accessible :title, :body
   validates :login, presence: true, uniqueness: { case_sensitive: false }, format: { with: /[a-zA-Z0-9_]+/ }
+
+  # Build profile on-the-fly
+  def profile
+    super || build_profile
+  end
 end

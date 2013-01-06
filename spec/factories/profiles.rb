@@ -2,7 +2,5 @@
 
 FactoryGirl.define do
   factory :profile do
-    user
-    name { user.login.capitalize }
   end
 end
