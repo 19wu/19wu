@@ -64,3 +64,10 @@ test:
 
 production:
   <<: *defaults
+
+  # Generate a secret setting for production and do not share it in public repo
+  #
+  # The token must be at least 30 characters, otherwise the default on in
+  # config/initializers/secret_token.rb is used
+  #
+  # secret_token: ''
