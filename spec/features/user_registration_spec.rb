@@ -14,5 +14,11 @@ feature 'user registration' do
 
     click_button submit
     expect(page).to have_content(I18n.t('devise.registrations.signed_up_but_unconfirmed'))
+
+    open_email(user.email)
+    current_email.click_link '激活帐号'
+    expect(page).to have_content(I18n.t('devise.confirmations.confirmed'))
+    open_email(user.email)
+    expect(current_email.subject).to have_content(I18n.t('email.welcome.subject'))
   end
 end
