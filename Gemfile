@@ -33,6 +33,7 @@ end
 
 gem 'devise'
 gem 'settingslogic'
+gem 'delayed_job_active_record'
 
 group :development do
   gem 'quiet_assets'

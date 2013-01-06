@@ -10,4 +10,15 @@ class User < ActiveRecord::Base
   attr_accessible :login, :email, :password, :password_confirmation, :remember_me
   # attr_accessible :title, :body
   validates :login, presence: true, uniqueness: { case_sensitive: false }, format: { with: /[a-zA-Z0-9_]+/ }
+
+  #async devise mailing with delayed job
+  handle_asynchronously :send_reset_password_instructions
+  handle_asynchronously :send_confirmation_instructions
+  handle_asynchronously :send_on_create_confirmation_instructions
+
+  def confirm!
+    super
+    UserMailer.delay.welcome_email(self)
+  end
+
 end

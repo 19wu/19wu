@@ -63,6 +63,11 @@ GEM
       execjs
     coffee-script-source (1.4.0)
     daemons (1.1.9)
+    delayed_job (3.0.4)
+      activesupport (~> 3.0)
+    delayed_job_active_record (0.3.3)
+      activerecord (>= 2.1.0, < 4)
+      delayed_job (~> 3.0)
     devise (2.1.2)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.1)
@@ -119,8 +124,6 @@ GEM
     jquery-rails (2.1.4)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
-    json (1.7.5)
-    json (1.7.5-java)
     json (1.7.6)
     json (1.7.6-java)
     kramdown (0.14.1)
@@ -275,6 +278,7 @@ DEPENDENCIES
   capybara
   capybara-email
   coffee-rails (~> 3.2.1)
+  delayed_job_active_record
   devise
   factory_girl_rails (~> 4.0)
   guard-livereload
