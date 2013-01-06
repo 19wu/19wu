@@ -57,3 +57,6 @@ zh-CN:
     events:
       new:
         title: "发起活动"
+    profiles:
+      show:
+        title: "个人资料"
