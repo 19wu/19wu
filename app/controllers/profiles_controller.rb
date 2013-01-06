@@ -1,6 +1,7 @@
 class ProfilesController < ApplicationController
   prepend_before_filter :authenticate_user!
   before_filter :find_profile
+  layout 'settings'
 
   def show
   end

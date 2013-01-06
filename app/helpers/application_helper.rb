@@ -55,4 +55,16 @@ module ApplicationHelper
 
     html.html_safe
   end
+
+  def render_settings_tab(label, path, active_controller)
+    if controller_name == active_controller
+      content_tag :li, :class => 'active' do
+        link_to label, '#settings-main'
+      end
+    else
+      content_tag :li do
+        link_to label, path
+      end
+    end
+  end
 end

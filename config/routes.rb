@@ -12,11 +12,11 @@ NineteenWu::Application.routes.draw do
   scope 'settings' do
     resource :profile, :only => [:show, :update]
     as :user do
-      get 'account' => 'devise/registrations#edit', :as => 'account'
+      get 'account' => 'registrations#edit', :as => 'account'
     end
   end
 
-  devise_for :users
+  devise_for :users, :controllers => { :registrations => "registrations" }
 
   get 'mockup/:action(.:format)', :controller => 'mockup'
 

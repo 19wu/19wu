@@ -32,7 +32,7 @@ html
 
       #content
         .container
-          = yield
+          = content_for?(:content) ? yield(:content) : yield
 
     footer#footer
       .container
