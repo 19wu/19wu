@@ -9,8 +9,8 @@ NineteenWu::Application.routes.draw do
 
   resources :events, :only => [:show, :new, :create]
 
-  scope 'settings' do
-    resource :profile, :only => [:edit, :update]
+  namespace 'settings' do
+    resource :profile, :only => [:show, :update]
     as :user do
       get 'account' => 'devise/registrations#edit', :as => 'account'
     end
