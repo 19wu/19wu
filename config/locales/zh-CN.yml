@@ -35,7 +35,6 @@ zh-CN:
     submit:
       event:
         create: "新活动"
-    submit:
       profile:
         create: "保存%{model}"
 
