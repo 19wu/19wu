@@ -19,7 +19,6 @@ zh-CN:
     #       email: 'E-mail to sign in.'
     #     edit:
     #       email: 'E-mail.'
-    # hints:
-    #   defaults:
-    #     username: 'User name to sign in.'
-    #     password: 'No special characters, please.'
+    hints:
+      profile:
+        phone: "只有您参与的活动的组织者能够查看您的联系电话"

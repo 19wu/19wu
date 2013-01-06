@@ -32,6 +32,9 @@ zh-CN:
     submit:
       event:
         create: "新活动"
+    submit:
+      profile:
+        create: "保存%{model}"
 
   labels:
     sign_in: "登录"
@@ -43,6 +46,12 @@ zh-CN:
   text:
     under_construction: "网站建设中"
     visit_github_html: '在 Github 上查看19屋的<a href="%{url}">最新进展</a>。'
+
+  flash:
+    events:
+      created: "活动已经发布"
+    profiles:
+      updated: "个人资料已经更新"
 
   views:
     events:

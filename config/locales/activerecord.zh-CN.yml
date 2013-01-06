@@ -3,6 +3,7 @@ zh-CN:
     models:
       user: "用户"
       event: "活动"
+      profile: "资料"
     attributes:
       user:
         login: "登录名"
@@ -18,3 +19,8 @@ zh-CN:
         compound_end_time: "结束时间"
         location: "地点"
         content: "简介"
+      profile:
+        name: "名字"
+        website: "主页"
+        phone: "联系电话"
+        bio: "个人简介"
