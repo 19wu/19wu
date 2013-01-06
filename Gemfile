@@ -33,6 +33,7 @@ end
 
 gem 'devise'
 gem 'settingslogic'
+gem 'friendly_id'
 
 group :development do
   gem 'quiet_assets'
