@@ -2,6 +2,8 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require bootstrap-datepicker/core
+//= require jquery-fileupload/basic
+//= require jquery.textarea.caret
 //= require_self
 
 $(function() {
@@ -22,5 +24,14 @@ $(function() {
     }
 
     el.datepicker('show');
+  });
+
+  $('.fileupload').fileupload({
+    dataType: 'json',
+    done: function (e, data) {
+      markdownImage = "\n![" + data.result.url + "](" + data.result.url + ")";
+      targetTextarea = $(e.target).closest('.control-group').prev('.control-group').find('textarea');
+      targetTextarea.insertAtCursor(markdownImage);
+    }
   });
 });

@@ -16,11 +16,10 @@ article.event
             | 2012年12月8号 14:00 - 17:00
           li
             i.icon-map-marker
-            | 岗夏星河世纪B栋3220
+            = event.location
           li
             button.btn.btn-large.btn-success.btn-block 我要参加
-        p == event.location_guide_html
-        p = image_tag 'event/map.png', :class => 'event-map'
+        .event-map == event.location_guide_html
         p
           span.label.label-important 联系人
           strong.event-contact 李亚飞 15118040275

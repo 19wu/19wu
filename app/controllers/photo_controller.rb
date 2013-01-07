@@ -3,6 +3,6 @@ class PhotoController < ApplicationController
 
   def create
     photo = current_user.photos.create :image => params[:file]
-    render text: photo.image_url
+    render json: {url: photo.image_url}
   end
 end
