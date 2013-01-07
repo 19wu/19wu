@@ -119,8 +119,6 @@ GEM
     jquery-rails (2.1.4)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
-    json (1.7.5)
-    json (1.7.5-java)
     json (1.7.6)
     json (1.7.6-java)
     kramdown (0.14.1)
@@ -134,6 +132,8 @@ GEM
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    mails_viewer (0.0.3)
+      rails (>= 3.1.0)
     method_source (0.8.1)
     mime-types (1.19)
     multi_json (1.5.0)
@@ -283,6 +283,7 @@ DEPENDENCIES
   jquery-rails
   kramdown
   libv8 (= 3.11.8.3)
+  mails_viewer
   mysql2
   pg
   pry-rails
