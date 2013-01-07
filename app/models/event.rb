@@ -6,8 +6,9 @@ class Event < ActiveRecord::Base
   has_compound_datetime :start_time
   has_compound_datetime :end_time
   has_html_pipeline :content, :markdown
+  has_html_pipeline :location_guide, :markdown
 
-  attr_accessible :content, :location, :start_time, :end_time, :title
+  attr_accessible :content, :location, :location_guide, :start_time, :end_time, :title
   attr_accessible :compound_start_time_attributes
   attr_accessible :compound_end_time_attributes
 

@@ -8,4 +8,5 @@ describe 'events/_event.html.slim' do
 
   it { should have_content(event.title) }
   it { should include(event.content_html) }
+  it { should include(event.location_guide_html) }
 end

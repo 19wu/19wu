@@ -16,6 +16,9 @@ FactoryGirl.define do
 -   free wifi
 -   free coffee
       MD
+      location_guide <<-MD
+subway line 2, foo station
+      MD
     end
   end
 end

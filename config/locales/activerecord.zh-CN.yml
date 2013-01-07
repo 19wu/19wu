@@ -17,4 +17,5 @@ zh-CN:
         end_time: "结束时间"
         compound_end_time: "结束时间"
         location: "地点"
+        location_guide: "交通指引"
         content: "简介"

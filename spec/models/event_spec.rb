@@ -36,4 +36,11 @@ describe Event do
       its(:content_html) { should include('<h1>title</h1>') }
     end
   end
+
+  describe 'location_guide_html' do
+    context 'when content is "# map #"' do
+      subject { build :event, :location_guide => '# map #' }
+      its(:location_guide_html) { should include('<h1>map</h1>') }
+    end
+  end
 end
