@@ -48,3 +48,7 @@ zh-CN:
     events:
       new:
         title: "发起活动"
+
+  email:
+    welcome:
+      subject: "欢迎来到19屋"

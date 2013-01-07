@@ -18,5 +18,7 @@ feature 'user registration' do
     open_email(user.email)
     current_email.click_link '激活帐号'
     expect(page).to have_content(I18n.t('devise.confirmations.confirmed'))
+    open_email(user.email)
+    expect(current_email.subject).to have_content(I18n.t('email.welcome.subject'))
   end
 end
