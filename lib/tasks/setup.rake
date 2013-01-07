@@ -33,6 +33,9 @@ task :setup do
     Rake::Task['db:test:prepare'].invoke
 
     puts "\n4. Done! You can run 'rails server' now."
+
+    puts "\n5. Open /delivered_mails in browser if you need to receive e-mail."
+
     puts "\nPlease contact us if you have any problems. Thanks.\n"
   end
 end
