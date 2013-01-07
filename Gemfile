@@ -64,6 +64,7 @@ group :assets do
   gem 'uglifier',       '>= 1.0.3'
   gem 'jquery-rails'
   gem 'bootstrap-datepicker-rails'
+  gem 'jquery-fileupload-rails'
 end
 
 group therubyracer_group do
