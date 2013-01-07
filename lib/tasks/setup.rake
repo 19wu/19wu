@@ -32,7 +32,7 @@ task :setup do
     end
     Rake::Task['db:test:prepare'].invoke
 
-    puts "\n4. Done! You can run 'rails server' now."
+    puts "\n4. Done! You can run 'guard' now."
 
     puts "\n5. Open /delivered_mails in browser if you need to receive e-mail."
 

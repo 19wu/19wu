@@ -39,6 +39,7 @@ group :development do
   gem 'mails_viewer'
   gem 'quiet_assets'
   gem 'guard-delayed'
+  gem 'guard-rails'
 end
 
 group :development, :test do

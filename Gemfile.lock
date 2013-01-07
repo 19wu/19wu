@@ -107,6 +107,8 @@ GEM
       em-websocket (>= 0.2.0)
       guard (>= 1.5.0)
       multi_json (~> 1.0)
+    guard-rails (0.1.1)
+      guard (>= 0.2.2)
     hike (1.2.1)
     html-pipeline-no-charlock (0.0.6)
       activesupport (>= 2)
@@ -289,6 +291,7 @@ DEPENDENCIES
   factory_girl_rails (~> 4.0)
   guard-delayed
   guard-livereload
+  guard-rails
   html-pipeline-no-charlock
   jasmine (= 1.3.0)
   jquery-rails
