@@ -38,6 +38,7 @@ gem 'delayed_job_active_record'
 group :development do
   gem 'mails_viewer'
   gem 'quiet_assets'
+  gem 'guard-delayed'
 end
 
 group :development, :test do
