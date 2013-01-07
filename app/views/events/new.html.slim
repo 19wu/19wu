@@ -11,9 +11,7 @@
           = f.input :compound_end_time, :as => :compound_datetime
           = f.input :location, :input_html => { :class => 'span5' }
           = f.input :location_guide, :input_html => { :rows => 6, :class => 'span5' }
-          .control-group
-            .controls
-              input.fileupload  name="files[]" type="file" data-url="/photos" multiple="multiple"
+          = f.input :files, :as => :upload_photo, :label => false
           = f.input :content, :input_html => { :rows => 12, :class => 'span5' }
         .form-actions
           = f.button :submit, :class => ['btn', 'btn-info']
