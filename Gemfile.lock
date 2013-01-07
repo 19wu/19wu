@@ -52,6 +52,9 @@ GEM
     capybara-email (2.0.1)
       capybara (~> 2.0.0)
       mail
+    carrierwave (0.7.1)
+      activemodel (>= 3.2.0)
+      activesupport (>= 3.2.0)
     childprocess (0.3.6)
       ffi (~> 1.0, >= 1.0.6)
     coderay (1.0.8)
@@ -285,6 +288,7 @@ DEPENDENCIES
   bootstrap-sass (~> 2.2.2.0)
   capybara
   capybara-email
+  carrierwave
   coffee-rails (~> 3.2.1)
   delayed_job_active_record
   devise
