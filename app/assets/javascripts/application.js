@@ -29,9 +29,11 @@ $(function() {
   $('.fileupload').fileupload({
     dataType: 'json',
     done: function (e, data) {
-      markdownImage = "\n![" + data.result.url + "](" + data.result.url + ")";
-      targetTextarea = $(e.target).closest('.control-group').prev('.control-group').find('textarea');
-      targetTextarea.insertAtCursor(markdownImage);
+      $.each(data.result.files, function (index, file) {
+        markdownImage = "\n![" + file.url + "](" + file.url + ")";
+        targetTextarea = $(e.target).closest('.control-group').prev('.control-group').find('textarea');
+        targetTextarea.insertAtCursor(markdownImage);
+      });
     }
   });
 });
