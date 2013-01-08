@@ -26,6 +26,7 @@ class EventsController < ApplicationController
   # GET /events/new
   # GET /events/new.json
   def new
+    @events = current_user.events.all
     @event = current_user.events.new
 
     respond_to do |format|
@@ -36,6 +37,7 @@ class EventsController < ApplicationController
 
   # GET /events/1/edit
   def edit
+    @events = current_user.events.all
     @event = current_user.events.find(params[:id])
   end
 

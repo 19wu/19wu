@@ -4,9 +4,10 @@
     li.divider
     li.nav-header 当前活动
     li
-      a href="#"
-        i.icon-time
-        | SZRuby Tuesday
+      - @events.each do |event|
+        = link_to(edit_event_path(event)) do
+          i.icon-time
+          = event.title
     li
       a href="#"
         i.icon-ok

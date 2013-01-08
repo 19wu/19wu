@@ -17,6 +17,8 @@ class Event < ActiveRecord::Base
 
   validate :end_time_must_after_start_time
 
+  default_scope order('start_time ASC')
+
   private
   def end_time_must_after_start_time
     if end_time.present? && start_time.present? && end_time < start_time
