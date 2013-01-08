@@ -76,7 +76,7 @@ describe EventsController do
       context 'with valid attributes' do
         it 'update the event' do
           put 'update', :id => event.id, :event => valid_attributes
-          response.should redirect_to(event_path)
+          response.should redirect_to(edit_event_path(event))
         end
       end
 
@@ -100,8 +100,7 @@ describe EventsController do
           }
         end
         let(:attributes) do
-          valid_attributes.except('start_time').
-            merge(
+          valid_attributes.merge(
                 'title' => "19wu development meeting by issuse #185",
                 'location' => "Dalian, China",
                 'content' => "Dalian 19wu development meeting by issuse #185",
