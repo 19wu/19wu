@@ -62,6 +62,9 @@ zh-CN:
         title: "发起活动"
       edit:
         title: "修改活动"
+    profiles:
+      show:
+        title: "个人资料"
 
   email:
     welcome:

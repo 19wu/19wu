@@ -9,7 +9,7 @@ NineteenWu::Application.routes.draw do
     root to: 'devise/registrations#new'
   end
 
-  resources :events, :only => [:show, :new, :create]
+  resources :events
 
   scope 'settings' do
     resource :profile, :only => [:show, :update]
