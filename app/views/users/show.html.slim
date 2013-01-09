@@ -1,0 +1,11 @@
+= content_tag_for :article, @user do
+
+  header
+    h1 = @user.login
+
+  .user-body
+    dl
+      dt= User.human_attribute_name(:created_at)
+      dd= l @user.created_at.to_date
+
+

@@ -35,6 +35,7 @@ gem 'devise'
 gem 'settingslogic'
 gem 'delayed_job_active_record'
 gem 'carrierwave'
+gem 'friendly_id'
 
 group :development do
   gem 'mails_viewer'

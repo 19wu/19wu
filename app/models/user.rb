@@ -1,5 +1,9 @@
 class User < ActiveRecord::Base
   has_one :profile
+  extend FriendlyId
+
+  friendly_id :login
+
   has_many :events
   has_many :photos
   # Include default devise modules. Others available are:

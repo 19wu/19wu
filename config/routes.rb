@@ -1,6 +1,7 @@
 NineteenWu::Application.routes.draw do
   match '/photos', to: "photo#create", :via => [:post, :put]
 
+
   authenticated :user do
     root to: "home#index"
   end
@@ -20,7 +21,15 @@ NineteenWu::Application.routes.draw do
 
   devise_for :users, :controllers => { :registrations => "registrations" }
 
+  # Fallback for /:login when user login is conflict with other routes
+  #
+  # Do not add :edit action or any other collection actions, the whole path is
+  # preserved for any possible login name.
+  resources :users, :path => '/u', :only => [:show]
+
   get 'mockup/:action(.:format)', :controller => 'mockup'
+
+  get ':id(.:format)' => 'users#show'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
