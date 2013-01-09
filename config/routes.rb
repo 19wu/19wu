@@ -1,5 +1,5 @@
 NineteenWu::Application.routes.draw do
-  post '/photos', to: "photo#create"
+  match '/photos', to: "photo#create", :via => [:post, :put]
 
   resources :events # testing feature #109
   get 'mockup/:action(.:format)', :controller => 'mockup'
