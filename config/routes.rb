@@ -1,11 +1,6 @@
 NineteenWu::Application.routes.draw do
   match '/photos', to: "photo#create", :via => [:post, :put]
 
-  resources :events # testing feature #109
-  get 'mockup/:action(.:format)', :controller => 'mockup'
-
-  devise_for :users
-
   authenticated :user do
     root to: "home#index"
   end
@@ -13,6 +8,19 @@ NineteenWu::Application.routes.draw do
   as :user do
     root to: 'devise/registrations#new'
   end
+
+  resources :events, :only => [:show, :new, :create]
+
+  scope 'settings' do
+    resource :profile, :only => [:show, :update]
+    as :user do
+      get 'account' => 'registrations#edit', :as => 'account'
+    end
+  end
+
+  devise_for :users, :controllers => { :registrations => "registrations" }
+
+  get 'mockup/:action(.:format)', :controller => 'mockup'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

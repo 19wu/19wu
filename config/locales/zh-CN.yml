@@ -13,6 +13,9 @@ zh-CN:
     contact_us: "联系我们"
     title: "19屋－卖活动票的小屋"
 
+    account: "注册信息"
+    profile: "个人资料"
+
   slogan:
     title: "卖活动票的小屋"
     description: "由开源社区研发的活动票务平台，在这个小屋子发动活动、卖票都是免费的。"
@@ -32,6 +35,8 @@ zh-CN:
     submit:
       event:
         create: "新活动"
+      profile:
+        create: "保存%{model}"
 
   labels:
     sign_in: "登录"
@@ -45,6 +50,12 @@ zh-CN:
     under_construction: "网站建设中"
     visit_github_html: '在 Github 上查看19屋的<a href="%{url}">最新进展</a>。'
 
+  flash:
+    events:
+      created: "活动已经发布"
+    profiles:
+      updated: "个人资料已经更新"
+
   views:
     events:
       new:
@@ -55,3 +66,6 @@ zh-CN:
   email:
     welcome:
       subject: "欢迎来到19屋"
+    profiles:
+      show:
+        title: "个人资料"

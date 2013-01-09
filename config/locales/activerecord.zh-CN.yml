@@ -3,12 +3,14 @@ zh-CN:
     models:
       user: "用户"
       event: "活动"
+      profile: "资料"
     attributes:
       user:
         login: "登录名"
         email: "Email 地址"
         password: "密码"
         password_confirmation: "确认密码"
+        current_password: "当前密码"
         remember_me: "记住我"
       event:
         title: "主题"
@@ -19,3 +21,8 @@ zh-CN:
         location: "地点"
         location_guide: "交通指引"
         content: "简介"
+      profile:
+        name: "名字"
+        website: "主页"
+        phone: "联系电话"
+        bio: "个人简介"

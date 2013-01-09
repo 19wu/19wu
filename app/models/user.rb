@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  has_one :profile
   has_many :events
   has_many :photos
   # Include default devise modules. Others available are:
@@ -22,4 +23,8 @@ class User < ActiveRecord::Base
     UserMailer.delay.welcome_email(self)
   end
 
+  # Build profile on-the-fly
+  def profile
+    super || build_profile
+  end
 end

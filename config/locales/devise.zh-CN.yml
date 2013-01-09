@@ -83,6 +83,10 @@ zh-CN:
           password: '修改密码'
           submit: '修改'
           change_pass_tip: "如果你不想改变,留下空白"
+          change_pass_confirm: "需要输入现在的密码确认"
+          cancel_account: "删除帐号"
+          cancel_account_warning: "删除帐号会删除所有关联的个人资料，并且操作无法恢复"
+          cancel_account_confirm: "确认删除帐号吗？"
         new:
           title: '注册'
           submit: '注册'

@@ -1,6 +1,6 @@
 ul.user-bar.pull-right
   li
-    = current_user.login
+    = link_to current_user.login, account_path
   li
     = link_to destroy_user_session_path, :title => t('devise.navigation.sign_out'), :method => :delete do
       i.icon-off

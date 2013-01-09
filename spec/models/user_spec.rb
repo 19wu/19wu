@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe User do
   let(:user) { build :user }
+  subject { user }
 
   it "passes validation with all valid informations" do
     expect(build :user).to be_valid
@@ -38,6 +39,18 @@ describe User do
     it "with a password < 6 chars" do
       user.password = 'a2c4e'
       expect(user.save).to be_false
+    end
+  end
+
+  describe '#profile' do
+    context 'with profile' do
+      let(:profile) { build :profile }
+      let(:user) { build :user, :profile => profile }
+      its(:profile) { should == profile }
+    end
+    context 'without profile' do
+      let(:user) { build :user, :profile => nil }
+      its(:profile) { should be_a_kind_of(Profile) }
     end
   end
 end

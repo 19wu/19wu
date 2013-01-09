@@ -1,0 +1,11 @@
+= simple_form_for @profile, :url => profile_path, :html => { :class => 'form-horizontal', :method => :put } do |f|
+  fieldset
+    legend = t('.title', :scope => 'views')
+    .form-inputs
+      = f.input :name
+      = f.input :website
+      = f.input :phone
+      = f.input :bio, :input_html => { :rows => 12 }
+
+    .form-actions
+      = f.button :submit, :class => 'btn-primary'

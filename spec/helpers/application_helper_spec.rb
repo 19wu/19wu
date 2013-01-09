@@ -90,4 +90,31 @@ describe ApplicationHelper do
     it { should have_content(object.class.human_attribute_name(:password)) }
     it { should have_content(t('devise.views.links.forget_pass')) }
   end
+
+  describe '#render_settings_tab' do
+    context 'current controller_name is registrations' do
+      before { helper.stub(:controller_name).and_return('registrations') }
+
+      context 'render account tab' do
+        subject { helper.render_settings_tab('account', '/account', 'registrations') }
+        it 'adds active class' do
+          subject.should have_selector('li.active')
+        end
+        it 'uses #settings-main as link href' do
+          subject.should have_selector('a[href="#settings-main"]')
+        end
+      end
+
+      context 'render profile tab' do
+        subject { helper.render_settings_tab('profile', '/profile', 'profiles') }
+        it 'does not add active class' do
+          subject.should_not have_selector('li.active')
+        end
+        it 'uses profile_path as link href' do
+          subject.should have_selector('a[href="/profile"]')
+        end
+      end
+
+    end
+  end
 end
