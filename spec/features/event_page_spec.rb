@@ -17,4 +17,53 @@ feature 'event page' do
     page.should have_selector('.event-body h1', :text => 'title')
     page.should have_selector('.event-body li', :text => 'list')
   end
+
+  describe 'when user has signed in' do
+    let(:event) { FactoryGirl.create(:event) }
+    before do
+      sign_in
+      Event.stub(:find).with(event.id.to_s).and_return(event)
+    end
+
+    describe 'init show' do
+      it "hasn't join this event" do
+        visit event_path(event)
+        page.should have_selector('button#join_event')
+        expect(page).to have_content I18n.t('labels.join_event_button')
+      end
+
+      it 'has join this event' do
+        event.stub(:can_join?).and_return(false)
+        visit event_path(event)
+        expect(page).to have_content I18n.t('labels.has_joined_event_button')
+        page.find('button#join_event')['disabled'].should == "disabled"
+      end
+    end
+
+    it 'click join_event button will be seccses' do
+      visit event_path(event)
+      click_button 'join_event'
+      current_path.should == event_path(event)
+      expect(page).to have_content I18n.t('labels.has_joined_event_button')
+    end
+  end
+
+  describe 'when user has signed in' do
+    before do
+      Event.stub(:find).with(event.id.to_s).and_return(event)
+    end
+
+    it 'init show' do
+        visit event_path(event)
+        page.should have_selector('button#join_event')
+        expect(page).to have_content I18n.t('labels.join_event_button')
+    end
+
+    it 'click join_event button will be seccses' do
+      visit event_path(event)
+      click_button 'join_event'
+      current_path.should == new_user_session_path
+    end
+  end
+
 end
