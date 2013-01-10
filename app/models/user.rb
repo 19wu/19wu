@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   has_many :events
   has_many :photos
+  has_many :joined_events, :class_name => "EventUsership"
   # Include default devise modules. Others available are:
   # :token_authenticatable
   # :lockable, :timeoutable and :omniauthable

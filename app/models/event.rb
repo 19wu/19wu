@@ -2,6 +2,7 @@ class Event < ActiveRecord::Base
   extend CompoundDatetime::HasCompoundDatetime
   extend HasHtmlPipeline
   belongs_to :user
+  has_many :attendees, :class_name => "EventUsership"
 
   has_compound_datetime :start_time
   has_compound_datetime :end_time
