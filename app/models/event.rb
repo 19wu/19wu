@@ -20,6 +20,10 @@ class Event < ActiveRecord::Base
 
   default_scope order('start_time ASC')
 
+  def can_join?(user)
+    return user == nil || attendees.where(user_id: user.id).empty?
+  end
+
   private
   def end_time_must_after_start_time
     if end_time.present? && start_time.present? && end_time < start_time

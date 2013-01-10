@@ -18,7 +18,11 @@ article.event
             i.icon-map-marker
             = event.location
           li
-            button.btn.btn-large.btn-success.btn-block 我要参加
+            - if event.can_join?(current_user)
+              = form_for('', :url => join_event_path(event), :method => :post) do |f|
+                button.btn.btn-large.btn-success.btn-block type="submit" id="join_event" = I18n.t('labels.join_event_button')
+            - else
+              button.btn.btn-large.btn-warning.btn-block.disabled disabled="disabled" id="join_event" = I18n.t('labels.has_joined_event_button')
         .event-map == event.location_guide_html
         p
           span.label.label-important 联系人

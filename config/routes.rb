@@ -1,7 +1,12 @@
 NineteenWu::Application.routes.draw do
   match '/photos', to: "photo#create", :via => [:post, :put]
 
-  resources :events # testing feature #109
+  # testing feature #109
+  resources :events do
+    member do
+      post 'join'
+    end
+  end
   get 'mockup/:action(.:format)', :controller => 'mockup'
 
   devise_for :users
