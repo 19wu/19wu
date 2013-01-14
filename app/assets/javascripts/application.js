@@ -36,8 +36,11 @@ $(function() {
     },
     done: function (e, data) {
       $.each(data.result.files, function (index, file) {
-        markdownImage = "\n![" + file.url + "](" + file.url + ")";
         targetTextarea = $(e.target).closest('.control-group').find('textarea');
+        markdownImage = "![" + file.url + "](" + file.url + ")";
+        if (targetTextarea.val() != '') {
+          markdownImage = "\n" + markdownImage;
+        }
         targetTextarea.insertAtCursor(markdownImage);
       });
       var el = $(this).parent();
