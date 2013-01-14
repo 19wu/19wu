@@ -44,3 +44,54 @@ form {
     }
   }
 }
+
+.uploadable-input {
+  margin: 0;
+}
+
+.uploadable {
+  textarea {
+    border-bottom: 1px dashed #DDD;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    resize: vertical;
+  }
+
+  .upload-panel {
+    margin: 0;
+    padding: 7px 10px;
+    color: #AAA;
+    height: 16px;
+    line-height: 16px;
+    background-color: #FAFAFA;
+    border: 1px solid #CCC;
+    border-top: 0;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    -moz-transition: all 0.15s ease-in 0;
+    -webkit-transition: all 0.15s ease-in 0;
+
+    .manual-file-chooser {
+      position: absolute;
+      width: 240px;
+      margin-left: -80px;
+      opacity: 0.0001;
+      cursor: pointer;
+    }
+
+    .uploading {
+      display: none;
+    }
+  }
+
+  .upload-panel.focused {
+    border-color: rgba(82, 168, 236, 0.8);
+    outline: 0;
+    outline: thin dotted \9;
+    /* IE6-9 */
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
+    -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
+  }
+}
+

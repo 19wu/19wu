@@ -22,3 +22,7 @@ zh-CN:
     hints:
       profile:
         phone: "只有您参与的活动的组织者能够查看您的联系电话"
+      photo:
+        upload: "上传图片"
+        uploading: "正在上传..."
+
