@@ -40,12 +40,8 @@ gem 'friendly_id'
 group :development do
   gem 'mails_viewer'
   gem 'quiet_assets'
-  # guard
   gem 'guard-delayed'
   gem 'guard-rails'
-  gem 'rb-inotify', :require => false
-  gem 'rb-fsevent', :require => false
-  gem 'rb-fchange', :require => false
 end
 
 group :development, :test do
