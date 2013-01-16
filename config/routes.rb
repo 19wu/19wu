@@ -1,6 +1,12 @@
 NineteenWu::Application.routes.draw do
   match '/photos', to: "photo#create", :via => [:post, :put]
 
+  # testing feature #109
+  resources :events do
+    member do
+      post 'join'
+    end
+  end
 
   authenticated :user do
     root to: "home#index"
