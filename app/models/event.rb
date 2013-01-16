@@ -19,6 +19,8 @@ class Event < ActiveRecord::Base
 
   default_scope order('start_time ASC')
 
+  scope :unfinished, where(["end_time > ? ", Time.now])
+
   private
   def end_time_must_after_start_time
     if end_time.present? && start_time.present? && end_time < start_time

@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
   def index
-    @events = current_user.events.all
+    @events = current_user.events.unfinished
 
     respond_to do |format|
       format.html # index.html.erb
