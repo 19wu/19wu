@@ -53,6 +53,7 @@ zh-CN:
   flash:
     events:
       created: "活动已经发布"
+      updated: "活动已经更新"
     profiles:
       updated: "个人资料已经更新"
 
