@@ -16,7 +16,7 @@
             = f.input :compound_end_time, :as => :compound_datetime
             = f.input :location, :input_html => { :class => 'span5' }
             = f.input :location_guide, :input_html => { :rows => 6, :class => 'span5' }, :as => 'uploadable'
-            = f.input :content, :input_html => { :rows => 12, :class => 'span5' }
+            = f.input :content, :input_html => { :rows => 12, :class => 'span5' }, :as => 'uploadable'
           .form-actions
             = f.button :submit, :class => ['btn', 'btn-info']
             a.btn href=root_path = t('labels.cancel')
