@@ -6,6 +6,12 @@ zh-CN:
     weekstart: '1'
     formats:
       datepicker: 'yyyy-mm-dd'
+  time:
+    formats:
+      time: '%I:%M'
+      noon_time: '%p %I:%M'
+      stamp: '%b%d日(%a) %p %I:%M'
+      stamp_with_year: '%Y年%b%d日(%a) %p %I:%M'
 
   layout:
     19wu: "19屋"
