@@ -28,12 +28,32 @@ $(function() {
 
   $('.fileupload').fileupload({
     dataType: 'json',
+    add: function(e, data) {
+      var el = $(this).parent();
+      el.hide();
+      el.next(".uploading").show();
+      data.submit();
+    },
     done: function (e, data) {
       $.each(data.result.files, function (index, file) {
-        markdownImage = "\n![" + file.url + "](" + file.url + ")";
-        targetTextarea = $(e.target).closest('.control-group').prev('.control-group').find('textarea');
+        targetTextarea = $(e.target).closest('.control-group').find('textarea');
+        markdownImage = "![" + file.url + "](" + file.url + ")";
+        if (targetTextarea.val() != '') {
+          markdownImage = "\n" + markdownImage;
+        }
         targetTextarea.insertAtCursor(markdownImage);
       });
+      var el = $(this).parent();
+      el.show();
+      el.next(".uploading").hide();
     }
   });
+
+  $('textarea.uploadable').
+    on('focus', function() {
+      $(this).next('p').addClass('focused');
+    }).
+    on('blur', function() {
+      $(this).next('p').removeClass('focused');
+    });
 });
