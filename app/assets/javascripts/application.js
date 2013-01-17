@@ -26,27 +26,30 @@ $(function() {
     el.datepicker('show');
   });
 
-  $('.fileupload').fileupload({
-    dataType: 'json',
-    add: function(e, data) {
-      var el = $(this).parent();
-      el.hide();
-      el.next(".uploading").show();
-      data.submit();
-    },
-    done: function (e, data) {
-      $.each(data.result.files, function (index, file) {
-        targetTextarea = $(e.target).closest('.control-group').find('textarea');
-        markdownImage = "![" + file.url + "](" + file.url + ")";
-        if (targetTextarea.val() != '') {
-          markdownImage = "\n" + markdownImage + "\n";
-        }
-        targetTextarea.insertAtCursor(markdownImage);
-      });
-      var el = $(this).parent();
-      el.show();
-      el.next(".uploading").hide();
-    }
+  $('.fileupload').each(function(){
+    $(this).fileupload({
+      dataType: 'json',
+      dropZone: $(this).closest('.uploadable-input'), // #206 http://git.io/DuKo8A
+      add: function(e, data) {
+        var el = $(this).parent();
+        el.hide();
+        el.next(".uploading").show();
+        data.submit();
+      },
+      done: function (e, data) {
+        $.each(data.result.files, function (index, file) {
+          targetTextarea = $(e.target).closest('.control-group').find('textarea');
+          markdownImage = "![" + file.url + "](" + file.url + ")";
+          if (targetTextarea.val() != '') {
+            markdownImage = "\n" + markdownImage + "\n";
+          }
+          targetTextarea.insertAtCursor(markdownImage);
+        });
+        var el = $(this).parent();
+        el.show();
+        el.next(".uploading").hide();
+      }
+    });
   });
 
   $('textarea.uploadable').
