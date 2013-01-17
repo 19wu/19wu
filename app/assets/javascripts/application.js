@@ -39,7 +39,7 @@ $(function() {
         targetTextarea = $(e.target).closest('.control-group').find('textarea');
         markdownImage = "![" + file.url + "](" + file.url + ")";
         if (targetTextarea.val() != '') {
-          markdownImage = "\n" + markdownImage;
+          markdownImage = "\n" + markdownImage + "\n";
         }
         targetTextarea.insertAtCursor(markdownImage);
       });
