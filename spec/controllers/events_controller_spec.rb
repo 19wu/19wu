@@ -137,7 +137,7 @@ describe EventsController do
       it 'with join a event' do
         expect {
           post 'join', id: event.id
-        }.to change{EventUsership.count}.by(1)
+        }.to change{event.participants.count}.by(1)
         response.should redirect_to(event_path(event))
       end
     end

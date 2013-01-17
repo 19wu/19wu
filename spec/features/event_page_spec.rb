@@ -33,7 +33,7 @@ feature 'event page' do
       end
 
       it 'has join this event' do
-        event.stub(:can_join?).and_return(false)
+        event.stub(:has?).and_return(true)
         visit event_path(event)
         expect(page).to have_content I18n.t('labels.has_joined_event_button')
         page.find('button#join_event')['disabled'].should == "disabled"

@@ -87,7 +87,7 @@ class EventsController < ApplicationController
 
   def join
     event = Event.find(params[:id])
-    event.attendees.create(:user_id => current_user.id)
+    event.participants.create(:user_id => current_user.id)
 
     redirect_to event, notice: 'you has joined this event'
   end

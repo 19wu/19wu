@@ -2,7 +2,7 @@ class Event < ActiveRecord::Base
   extend CompoundDatetime::HasCompoundDatetime
   extend HasHtmlPipeline
   belongs_to :user
-  has_many :attendees, :class_name => "EventUsership"
+  has_many :participants, :class_name => "EventParticipant"
 
   has_compound_datetime :start_time
   has_compound_datetime :end_time
@@ -22,8 +22,8 @@ class Event < ActiveRecord::Base
 
   scope :unfinished, where(["end_time > ? ", Time.now])
 
-  def can_join?(user)
-    return user == nil || attendees.where(user_id: user.id).empty?
+  def has?(user)
+    return user && participants.exists?(user_id: user.id)
   end
 
   private

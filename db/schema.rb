@@ -29,15 +29,15 @@ ActiveRecord::Schema.define(:version => 20130110074522) do
 
   add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
 
-  create_table "event_userships", :force => true do |t|
+  create_table "event_participants", :force => true do |t|
     t.integer  "event_id"
     t.integer  "user_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
-  add_index "event_userships", ["event_id"], :name => "index_event_userships_on_event_id"
-  add_index "event_userships", ["user_id"], :name => "index_event_userships_on_user_id"
+  add_index "event_participants", ["event_id"], :name => "index_event_participants_on_event_id"
+  add_index "event_participants", ["user_id"], :name => "index_event_participants_on_user_id"
 
   create_table "events", :force => true do |t|
     t.string   "title",          :null => false
