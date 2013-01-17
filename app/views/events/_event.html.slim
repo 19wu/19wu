@@ -3,7 +3,7 @@ article.event
     .span8
       header
         h1 = event.title
-        h2 2012年12月8号 14:00 - 17:00
+        h2 = time_merge(event)
 
       .event-body
         == event.content_html
@@ -13,7 +13,7 @@ article.event
         ul.unstyled
           li
             i.icon-calendar
-            | 2012年12月8号 14:00 - 17:00
+            = time_merge(event)
           li
             i.icon-map-marker
             = event.location
