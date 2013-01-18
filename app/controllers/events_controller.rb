@@ -64,7 +64,7 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.update_attributes(params[:event])
-        format.html { redirect_to edit_event_path(@event), notice: 'event was successfully updated.' }
+        format.html { redirect_to edit_event_path(@event), notice: I18n.t('flash.events.updated') }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -83,5 +83,12 @@ class EventsController < ApplicationController
       format.html { redirect_to events_url }
       format.json { head :no_content }
     end
+  end
+
+  def join
+    event = Event.find(params[:id])
+    event.participants.create(:user_id => current_user.id)
+
+    redirect_to event, notice: 'you has joined this event'
   end
 end

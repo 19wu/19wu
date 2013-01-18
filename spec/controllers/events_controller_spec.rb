@@ -130,4 +130,23 @@ describe EventsController do
     end
   end
 
+  describe "POST 'join'" do
+    let(:event) { FactoryGirl.create(:event) }
+    context 'when user has signed in' do
+      login_user
+      it 'with join a event' do
+        expect {
+          post 'join', id: event.id
+        }.to change{event.participants.count}.by(1)
+        response.should redirect_to(event_path(event))
+      end
+    end
+    context 'when user has not yet signed in' do
+      it 'should be redirect to user login view' do
+        post 'join', id: event.id
+        response.should redirect_to(new_user_session_path)
+      end
+    end
+  end
+
 end

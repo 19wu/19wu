@@ -1,6 +1,12 @@
 NineteenWu::Application.routes.draw do
   match '/photos', to: "photo#create", :via => [:post, :put]
 
+  # testing feature #109
+  resources :events do
+    member do
+      post 'join'
+    end
+  end
 
   authenticated :user do
     root to: "home#index"
@@ -20,6 +26,10 @@ NineteenWu::Application.routes.draw do
   end
 
   devise_for :users, :controllers => { :registrations => "registrations" }
+
+  if defined?(MailsViewer)
+    mount MailsViewer::Engine => '/delivered_mails'
+  end
 
   # Fallback for /:login when user login is conflict with other routes
   #
@@ -87,8 +97,4 @@ NineteenWu::Application.routes.draw do
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id))(.:format)'
-
-  if defined?(MailsViewer)
-    mount MailsViewer::Engine => '/delivered_mails'
-  end
 end

@@ -6,6 +6,12 @@ zh-CN:
     weekstart: '1'
     formats:
       datepicker: 'yyyy-mm-dd'
+  time:
+    formats:
+      time: '%I:%M'
+      noon_time: '%p %I:%M'
+      stamp: '%b%d日(%a) %p %I:%M'
+      stamp_with_year: '%Y年%b%d日(%a) %p %I:%M'
 
   layout:
     19wu: "19屋"
@@ -45,6 +51,8 @@ zh-CN:
     launch_event: "发动活动"
     show_event: "查看活动"
     cancel: "取消"
+    join_event_button: "我要参加"
+    has_joined_event_button: "已报名"
 
   text:
     under_construction: "网站建设中"
@@ -53,6 +61,7 @@ zh-CN:
   flash:
     events:
       created: "活动已经发布"
+      updated: "活动已经更新"
     profiles:
       updated: "个人资料已经更新"
 

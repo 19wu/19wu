@@ -2,6 +2,7 @@ class Event < ActiveRecord::Base
   extend CompoundDatetime::HasCompoundDatetime
   extend HasHtmlPipeline
   belongs_to :user
+  has_many :participants, :class_name => "EventParticipant"
 
   has_compound_datetime :start_time
   has_compound_datetime :end_time
@@ -20,6 +21,10 @@ class Event < ActiveRecord::Base
   default_scope order('start_time ASC')
 
   scope :unfinished, where(["end_time > ? ", Time.now])
+
+  def has?(user)
+    return user && participants.exists?(user_id: user.id)
+  end
 
   private
   def end_time_must_after_start_time

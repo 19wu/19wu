@@ -3,7 +3,7 @@ article.event
     .span8
       header
         h1 = event.title
-        h2 2012年12月8号 14:00 - 17:00
+        h2 = time_merge(event)
 
       .event-body
         == event.content_html
@@ -13,12 +13,16 @@ article.event
         ul.unstyled
           li
             i.icon-calendar
-            | 2012年12月8号 14:00 - 17:00
+            = time_merge(event)
           li
             i.icon-map-marker
             = event.location
           li
-            button.btn.btn-large.btn-success.btn-block 我要参加
+            - if event.has?(current_user)
+              button.btn.btn-large.btn-warning.btn-block.disabled disabled="disabled" id="join_event" = I18n.t('labels.has_joined_event_button')
+            - else
+              = form_for('', :url => join_event_path(event), :method => :post) do |f|
+                button.btn.btn-large.btn-success.btn-block type="submit" id="join_event" = I18n.t('labels.join_event_button')
         .event-map == event.location_guide_html
         p
           span.label.label-important 联系人
