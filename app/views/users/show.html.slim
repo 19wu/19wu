@@ -2,6 +2,7 @@
 
   header
     h1.l-page-title
+      = gravatar_for @user, 48
       = @user.login
       -if @profile.name.present?
         small = @profile.name
