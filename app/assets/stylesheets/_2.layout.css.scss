@@ -37,6 +37,15 @@
   }
 }
 
+.l-page-title {
+  font-size: $baseFontSize * 1.5;
+  line-height: $baseLineHeight * 1.5;
+  margin-bottom: 4px;
+  > small {
+    margin-left: 4px;
+  }
+}
+
 .l-event {
   #main {
     background: $grayBackground;
