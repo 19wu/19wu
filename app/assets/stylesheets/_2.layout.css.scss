@@ -25,6 +25,12 @@
   }
 }
 
+.signed_in {
+  .user-bar .gravatar{
+    margin-right: 5px;
+  }
+}
+
 .signed_out {
   #header {
     border-bottom: 1px solid $borderColor;
