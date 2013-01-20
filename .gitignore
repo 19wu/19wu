@@ -33,3 +33,9 @@ public/assets/
 
 # Ignore rvmrc configuration file
 .rvmrc
+
+# Ignore *.swp file
+*.swp
+
+# Ignore .DS_Store file
+*.DS_Store
