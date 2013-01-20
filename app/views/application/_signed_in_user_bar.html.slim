@@ -1,6 +1,8 @@
 ul.user-bar.pull-right
   li
-    = link_to current_user.login, user_path(current_user), :title => t('devise.navigation.home')
+    = link_to user_path(current_user), :title => t('devise.navigation.home') do
+      = gravatar_for current_user, 30
+      = current_user.login
   li
     = link_to account_path, :title => t('views.profiles.show.title') do
       i.icon-wrench
