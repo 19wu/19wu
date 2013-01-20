@@ -1,11 +1,13 @@
 = content_tag_for :article, @user do
 
   header
-    h1 = @user.login
+    h1.l-page-title
+      = @user.login
+      -if @profile.name.present?
+        small = @profile.name
+    ul.user-info.unstyled.inline.muted
+      -if @profile.website.present?
+        li = @profile.website
+      li = "#{l @user.created_at.to_date} 加入"
 
-  .user-body
-    dl
-      dt= User.human_attribute_name(:created_at)
-      dd= l @user.created_at.to_date
-
-
+  .user-body = raw @user.profile.bio_html
