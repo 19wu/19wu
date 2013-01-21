@@ -14,6 +14,11 @@ describe User do
       expect(user.save).to be_false
     end
 
+    it "with a invalid format login" do
+      user.login = 'foo@bar'
+      expect(user.save).to be_false
+    end
+
     it "with a duplicated login" do
       create :user, :login => user.login
 
