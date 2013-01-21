@@ -23,6 +23,10 @@ class User < ActiveRecord::Base
   handle_asynchronously :send_confirmation_instructions
   handle_asynchronously :send_on_create_confirmation_instructions
 
+  # gravtastic gem for gravatar
+  include Gravtastic
+  gravtastic :default => 'mm'
+
   def confirm!
     super
     UserMailer.delay.welcome_email(self)

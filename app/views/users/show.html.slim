@@ -2,7 +2,7 @@
 
   header
     h1.l-page-title
-      = gravatar_for @user, 48
+      = image_tag @user.gravatar_url(:size => 48), :class => 'gravatar'
       = @user.login
       -if @profile.name.present?
         small = @profile.name
