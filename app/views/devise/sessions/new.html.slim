@@ -1,14 +1,24 @@
-.row
-  .span4.offset4.well
-    = form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :class => 'form-full-width' }) do |f|
-      fieldset
-        legend  = t('devise.views.sessions.new.title')
-        = render_flashes
-        = f.label :email
-        = f.email_field :email
-        = f.label :password, render_password_label_with_forget_link(f.object)
-        = f.password_field :password
-        .control-group
-          - if devise_mapping.rememberable?
-            = f.hidden_field :remember_me, :value => true
-          = f.submit t('devise.views.sessions.new.submit'), :class => ['btn', 'btn-info']
+.row-fluid
+  .span12
+    = render_flashes
+  .row-fluid
+    .span6.well
+      = form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :class => 'form-full-width' }) do |f|
+        fieldset
+          legend  = t('devise.views.sessions.new.title')
+          = f.label :email
+          = f.email_field :email
+          = f.label :password, render_password_label_with_forget_link(f.object)
+          = f.password_field :password
+          .control-group
+            - if devise_mapping.rememberable?
+              = f.hidden_field :remember_me, :value => true
+            = f.submit t('devise.views.sessions.new.submit'), :class => ['btn', 'btn-info']
+    .span6.well
+      = simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :class => 'form-full-width'}) do |f|
+        fieldset
+          legend  = t('devise.views.registrations.new.title')
+        = f.input :login, :input_html => {:id => 'registration_login'}
+        = f.input :email, :input_html => {:id => 'registration_email'}
+        = f.input :password, :input_html => {:id => 'registration_password'}
+        = f.submit t('devise.views.registrations.new.submit'), :class => ['btn', 'btn-info']
