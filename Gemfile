@@ -17,6 +17,7 @@ gem 'slim-rails'
 gem 'simple_form'
 gem 'html-pipeline-no-charlock'
 gem 'kramdown', :platform => [:jruby]
+gem 'gravtastic'
 
 group :pg do
   gem 'pg', :platform => [:ruby, :mswin, :mingw]
