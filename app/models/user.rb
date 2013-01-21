@@ -17,6 +17,7 @@ class User < ActiveRecord::Base
   attr_accessible :login, :email, :password, :password_confirmation, :remember_me
   # attr_accessible :title, :body
   validates :login, presence: true, uniqueness: { case_sensitive: false }, format: { with: /^[a-zA-Z0-9_]+$/ }
+  validates :email, :password, presence: true
 
   #async devise mailing with delayed job
   handle_asynchronously :send_reset_password_instructions
