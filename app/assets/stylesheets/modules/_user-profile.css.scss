@@ -1,5 +1,12 @@
-h1.l-page-title .gravatar {
-  margin-right: 10px;
+.user-title, .user-title small {
+  font-size: $baseFontSize * 1.5;
+  line-height: $baseLineHeight * 1.5;
+}
+.user-title {
+  margin: 0 0 4px 0;
+  > small {
+    margin-left: 4px;
+  }
 }
 
 ul.user-info > li {
@@ -8,5 +15,6 @@ ul.user-info > li {
 }
 
 .user-body {
+  margin-top: $baseLineHeight;
   color: $gray;
 }

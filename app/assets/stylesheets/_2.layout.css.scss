@@ -25,12 +25,6 @@
   }
 }
 
-.signed_in {
-  .user-bar .gravatar{
-    margin-right: 5px;
-  }
-}
-
 .signed_out {
   #header {
     border-bottom: 1px solid $borderColor;
@@ -40,15 +34,6 @@
     @include box-shadow(none);
     border-width: 0;
     background: $bodyBackground;
-  }
-}
-
-.l-page-title {
-  font-size: $baseFontSize * 1.5;
-  line-height: $baseLineHeight * 1.5;
-  margin-bottom: 4px;
-  > small {
-    margin-left: 4px;
   }
 }
 

@@ -1,7 +1,7 @@
 ul.user-bar.pull-right
   li
     = link_to user_path(current_user), :title => t('devise.navigation.home') do
-      = image_tag current_user.gravatar_url(:size => 30), :class => 'gravatar'
+      = image_tag current_user.gravatar_url(:size => 20), :class => 'gravatar'
       = current_user.login
   li
     = link_to account_path, :title => t('views.profiles.show.title') do
