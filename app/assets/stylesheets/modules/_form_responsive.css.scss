@@ -1,0 +1,24 @@
+// http://www.studiopress.com/responsive/
+// http://mattkersley.com/responsive/
+
+// datepicker input append a fixed-width add-on, so we can't use percent width
+/* Responsive: Tablet to desktop */
+@media (min-width: 768px) and (max-width: 979px) {
+  .compound-datetime .datepicker {
+    width: 73px;
+  }
+}
+
+/* Responsive: Landscape phone to desktop/tablet */
+@media (max-width: 767px) {
+  .compound-datetime .datepicker {
+    width: 289px;
+  }
+}
+
+/* Landscape phones and down */
+@media (max-width: 480px) {
+  .compound-datetime .datepicker {
+    width: 359px;
+  }
+}
