@@ -25,24 +25,20 @@ form {
 }
 
 .compound-datetime {
-  select {
-    width: auto;
+  .datepicker {
+    width: 98px;
   }
-  > .date {
-    margin-bottom: $baseLineHeight / 4;
-    margin-right: 5px;
-    > .add-on {
-      margin-top: 1px;
-    }
+  .add-on {
+    margin-top: 1px;
   }
-  > .time {
-    > .time-min {
-      margin-right: 5px;
-    }
-    > select {
-      margin-bottom: $baseLineHeight / 8;
-    }
-  }
+}
+.time-hour, .time-min {
+  width: 45%;
+}
+.time-colon {
+  display: inline-block;
+  width: 10%;
+  text-align: center;
 }
 
 .uploadable-input {
