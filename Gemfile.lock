@@ -114,6 +114,7 @@ GEM
       multi_json (~> 1.0)
     guard-rails (0.1.1)
       guard (>= 0.2.2)
+    has_html_pipeline (0.0.1)
     hike (1.2.1)
     html-pipeline-no-charlock (0.0.6)
       activesupport (>= 2)
@@ -303,6 +304,7 @@ DEPENDENCIES
   guard-delayed
   guard-livereload
   guard-rails
+  has_html_pipeline
   html-pipeline-no-charlock
   jasmine (= 1.3.0)
   jquery-fileupload-rails

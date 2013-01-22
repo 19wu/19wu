@@ -16,6 +16,7 @@ gem 'rails', '3.2.11'
 gem 'slim-rails'
 gem 'simple_form'
 gem 'html-pipeline-no-charlock'
+gem 'has_html_pipeline'
 gem 'kramdown', :platform => [:jruby]
 gem 'gravtastic'
 
