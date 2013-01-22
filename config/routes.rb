@@ -16,8 +16,6 @@ NineteenWu::Application.routes.draw do
     root to: 'home#page'
   end
 
-  resources :events
-
   scope 'settings' do
     resource :profile, :only => [:show, :update]
     as :user do
