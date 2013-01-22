@@ -26,13 +26,13 @@ describe ApplicationHelper do
         helper.should_receive(:user_signed_in?).with().and_return(true)
       end
 
-      its([:class]) { should include('signed_in') }
+      its([:class]) { should include('signed-in') }
     end
     context 'when user has not yet signed in' do
       before do
         helper.should_receive(:user_signed_in?).with().and_return(false)
       end
-      its([:class]) { should include('signed_out') }
+      its([:class]) { should include('signed-out') }
     end
     context 'when event is show' do
       before do

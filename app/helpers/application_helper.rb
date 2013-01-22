@@ -21,7 +21,7 @@ module ApplicationHelper
   end
 
   def body_attributes
-    class_attributes = [user_signed_in? ? 'signed_in' : 'signed_out']
+    class_attributes = [user_signed_in? ? 'signed-in' : 'signed-out']
     class_attributes << 'l-event' if controller_name == 'mockup' and action_name == 'event'
     {
       :class =>  class_attributes
