@@ -1,5 +1,5 @@
 ul.user-bar.pull-right
-  - if controller_name != 'registrations'
+  - unless ['home', 'registrations'].include?(controller_name)
     li= link_to t('labels.sign_up'), new_user_registration_path, :class => "btn btn-success"
   - if controller_name != 'sessions'
     li= link_to t('labels.sign_in'), new_user_session_path, :class => "btn"

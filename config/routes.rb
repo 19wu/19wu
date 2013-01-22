@@ -13,7 +13,7 @@ NineteenWu::Application.routes.draw do
   end
 
   as :user do
-    root to: 'devise/registrations#new'
+    root to: 'home#page'
   end
 
   resources :events
