@@ -1,5 +1,14 @@
-.row
-  = render "sidebar"
+= link_to t('labels.launch_event'), new_event_path, :class => 'btn btn-info new-event-btn pull-right'
+ul class="nav nav-tabs"
+  li.active
+    a href="#" = t('home.menu.activities')
+  li
+    a href="#"
+      = t('home.menu.created_events')
+      span.label.home-menu-amount 0
+  li
+    a href="#"
+      = t('home.menu.joined_events')
+      span.label.home-menu-amount 0
 
-  .span9
-    .well 暂时没有内容
+div = t('home.body.empty')
