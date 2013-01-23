@@ -16,8 +16,14 @@ form {
     .btn {
       @extend .btn-block;
     }
+    .input-large {
+      min-height: $baseLineHeight * 2;
+      height: $baseLineHeight * 2;
+    }
+    .btn-large {
+      padding: 9px 19px; // http://git.io/D9i_5g
+    }
   }
-
 }
 
 .form-actions > .btn {

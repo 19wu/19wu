@@ -2,19 +2,19 @@
 
   .jumbotron
     .container
-      .row-fluid
-        .span5
+      .row
+        .span7
           .slogan
             h1 = t('slogan.title')
             p = t('slogan.description')
-        .span5.offset2
+        .span4.offset1
           = simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :class => 'form-full-width'}) do |f|
-            = f.input :login, :label => false, :placeholder => resource.class.human_attribute_name(:login)
-            = f.input :email, :label => false, :placeholder => resource.class.human_attribute_name(:email)
-            = f.input :password, :label => false, :placeholder => resource.class.human_attribute_name(:password)
-            = f.submit t('labels.sign_up_to_launch_event'), :class => 'btn btn-success'
+            = f.input :login, :label => false, :placeholder => resource.class.human_attribute_name(:login), :input_html => { :class => 'input-large'}
+            = f.input :email, :label => false, :placeholder => resource.class.human_attribute_name(:email), :input_html => { :class => 'input-large'}
+            = f.input :password, :label => false, :placeholder => resource.class.human_attribute_name(:password), :input_html => { :class => 'input-large'}
+            = f.submit t('labels.sign_up_to_launch_event'), :class => 'btn btn-success btn-large'
 
-.row-fluid
+.row
   .span3
     h3 = t('highlights.free.title')
     p = t('highlights.free.description')

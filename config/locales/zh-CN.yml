@@ -24,7 +24,7 @@ zh-CN:
 
   slogan:
     title: "卖活动票的小屋"
-    description: "由开源社区研发的活动票务平台，在这个小屋子发动活动、卖票都是免费的。"
+    description: "由开源社区研发的活动票务平台，在这个小屋子发起活动、卖票都是免费的。"
 
   highlights:
     free:
@@ -47,8 +47,8 @@ zh-CN:
   labels:
     sign_in: "登录"
     sign_up: "注册"
-    sign_up_to_launch_event: "注册，发动活动"
-    launch_event: "发动活动"
+    sign_up_to_launch_event: "注册，发起活动"
+    launch_event: "发起活动"
     show_event: "查看活动"
     cancel: "取消"
     join_event_button: "我要参加"

@@ -23,7 +23,7 @@ zh-CN:
       inactive: '您还没有激活帐户.'
     sessions:
       signed_in: '登录成功.'
-      signed_out: '退出成功.'
+      signed_out: '' # 首页不要显示退出成功提示
     passwords:
       send_instructions: '稍后你将收到帐号激活的电子邮件'
       updated: '您的密码已修改成功，您现在已登录.'
