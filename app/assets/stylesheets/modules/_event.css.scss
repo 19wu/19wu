@@ -34,6 +34,10 @@
 
 .event-contact {
   margin-left: $baseFontSize / 2;
+  a {
+    color: $grayDarker;
+    margin-right: 5px;
+  }
 }
 
 // event list
