@@ -4,12 +4,16 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    @events = current_user.events.all
+    @events = current_user.events
 
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @events }
     end
+  end
+
+  def joined
+    @events = current_user.joined_events
   end
 
   # GET /events/1

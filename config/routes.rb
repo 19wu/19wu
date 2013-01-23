@@ -7,6 +7,7 @@ NineteenWu::Application.routes.draw do
       post 'join'
     end
   end
+  get 'joined_events', to: "events#joined"
 
   authenticated :user do
     root to: "home#index"
