@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   friendly_id :login
 
   has_many :events
+  has_many :groups
   has_many :photos
   has_many :event_participants
   has_many :joined_events, :through => :event_participants, :source => :event

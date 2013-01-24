@@ -5,6 +5,9 @@ fieldset
 
     .form-inputs
       = f.input :title, :input_html => { :class => 'span5' }
+      = f.input :slug, :wrapper => :prepend, :input_html => { :class => 'span5' } do
+        span.add-on = "#{request.protocol}#{request.host_with_port}/"
+        = f.input_field :slug, :class => 'span2', :placeholder => 'rubyconfchina'
       = f.input :compound_start_time, :as => :compound_datetime, :controls_wrapper_html => { :class => 'controls-row' }
       = f.input :compound_end_time, :as => :compound_datetime, :controls_wrapper_html => { :class => 'controls-row' }
       = f.input :location, :input_html => { :class => 'span5' }

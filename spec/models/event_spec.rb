@@ -28,6 +28,22 @@ describe Event do
       event.end_time = "2012-12-31 08:00:50"
       expect(event.save).to be_false
     end
+
+    describe 'slug' do
+      context 'is blank' do
+        subject { build :event, :slug => '' }
+        its(:valid?) { should be_false }
+      end
+      context 'has not been taken' do
+        subject { build :event, :slug => 'rubyconfchina' }
+        its(:valid?) { should be_true }
+      end
+      context 'has been taken' do
+        let(:group) { create :group }
+        subject { build :event, :slug => group.slug }
+        its(:valid?) { should be_false }
+      end
+    end
   end
 
   describe 'content_html' do
