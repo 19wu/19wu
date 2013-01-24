@@ -56,9 +56,6 @@ zh-CN:
       unlock_instructions:
         subject: '解锁信息'
     views:
-      commons:
-        sidebar:
-          title: '操作面版'
       links:
         sign_in: '登录'
         sign_up: '注册'

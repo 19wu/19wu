@@ -4,12 +4,16 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    @events = current_user.events.all
+    @events = current_user.events
 
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @events }
     end
+  end
+
+  def joined
+    @events = current_user.joined_events
   end
 
   # GET /events/1
@@ -26,7 +30,6 @@ class EventsController < ApplicationController
   # GET /events/new
   # GET /events/new.json
   def new
-    @events = current_user.events.unfinished
     @event = current_user.events.new
 
     respond_to do |format|
@@ -37,7 +40,6 @@ class EventsController < ApplicationController
 
   # GET /events/1/edit
   def edit
-    @events = current_user.events.unfinished
     @event = current_user.events.find(params[:id])
   end
 

@@ -2,6 +2,22 @@ require 'spec_helper'
 
 describe EventsController do
 
+  describe "GET 'index'" do
+    login_user
+    it "renders the event list" do
+      get 'index'
+      response.should render_template('index')
+    end
+  end
+
+  describe "GET 'joined'" do
+    login_user
+    it "renders the event list" do
+      get 'joined'
+      response.should render_template('joined')
+    end
+  end
+
   describe "GET 'new'" do
     context 'when user has signed in' do
       login_user

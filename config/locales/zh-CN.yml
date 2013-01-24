@@ -37,6 +37,14 @@ zh-CN:
       title: "加入我们"
       description: "也许你愿意和我们一起成长，请加入19屋"
 
+  home:
+    menu:
+      activities: 最新动态
+      created_events: 发起的活动
+      joined_events: 参加的活动
+    body:
+      empty: 暂时没有内容
+
   helpers:
     submit:
       event:

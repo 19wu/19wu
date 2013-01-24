@@ -18,9 +18,7 @@ class Event < ActiveRecord::Base
 
   validate :end_time_must_after_start_time
 
-  default_scope order('start_time ASC')
-
-  scope :unfinished, where(["end_time > ? ", Time.now])
+  default_scope order('start_time DESC')
 
   def has?(user)
     return user && participants.exists?(user_id: user.id)

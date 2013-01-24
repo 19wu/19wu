@@ -1,5 +1,3 @@
-.row
-  = render "sidebar"
+= render 'menu', :current => :activities
 
-  .span9
-    .well 暂时没有内容
+div = t('home.body.empty')

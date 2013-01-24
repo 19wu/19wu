@@ -1,0 +1,6 @@
+.home-nav {
+  @extend .nav, .nav-tabs;
+  .menu-amount {
+    margin-left: 4px;
+  }
+}
