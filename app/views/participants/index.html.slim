@@ -3,7 +3,12 @@
     = @event.title
 
   ul.unstyled
-    = content_tag_for(:li, @users) do |user|
-      = image_tag user.gravatar_url(:size => 64), :class => 'gravatar'
-      = user.login
-      = link_to t('labels.check_in_button'), event_participant_path(@event, user.id), :class => 'btn btn-info new-event-btn pull-right'
+    = content_tag_for(:li, @event.participants) do |participant|
+      = image_tag participant.user.gravatar_url(:size => 64), :class => 'gravatar'
+      = participant.user.login
+      .pull-right
+        - if @event.checked_in?(participant.user)
+          button.btn.btn-warning.disabled disabled="disabled" id="check_in_event_participant_#{participant.id}" = I18n.t('labels.has_checked_in_button')
+        - else
+          = form_for('', :url => event_participant_path(@event, participant), :method => :put) do |f|
+            button.btn.btn-info type="submit" id="check_in_event_participant_#{participant.id}" = I18n.t('labels.check_in_button')

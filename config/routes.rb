@@ -6,7 +6,7 @@ NineteenWu::Application.routes.draw do
     member do
       post 'join'
     end
-    resources :participants, :only => [:index]
+    resources :participants, :only => [:index, :update]
   end
   get 'joined_events', to: "events#joined"
 
