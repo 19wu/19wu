@@ -38,7 +38,7 @@ class Event < ActiveRecord::Base
   end
 
   def slug_must_uniq
-    if group = Group.find_by_slug(slug) and group.user != user
+    if User.exists?(:login => slug) or (group = Group.find_by_slug(slug) and group.user != user)
       errors.add(:slug, I18n.t('errors.messages.taken'))
     end
   end

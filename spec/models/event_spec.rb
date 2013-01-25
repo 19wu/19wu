@@ -30,18 +30,24 @@ describe Event do
     end
 
     describe 'slug' do
+      subject { event }
       context 'is blank' do
-        subject { build :event, :slug => '' }
+        before { event.slug = '' }
         its(:valid?) { should be_false }
       end
       context 'has not been taken' do
-        subject { build :event, :slug => 'rubyconfchina' }
+        before { event.slug = 'rubyconfchina' }
         its(:valid?) { should be_true }
       end
       context 'has been taken' do
-        let(:group) { create :group }
-        subject { build :event, :slug => group.slug }
-        its(:valid?) { should be_false }
+        context 'by other group' do
+          before { event.slug = create(:group).slug }
+          its(:valid?) { should be_false }
+        end
+        context 'by other user' do
+          before { event.slug = event.user.login }
+          its(:valid?) { should be_false }
+        end
       end
     end
   end
