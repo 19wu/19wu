@@ -13,11 +13,10 @@
 ### 如何贡献
 
 * 向朋友介绍 [19wu](https://github.com/saberma/19wu)
-* 完善 [Wiki](https://github.com/saberma/19wu/wiki) 文档
+* 试用功能 http://saberma-19wu.herokuapp.com ，登录邮箱：`demo@19wu.com` 密码：`666666`
+* 参与开发[任务](https://github.com/saberma/19wu/issues?labels=%E4%BB%BB%E5%8A%A1&page=1&state=open) ，[任务](https://github.com/saberma/19wu/issues?labels=%E4%BB%BB%E5%8A%A1&page=1&state=open) 细分为 4 种：[Rails 零基础任务](https://github.com/saberma/19wu/issues?labels=Rails+%E9%9B%B6%E5%9F%BA%E7%A1%80&page=1&state=open) 、 [新手任务](https://github.com/saberma/19wu/issues?labels=%E6%96%B0%E6%89%8B&page=1&state=open) 、[普通任务](https://github.com/saberma/19wu/issues?labels=%E6%99%AE%E9%80%9A&page=1&state=open) 、[挑战任务](https://github.com/saberma/19wu/issues?labels=%E6%8C%91%E6%88%98&page=1&state=open)
 * 发起 [Issue](https://github.com/saberma/19wu/issues) 讨论
-* 试用功能
-* 开发 [待领任务](https://github.com/saberma/19wu/issues?labels=%E5%BE%85%E9%A2%86%E4%BB%BB%E5%8A%A1&page=1&state=open) 的功能
-* 参与 [Rails 零基础新手任务](https://github.com/saberma/19wu/issues?labels=%E6%96%B0%E6%89%8B%E4%BB%BB%E5%8A%A1&page=1&state=open)
+* 完善 [Wiki](https://github.com/saberma/19wu/wiki) 文档
 
 [详细指南](https://github.com/saberma/19wu/blob/master/CONTRIBUTING.md)
 
