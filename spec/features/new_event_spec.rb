@@ -11,6 +11,7 @@ feature 'new event' do
     visit new_event_path
 
     fill_in 'event_title', with: attributes[:title]
+    fill_in 'event_slug', with: attributes[:slug]
     fill_in 'event_compound_start_time_attributes_date', with: attributes[:start_time].split(' ').first
     fill_in 'event_location', with: attributes[:location]
     fill_in 'event_content', with: attributes[:content]

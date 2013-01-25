@@ -15,6 +15,15 @@ module EventHelper
     text
   end
 
+  def group_event_path(event)
+    group = event.group
+    (event == event.group.events.first) ? "/#{group.slug}" : url_for(
+      :controller => 'events',
+      :action => 'show',
+      :id => event.id
+    )
+  end
+
   private
   def format_year(time)
     (time.year == Time.zone.now.year) ? :stamp : :stamp_with_year

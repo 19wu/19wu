@@ -4,7 +4,7 @@
   - @events.each do |event|
     .event-item
       .avatar-wrapper = image_tag event.user.gravatar_url(:size => 50), :class => 'gravatar'
-      = link_to event.title, event_path(event)
+      = link_to event.title, group_event_path(event)
       .event-item-time
         = time_merge(event)
       .event-item-location
