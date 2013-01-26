@@ -30,5 +30,6 @@ article.event
             = link_to @event.user.login, user_path(@event.user)
             = @event.user.profile.phone
 
+        hr
         ul.event-participants.horizontal
           = render partial: 'users/participant', collection: @event.participated_users.recent(10), as: :user
