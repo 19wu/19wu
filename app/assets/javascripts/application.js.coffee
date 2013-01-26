@@ -47,3 +47,17 @@ $ ->
     $(this).next("p").addClass "focused"
   ).on "blur", ->
     $(this).next("p").removeClass "focused"
+
+  $('[rel=popover]').each ->
+    options = {}
+    $this = $(this)
+    if $this.data('target')
+      $target = $($this.data('target'))
+      options = {
+        html: true
+        title: $target.find('.popover-title').html()
+        content: $target.find('.popover-content').html()
+      }
+
+    $this.popover(options)
+
