@@ -18,6 +18,14 @@ feature 'event page' do
     page.should have_selector('.event-body li', :text => 'list')
   end
 
+  scenario 'I see list of participants' do
+    users = create_list(:user, 5)
+    event.participated_users << users
+
+    visit event_path(event)
+    page.should have_selector('.event-participants img.gravatar', :count => 5)
+  end
+
   describe 'when user has signed in' do
     let(:event) { FactoryGirl.create(:event) }
     before do

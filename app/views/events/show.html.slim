@@ -29,3 +29,6 @@ article.event
           span.event-contact
             = link_to @event.user.login, user_path(@event.user)
             = @event.user.profile.phone
+
+        ul.event-participants.horizontal
+          = render partial: 'users/participant', collection: @event.participated_users, as: :user
