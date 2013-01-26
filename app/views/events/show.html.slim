@@ -31,4 +31,4 @@ article.event
             = @event.user.profile.phone
 
         ul.event-participants.horizontal
-          = render partial: 'users/participant', collection: @event.participated_users, as: :user
+          = render partial: 'users/participant', collection: @event.participated_users.recent(10), as: :user
