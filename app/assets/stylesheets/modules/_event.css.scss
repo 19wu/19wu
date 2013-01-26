@@ -61,3 +61,18 @@
 .event-item-time, .event-item-location {
   @extend .muted;
 }
+
+// event form
+@media (max-width: 979px) {
+  .event-form {
+    .date, .time {
+      float: none;
+    }
+    .time {
+      margin-top: 5px;
+    }
+  }
+  input#event_slug {
+    width: 126px;
+  }
+}
