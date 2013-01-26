@@ -41,7 +41,8 @@ form {
     float: left;
   }
   .time {
-    float: right;
+    float: left;
+    margin-left: 30px;
     select {
       width: auto;
     }
