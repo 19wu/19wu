@@ -48,15 +48,15 @@ feature 'event page' do
     end
   end
 
-  describe 'when user has signed in' do
+  describe 'when user has not signed in' do
     before do
       Event.stub(:find).with(event.id.to_s).and_return(event)
     end
 
     it 'init show' do
-        visit event_path(event)
-        page.should have_selector('button#join_event')
-        expect(page).to have_content I18n.t('labels.join_event_button')
+      visit event_path(event)
+      page.should have_selector('button#join_event')
+      expect(page).to have_content I18n.t('labels.join_event_button')
     end
 
     it 'click join_event button will be seccses' do
