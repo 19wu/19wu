@@ -1,5 +1,6 @@
 fieldset
   legend
+    = render 'markdown_guide'
     = t('.title', :scope => 'views')
     = link_to t('labels.show_event'), group_event_path(@event), :class => 'btn btn-link pull-right'
   = simple_form_for @event, :html => { :class => "form-horizontal" } do |f|

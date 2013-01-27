@@ -1,0 +1,60 @@
+#markdownModal.modal.hide.fade tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+
+	.modal-header
+		button.close data-dismiss="modal" aria-hidden="true" x
+		h3#myModalLabel =t('labels.markdown_guide')
+
+	.modal-body
+		.column
+			h3 格式化文本 
+			p 标题
+			pre 
+			    |# 这是一个 &lt;h1&gt; 标签 
+				## 这是一个 &lt;h2&gt; 标签
+	        	###### 这是一个 &lt;h6&gt; 标签
+	        p 字体
+			pre
+				|*这是斜体
+				 _这是也是斜体
+				 **这是粗体**
+				 __这也是粗体__
+		.column
+			h3 列表
+			p 无序
+
+			pre 
+			 |* 条目1
+			  * 条目2
+  			  * 条目2a
+  			  * 条目2b
+
+			p 有序
+
+			pre 
+			 |1. 条目1
+			  2. 条目2
+			  3. 条目3
+  			  * 条目2a
+  			  * 条目2b
+		.column
+			h3 其他
+			p 图片
+			pre	
+				|![19wu Logo](/images/logo.png)
+				 格式: [图片名](url)
+
+    		p 链接 
+
+    		pre
+				|http://19wu.com - automatic!
+				 [19wu](http://www.19wu.com)
+
+			p 引用
+			pre
+				|毛主席曾经说过：
+
+			     > 19屋靠谱!
+ 
+	.modal-footer 
+		button.btn data-dismiss="modal" aria-hidden="true" =t('labels.cancel') 
+

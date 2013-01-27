@@ -1,5 +1,7 @@
 fieldset
   legend = t('.title', :scope => 'views')
+  = render 'markdown_guide' 
+
   = simple_form_for @event, :html => { :class => "form-horizontal" } do |f|
     = f.error_notification
 

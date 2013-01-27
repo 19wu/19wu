@@ -61,6 +61,7 @@ zh-CN:
     cancel: "取消"
     join_event_button: "我要参加"
     has_joined_event_button: "已报名"
+    markdown_guide: "Markdown 格式说明"
 
   text:
     under_construction: "网站建设中"
