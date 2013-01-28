@@ -8,6 +8,9 @@
   padding: 2 * $baseLineHeight 0;
   background: $grayBackground;
   @include footer_after($grayBackground);
+  li {
+    padding: 0 4px;
+  }
 }
 
 #flash .alert {

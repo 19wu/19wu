@@ -2,6 +2,7 @@
   @extend .horizontal;
   margin: 0;
   li {
+    padding: 4px;
     margin-right: 5px;
     line-height: $navbarHeight;
     > .btn {

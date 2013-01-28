@@ -24,12 +24,18 @@ article.event
               = form_for('', :url => join_event_path(@event), :method => :post) do |f|
                 button.btn.btn-large.btn-success.btn-block type="submit" id="join_event" = I18n.t('labels.join_event_button')
         .event-map == @event.location_guide_html
+        hr
         p
           span.label.label-important 联系人
           span.event-contact
             = link_to @event.user.login, user_path(@event.user)
             = @event.user.profile.phone
 
-        hr
-        ul.event-participants.horizontal
-          = render partial: 'users/participant', collection: @event.participated_users.recent(10), as: :user
+        - participated_users = @event.participated_users.recent(10)
+        - unless participated_users.empty?
+          hr
+          h3
+            |已参加用户
+            span.label.amount = @event.participated_users.size
+          ul.event-participants
+            = render partial: 'users/participant', collection: participated_users, as: :user

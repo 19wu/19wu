@@ -31,12 +31,17 @@
 .event-map img {
   border: 1px solid darken($grayLighter, 15%);
 }
-
 .event-contact {
   margin-left: $baseFontSize / 2;
   a {
     color: $grayDarker;
     margin-right: 5px;
+  }
+}
+.event-participants {
+  @extend .horizontal;
+  li {
+    padding: 0 4px 4px 0;
   }
 }
 

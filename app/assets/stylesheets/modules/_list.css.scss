@@ -4,7 +4,6 @@ ul, ol {
     @include clearfix;
     > li {
       float: left;
-      padding: 4px;
     }
   }
   &.unstyled > li {
