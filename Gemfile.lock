@@ -211,6 +211,7 @@ GEM
       json (~> 1.4)
     ref (1.0.2)
     rinku (1.7.2)
+    rmagick (2.13.1)
     rspec (2.12.0)
       rspec-core (~> 2.12.0)
       rspec-expectations (~> 2.12.0)
@@ -317,6 +318,7 @@ DEPENDENCIES
   pry-rails
   quiet_assets
   rails (= 3.2.11)
+  rmagick
   rspec-rails
   sass-rails (~> 3.2.3)
   settingslogic
