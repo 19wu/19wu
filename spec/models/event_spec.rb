@@ -65,4 +65,25 @@ describe Event do
       its(:location_guide_html) { should include('<h1>map</h1>') }
     end
   end
+
+  describe '#participated_users.recent' do
+    let(:event) { create(:event) }
+
+    it 'sorts participants by join date' do
+      first = create(:user)
+      second = create(:user)
+
+      EventParticipant.create({ :user_id => first.id, :event_id => event.id, :created_at => '2012-01-01' },
+                              :without_protection => true)
+      EventParticipant.create({ :user_id => second.id, :event_id => event.id, :created_at => '2012-01-02' },
+                              :without_protection => true)
+
+      event.participated_users.recent.should == [second, first]
+    end
+
+    it 'can limit the number of participants' do
+      event.participated_users << create_list(:user, 2)
+      event.participated_users.recent(1).should have(1).user
+    end
+  end
 end

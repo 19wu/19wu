@@ -4,6 +4,11 @@ class Event < ActiveRecord::Base
   belongs_to :user
   belongs_to :group
   has_many :participants, :class_name => "EventParticipant"
+  has_many :participated_users, :source => :user, :through => :participants do
+    def recent(count = nil)
+      order('event_participants.created_at DESC').limit(count)
+    end
+  end
 
   has_compound_datetime :start_time
   has_compound_datetime :end_time

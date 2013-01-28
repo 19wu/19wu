@@ -18,6 +18,14 @@ feature 'event page' do
     page.should have_selector('.event-body li', :text => 'list')
   end
 
+  scenario 'I see list of participants' do
+    users = create_list(:user, 5)
+    event.participated_users << users
+
+    visit event_path(event)
+    page.should have_selector('.event-participants img.gravatar', :count => 5)
+  end
+
   describe 'when user has signed in' do
     let(:event) { FactoryGirl.create(:event) }
     before do
@@ -48,15 +56,15 @@ feature 'event page' do
     end
   end
 
-  describe 'when user has signed in' do
+  describe 'when user has not signed in' do
     before do
       Event.stub(:find).with(event.id.to_s).and_return(event)
     end
 
     it 'init show' do
-        visit event_path(event)
-        page.should have_selector('button#join_event')
-        expect(page).to have_content I18n.t('labels.join_event_button')
+      visit event_path(event)
+      page.should have_selector('button#join_event')
+      expect(page).to have_content I18n.t('labels.join_event_button')
     end
 
     it 'click join_event button will be seccses' do
