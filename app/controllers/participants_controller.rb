@@ -1,6 +1,9 @@
 class ParticipantsController < ApplicationController
+  prepend_before_filter :authenticate_user!
+
   def index
     @event = Event.find(params[:event_id])
+    @users = User.where(:id => EventParticipant.select(:user_id).where("event_id = ?", params[:event_id])).order("login ASC")
   end
 
   def update

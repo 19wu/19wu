@@ -2,14 +2,15 @@ legend
   = @event.title
 
 .participant-list
-  = div_for(@event.participants, :class => "participant-item row-fluid") do |participant|
+  = div_for(@users, :class => "participant-item row-fluid") do |user|
+    - participant = participant_info(@event, user)
     .span10
-      .avatar-wrapper = image_tag participant.user.gravatar_url(:size => 50), :class => 'gravatar', :title => "#{participant.user.login}"
-      span.participant-login-name = participant.user.login
+      .avatar-wrapper = image_tag user.gravatar_url(:size => 50), :class => 'gravatar', :title => "#{user.login}"
+      span.participant-login-name = user.login
       br /
-      span.participant-name = participant.user.profile.name
+      span.participant-name = user.profile.name
     .span2
-      - if @event.checked_in?(participant.user)
+      - if participant.joined
         button.btn.disabled disabled="disabled" id="check-in-event-participant-#{participant.id}" class="pull-right" = I18n.t('labels.has_checked_in_button')
       - else
         = form_for('', :url => event_participant_path(@event, participant), :method => :put) do |f|
