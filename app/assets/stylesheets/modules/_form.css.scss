@@ -26,25 +26,36 @@ form {
   }
 }
 
+/* fix the left margin when apply the span* classes */
+.compound-controls {
+  margin-left: 0;
+}
+
 .form-actions > .btn {
   margin-right: 5px;
 }
 
-.compound-datetime {
+.compound_datetime {
+  @include clearfix;
+  .date {
+    float: left;
+  }
+  .time {
+    float: left;
+    margin-left: 30px;
+    select {
+      width: auto;
+    }
+  }
   .datepicker {
-    width: 98px;
+    width: 6em;
   }
   .add-on {
     margin-top: 1px;
   }
-}
-.time-hour, .time-min {
-  width: 45%;
-}
-.time-colon {
-  display: inline-block;
-  width: 10%;
-  text-align: center;
+  .time-separator {
+    padding: 0 5px;
+  }
 }
 
 .uploadable-input {

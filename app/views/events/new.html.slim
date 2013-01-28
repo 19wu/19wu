@@ -1,20 +1,4 @@
 fieldset
   legend = t('.title', :scope => 'views')
-  = render 'markdown_guide' 
-
-  = simple_form_for @event, :html => { :class => "form-horizontal" } do |f|
-    = f.error_notification
-
-    .form-inputs
-      = f.input :title, :input_html => { :class => 'span5' }
-      = f.input :slug, :wrapper => :prepend, :hint => t('views.events.slug.hint'), :input_html => { :class => 'span5' } do
-        span.add-on = "#{request.protocol}#{request.host_with_port}/"
-        = f.input_field :slug, :class => 'span2', :placeholder => 'rubyconfchina'
-      = f.input :compound_start_time, :as => :compound_datetime, :controls_wrapper_html => { :class => 'controls-row' }
-      = f.input :compound_end_time, :as => :compound_datetime, :controls_wrapper_html => { :class => 'controls-row' }
-      = f.input :location, :input_html => { :class => 'span5' }
-      = f.input :location_guide, :input_html => { :rows => 6, :class => 'span5' }, :as => 'uploadable'
-      = f.input :content, :input_html => { :rows => 12, :class => 'span5' }, :as => 'uploadable'
-    .form-actions
-      = f.button :submit, :class => ['btn', 'btn-info']
-      a.btn href=root_path = t('labels.cancel')
+  = simple_form_for @event, :html => { :class => "form-horizontal event-form" } do |f|
+    = render 'form', :f => f
