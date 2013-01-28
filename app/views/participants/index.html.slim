@@ -1,14 +1,16 @@
-#joined_users
-  legend
-    = @event.title
+legend
+  = @event.title
 
-  ul.unstyled
-    = content_tag_for(:li, @event.participants) do |participant|
-      = image_tag participant.user.gravatar_url(:size => 64), :class => 'gravatar'
-      = participant.user.login
-      .pull-right
-        - if @event.checked_in?(participant.user)
-          button.btn.btn-warning.disabled disabled="disabled" id="check_in_event_participant_#{participant.id}" = I18n.t('labels.has_checked_in_button')
-        - else
-          = form_for('', :url => event_participant_path(@event, participant), :method => :put) do |f|
-            button.btn.btn-info type="submit" id="check_in_event_participant_#{participant.id}" = I18n.t('labels.check_in_button')
+.participant-list
+  = div_for(@event.participants, :class => "participant-item row-fluid") do |participant|
+    .span10
+      .avatar-wrapper = image_tag participant.user.gravatar_url(:size => 50), :class => 'gravatar', :title => "#{participant.user.login}"
+      span.participant-login-name = participant.user.login
+      br /
+      span.participant-name = participant.user.profile.name
+    .span2
+      - if @event.checked_in?(participant.user)
+        button.btn.disabled disabled="disabled" id="check-in-event-participant-#{participant.id}" class="pull-right" = I18n.t('labels.has_checked_in_button')
+      - else
+        = form_for('', :url => event_participant_path(@event, participant), :method => :put) do |f|
+          button.btn.btn-info type="submit" id="check-in-event-participant-#{participant.id}" class="pull-right" = I18n.t('labels.check_in_button')
