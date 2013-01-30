@@ -38,6 +38,7 @@ gem 'settingslogic'
 gem 'delayed_job_active_record'
 gem 'carrierwave'
 gem 'friendly_id'
+gem 'mini_magick'
 
 group :development do
   gem 'mails_viewer'
