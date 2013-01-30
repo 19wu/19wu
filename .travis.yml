@@ -19,7 +19,7 @@ env:
 
 rvm:
   - 1.9.3
-  - 1.9.2
+  #- 1.9.2
   #- ruby-head    # will cause timeout
 
 matrix:
@@ -30,21 +30,9 @@ matrix:
         - DATABASE=pg
         - TIMEOUT=1000
         - JRUBY_OPTS="-Xcext.enabled=true"
-    - rvm: jruby-head
-      jdk: openjdk7
-      env:
-        - DATABASE=pg
-        - TIMEOUT=1000
-        - JRUBY_OPTS="-Xcext.enabled=true"
   # jruby alwyas fails by unknown causes.
   allow_failures:
     - rvm: jruby-19mode
-      jdk: openjdk7
-      env:
-        - DATABASE=pg
-        - TIMEOUT=1000
-        - JRUBY_OPTS="-Xcext.enabled=true"
-    - rvm: jruby-head
       jdk: openjdk7
       env:
         - DATABASE=pg
