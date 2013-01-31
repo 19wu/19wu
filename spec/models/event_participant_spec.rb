@@ -10,4 +10,11 @@ describe EventParticipant do
     participant.event_id.should == event.id
     participant.user_id.should == user.id
   end
+
+  it "success check in" do
+    participant =  Event.find(event.id).participants.build(:user_id => user.id)
+    participant.joined = true
+    expect(participant.save).to be_true
+    participant.joined.should be_true
+  end
 end
