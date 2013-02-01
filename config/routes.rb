@@ -6,7 +6,7 @@ NineteenWu::Application.routes.draw do
   get ":slug" => "group#event", :constraints => SlugConstraint
   get 'joined_events', to: "events#joined"
   match '/photos', to: "photo#create", :via => [:post, :put]
-  get "/content/preview/" => "home#content_preview"
+  post "/content/preview/" => "home#content_preview"
 
   authenticated :user do
     root to: "home#index"
