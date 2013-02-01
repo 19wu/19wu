@@ -63,6 +63,12 @@ form {
 }
 
 .uploadable {
+  
+  .nav.nav-tabs{
+    margin-bottom: 0px;
+    border-bottom-color: transparent;
+  }
+  
   textarea {
     border-bottom: 1px dashed #DDD;
     border-bottom-left-radius: 0;
