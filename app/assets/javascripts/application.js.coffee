@@ -84,7 +84,7 @@ $ ->
       else 
         $.ajax({
           url: "/content/preview",
-          type: "GET",
+          type: "POST",
           data: "content="+writeBits
         }).done (data) ->
               previewSec.append(data.result)
