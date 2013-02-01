@@ -48,6 +48,50 @@ $ ->
   ).on "blur", ->
     $(this).next("p").removeClass "focused"
 
+
+
+  $(".uploadable-input").each ->
+    $this = $(this)
+
+    #get textarea's id
+    id = $this.find('textarea').attr('id') 
+   
+    #set write-tab's link
+    writeTab = $this.find('.write-tab:first a')
+    writeTab.attr('href', '#'+id)
+    
+    #set preview-tab's link
+    previewTabId = id + '_preview_bucket'
+    previewTab = $this.find('.preview-tab')
+    previewTab.find('a').attr('href', '#'+previewTabId)
+
+   # previewTab.attr('href', '#'+previewTabId)
+     
+    #set write-section's id
+    writeSec = $this.find('.tab-content>.active')
+    writeSec.attr('id',id)
+    #set preview-section's id
+    previewSec = writeSec.siblings()
+    previewSec.attr('id',previewTabId)
+
+    previewTab.click ->
+      writeBits = writeSec.find('textarea').val()
+      previewSec.empty()
+      previewStyle = "1px solid #cccccc"
+      if writeBits is ''
+         previewSec.append('<p>无内容预览</p>')
+         previewSec.css('border',previewStyle)
+      else 
+        $.ajax({
+          url: "/content/preview",
+          type: "GET",
+          data: "content="+writeBits
+        }).done (data) ->
+              previewSec.append(data.result)
+              previewSec.css('border',previewStyle)
+
+
+
   $('[rel=popover]').each ->
     options = {}
     $this = $(this)
