@@ -64,8 +64,6 @@ $ ->
     previewTabId = id + '_preview_bucket'
     previewTab = $this.find('.preview-tab')
     previewTab.find('a').attr('href', '#'+previewTabId)
-
-   # previewTab.attr('href', '#'+previewTabId)
      
     #set write-section's id
     writeSec = $this.find('.tab-content>.active')
