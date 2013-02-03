@@ -20,6 +20,10 @@ class UploadableInput < SimpleForm::Inputs::TextInput
           super
         end +
         template.content_tag(:div, :class => 'tab-pane fade preview-pane') do
+          template.content_tag(:div, :class => 'previews') do
+          end+
+          template.content_tag(:p, I18n.t('simple_form.hints.preview.nothing'), :class => 'preview-hint preview-nothing')+
+          template.content_tag(:p, I18n.t('simple_form.hints.preview.loading'), :class => 'preview-hint preview-loading')
         end 
       end
 

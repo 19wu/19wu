@@ -75,19 +75,20 @@ $ ->
     #preview content in the write section
     previewTab.click ->
       writeBits = writeSec.find('textarea').val()
-      previewSec.empty()
+      previewSec.find('.previews').empty()
       if writeBits is ''
-        previewSec.append('<p>无内容预览</p>')
+        previewSec.find('.preview-nothing').show()
       else 
         $.ajax({
           url: "/content/preview"
           type: "POST"
           data: "content="+writeBits
           beforeSend: ->
-              previewSec.append('<p>预览载入中。。。</p>')
+              previewSec.find('.preview-nothing').hide()
+              previewSec.find('.preview-loading').show()
           success: (data) ->
-              previewSec.empty()
-              previewSec.append(data.result)
+              previewSec.find('.preview-loading').hide()
+              previewSec.find('.previews').append(data.result)
         })
 
 
