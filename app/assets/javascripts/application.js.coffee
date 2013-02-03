@@ -71,22 +71,24 @@ $ ->
     #set preview-section's id
     previewSec = writeSec.siblings()
     previewSec.attr('id',previewTabId)
-
+    
+    #preview content in the write section
     previewTab.click ->
       writeBits = writeSec.find('textarea').val()
       previewSec.empty()
-      previewStyle = "1px solid #cccccc"
       if writeBits is ''
-         previewSec.append('<p>无内容预览</p>')
-         previewSec.css('border',previewStyle)
+        previewSec.append('<p>无内容预览</p>')
       else 
         $.ajax({
-          url: "/content/preview",
-          type: "POST",
+          url: "/content/preview"
+          type: "POST"
           data: "content="+writeBits
-        }).done (data) ->
+          beforeSend: ->
+              previewSec.append('<p>预览载入中。。。</p>')
+          success: (data) ->
+              previewSec.empty()
               previewSec.append(data.result)
-              previewSec.css('border',previewStyle)
+        })
 
 
 

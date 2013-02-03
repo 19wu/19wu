@@ -16,10 +16,10 @@ class UploadableInput < SimpleForm::Inputs::TextInput
       end
       
       result += template.content_tag(:div, :class => 'tab-content') do
-        template.content_tag(:div, :class => 'tab-pane fade in active') do
+        template.content_tag(:div, :class => 'tab-pane fade in active write-pane') do
           super
         end +
-        template.content_tag(:div, :class => 'tab-pane fade') do
+        template.content_tag(:div, :class => 'tab-pane fade preview-pane') do
         end 
       end
 

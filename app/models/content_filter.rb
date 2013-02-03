@@ -3,7 +3,10 @@ require 'html/pipeline'
 class ContentFilter
   
   def self.refine(content)
-    HTML::Pipeline::MarkdownFilter.new(content).call
+    pipeline = HTML::Pipeline.new [
+      HTML::Pipeline::MarkdownFilter
+    ]
+    pipeline.call(content)[:output].to_s
   end
 
 end

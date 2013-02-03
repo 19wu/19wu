@@ -68,6 +68,11 @@ form {
     margin-bottom: 0px;
     border-bottom-color: transparent;
   }
+
+  .preview-pane {
+    border: 1px solid #cccccc;
+    border-bottom: 1px dashed #DDD;
+  }
   
   textarea {
     border-bottom: 1px dashed #DDD;
