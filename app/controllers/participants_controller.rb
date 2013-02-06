@@ -3,7 +3,7 @@ class ParticipantsController < ApplicationController
 
   def index
     @event = Event.find(params[:event_id])
-    @users = User.where(:id => EventParticipant.select(:user_id).where("event_id = ?", params[:event_id])).order("login ASC")
+    @participants = @event.participants.joins(:user).order('users.login ASC').includes(:user => :profile)
   end
 
   def update

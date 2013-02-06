@@ -2,8 +2,8 @@ legend
   = @event.title
 
 .participant-list
-  = div_for(@users, :class => "participant-item row-fluid") do |user|
-    - participant = participant_info(@event, user)
+  = div_for(@participants, :class => "participant-item row-fluid") do |participant|
+    - user = participant.user
     .span10
       .avatar-wrapper = image_tag user.gravatar_url(:size => 50), :class => 'gravatar', :title => "#{user.login}"
       span.participant-login-name = user.login
