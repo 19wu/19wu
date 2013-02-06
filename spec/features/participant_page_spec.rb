@@ -19,8 +19,8 @@ feature 'participant page' do
         it "hasn't profile information" do
           visit event_participants_path(event)
 
-          page.find("div#user_#{user.id} span.participant-login-name").should have_content(user.login)
-          page.find("div#user_#{user.id} span.participant-name").should have_content("")
+          page.find("div#event_participant_#{participant.id} span.participant-login-name").should have_content(user.login)
+          page.find("div#event_participant_#{participant.id} span.participant-name").should have_content("")
         end
 
         let(:has_profile_user) { FactoryGirl.create(:user, profile: create(:profile, name: 'jack')) }
@@ -30,8 +30,8 @@ feature 'participant page' do
 
           visit event_participants_path(event)
 
-          page.find("div#user_#{has_profile_user.id} span.participant-login-name").should have_content(has_profile_user.login)
-          page.find("div#user_#{has_profile_user.id} span.participant-name").should have_content(has_profile_user.profile.name)
+          page.find("div#event_participant_#{has_profile_participant.id} span.participant-login-name").should have_content(has_profile_user.login)
+          page.find("div#event_participant_#{has_profile_participant.id} span.participant-name").should have_content(has_profile_user.profile.name)
         end
       end
 

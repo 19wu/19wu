@@ -26,11 +26,11 @@ describe ParticipantsController do
       it 'as asc' do
         get :index, :event_id => event.id
 
-        users = assigns[:users]
+        participants = assigns[:participants]
 
-        users.count.should ==  6
+        participants.count.should ==  6
         %w{jack lucy dave lily john beth}.sort.each_with_index do |name, index|
-          users[index].login.should == name
+          participants[index].user.login.should == name
         end
       end
     end
