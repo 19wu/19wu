@@ -13,29 +13,32 @@ zh-CN:
       stamp: '%b%d日(%a) %p %I:%M'
       stamp_with_year: '%Y年%b%d日(%a) %p %I:%M'
 
+  19wu: "19屋"
+
   layout:
-    19wu: "19屋"
-    opensource: "开源社区"
+    opensource: "Fork us"
     contact_us: "联系我们"
-    title: "19屋－卖活动票的小屋"
+    alpha_alert: "%{19wu}正在内测阶段，如果您有任何意见或建议，可以通过%{email}或者%{github}联系我们。"
+    title: "19屋－让活动更好"
+    copyright: "版权所有"
 
     account: "注册信息"
     profile: "个人资料"
 
   slogan:
-    title: "卖活动票的小屋"
-    description: "由开源社区研发的活动票务平台，在这个小屋子发起活动、卖票都是免费的。"
+    title: "让活动更好"
+    description: "19屋致力于为活动组织者提供功能简洁、完全免费的服务"
 
   highlights:
     free:
       title: "完全免费"
-      description: "19屋不会收取任何费用。"
-    more_features:
-      title: "更多功能"
-      description: "更多活动管理功能正在开发中，欢迎向19屋提出要求。"
-    join_us:
+      description: "19屋不会收取任何的使用费，您因此节省下来的成本可以为与会者提供更好的参会体验。"
+    devices:
+      title: "随时访问"
+      description: "您和与会者可以随时随地通过电脑，或者平板电脑、手机等移动设备来管理活动。"
+    team:
       title: "加入我们"
-      description: "也许你愿意和我们一起成长，请加入19屋"
+      description: "我们是%{github}上的开源团队，如果您愿意与我们一起成长，欢迎%{join_us}。"
 
   home:
     menu:
