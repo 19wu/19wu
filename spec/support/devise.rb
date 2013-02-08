@@ -5,6 +5,7 @@ module DeviseControllerMacros # http://git.io/WHvARA
     user ||= FactoryGirl.create(:user, :confirmed)
     @request.env["devise.mapping"] = Devise.mappings[:user]
     sign_in user
+    user
   end
 
   module ClassMethods
@@ -26,6 +27,7 @@ module DeviseFeatureMacros
     fill_in 'user_email', with: user.email
     fill_in 'user_password', with: user.password
     click_button I18n.t('labels.sign_in')
+    user
   end
 
   alias_method :login_user, :sign_in
