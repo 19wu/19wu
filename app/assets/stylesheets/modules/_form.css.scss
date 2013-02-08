@@ -63,6 +63,21 @@ form {
 }
 
 .uploadable {
+  
+  .nav.nav-tabs{
+    margin-bottom: 0px;
+    border-bottom-color: transparent;
+  }
+
+  .preview-pane {
+    border: 1px solid #cccccc;
+    border-bottom: 1px dashed #DDD;
+  }
+  
+  .preview-hint {
+    display: none;
+  }
+  
   textarea {
     border-bottom: 1px dashed #DDD;
     border-bottom-left-radius: 0;
