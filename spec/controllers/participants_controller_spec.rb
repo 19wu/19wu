@@ -3,9 +3,8 @@ require 'spec_helper'
 describe ParticipantsController do
 
   describe "GET 'index'" do
-
-    let(:event) { FactoryGirl.create(:event) }
-    login_user
+    let(:user) { login_user }
+    let(:event) { create(:event, user: user) }
 
     it "renders the participant list" do
       get :index, :event_id => event.id
@@ -14,7 +13,7 @@ describe ParticipantsController do
 
     context 'sort by user login field' do
       %w{jack lucy dave lily john beth}.each do |name|
-        let(name) { FactoryGirl.create(:user, login: name) }
+        let(name) { create(:user, login: name) }
       end
 
       before do
@@ -55,6 +54,28 @@ describe ParticipantsController do
       it 'should be redirect to user login view' do
         put :update, event_id: event.id, id: participant.id
         response.should redirect_to(new_user_session_path)
+      end
+    end
+  end
+
+  context "when user do not create the event" do
+    let(:event) { create(:event) }
+    let(:user) { create(:user) }
+    before { user.confirm! }
+    before { login_user(user) }
+    describe 'should not allow to' do
+      describe "GET 'index'" do
+        it 'should be redirect to user login view' do
+          get :index, :event_id => event.id
+          response.should redirect_to(new_user_session_path)
+        end
+      end
+      describe "PUT 'update'" do
+        let(:participant) { create(:event_participant, event_id: event.id, user_id: user.id) }
+        it 'should be redirect to user login view' do
+          put :update, event_id: event.id, id: participant.id
+          response.should redirect_to(new_user_session_path)
+        end
       end
     end
   end
