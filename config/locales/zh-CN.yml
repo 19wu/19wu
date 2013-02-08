@@ -62,6 +62,9 @@ zh-CN:
     join_event_button: "我要参加"
     has_joined_event_button: "已报名"
     markdown_guide: "Markdown 格式说明"
+    checked_in_event: "签到"
+    check_in_button: "签到"
+    has_checked_in_button: "已签到"
 
   text:
     under_construction: "网站建设中"
@@ -73,6 +76,8 @@ zh-CN:
       updated: "活动已经更新"
     profiles:
       updated: "个人资料已经更新"
+    participants:
+      checked_in: "%{name}已签到"
 
   views:
     events:

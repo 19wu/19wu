@@ -1,0 +1,17 @@
+legend
+  = @event.title
+
+.participant-list
+  = div_for(@participants, :class => "participant-item row-fluid") do |participant|
+    - user = participant.user
+    .span10
+      .avatar-wrapper = image_tag user.gravatar_url(:size => 50), :class => 'gravatar', :title => "#{user.login}"
+      span.participant-login-name = user.login
+      br /
+      span.participant-name = user.profile.name
+    .span2
+      - if participant.joined
+        button.btn.disabled disabled="disabled" id="check-in-event-participant-#{participant.id}" class="pull-right" = I18n.t('labels.has_checked_in_button')
+      - else
+        = form_for('', :url => event_participant_path(@event, participant), :method => :put) do |f|
+          button.btn.btn-info type="submit" id="check-in-event-participant-#{participant.id}" class="pull-right" = I18n.t('labels.check_in_button')
