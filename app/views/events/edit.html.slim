@@ -2,7 +2,7 @@ fieldset
   legend
     = t('.title', :scope => 'views')
     .pull-right
-      = link_to t('labels.checked_in_event'), event_participants_path(@event), :class => 'btn btn-link pull-left'
+      = link_to t('views.check_in'), event_participants_path(@event), :class => 'btn btn-link pull-left'
       = link_to t('labels.show_event'), event_path(@event), :class => 'btn btn-link pull-right'
   = simple_form_for @event, :html => { :class => "form-horizontal event-form" } do |f|
     = render 'form', :f => f

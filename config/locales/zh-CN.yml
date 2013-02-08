@@ -82,6 +82,8 @@ zh-CN:
         event_creator_mismatch: "只有活动的创建者可以进行操作"
 
   views:
+    edit: "修改"
+    check_in: "签到"
     events:
       new:
         title: "发起活动"
