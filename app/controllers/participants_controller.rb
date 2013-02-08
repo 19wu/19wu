@@ -17,6 +17,6 @@ class ParticipantsController < ApplicationController
   private
   def authenticate_event_creator!
     @event = Event.find(params[:event_id])
-    redirect_to new_user_session_path, notice: I18n.t('flash.participants.checked_in') if @event.user != current_user
+    redirect_to new_user_session_path, notice: I18n.t('flash.participants.failure.event_creator_mismatch') if @event.user != current_user
   end
 end

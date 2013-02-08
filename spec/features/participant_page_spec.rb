@@ -3,12 +3,12 @@ require File.expand_path('../../spec_helper', __FILE__)
 feature 'participant page' do
 
   describe 'when create event user has signed in' do
-    let(:event) { FactoryGirl.create(:event) }
+    let(:event_creator) { login_user }
+    let(:event) { FactoryGirl.create(:event, user: event_creator) }
     let(:user) { FactoryGirl.create(:user, login: 'jack') }
     let(:participant) { FactoryGirl.create(:event_participant, event_id: event.id, user_id: user.id) }
 
     before do
-      sign_in
       event.stub(:participants).with(participant)
     end
 
