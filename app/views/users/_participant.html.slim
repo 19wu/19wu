@@ -11,6 +11,6 @@ li
       ul.user-info.unstyled.inline.muted
         -if user.profile.website.present?
           li = user.profile.website
-        li = "#{l user.created_at.to_date} 加入"
+        li #{l user.created_at.to_date} 加入
 
       .user-body = raw user.profile.bio_html
