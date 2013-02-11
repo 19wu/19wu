@@ -21,13 +21,13 @@ describe ContentFilter do
 
     it 'has unordered lists' do
       input = "* test1\n* test2\n * test2a\n * test2b"
-      expected = "<ul>\n<li>test1</li>\n<li>test2\n\n<ul>\n<li>test2a</li>\n<li>test2b</li>\n</ul></li>\n</ul>"
+      expected = "<ul>\n<li>test1</li>\n<li>test2\n\n<ul>\n<li>test2a</li>\n<li>test2b</li>\n</ul>\n</li>\n</ul>"
       ContentFilter.refine(input).should == expected
     end
 
     it 'has ordered lists' do
       input = "1. test1\n2. test2\n * test2a\n * test2b"
-      expected = "<ol>\n<li>test1</li>\n<li>test2\n\n<ul>\n<li>test2a</li>\n<li>test2b</li>\n</ul></li>\n</ol>"
+      expected = "<ol>\n<li>test1</li>\n<li>test2\n\n<ul>\n<li>test2a</li>\n<li>test2b</li>\n</ul>\n</li>\n</ol>"
       ContentFilter.refine(input).should == expected
     end
 
