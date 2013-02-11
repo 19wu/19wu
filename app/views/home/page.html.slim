@@ -3,24 +3,27 @@
   .jumbotron
     .container
       .row
-        .span7
+        .span6
           .slogan
-            h1 = t('slogan.title')
-            p = t('slogan.description')
-        .span4.offset1
+            h1.slogan-title = t('slogan.title')
+            p.slogan-description = t('slogan.description')
+        .span4.offset2
           = simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :class => 'form-full-width'}) do |f|
             = f.input :login, :label => false, :placeholder => resource.class.human_attribute_name(:login), :input_html => { :class => 'input-large'}
             = f.input :email, :label => false, :placeholder => resource.class.human_attribute_name(:email), :input_html => { :class => 'input-large'}
             = f.input :password, :label => false, :placeholder => resource.class.human_attribute_name(:password), :input_html => { :class => 'input-large'}
             = f.submit t('labels.sign_up_to_launch_event'), :class => 'btn btn-success btn-large'
 
-.row
-  .span3
+.row.spotlights
+  .spotlight.span4
+    = image_tag 'spotlight-free.png'
     h3 = t('highlights.free.title')
     p = t('highlights.free.description')
-  .span3.offset1
-    h3 = t('highlights.more_features.title')
-    p = t('highlights.more_features.description')
-  .span3.offset1
-    h3 = t('highlights.join_us.title')
-    p = t('highlights.join_us.description')
+  .spotlight.span4
+    = image_tag 'spotlight-devices.png'
+    h3 = t('highlights.devices.title')
+    p = t('highlights.devices.description')
+  .spotlight.span4
+    = image_tag 'spotlight-team.png'
+    h3 = t('highlights.team.title')
+    p = raw t('highlights.team.description', :github => link_to('Github', 'https://github.com/saberma/19wu'), :join_us => link_to(t('highlights.team.title'), 'https://github.com/saberma/19wu'))

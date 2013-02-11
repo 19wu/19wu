@@ -1,7 +1,22 @@
 .jumbotron {
   background: $grayBackground;
-  padding: 2 * $baseLineHeight 0;
+  padding: 3 * $baseLineHeight 0;
+  margin-bottom: 2 * $baseLineHeight;
   border-bottom: 1px solid $borderColor;
+  .form-full-width {
+    margin: 0;
+  }
+}
+
+.slogan-title {
+  font-size: $baseFontSize * 4;
+  line-height: $baseFontSize * 4;
+  margin-bottom: 1.5 * $baseLineHeight;
+}
+.slogan-description {
+  @extend .muted;
+  font-size: $baseFontSize * 1.5;
+  line-height: $baseLineHeight * 2;
 }
 
 @media (max-width: 767px) {
@@ -10,5 +25,29 @@
     padding-right: 20px;
     margin-left: -20px;
     margin-right: -20px;
+  }
+}
+
+.spotlight {
+  text-align: center;
+  img {
+    margin-bottom: 0.5 * $baseLineHeight;
+  }
+  h3 {
+    font-size: $baseFontSize * 1.75;
+    line-height: $baseLineHeight * 2;
+  }
+  p {
+    color: $gray;
+  }
+}
+
+.alpha-alert {
+  @extend .alert, .alert-block, .alert-info;
+  margin: (3 * $baseLineHeight) 0 (2 * $baseLineHeight);
+  padding: 1.5 * $baseLineHeight;
+  text-align: center;
+  a {
+    padding: 4px;
   }
 }
