@@ -3,19 +3,18 @@ defaults: &defaults
   time_zone: 'Beijing'
   default_locale: 'zh-CN'
 
+  # Used to generate URL in the email. Must be the same of the domain of the
+  # server.
+  # e.g.
+  # host: '19wu.herokuapp.com'
+  host: '19wu.com'
+
   email: &email
     # Edit according to the smtp account domain.
     # e.g.
     #
     # from: '19wu staging <19wu@19wu.mailgun.org>'
     from: '19wu <us@19wu.com>'
-
-    # Used to generate URL in the email. Must be the same of the domain of the
-    # server.
-    # e.g.
-    #
-    # host: '19wu.herokuapp.com'
-    host: '19wu.com'
 
     delivery_method: :smtp
 
@@ -44,10 +43,10 @@ defaults: &defaults
 
 development:
   <<: *defaults
+  host: 'localhost:3000'
 
   email:
     <<: *email
-    host: 'localhost:3000'
     from: 'development@19wu.com'
     delivery_method: :file
 
@@ -55,10 +54,10 @@ test:
   <<: *defaults
   time_zone: 'Beijing'
   default_locale: 'zh-CN'
+  host: 'localhost:3000'
 
   email:
     <<: *email
-    host: 'localhost:3000'
     from: 'test@19wu.com'
     delivery_method: :test
 

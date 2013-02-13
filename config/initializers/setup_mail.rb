@@ -10,7 +10,7 @@ NineteenWu::Application.configure do
   end
 
   config.action_mailer.default_url_options = {
-    :host => Settings.email.host
+    :host => Settings.host
   }
 
   ActionMailer::Base.default :from => Settings.email.from
