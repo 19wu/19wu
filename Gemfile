@@ -19,6 +19,7 @@ gem 'html-pipeline-no-charlock'
 gem 'has_html_pipeline'
 gem 'kramdown', :platform => [:jruby]
 gem 'gravtastic'
+gem 'cancan'
 
 group :pg do
   gem 'pg', :platform => [:ruby, :mswin, :mingw]
