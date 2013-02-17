@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
   prepend_before_filter :authenticate_user!, except: [:show]
+  load_and_authorize_resource
 
   # GET /events
   # GET /events.json

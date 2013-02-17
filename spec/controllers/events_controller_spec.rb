@@ -82,13 +82,10 @@ describe EventsController do
   end
 
   describe "PUT 'update'" do
-    let(:event) { FactoryGirl.create(:event) }
+    let(:event_creator) { login_user }
+    let(:event) { FactoryGirl.create(:event, user: event_creator) }
     let(:valid_attributes) { attributes_for(:event) }
     context 'when user has signed in' do
-      login_user
-      before do
-        subject.current_user.events.should_receive(:find).with(event.id.to_s).and_return(event)
-      end
       context 'with valid attributes' do
         it 'update the event' do
           put 'update', :id => event.id, :event => valid_attributes
