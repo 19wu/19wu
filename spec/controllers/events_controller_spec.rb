@@ -144,7 +144,7 @@ describe EventsController do
   end
 
   describe "POST 'join'" do
-    let(:event) { FactoryGirl.create(:event) }
+    let(:event) { FactoryGirl.create(:event, :user => FactoryGirl.create(:user)) }
     context 'when user has signed in' do
       login_user
       it 'with join a event' do
