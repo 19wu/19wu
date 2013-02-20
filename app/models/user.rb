@@ -20,6 +20,7 @@ class User < ActiveRecord::Base
   # attr_accessible :title, :body
   validates :login, presence: true, uniqueness: { case_sensitive: false }, format: { with: /^[a-zA-Z0-9_]+$/ }
   validates :email, :password, presence: true
+  validate :login_must_uniq
 
   #async devise mailing with delayed job
   handle_asynchronously :send_reset_password_instructions
@@ -37,5 +38,12 @@ class User < ActiveRecord::Base
   # Build profile on-the-fly
   def profile
     super || build_profile
+  end
+
+  private
+  def login_must_uniq
+    if Group.exists?(:slug => login) or !FancyUrl.valid_for_short_url?(login)
+      errors.add(:login, I18n.t('errors.messages.taken'))
+    end
   end
 end

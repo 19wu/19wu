@@ -9,20 +9,29 @@ describe User do
   end
 
   context "fails validation" do
-    it "with a blank login" do
-      user.login = ''
-      expect(user.save).to be_false
-    end
-
-    it "with a invalid format login" do
-      user.login = 'foo@bar'
-      expect(user.save).to be_false
-    end
-
-    it "with a duplicated login" do
-      create :user, :login => user.login
-
-      expect(user.save).to be_false
+    context "login" do
+      context 'is blank' do
+        before { user.login = '' }
+        its(:valid?) { should be_false }
+      end
+      context 'is format invalid' do
+        before { user.login = 'foo@bar' }
+        its(:valid?) { should be_false }
+      end
+      context 'has been taken' do
+        context 'by other user' do
+          before { user.login = create(:user).login }
+          its(:valid?) { should be_false }
+        end
+        context 'by other group' do
+          before { user.login = create(:group).slug }
+          its(:valid?) { should be_false }
+        end
+        context 'by routes' do
+          before { user.login = 'photos' }
+          its(:valid?) { should be_false }
+        end
+      end
     end
 
     it "with a blank email" do
