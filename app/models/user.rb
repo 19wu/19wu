@@ -42,7 +42,7 @@ class User < ActiveRecord::Base
 
   private
   def login_must_uniq
-    if Group.exists?(:slug => login) or !FancyUrl.valid_for_short_url?(login)
+    if Group.exists?(:slug => login) || !FancyUrl.valid_for_short_url?(login)
       errors.add(:login, I18n.t('errors.messages.taken'))
     end
   end
