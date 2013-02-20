@@ -1,15 +1,14 @@
 class EventsController < ApplicationController
   prepend_before_filter :authenticate_user!, except: [:show]
-  load_resource
-  authorize_resource :through => :current_user
-  skip_authorize_resource :only => :show
+
+  def index
+    @events = current_user.events
+  end
 
   def joined
     @events = current_user.joined_events
   end
 
-  # GET /events/1
-  # GET /events/1.json
   def show
     @event = Event.find(params[:id])
 
@@ -19,8 +18,10 @@ class EventsController < ApplicationController
     end
   end
 
-  # POST /events
-  # POST /events.json
+  def new
+    @event = current_user.events.new
+  end
+
   def create
     @event = current_user.events.new(params[:event])
 
@@ -35,8 +36,10 @@ class EventsController < ApplicationController
     end
   end
 
-  # PUT /events/1
-  # PUT /events/1.json
+  def edit
+    @event = current_user.events.find(params[:id])
+  end
+
   def update
     @event = current_user.events.find(params[:id])
 
@@ -51,8 +54,6 @@ class EventsController < ApplicationController
     end
   end
 
-  # DELETE /events/1
-  # DELETE /events/1.json
   def destroy
     @event = current_user.events.find(params[:id])
     @event.destroy

@@ -66,15 +66,17 @@ describe ParticipantsController do
     describe 'should not allow to' do
       describe "GET 'index'" do
         it 'should be redirect to user login view' do
-          get :index, :event_id => event.id
-          response.should redirect_to(new_user_session_path)
+          expect do
+            get :index, :event_id => event.id
+          end.to raise_error(CanCan::AccessDenied)
         end
       end
       describe "PUT 'update'" do
         let(:participant) { create(:event_participant, event_id: event.id, user_id: user.id) }
         it 'should be redirect to user login view' do
-          put :update, event_id: event.id, id: participant.id
-          response.should redirect_to(new_user_session_path)
+          expect do
+            put :update, event_id: event.id, id: participant.id
+          end.to raise_error(CanCan::AccessDenied)
         end
       end
     end

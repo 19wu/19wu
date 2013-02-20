@@ -81,8 +81,6 @@ zh-CN:
       updated: "个人资料已经更新"
     participants:
       checked_in: "%{name}已签到"
-      failure:
-        event_creator_mismatch: "只有活动的创建者可以进行操作"
 
   views:
     edit: "修改"
