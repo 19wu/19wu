@@ -1,16 +1,8 @@
 class EventsController < ApplicationController
   prepend_before_filter :authenticate_user!, except: [:show]
-
-  # GET /events
-  # GET /events.json
-  def index
-    @events = current_user.events
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @events }
-    end
-  end
+  load_resource
+  authorize_resource :through => :current_user
+  skip_authorize_resource :only => :show
 
   def joined
     @events = current_user.joined_events
@@ -25,22 +17,6 @@ class EventsController < ApplicationController
       format.html # show.html.erb
       format.json { render json: @event }
     end
-  end
-
-  # GET /events/new
-  # GET /events/new.json
-  def new
-    @event = current_user.events.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      #format.json { render json: @event }
-    end
-  end
-
-  # GET /events/1/edit
-  def edit
-    @event = current_user.events.find(params[:id])
   end
 
   # POST /events
