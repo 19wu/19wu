@@ -42,6 +42,7 @@ gem 'friendly_id'
 gem 'mini_magick'
 
 group :development do
+  gem 'rvm-capistrano'
   gem 'mails_viewer'
   gem 'quiet_assets'
   gem 'guard-delayed'
