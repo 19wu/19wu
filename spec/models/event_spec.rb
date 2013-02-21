@@ -48,6 +48,10 @@ describe Event do
           before { event.slug = event.user.login }
           its(:valid?) { should be_false }
         end
+        context 'by routes' do
+          before { event.slug = 'photos' }
+          its(:valid?) { should be_false }
+        end
       end
     end
   end

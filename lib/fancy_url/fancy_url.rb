@@ -15,14 +15,14 @@ module FancyUrl
 
     # Remove the default rails route
     @cached_routes.delete 'rails'
-  end
-
-  def cached_routes
     @cached_routes
   end
 
-  def user_name_valid_for_short_url?(login)
-    not (login.include?('.') or self.cached_routes.include?(login))
+  def cached_routes
+    @cached_routes || self.generate_cached_routes
+  end
+
+  def valid_for_short_url?(slug)
+    not (slug.include?('.') or self.cached_routes.include?(slug))
   end
 end
-
