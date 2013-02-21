@@ -39,3 +39,6 @@ public/assets/
 
 # Ignore .DS_Store file
 *.DS_Store
+
+# SimpleCov
+coverage
