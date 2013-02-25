@@ -83,6 +83,10 @@ GEM
       orm_adapter (~> 0.1)
       railties (~> 3.1)
       warden (~> 1.2.1)
+    devise_invitable (1.1.6)
+      actionmailer (~> 3.0)
+      devise (>= 2.1.2)
+      railties (~> 3.0)
     diff-lcs (1.1.3)
     em-websocket (0.3.8)
       addressable (>= 2.1.1)
@@ -329,6 +333,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   delayed_job_active_record
   devise
+  devise_invitable
   factory_girl_rails (~> 4.0)
   friendly_id
   gravtastic
