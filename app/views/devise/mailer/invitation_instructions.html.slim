@@ -1,0 +1,7 @@
+p 您好，#{@resource.email}!
+p 19屋 #{root_url} 邀请您加入，请点击以下链接激活.
+p= link_to '接受邀请', accept_invitation_url(@resource, :invitation_token => @resource.invitation_token)
+p
+  | 如果您不想接受邀请，请忽略此邮件.
+  br/
+  | 只有在您点击以上链接并设置密码后才会创建您的帐号.
