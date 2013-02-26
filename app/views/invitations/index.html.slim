@@ -1,0 +1,18 @@
+table.table.table-striped.table-bordered
+  caption
+    h2 = t('labels.invitations')
+  thead
+    tr
+      th Email
+      th Updated At
+      th
+  tbody
+    - @users.each do |user|
+      tr
+        td = user.email
+        td = user.updated_at.to_s(:db)
+        td
+          - if user.invited_by_id?
+            | Invited!
+          - else
+            = link_to t('labels.audit_button'), mail_invitation_path(user), :method => :put

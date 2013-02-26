@@ -14,6 +14,8 @@ NineteenWu::Application.routes.draw do
   end
   as :user do
     root to: 'home#page'
+    get 'invitations' => 'invitations#index'
+    put '/invitations/:id/mail' => 'invitations#mail', :as => :mail_invitation
   end
   scope 'settings' do
     resource :profile, :only => [:show, :update]

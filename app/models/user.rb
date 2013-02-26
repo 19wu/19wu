@@ -33,6 +33,7 @@ class User < ActiveRecord::Base
   def confirm!
     super
     UserMailer.delay.welcome_email(self)
+    self
   end
 
   # Build profile on-the-fly

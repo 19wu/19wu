@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130225091732) do
+ActiveRecord::Schema.define(:version => 20130226085502) do
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
@@ -84,7 +84,7 @@ ActiveRecord::Schema.define(:version => 20130225091732) do
   add_index "profiles", ["user_id"], :name => "index_profiles_on_user_id"
 
   create_table "users", :force => true do |t|
-    t.string   "email",                                :default => "", :null => false
+    t.string   "email",                                :default => "",    :null => false
     t.string   "encrypted_password",                   :default => ""
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -94,8 +94,8 @@ ActiveRecord::Schema.define(:version => 20130225091732) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at",                                           :null => false
-    t.datetime "updated_at",                                           :null => false
+    t.datetime "created_at",                                              :null => false
+    t.datetime "updated_at",                                              :null => false
     t.string   "login"
     t.string   "confirmation_token"
     t.datetime "confirmed_at"
@@ -107,6 +107,7 @@ ActiveRecord::Schema.define(:version => 20130225091732) do
     t.integer  "invitation_limit"
     t.integer  "invited_by_id"
     t.string   "invited_by_type"
+    t.boolean  "admin",                                :default => false
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true

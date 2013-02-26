@@ -19,6 +19,9 @@ html
 
             a.brand href="/"
               img.logo-wordmark src=image_path('logo-wordmark.png')
+            - if can? :invite, User
+              ul.nav
+                li = link_to t('labels.invitations'), invitations_path
 
             .nav-collapse.collapse
               = render_user_bar

@@ -60,6 +60,7 @@ zh-CN:
     sign_up: "注册"
     apply_sign_up: "申请内测"
     sign_up_to_launch_event: "注册，发起活动"
+    invitations: "邀请列表"
     launch_event: "发起活动"
     show_event: "查看活动"
     cancel: "取消"
@@ -69,6 +70,7 @@ zh-CN:
     checked_in_event: "签到"
     check_in_button: "签到"
     has_checked_in_button: "已签到"
+    invite_button: "邀请"
 
   text:
     under_construction: "网站建设中"

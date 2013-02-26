@@ -14,7 +14,7 @@ defaults: &defaults
     # e.g.
     #
     # from: '19wu staging <19wu@19wu.mailgun.org>'
-    from: '19wu <us@19wu.com>'
+    from: '19wu <support@19wu.com>'
 
     delivery_method: :smtp
 
@@ -47,7 +47,6 @@ development:
 
   email:
     <<: *email
-    from: 'development@19wu.com'
     delivery_method: :file
 
 test:
@@ -58,7 +57,6 @@ test:
 
   email:
     <<: *email
-    from: 'test@19wu.com'
     delivery_method: :test
 
 production:
