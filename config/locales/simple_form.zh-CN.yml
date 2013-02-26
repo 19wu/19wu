@@ -28,6 +28,9 @@ zh-CN:
       preview:
         nothing: "没有内容预览"
         loading: "预览载入中。。。"
+    placeholders:
+      user:
+        invite_reason: "过往活动组织情况(免费活动?收费活动?活动参加人数?)"
     navtabs:
         write: "编写"
         preview: "预览"

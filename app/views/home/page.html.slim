@@ -9,7 +9,9 @@
             p.slogan-description = t('slogan.description')
         .span4.offset2
           = simple_form_for(resource, :as => resource_name, :url => user_invitation_path(resource_name), :html => { :class => 'form-full-width'}) do |f|
-            = f.input :email, :label => false, :placeholder => resource.class.human_attribute_name(:email), :hint => t('views.users.apply_sign_up.hint'), :input_html => { :class => 'input-large'}
+            = f.input :email, :label => false, :placeholder => resource.class.human_attribute_name(:email), :input_html => { :class => 'input-large'}
+            = f.input :invite_reason, :as => :text, :label => false, :input_html => { :rows => 3}
+            .help-block = t('views.users.apply_sign_up')
             = f.submit t('labels.apply_sign_up'), :class => 'btn btn-success btn-large'
 
 .row.spotlights

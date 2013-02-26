@@ -99,8 +99,7 @@ zh-CN:
       show:
         title: "个人资料"
     users:
-      apply_sign_up:
-        hint: "活动组织者申请内测并成功注册后才可以发起活动，普通参与者可以直接在活动报名页面注册。"
+      apply_sign_up: "活动组织者申请内测并成功注册后才可以发起活动，普通参与者可以直接在活动报名页面注册。"
 
   email:
     welcome:
