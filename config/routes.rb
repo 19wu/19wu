@@ -21,7 +21,7 @@ NineteenWu::Application.routes.draw do
       get 'account' => 'registrations#edit', :as => 'account'
     end
   end
-  devise_for :users, :controllers => { :registrations => "registrations" }
+  devise_for :users, :controllers => { :registrations => "registrations", :invitations => 'invitations' }
 
   if defined?(MailsViewer)
     mount MailsViewer::Engine => '/delivered_mails'

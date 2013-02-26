@@ -1,6 +1,7 @@
 'zh-CN':
   devise:
     invitations:
+      received: '申请已经提交，我们会尽快审核您的申请.'
       send_instructions: '邀请邮件已经发送到了 %{email}.'
       invitation_token_invalid: '邀请码不正确！'
       updated: '你的密码设置成功，现在可以开始了。'

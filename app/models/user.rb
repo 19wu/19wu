@@ -20,7 +20,7 @@ class User < ActiveRecord::Base
   # attr_accessible :title, :body
   validates :login, presence: true, uniqueness: { case_sensitive: false }, format: { with: /^[a-zA-Z0-9_]+$/ }
   validates :email, :password, presence: true
-  validate :login_must_uniq
+  validate :login_must_uniq, unless: "login.blank?"
 
   #async devise mailing with delayed job
   handle_asynchronously :send_reset_password_instructions

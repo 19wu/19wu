@@ -58,6 +58,7 @@ zh-CN:
   labels:
     sign_in: "登录"
     sign_up: "注册"
+    apply_sign_up: "申请内测"
     sign_up_to_launch_event: "注册，发起活动"
     launch_event: "发起活动"
     show_event: "查看活动"
@@ -95,6 +96,9 @@ zh-CN:
     profiles:
       show:
         title: "个人资料"
+    users:
+      apply_sign_up:
+        hint: "活动组织者申请内测并成功注册后才可以发起活动，普通参与者可以直接在活动报名页面注册。"
 
   email:
     welcome:
