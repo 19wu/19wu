@@ -15,4 +15,4 @@ table.table.table-striped.table-bordered
           - if user.invited_by_id?
             | Invited!
           - else
-            = link_to t('labels.audit_button'), mail_invitation_path(user), :method => :put
+            = link_to t('labels.invite_button'), mail_invitation_path(user), :method => :put

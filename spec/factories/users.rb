@@ -11,5 +11,8 @@ FactoryGirl.define do
     trait :confirmed do
       confirmed_at '2013-01-01'
     end
+    trait :admin do
+      admin true
+    end
   end
 end
