@@ -15,7 +15,9 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.11'
 gem 'slim-rails'
 gem 'simple_form'
-gem 'html-pipeline-no-charlock'
+gem 'html-pipeline'
+# html-pipeline depends on escape_utils, lock its version for Windows
+gem 'escape_utils', '0.2.4'
 gem 'has_html_pipeline'
 gem 'kramdown', :platform => [:jruby]
 gem 'gravtastic'
