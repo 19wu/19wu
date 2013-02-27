@@ -1,11 +1,21 @@
 class InvitationsController < Devise::InvitationsController
   skip_before_filter :authenticate_inviter!, only: :create
   skip_before_filter :has_invitations_left?
+  before_filter :authenticate_user!, only: :upgrade
+
+  def upgrade
+    build_resource
+  end
 
   def create
-    user = User.invite!(resource_params) do |u|
-      u.skip_invitation = true
-    end
+    user = if current_user
+             current_user.skip_invitation = true
+             current_user.invite_reason = params[:user][:invite_reason]
+             current_user.invite!
+             current_user
+           else
+             User.invite!(resource_params.merge(skip_invitation: true))
+           end
     notice = t('devise.invitations.received') unless user.email.blank?
     redirect_to root_url, notice: notice
   end
@@ -17,8 +27,17 @@ class InvitationsController < Devise::InvitationsController
 
   def mail
     authorize! :invite, User
-    @user = User.find(params[:id])
-    @user.invite!(current_user)
+    user = User.find(params[:id])
+    user.invite! current_user
+    redirect_to invitations_path
+  end
+
+  def upgrade_invite
+    authorize! :invite, User
+    user = User.find(params[:id])
+    user.skip_invitation = true
+    user.invite! current_user
+    user.accept_invitation!
     redirect_to invitations_path
   end
 end

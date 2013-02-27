@@ -1,18 +1,21 @@
+h2 = t('labels.invitations')
 table.table.table-striped.table-bordered
-  caption
-    h2 = t('labels.invitations')
   thead
     tr
       th Email
+      th Reason
       th Updated At
+      th Upgrade?
       th
   tbody
     - @users.each do |user|
       tr
         td = user.email
+        td = user.invite_reason
         td = user.updated_at.to_s(:db)
+        td = :Yes if user.login
         td
           - if user.invited_by_id?
             | Invited!
           - else
-            = link_to t('labels.invite_button'), mail_invitation_path(user), :method => :put
+            = link_to t('labels.invite_button'), (user.login ? upgrade_invite_invitation_path(user) : mail_invitation_path(user)), :method => :put

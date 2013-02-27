@@ -58,6 +58,7 @@ zh-CN:
   labels:
     sign_in: "登录"
     sign_up: "注册"
+    need_upgrade_invitation: "需要发起活动?"
     apply_sign_up: "申请内测"
     sign_up_to_launch_event: "注册，发起活动"
     invitations: "邀请列表"
@@ -100,6 +101,7 @@ zh-CN:
         title: "个人资料"
     users:
       apply_sign_up: "活动组织者申请内测并成功注册后才可以发起活动，普通参与者可以直接在活动报名页面注册。"
+      upgrade_invitation: "此功能只对少数活动组织者开放，申请后才能使用。普通参与者可以直接在活动报名页面注册"
 
   email:
     welcome:

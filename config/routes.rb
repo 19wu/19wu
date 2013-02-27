@@ -16,6 +16,8 @@ NineteenWu::Application.routes.draw do
     root to: 'home#page'
     get 'invitations' => 'invitations#index'
     put '/invitations/:id/mail' => 'invitations#mail', :as => :mail_invitation
+    get 'invitations/upgrade' => 'invitations#upgrade', :as => :upgrade_invitation
+    put 'invitations/:id/upgrade_invite' => 'invitations#upgrade_invite', :as => :upgrade_invite_invitation
   end
   scope 'settings' do
     resource :profile, :only => [:show, :update]
