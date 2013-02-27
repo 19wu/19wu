@@ -43,7 +43,7 @@ gem 'mini_magick'
 
 group :production do
   # Use unicorn as the app server
-  gem 'unicorn'
+  gem 'unicorn', :platforms => :ruby
 end
 
 group :development do
