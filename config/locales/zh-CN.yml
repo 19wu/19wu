@@ -106,6 +106,8 @@ zh-CN:
   email:
     welcome:
       subject: "欢迎来到19屋"
+    invited:
+      subject: "%{login}, 您现在可以发起活动了"
     profiles:
       show:
         title: "个人资料"

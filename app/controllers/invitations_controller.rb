@@ -22,7 +22,7 @@ class InvitationsController < Devise::InvitationsController
 
   def index
     authorize! :invite, User
-    @users = User.where("invitation_token is not null")
+    @users = User.where("invitation_token is not null").order("invitation_sent_at desc")
   end
 
   def mail
@@ -38,6 +38,7 @@ class InvitationsController < Devise::InvitationsController
     user.skip_invitation = true
     user.invite! current_user
     user.accept_invitation!
+    UserMailer.delay.invited_email(user)
     redirect_to invitations_path
   end
 end
