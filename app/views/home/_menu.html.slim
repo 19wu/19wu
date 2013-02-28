@@ -1,4 +1,4 @@
-= link_to t('labels.launch_event'), new_event_path, :class => 'btn btn-info new-event-btn pull-right'
+= link_to t('labels.launch_event'), (can?(:create, Event) ? new_event_path : upgrade_invitation_path), :class => "btn btn-info new-event-btn pull-right"
 ul.home-nav
   li class=active?(current, :activities)
     = link_to t('home.menu.activities'), root_path

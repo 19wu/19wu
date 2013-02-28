@@ -37,6 +37,7 @@ group mysql2_group do
 end
 
 gem 'devise'
+gem 'devise_invitable'
 gem 'settingslogic'
 gem 'delayed_job_active_record'
 gem 'carrierwave'

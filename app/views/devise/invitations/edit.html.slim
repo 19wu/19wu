@@ -1,0 +1,12 @@
+.row
+  .span4.offset4.well
+    = simple_form_for resource, :as => resource_name, :url => invitation_path(resource_name), :html => { :method => :put, :class => 'form-full-width' } do |f|
+      fieldset
+        legend  = t 'devise.invitations.edit.header'
+        = devise_error_messages!
+        = f.hidden_field :invitation_token
+        = f.input :login
+        = f.input :password
+        = f.input :password_confirmation
+        .control-group
+          = f.submit t("devise.invitations.edit.submit_button"), :class => ['btn', 'btn-info']
