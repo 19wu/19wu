@@ -96,6 +96,8 @@ GEM
     eventmachine (1.0.0)
     eventmachine (1.0.0-java)
     eventmachine (1.0.0-x86-mingw32)
+    exception_notification (3.0.1)
+      actionmailer (>= 3.0.4)
     execjs (1.4.0)
       multi_json (~> 1.0)
     factory_girl (4.1.0)
@@ -335,6 +337,7 @@ DEPENDENCIES
   devise
   devise_invitable
   escape_utils (= 0.2.4)
+  exception_notification
   factory_girl_rails (~> 4.0)
   friendly_id
   gravtastic

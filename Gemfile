@@ -47,6 +47,7 @@ gem 'mini_magick'
 group :production do
   # Use unicorn as the app server
   gem 'unicorn', :platforms => :ruby
+  gem 'exception_notification'
 end
 
 group :development do
