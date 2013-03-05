@@ -1,0 +1,21 @@
+table.table.table-bordered
+  thead
+    tr
+      th
+      - @cohorts.size.times do |i|
+        th #{i} #{@period}
+
+    - @cohorts.each_with_index do |row, index|
+      - start = row[1][:count][0]
+      tr
+        td
+          = row[0]
+          br
+          #{start} users
+
+        - (@cohorts.size).times do |i|
+          td
+            - if @cohorts.size - index > (i + 1)
+              = "#{((row[1][:count][i].to_f/start.to_f) * 100.00).round(0)}%"
+            - else
+              | --

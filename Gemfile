@@ -22,6 +22,7 @@ gem 'has_html_pipeline'
 gem 'kramdown', :platform => [:jruby]
 gem 'gravtastic'
 gem 'cancan'
+gem "cohort_me"
 
 group :pg do
   gem 'pg', :platform => [:ruby, :mswin, :mingw]

@@ -2,11 +2,11 @@ class EventsController < ApplicationController
   prepend_before_filter :authenticate_user!, except: [:show]
 
   def index
-    @events = current_user.events
+    @events = current_user.events.latest
   end
 
   def joined
-    @events = current_user.joined_events
+    @events = current_user.joined_events.latest
   end
 
   def show

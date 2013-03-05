@@ -14,6 +14,7 @@ NineteenWu::Application.routes.draw do
   end
   as :user do
     root to: 'home#page'
+    get 'cohort' => 'users#cohort'
     get 'invitations' => 'invitations#index'
     put '/invitations/:id/mail' => 'invitations#mail', :as => :mail_invitation
     get 'invitations/upgrade' => 'invitations#upgrade', :as => :upgrade_invitation
