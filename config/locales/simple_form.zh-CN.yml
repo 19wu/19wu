@@ -30,7 +30,7 @@ zh-CN:
         loading: "预览载入中。。。"
     placeholders:
       user:
-        invite_reason: "过往活动组织情况(免费活动?收费活动?活动参加人数?)"
+        invite_reason: "活动组织情况(最近组织的几场活动?计划组织的下一场活动?)"
     navtabs:
         write: "编写"
         preview: "预览"

@@ -9,7 +9,7 @@ require "bundler/capistrano" # 集成bundler和rvm
 require "delayed/recipes"
 
 set :rails_env, "production"                             # added for delayed job
-set :rvm_ruby_string, 'ruby-1.9.3-p385'                  # Or whatever env you want it to run in.
+set :rvm_ruby_string, 'ruby-2.0.0'                       # Or whatever env you want it to run in.
 set :rvm_type, :user                                     # Copy the exact line. I really mean :user here
 #set :bundle_flags,    "--deployment --verbose"          # Just for debug
 
