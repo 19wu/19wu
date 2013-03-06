@@ -1,4 +1,5 @@
 class EventsController < ApplicationController
+  include EventHelper
   prepend_before_filter :authenticate_user!, except: [:show]
 
   def index
@@ -27,7 +28,7 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.save
-        format.html { redirect_to @event, notice: I18n.t('flash.events.created') }
+        format.html { redirect_to group_event_path(@event), notice: I18n.t('flash.events.created') }
         format.json { render json: @event, status: :created, location: @event }
       else
         format.html { render action: "new" }
