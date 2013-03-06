@@ -57,6 +57,12 @@ namespace :deploy do
     end
   end
 
+
+  desc "Populates the Production Database"
+  task :seed do
+    run "cd #{current_path} ; bundle exec rake db:seed"
+  end
+
   desc "create config shared path"
   task :add_shared_dir, roles: :app do
     run "mkdir -p #{shared_path}/config"
@@ -70,6 +76,7 @@ end
 before 'deploy:migrate'          , 'deploy:symlink_shared'
 before 'deploy:assets:precompile', 'deploy:symlink_shared'
 after 'deploy:setup'             , 'deploy:add_shared_dir'
+after 'deploy:migrate'           , 'deploy:seed'
 
 after "deploy:stop",    "delayed_job:stop"
 after "deploy:start",   "delayed_job:start"

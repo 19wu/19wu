@@ -10,6 +10,7 @@ NineteenWu::Application.configure do
   config.action_mailer.default_url_options = {
     :host => Settings.host
   }
+  ActionMailer::Base.default_url_options = config.action_mailer.default_url_options # http://git.io/YB-o_g
 
   ActionMailer::Base.default :from => Settings.email.from
 end
