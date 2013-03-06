@@ -58,4 +58,10 @@ server {
       add_header Cache-Control public;
       break;
     }
+
+    location ~ ^/(uploads)/  {
+      root /u/apps/19wu/current/public;
+      expires max;
+      break;
+    }
 }
