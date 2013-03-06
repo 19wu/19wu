@@ -1,0 +1,61 @@
+# /etc/nginx/sites-available/19wu
+upstream 19wu {
+  # fail_timeout=0 means we always retry an upstream even if it failed
+  # to return a good HTTP response (in case the Unicorn master nukes a
+  # single worker for timing out).
+
+  # for UNIX domain socket setups:
+  server unix:/tmp/19wu.socket fail_timeout=0;
+}
+
+server {
+    server_name www.19wu.com *.19wu.com;
+    rewrite ^ http://19wu.com$request_uri? permanent;
+}
+
+server {
+    # if you're running multiple servers, instead of "default" you should
+    # put your main domain name here
+    listen 80;
+
+    # you could put a list of other domain names this application answers
+    server_name 19wu.com;
+
+    root /u/apps/19wu/current/public;
+    access_log /var/log/nginx/19wu_access.log;
+    rewrite_log on;
+
+    location / {
+        #all requests are sent to the UNIX socket
+        proxy_pass  http://19wu;
+        proxy_redirect     off;
+
+        proxy_set_header   Host             $host;
+        proxy_set_header   X-Real-IP        $remote_addr;
+        proxy_set_header   X-Forwarded-For  $proxy_add_x_forwarded_for;
+
+        client_max_body_size       10m;
+        client_body_buffer_size    128k;
+
+        proxy_connect_timeout      90;
+        proxy_send_timeout         90;
+        proxy_read_timeout         90;
+
+        proxy_buffer_size          4k;
+        proxy_buffers              4 32k;
+        proxy_busy_buffers_size    64k;
+        proxy_temp_file_write_size 64k;
+    }
+
+    # if the request is for a static resource, nginx should serve it directly
+    # and add a far future expires header to it, making the browser
+    # cache the resource and navigate faster over the website
+    # this probably needs some work with Rails 3.1's asset pipe_line
+    location ~ ^/(assets)/  {
+      root /u/apps/19wu/current/public;
+      gzip_static on;
+      expires max;
+      add_header Cache-Control public;
+      break;
+    }
+}
