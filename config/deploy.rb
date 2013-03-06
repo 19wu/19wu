@@ -12,6 +12,7 @@ set :rails_env, "production"                             # added for delayed job
 set :rvm_ruby_string, 'ruby-2.0.0'                       # Or whatever env you want it to run in.
 set :rvm_type, :user                                     # Copy the exact line. I really mean :user here
 #set :bundle_flags,    "--deployment --verbose"          # Just for debug
+set :bundle_without,  [:development, :test, :sqlite3, :mysql2]
 
 set :application, "19wu"
 set :port, ENV['CAP_PORT']
