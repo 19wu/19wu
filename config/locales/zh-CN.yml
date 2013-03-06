@@ -81,6 +81,7 @@ zh-CN:
       updated: "个人资料已经更新"
     participants:
       checked_in: "%{name}已签到"
+      joined: "您已经报名参与此活动"
 
   views:
     edit: "修改"

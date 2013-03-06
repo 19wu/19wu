@@ -1,6 +1,6 @@
 #= require jquery
 #= require jquery_ujs
-#= require bootstrap
+#= require bootstrap-custom
 #= require bootstrap-datepicker/core
 #= require jquery-fileupload/basic
 #= require jquery.textarea.caret
