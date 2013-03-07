@@ -14,7 +14,7 @@ class CompoundDatetime
     end
   end
 
-  ATTRIBUTES = %w(date hour min sec meridian)
+  ATTRIBUTES = %w(date hour min sec meridian time)
 
   attr_reader :datetime
 
@@ -91,6 +91,17 @@ class CompoundDatetime
     @meridian = meridian
     @meridian = 'am' if @meridian != 'pm'
     assign_time(hour, @meridian, min, sec)
+  end
+
+  def time
+    @datetime ? @datetime.strftime("%I:%M %p") : nil
+  end
+
+  def time=(time)
+    return nil if time.blank?
+    real_time = DateTime.parse(time)
+    @datetime ||= Time.zone.now
+    @datetime = @datetime.change(:hour => real_time.hour, :min => real_time.minute, :sec => real_time.second)
   end
 
   def persisted?; false; end

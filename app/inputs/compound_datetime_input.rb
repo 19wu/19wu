@@ -1,8 +1,4 @@
 class CompoundDatetimeInput < SimpleForm::Inputs::Base
-  MERIDIAN_COLLECTION = lambda { [[I18n.t('time.am'), 'am'], [I18n.t('time.pm'), 'pm']] }
-  HOUR_COLLECTION = (1..12).to_a.collect { |h| ['%02d' % h, h] }
-  MIN_COLLECTION = (0..59).collect { |m| ['%02d' % m, m] }
-
   def initialize(*args)
     super
 
@@ -29,18 +25,20 @@ class CompoundDatetimeInput < SimpleForm::Inputs::Base
   end
 
   def timepicker(builder)
-    template.content_tag(:div, :class => 'time') do
-      builder.select(:hour, HOUR_COLLECTION, {:include_blank => true}, :class => 'time-hour') +
-        template.content_tag(:span, ':', :class => 'time-separator muted') +
-        builder.select(:min, MIN_COLLECTION, {:include_blank => true}, :class => 'time-min') +
-        template.content_tag(:span, ' ', :class => 'time-separator muted') +
-        builder.select(:meridian, MERIDIAN_COLLECTION.call, {:include_blank => true}, :class => 'time-meridian')
+    templatemplate.content_tag(:div, :class => 'time input-append bootstrap-timepicker-component') do
+      builder.text_field(:time, :class => 'timepicker') + timepicker_add_on
     end
   end
 
   def datepicker_add_on
     template.content_tag(:span, :class => 'add-on') do
       template.content_tag(:i, '', :class => 'icon-calendar datepicker-trigger')
+    end
+  end
+
+  def timepicker_add_on
+    template.content_tag(:span, :class => 'add-on') do
+      template.content_tag(:i, '', :class => 'icon-time timepicker-trigger')
     end
   end
 end

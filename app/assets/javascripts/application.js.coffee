@@ -107,3 +107,8 @@ $ ->
 
     $this.popover(options)
 
+
+
+  body.on "click", ".timepicker-trigger", ->
+    el = $(this).closest(".time").find(".timepicker")
+    el.timepicker({minuteStep: 1, defaultTime: false})

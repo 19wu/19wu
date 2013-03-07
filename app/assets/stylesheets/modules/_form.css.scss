@@ -50,6 +50,10 @@ form {
   .datepicker {
     width: 6em;
   }
+  .timepicker {
+    width: 6em;
+    margin-top: 1px;
+  }
   .add-on {
     margin-top: 1px;
   }
@@ -63,7 +67,7 @@ form {
 }
 
 .uploadable {
-  
+
   .nav.nav-tabs{
     margin-bottom: 8px;
   }
@@ -72,11 +76,11 @@ form {
     border: 1px solid #cccccc;
     border-bottom: 1px dashed #DDD;
   }
-  
+
   .preview-hint {
     display: none;
   }
-  
+
   textarea {
     border-bottom: 1px dashed #DDD;
     border-bottom-left-radius: 0;
