@@ -1,7 +1,22 @@
-p 您好，#{@resource.email}!
-p 19屋 #{root_url} 邀请您加入，请点击以下链接激活.
-p= link_to '接受邀请', accept_invitation_url(@resource, :invitation_token => @resource.invitation_token)
+p 非常感谢您申请注册19屋，以下为 alpha 版本的注册邀请链接
+
+p = link_to accept_invitation_url(@resource, :invitation_token => @resource.invitation_token), accept_invitation_url(@resource, :invitation_token => @resource.invitation_token)
+
 p
-  | 如果您不想接受邀请，请忽略此邮件.
-  br/
-  | 只有在您点击以上链接并设置密码后才会创建您的帐号.
+  | 19屋是一个活动平台，专注于为组织者提供便利的活动发布、推广、售票等免费服务。现在您可以在19屋进行发布活动，签到等操作。这个平台是由 Ruby 社区成员驱动的，所有源代码都开放，您可以通过访问
+  = link_to 'https://github.com/saberma/19wu', 'https://github.com/saberma/19wu'
+  | 了解更多信息。
+
+p
+  |在您使用的过程中，您可以随时联系我们，告诉我们您的想法。如果您遇到问题，可以发邮件到
+  = link_to 'mahb45@gmail.com', 'mailto:mahb45@gmail.com'
+
+p 我非常期待您的反馈，怎样做才能使得这个产品更好，更有用呢?
+
+p 19屋 saberma
+br
+
+p ---
+a href='http://19wu.com' http://19wu.com
+br
+a href='https://github.com/saberma/19wu' https://github.com/saberma/19wu
