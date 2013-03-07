@@ -82,6 +82,7 @@ group :assets do
   gem 'jquery-rails'
   gem 'bootstrap-datepicker-rails'
   gem 'jquery-fileupload-rails'
+  gem 'bootstrap-timepicker-rails', :require => 'bootstrap-timepicker-rails', :git => 'git://github.com/tispratik/bootstrap-timepicker-rails.git'
 end
 
 group therubyracer_group do
