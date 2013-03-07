@@ -11,7 +11,8 @@ describe CompoundDatetime do
       'hour' => '12',
       'meridian' => 'pm',
       'min' => '10',
-      'sec' => '30'
+      'sec' => '30',
+      'time' => '12:10:30 PM'
     }
   end
   subject { CompoundDatetime.new(date) }
@@ -23,6 +24,7 @@ describe CompoundDatetime do
       its(:min) { should == 0 }
       its(:sec) { should == 0 }
       its(:meridian) { should == 'am' }
+      its(:time) { should == '12:00 AM' }
     end
     context '2012-03-31 00:01:02' do
       its(:date) { should == Date.new(2012, 3, 31) }
@@ -30,6 +32,7 @@ describe CompoundDatetime do
       its(:min) { should == 1 }
       its(:sec) { should == 2 }
       its(:meridian) { should == 'am' }
+      its(:time) { should == '12:01 AM' }
     end
     context '2012-03-31 11:59:59' do
       its(:date) { should == Date.new(2012, 3, 31) }
@@ -37,6 +40,7 @@ describe CompoundDatetime do
       its(:min) { should == 59 }
       its(:sec) { should == 59 }
       its(:meridian) { should == 'am' }
+      its(:time) { should == '11:59 AM' }
     end
     context '2012-03-31 12:00:00' do
       its(:date) { should == Date.new(2012, 3, 31) }
@@ -44,6 +48,7 @@ describe CompoundDatetime do
       its(:min) { should == 0 }
       its(:sec) { should == 0 }
       its(:meridian) { should == 'pm' }
+      its(:time) { should == '12:00 PM' }
     end
     context '2012-03-31 12:01:02' do
       its(:date) { should == Date.new(2012, 3, 31) }
@@ -51,6 +56,7 @@ describe CompoundDatetime do
       its(:min) { should == 1 }
       its(:sec) { should == 2 }
       its(:meridian) { should == 'pm' }
+      its(:time) { should == '12:01 PM' }
     end
   end
 
@@ -75,6 +81,7 @@ describe CompoundDatetime do
         its(:min) { should == 10 }
         its(:sec) { should == 30 }
         its(:meridian) { should == 'pm' }
+        its(:time) { should == '12:10 PM' }
       end
     end
   end
@@ -101,6 +108,7 @@ describe CompoundDatetime do
         its(:min) { should == 1 }
         its(:sec) { should == 2 }
         its(:meridian) { should == 'am' }
+        its(:time) { should == '12:01 AM' }
       end
 
       describe 'compound_time_attributres=' do
@@ -115,6 +123,7 @@ describe CompoundDatetime do
         its(:min) { should == 10 }
         its(:sec) { should == 30 }
         its(:meridian) { should == 'pm' }
+        its(:time) { should == '12:10 PM' }
       end
     end
   end

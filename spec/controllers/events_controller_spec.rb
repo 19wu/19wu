@@ -56,10 +56,7 @@ describe EventsController do
         let(:compound_start_time_attributes) do
           {
             'date' => '2013-12-31',
-            'hour' => '12',
-            'meridian' => 'pm',
-            'min' => '10',
-            'sec' => '30'
+            'time' => '12:10:30 PM'
           }
         end
         let(:attributes) do
@@ -97,19 +94,13 @@ describe EventsController do
         let(:compound_start_time_attributes) do
           {
             'date' => '2013-01-08',
-            'hour' => '4',
-            'meridian' => 'pm',
-            'min' => '10',
-            'sec' => '30'
+            'time' => '4:10:30 PM'
           }
         end
         let(:compound_end_time_attributes) do
           {
             'date' => '2013-01-08',
-            'hour' => '6',
-            'meridian' => 'pm',
-            'min' => '10',
-            'sec' => '30'
+            'time' => '6:10:30 PM'
           }
         end
         let(:attributes) do
