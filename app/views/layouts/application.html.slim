@@ -12,13 +12,9 @@ html
       .navbar.navbar-static-top
         .navbar-inner
           .container
-            a.btn.btn-navbar data-toggle="collapse" data-target=".nav-collapse"
-              span.icon-bar
-              span.icon-bar
-              span.icon-bar
-
             a.brand href="/"
               img.logo-wordmark src=image_path('logo-wordmark.png')
+              span.alpha alpha
             - if can? :invite, User
               ul.nav
                 li = link_to t('labels.invitations'), invitations_path
