@@ -14,7 +14,7 @@ class InvitationsController < Devise::InvitationsController
              current_user.invite!
              current_user
            else
-             User.invite!(resource_params.merge(skip_invitation: true))
+             User.invite!(resource_params.merge(skip_invitation: true, confirmed_at: Time.now.utc))
            end
     notice = t('devise.invitations.received') unless user.email.blank?
     redirect_to root_url, notice: notice
