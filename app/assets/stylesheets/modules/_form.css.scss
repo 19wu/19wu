@@ -42,10 +42,7 @@ form {
   }
   .time {
     float: left;
-    margin-left: 30px;
-    select {
-      width: auto;
-    }
+    margin-left: 15px;
   }
   .datepicker {
     width: 6em;
@@ -56,9 +53,6 @@ form {
   }
   .add-on {
     margin-top: 1px;
-  }
-  .time-separator {
-    padding: 0 5px;
   }
 }
 
