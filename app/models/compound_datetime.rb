@@ -34,29 +34,29 @@ class CompoundDatetime
     @datetime.try(:to_date)
   end
 
-  def date=(date)
-    return unless date.present?
-
-    unless date.is_a?(Time) || date.is_a?(Date)
-      date = Time.zone.parse(date).to_date
-    end
-
-    if @datetime
-      @datetime = @datetime.change(:year => date.year, :month => date.month, :day => date.day)
-    else
-      @datetime = date.to_time
+  def time
+    if @datetime && (@datetime.hour != 0 || @datetime.min != 0 || @datetime.sec != 0)
+      @datetime.strftime("%I:%M %p")
     end
   end
 
-  def time
-    @datetime ? @datetime.strftime("%I:%M %p") : nil
+  def date=(date)
+    if date.blank?
+      @datetime = nil
+    else
+      @datetime = Time.zone.parse([date, self.time].compact.join(' '))
+    end
   end
 
   def time=(time)
-    return nil if time.blank?
-    real_time = DateTime.parse(time)
-    @datetime ||= Time.zone.now
-    @datetime = @datetime.change(:hour => real_time.hour, :min => real_time.minute, :sec => real_time.second)
+    @datetime ||= Time.zone.now.beginning_of_day
+
+    if time.blank?
+      @datetime = @datetime.change(:hour => 0, :min => 0, :sec => 0)
+    else
+      date = @datetime.strftime('%Y-%m-%d')
+      @datetime = Time.zone.parse([date, time].join(' '))
+    end
   end
 
   def persisted?; false; end

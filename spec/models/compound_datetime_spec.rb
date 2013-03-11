@@ -16,7 +16,7 @@ describe CompoundDatetime do
   describe 'attr_reader' do
     describe '2012-03-31 00:00' do
       its(:date) { should == Date.new(2012, 3, 31) }
-      its(:time) { should == '12:00 AM' }
+      its(:time) { should be_nil }
     end
     context '2012-03-31 00:01' do
       its(:date) { should == Date.new(2012, 3, 31) }
@@ -41,6 +41,19 @@ describe CompoundDatetime do
       context 'set date to 2013-12-31' do
         before { subject.date = '2012-12-31' }
         its(:date) { should == Date.new(2012, 12, 31) }
+        its(:time) { should == '04:05 AM' }
+      end
+
+      context 'set date to blank' do
+        before { subject.date = '' }
+        its(:date) { should be_nil }
+        its(:time) { should be_nil }
+      end
+
+      context 'set time to blank' do
+        before { subject.time = '' }
+        its(:date) { should == Date.new(2012, 2, 21) }
+        its(:time) { should be_nil }
       end
 
       describe 'assign_attributes' do
