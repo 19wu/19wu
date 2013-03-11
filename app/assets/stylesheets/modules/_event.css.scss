@@ -69,15 +69,7 @@
 
 // event form
 @media (max-width: 979px) {
-  .event-form {
-    .date, .time {
-      float: none;
-    }
-    .time {
-      margin: 5px 0 0;
-    }
-  }
   input#event_slug {
-    width: 126px;
+    width: 140px;
   }
 }

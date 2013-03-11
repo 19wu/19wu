@@ -14,7 +14,7 @@ class CompoundDatetime
     end
   end
 
-  ATTRIBUTES = %w(date hour min sec meridian)
+  ATTRIBUTES = %w(date time)
 
   attr_reader :datetime
 
@@ -28,31 +28,6 @@ class CompoundDatetime
     end
 
     self
-  end
-
-  # am/pm
-  def meridian
-    @datetime.try(:strftime, '%P') || @meridian
-  end
-
-  # hours 1-12
-  def hour
-    return nil unless @datetime.present?
-    if @datetime.hour == 0
-      12
-    elsif @datetime.hour > 12
-      @datetime.hour - 12
-    else
-      @datetime.hour
-    end
-  end
-
-  def min
-    @datetime.try(:min) || @min
-  end
-
-  def sec
-    @datetime.try(:sec) || @sec
   end
 
   def date
@@ -73,40 +48,16 @@ class CompoundDatetime
     end
   end
 
-  def hour=(hour)
-    assign_time(hour, meridian, min, sec)
+  def time
+    @datetime ? @datetime.strftime("%I:%M %p") : nil
   end
 
-  def min=(min)
-    @min = min
-    assign_time(hour, meridian, min, sec)
-  end
-
-  def sec=(sec)
-    @sec = sec
-    assign_time(hour, meridian, min, sec)
-  end
-
-  def meridian=(meridian)
-    @meridian = meridian
-    @meridian = 'am' if @meridian != 'pm'
-    assign_time(hour, @meridian, min, sec)
+  def time=(time)
+    return nil if time.blank?
+    real_time = DateTime.parse(time)
+    @datetime ||= Time.zone.now
+    @datetime = @datetime.change(:hour => real_time.hour, :min => real_time.minute, :sec => real_time.second)
   end
 
   def persisted?; false; end
-
-  private
-  def assign_time(hour12, meridian, min, sec)
-    return unless hour12.present?
-
-    hour24 = hour12.to_i
-    if meridian == 'am'
-      hour24 = 0 if hour24 == 12
-    else
-      hour24 += 12 if hour24 != 12
-    end
-
-    @datetime ||= Time.zone.now
-    @datetime = @datetime.change(:hour => hour24, :min => min.to_i, :sec => sec.to_i)
-  end
 end

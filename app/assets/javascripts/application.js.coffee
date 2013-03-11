@@ -4,22 +4,39 @@
 #= require bootstrap-datepicker/core
 #= require jquery-fileupload/basic
 #= require jquery.textarea.caret
+#= require bootstrap-timepicker
 #= require_self
 $ ->
   body = $("body")
   datepickerDefaults =
+    autoclose: true
     language: I18n.locale
     format: I18n.date.formats.datepicker
     weekStart: parseInt(I18n.date.weekstart, 10)
 
   body.on "click", ".datepicker-trigger", ->
-    el = $(this).closest(".date").find(".datepicker")
+    el = $(this).closest(".date").find('.datepicker');
     datepicker = el.data("datepicker")
     unless datepicker?
-      el.datepicker(datepickerDefaults).on "changeDate", ->
-        el.datepicker "hide"
+      el.datepicker(datepickerDefaults)
+      el.off 'focus'
 
     el.datepicker "show"
+
+  body.on "click", ".timepicker-trigger", (e) ->
+    $this = $(this)
+    el = $this.closest(".time").find(".timepicker")
+
+    # Init and show it the first time. After time picker is initialized, it
+    # will register events handlers.
+    timepicker = el.data("timepicker")
+    unless timepicker?
+      el.timepicker({minuteStep: 5, defaultTime: false})
+      # Set default meridian, otherwise the picker shows undefined in the text field.
+      timepicker = el.data("timepicker")
+      timepicker.meridian = 'AM'
+
+      setTimeout (-> $this.trigger('click')), 0
 
   $(".fileupload").each ->
     $(this).fileupload
@@ -54,31 +71,31 @@ $ ->
     $this = $(this)
 
     #get textarea's id
-    id = $this.find('textarea').attr('id') 
-   
+    id = $this.find('textarea').attr('id')
+
     #set write-tab's link
     writeTab = $this.find('.write-tab:first a')
     writeTab.attr('href', '#'+id)
-    
+
     #set preview-tab's link
     previewTabId = id + '_preview_bucket'
     previewTab = $this.find('.preview-tab')
     previewTab.find('a').attr('href', '#'+previewTabId)
-     
+
     #set write-section's id
     writeSec = $this.find('.tab-content>.active')
     writeSec.attr('id',id)
     #set preview-section's id
     previewSec = writeSec.siblings()
     previewSec.attr('id',previewTabId)
-    
+
     #preview content in the write section
     previewTab.click ->
       writeBits = writeSec.find('textarea').val()
       previewSec.find('.previews').empty()
       if writeBits is ''
         previewSec.find('.preview-nothing').show()
-      else 
+      else
         $.ajax({
           url: "/content/preview"
           type: "POST"

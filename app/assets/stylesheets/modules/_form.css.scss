@@ -42,19 +42,17 @@ form {
   }
   .time {
     float: left;
-    margin-left: 30px;
-    select {
-      width: auto;
-    }
+    margin-left: 15px;
   }
   .datepicker {
     width: 6em;
   }
-  .add-on {
+  .timepicker {
+    width: 6em;
     margin-top: 1px;
   }
-  .time-separator {
-    padding: 0 5px;
+  .add-on {
+    margin-top: 1px;
   }
 }
 
@@ -63,7 +61,7 @@ form {
 }
 
 .uploadable {
-  
+
   .nav.nav-tabs{
     margin-bottom: 8px;
   }
@@ -72,11 +70,11 @@ form {
     border: 1px solid #cccccc;
     border-bottom: 1px dashed #DDD;
   }
-  
+
   .preview-hint {
     display: none;
   }
-  
+
   textarea {
     border-bottom: 1px dashed #DDD;
     border-bottom-left-radius: 0;
