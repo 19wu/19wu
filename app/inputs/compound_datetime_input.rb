@@ -25,7 +25,7 @@ class CompoundDatetimeInput < SimpleForm::Inputs::Base
   end
 
   def timepicker(builder)
-    template.content_tag(:div, :class => 'time input-append bootstrap-timepicker-component') do
+    template.content_tag(:div, :class => 'time input-append bootstrap-timepicker') do
       builder.text_field(:time, :class => 'timepicker') + timepicker_add_on
     end
   end
