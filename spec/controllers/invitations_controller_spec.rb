@@ -7,7 +7,10 @@ describe InvitationsController do
   context 'issue' do
     describe '#284' do
       subject { ActionMailer::Base.deliveries.last }
-      before { post :create, user: { email: email } }
+      before do
+        ActionMailer::Base.deliveries.clear
+        post :create, user: { email: email }
+      end
       it { should be_nil }
     end
   end
