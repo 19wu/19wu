@@ -18,7 +18,7 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :login, :email, :password, :password_confirmation, :remember_me, :skip_invitation, :invite_reason, :confirmed_at
   # attr_accessible :title, :body
-  validates :login, presence: true, uniqueness: { case_sensitive: false }, format: { with: /^[a-zA-Z0-9_]+$/ }
+  validates :login, presence: true, uniqueness: { case_sensitive: false }, format: { with: /\A[a-zA-Z0-9_]+\z/ }
   validate :login_must_uniq, unless: "login.blank?"
 
   #async devise mailing with delayed job
