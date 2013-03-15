@@ -18,6 +18,10 @@ describe User do
         before { user.login = 'foo@bar' }
         its(:valid?) { should be_false }
       end
+      context 'is exploit_code' do
+        before { user.login = "javascript:alert(1);endxploit_code();\nseems_normal_login" }
+        it { should have(1).error_on(:login) }
+      end
       context 'has been taken' do
         context 'by other user' do
           before { user.login = create(:user).login }
