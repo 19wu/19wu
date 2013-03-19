@@ -1,9 +1,13 @@
 module DeviseControllerMacros # http://git.io/WHvARA
   extend ActiveSupport::Concern
 
+  def as_user
+    @request.env["devise.mapping"] = Devise.mappings[:user]
+  end
+
   def login_user(user = nil)
     user ||= FactoryGirl.create(:user, :confirmed)
-    @request.env["devise.mapping"] = Devise.mappings[:user]
+    as_user
     sign_in user
     user
   end
@@ -13,6 +17,9 @@ module DeviseControllerMacros # http://git.io/WHvARA
       before(:each) do
         login_user block.try(:call)
       end
+    end
+    def as_user
+      before { as_user }
     end
   end
 end
