@@ -1,10 +1,15 @@
 article.event
+  header
+    .actions.pull-right
+      a.btn href='#'
+        i.icon-star
+        == current_user.try(:following?, @event) ? ' 已关注' : ' 关注'
+      a.social-count href="#" = @event.followers_count
+    h1 = @event.title
+    h2 = time_merge(@event)
+
   .row-fluid
     .span8
-      header
-        h1 = @event.title
-        h2 = time_merge(@event)
-
       .event-body
         == @event.content_html
 
