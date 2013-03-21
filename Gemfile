@@ -22,6 +22,7 @@ gem 'gravtastic'
 gem 'cancan'
 gem 'cohort_me'
 gem 'acts_as_follower'
+gem "angularjs-rails"
 
 group :pg do
   gem 'pg', :platform => [:ruby, :mswin, :mingw]
