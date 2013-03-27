@@ -12,7 +12,6 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
-
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @event }
@@ -68,7 +67,17 @@ class EventsController < ApplicationController
   def join
     event = Event.find(params[:id])
     event.participants.create(:user_id => current_user.id)
-
     redirect_to event, notice: I18n.t('flash.participants.joined')
+  end
+
+  def follow
+    event = Event.find(params[:id])
+    current_user.follow event
+    render json: { count: event.followers.size }
+  end
+  def unfollow
+    event = Event.find(params[:id])
+    current_user.stop_following event
+    render json: { count: event.followers.size }
   end
 end

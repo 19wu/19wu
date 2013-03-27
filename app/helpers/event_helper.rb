@@ -24,6 +24,12 @@ module EventHelper
     )
   end
 
+  def event_follow_info
+    entry = [ @event.followers_count, t('views.follow.state'), false ]
+    entry[2] = true if current_user.try(:following?, @event)
+    entry.to_json
+  end
+
   private
   def format_year(time)
     (time.year == Time.zone.now.year) ? :stamp : :stamp_with_year

@@ -1,7 +1,11 @@
 NineteenWu::Application.routes.draw do
 
   resources :events do
-    post 'join', :on => :member
+    member do
+      post 'join'
+      post 'follow'
+      post 'unfollow'
+    end
     resources :participants, :only => [:index, :update]
   end
   get ":slug" => "group#event", :constraints => SlugConstraint

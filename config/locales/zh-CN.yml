@@ -99,6 +99,11 @@ zh-CN:
     users:
       apply_sign_up: "活动组织者申请注册成功后才可以发起活动，普通参与者可以直接在活动报名页面注册。"
       upgrade_invitation: "此功能只对少数活动组织者开放，申请后才能使用。普通参与者可以直接在活动报名页面注册"
+    follow:
+      state:
+        false: 关注
+        true: 已关注
+      require_login: 您需要登录后才能关注活动
 
   email:
     welcome:
