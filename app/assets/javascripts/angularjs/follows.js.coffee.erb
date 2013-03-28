@@ -3,6 +3,7 @@
     [$scope.count, $scope.labels, $scope.followed] = data
     $scope.updateLabel()
     $scope.disabled = !$scope.user?
+    $scope.title = "<%= I18n.t('views.follow.hint') %>"
     if $scope.disabled
       $scope.title = "<%= I18n.t('views.follow.require_login') %>"
       $scope.href = "/users/sign_in?return_to=#{$location.absUrl()}"
