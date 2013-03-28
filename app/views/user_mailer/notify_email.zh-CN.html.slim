@@ -1,0 +1,11 @@
+p 您好，#{@user.login}
+
+p 以下为您所关注的最新活动：
+
+p
+  #{@event.title}
+  |时间：#{time_merge(@event)}
+
+p
+  |详情请点击
+  = link_to slug_event_url(@event.group.slug), slug_event_url(@event.group.slug)

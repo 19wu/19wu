@@ -154,16 +154,17 @@ describe EventsController do
   end
 
   describe "participant" do
-    subject { create(:event, :user => create(:user)) }
+    let(:event) { create(:event, :user => create(:user)) }
     let(:participant) { login_user }
+    subject { event.group }
     context 'follow' do
       before { participant }
-      before { post :follow, id: subject.id }
+      before { post :follow, id: event.id }
       its('followers.first') { should eql participant }
     end
     context 'unfollow' do
       before { participant.follow(subject) }
-      before { post :unfollow, id: subject.id }
+      before { post :unfollow, id: event.id }
       its(:followers) { should be_empty }
     end
   end

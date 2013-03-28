@@ -1,7 +1,6 @@
 class Event < ActiveRecord::Base
   extend CompoundDatetime::HasCompoundDatetime
   extend HasHtmlPipeline
-  acts_as_followable
   belongs_to :user
   belongs_to :group
   has_many :participants, :class_name => "EventParticipant"

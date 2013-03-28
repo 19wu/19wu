@@ -110,6 +110,8 @@ zh-CN:
       subject: "欢迎来到19屋"
     invited:
       subject: "%{login}, 您现在可以发起活动了"
+    notify:
+      subject: "19屋新活动 - %{title}"
     profiles:
       show:
         title: "个人资料"

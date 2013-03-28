@@ -8,7 +8,7 @@ NineteenWu::Application.routes.draw do
     end
     resources :participants, :only => [:index, :update]
   end
-  get ":slug" => "group#event", :constraints => SlugConstraint
+  get ":slug" => "group#event", :constraints => SlugConstraint, :as => :slug_event
   get 'joined_events', to: "events#joined"
   match '/photos', to: "photo#create", :via => [:post, :put]
   post "/content/preview/" => "home#content_preview"

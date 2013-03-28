@@ -71,13 +71,13 @@ class EventsController < ApplicationController
   end
 
   def follow
-    event = Event.find(params[:id])
-    current_user.follow event
-    render json: { count: event.followers.size }
+    group = Event.find(params[:id]).group
+    current_user.follow group
+    render json: { count: group.followers_count }
   end
   def unfollow
-    event = Event.find(params[:id])
-    current_user.stop_following event
-    render json: { count: event.followers.size }
+    group = Event.find(params[:id]).group
+    current_user.stop_following group
+    render json: { count: group.followers_count }
   end
 end

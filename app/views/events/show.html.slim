@@ -1,6 +1,6 @@
 article.event ng-init="event.id=#{@event.id}"
   header
-    .actions.pull-right ng-controller="FollowsCtrl" ng-init="init(#{event_follow_info})"
+    .actions.pull-right ng-controller="FollowsCtrl" ng-init="init(#{event_follow_info(@event)})"
       a.btn href='{{href}}' ng-click='follow()' ng-class='{disabled: disabled}' data-toggle="tooltip" title='{{title}}'
         i.icon-star
         |{{ label }}
