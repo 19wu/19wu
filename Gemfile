@@ -62,7 +62,7 @@ end
 
 group :development, :test do
   gem 'rspec-rails'
-  gem 'jasmine', '1.3.0'
+  gem 'jasmine'
   gem 'factory_girl_rails', '~> 4.0' # generator will use it in development.
   gem 'thin', '~> 1.5.0', :platform => [:ruby, :mswin, :mingw] # thin cannot run under jruby
   gem 'pry-rails'
