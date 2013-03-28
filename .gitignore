@@ -12,6 +12,7 @@
 
 # Ignore all logfiles and tempfiles.
 /log/*.log
+chromedriver.log
 /tmp
 # carrierwave upload
 public/uploads

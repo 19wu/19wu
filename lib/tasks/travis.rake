@@ -11,5 +11,5 @@ namespace :travis do
   end
 
   # append 'jasmine:ci' to run js tests
-  task :script => [:spec]
+  task :script => [:spec, :'jasmine:ci']
 end
