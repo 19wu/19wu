@@ -69,4 +69,10 @@ describe EventHelper do
     end
   end
 
+  describe '#event_follow_info' do
+    before { helper.stub :current_user, nil }
+    let(:event) { create :event }
+    subject { helper.event_follow_info(event) }
+    it { should eql [0, { false: '关注' , true: '已关注' }, false].to_json }
+  end
 end

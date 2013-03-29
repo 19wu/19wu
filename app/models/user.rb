@@ -1,9 +1,8 @@
 class User < ActiveRecord::Base
-  has_one :profile
   extend FriendlyId
-
+  acts_as_follower
   friendly_id :login
-
+  has_one :profile
   has_many :events
   has_many :groups
   has_many :photos

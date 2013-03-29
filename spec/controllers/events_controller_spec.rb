@@ -137,11 +137,13 @@ describe EventsController do
   describe "POST 'join'" do
     let(:event) { FactoryGirl.create(:event, :user => FactoryGirl.create(:user)) }
     context 'when user has signed in' do
-      login_user
+      let(:user) { login_user }
+      before { user }
       it 'with join a event' do
         expect {
           post 'join', id: event.id
         }.to change{event.participants.count}.by(1)
+        user.following?(event.group).should be_true
         response.should redirect_to(event_path(event))
       end
     end
@@ -153,4 +155,19 @@ describe EventsController do
     end
   end
 
+  describe "participant" do
+    let(:event) { create(:event, :user => create(:user)) }
+    let(:participant) { login_user }
+    subject { event.group }
+    context 'follow' do
+      before { participant }
+      before { post :follow, id: event.id }
+      its('followers.first') { should eql participant }
+    end
+    context 'unfollow' do
+      before { participant.follow(subject) }
+      before { post :unfollow, id: event.id }
+      its(:followers) { should be_empty }
+    end
+  end
 end

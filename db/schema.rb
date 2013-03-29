@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130226122259) do
+ActiveRecord::Schema.define(:version => 20130328114637) do
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
@@ -54,6 +54,19 @@ ActiveRecord::Schema.define(:version => 20130226122259) do
   end
 
   add_index "events", ["group_id"], :name => "index_events_on_group_id"
+
+  create_table "follows", :force => true do |t|
+    t.integer  "followable_id",                      :null => false
+    t.string   "followable_type",                    :null => false
+    t.integer  "follower_id",                        :null => false
+    t.string   "follower_type",                      :null => false
+    t.boolean  "blocked",         :default => false, :null => false
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
+  end
+
+  add_index "follows", ["followable_id", "followable_type"], :name => "fk_followables"
+  add_index "follows", ["follower_id", "follower_type"], :name => "fk_follows"
 
   create_table "groups", :force => true do |t|
     t.integer  "user_id",    :null => false

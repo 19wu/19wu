@@ -1,10 +1,15 @@
-article.event
+article.event ng-init="event.id=#{@event.id}"
+  header
+    .actions.pull-right ng-controller="FollowsCtrl" ng-init="init(#{event_follow_info(@event)})"
+      a.btn href='{{href}}' ng-click='follow()' ng-class='{disabled: disabled}' data-toggle="tooltip" title='{{title}}'
+        i.icon-star
+        |{{ label }}
+      a.social-count href="#" {{count}}
+    h1 = @event.title
+    h2 = time_merge(@event)
+
   .row-fluid
     .span8
-      header
-        h1 = @event.title
-        h2 = time_merge(@event)
-
       .event-body
         == @event.content_html
 

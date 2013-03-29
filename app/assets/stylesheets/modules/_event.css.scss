@@ -1,8 +1,5 @@
 // event show
 .event {
-  header {
-    border-bottom: 1px solid $grayBackground;
-  }
   h1 {
     font-size: $baseFontSize * 2.25;
   }
@@ -12,12 +9,15 @@
   }
 }
 
+.social-count {
+  @include social-count(hsl(0, 0%, 98%), $btnBorder);
+}
+
 .event-body {
   margin-top: $baseLineHeight;
 }
 
 .event-sidebar {
-  margin: $baseLineHeight / 2;
   background-color: $grayLighter;
   padding: $baseLineHeight;
   > ul {

@@ -1,5 +1,6 @@
 #= require jquery
 #= require jquery_ujs
+#= require angularjs
 #= require bootstrap-custom
 #= require bootstrap-datepicker/core
 #= require jquery-fileupload/basic
@@ -15,7 +16,7 @@ $ ->
     weekStart: parseInt(I18n.date.weekstart, 10)
 
   body.on "click", ".datepicker-trigger", ->
-    el = $(this).closest(".date").find('.datepicker');
+    el = $(this).closest(".date").find('.datepicker')
     datepicker = el.data("datepicker")
     unless datepicker?
       el.datepicker(datepickerDefaults)
@@ -123,3 +124,4 @@ $ ->
 
     $this.popover(options)
 
+  $("a[data-toggle='tooltip']").tooltip()

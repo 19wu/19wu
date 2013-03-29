@@ -1,0 +1,34 @@
+@mixin gap($color) {
+  content: "";
+  display: block;
+  width: 0;
+  height: 0;
+  border: 6px solid $color;
+  border-color: transparent $color transparent transparent;
+  position: absolute;
+  right: 100%;
+  top: 50%;
+  margin-top: -6px;
+}
+@mixin social-count($background-color, $border-color) {
+  position: relative;
+  display: inline-block;
+  padding: 0 7px 0;
+  margin-left: 8px;
+  font-size: $baseFontSize;
+  font-weight: bold;
+  line-height: 28px;
+  color: $grayDark;
+  vertical-align: middle;
+  background-color: $background-color;
+  border: 1px solid $btnBorder;
+  border-radius: 3px;
+  &:before {
+    @include gap($btnBorder);
+    margin-right: 0;
+  }
+  &:after {
+    @include gap($background-color);
+    margin-right: -1px;
+  }
+}

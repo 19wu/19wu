@@ -17,11 +17,17 @@ module EventHelper
 
   def group_event_path(event)
     group = event.group
-    (event == group.events.latest.first) ? "/#{group.slug}" : url_for(
+    (event == group.events.latest.first) ? slug_event_path(group.slug) : url_for(
       :controller => 'events',
       :action => 'show',
       :id => event.id
     )
+  end
+
+  def event_follow_info(event)
+    entry = [ event.group.followers_count, t('views.follow.state'), false ]
+    entry[2] = true if current_user.try(:following?, event.group)
+    entry.to_json
   end
 
   private

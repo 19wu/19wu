@@ -3,4 +3,8 @@ class EventParticipant < ActiveRecord::Base
 
   belongs_to :event
   belongs_to :user
+
+  after_create do
+    user.follow event.group
+  end
 end

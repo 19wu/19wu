@@ -20,7 +20,9 @@ gem 'has_html_pipeline'
 gem 'kramdown', :platform => [:jruby]
 gem 'gravtastic'
 gem 'cancan'
-gem "cohort_me"
+gem 'cohort_me'
+gem 'acts_as_follower'
+gem "angularjs-rails"
 
 group :pg do
   gem 'pg', :platform => [:ruby, :mswin, :mingw]
@@ -60,7 +62,7 @@ end
 
 group :development, :test do
   gem 'rspec-rails'
-  gem 'jasmine', '1.3.0'
+  gem 'jasmine', '1.3.0' # 1.3.1, 1.3.2 can not show any test suite
   gem 'factory_girl_rails', '~> 4.0' # generator will use it in development.
   gem 'thin', '~> 1.5.0', :platform => [:ruby, :mswin, :mingw] # thin cannot run under jruby
   gem 'pry-rails'

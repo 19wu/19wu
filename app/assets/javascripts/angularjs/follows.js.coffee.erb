@@ -1,0 +1,18 @@
+@FollowsCtrl = ['$scope', '$http', '$location', ($scope, $http, $location) ->
+  $scope.init = (data) ->
+    [$scope.count, $scope.labels, $scope.followed] = data
+    $scope.updateLabel()
+    $scope.disabled = !$scope.user?
+    $scope.title = "<%= I18n.t('views.follow.hint') %>"
+    if $scope.disabled
+      $scope.title = "<%= I18n.t('views.follow.require_login') %>"
+      $scope.href = "/users/sign_in?return_to=#{$location.absUrl()}"
+  $scope.updateLabel = ->
+    $scope.label = " #{$scope.labels[$scope.followed]}"
+  $scope.follow = ->
+    return if $scope.disabled
+    $scope.followed = !$scope.followed
+    $scope.updateLabel()
+    action = if $scope.followed then 'follow' else 'unfollow'
+    $http.post("/events/#{$scope.event.id}/#{action}").success (data) -> $scope.count = data.count
+]
