@@ -60,7 +60,7 @@ namespace :deploy do
 
   desc "Populates the Production Database"
   task :seed do
-    run "cd #{current_path} ; bundle exec rake db:seed"
+    run "cd #{release_path} ; bundle exec rake db:seed"
   end
 
   desc "create config shared path"
