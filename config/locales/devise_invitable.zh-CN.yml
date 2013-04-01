@@ -1,4 +1,7 @@
 'zh-CN':
+  errors:
+    messages:
+      wait_for_invite: "您正申请注册，请等待邀请邮件."
   devise:
     invitations:
       received: '申请已经提交，我们会尽快审核您的申请.'
