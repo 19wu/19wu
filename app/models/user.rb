@@ -39,6 +39,14 @@ class User < ActiveRecord::Base
     super || build_profile
   end
 
+  def send_reset_password_instructions # http://git.io/Y9Q9eQ
+    if self.invited_to_sign_up?
+      self.errors.add(:email, :wait_for_invite)
+    else
+      super
+    end
+  end
+
   private
   def login_must_uniq
     if Group.exists?(:slug => login) || !FancyUrl.valid_for_short_url?(login)
