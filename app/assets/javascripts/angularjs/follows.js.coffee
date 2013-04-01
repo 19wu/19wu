@@ -3,9 +3,9 @@
     [$scope.count, $scope.labels, $scope.followed] = data
     $scope.updateLabel()
     $scope.disabled = !$scope.user?
-    $scope.title = "<%= I18n.t('views.follow.hint') %>"
+    $scope.title = "新活动发布时会给您发送邮件通知"
     if $scope.disabled
-      $scope.title = "<%= I18n.t('views.follow.require_login') %>"
+      $scope.title = "您需要登录后才能关注活动"
       $scope.href = "/users/sign_in?return_to=#{$location.absUrl()}"
   $scope.updateLabel = ->
     $scope.label = " #{$scope.labels[$scope.followed]}"

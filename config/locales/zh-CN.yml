@@ -103,8 +103,6 @@ zh-CN:
       state:
         false: 关注
         true: 已关注
-      require_login: 您需要登录后才能关注活动
-      hint: 新活动发布时会给您发送邮件通知
 
   email:
     welcome:
