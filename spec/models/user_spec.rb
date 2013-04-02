@@ -17,7 +17,10 @@ describe User do
       end
       context 'is format invalid' do
         before { user.login = 'foo@bar' }
-        its(:valid?) { should be_false }
+        it 'should show clear message' do
+          subject.valid?.should be_false
+          subject.errors[:login].should eql ['只允许大小写字母、数字和下划线']
+        end
       end
       context 'is exploit_code' do
         before { user.login = "javascript:alert(1);endxploit_code();\nseems_normal_login" }
