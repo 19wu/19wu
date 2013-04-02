@@ -46,6 +46,16 @@ describe ContentFilter do
     it 'has a blockqoutes' do
       input = "> welcome to 19wu"
       expected = "<blockquote>\n<p>welcome to 19wu</p>\n</blockquote>"
+    end
+
+    it 'has a pre code' do
+      input = <<-EOF
+```
+第一行无空格
+  第二行前面两个空格也会保留
+```
+EOF
+      expected = "<pre><code>第一行无空格\n  第二行前面两个空格也会保留\n</code></pre>"
       ContentFilter.refine(input).should == expected
     end
   
