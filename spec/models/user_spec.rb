@@ -23,7 +23,7 @@ describe User do
         end
       end
       context 'is exploit_code' do
-        before { user.login = "javascript:alert(1);endxploit_code();\nseems_normal_login" }
+        before { user.login = "javascript:it();\nok" }
         it { should have(1).error_on(:login) }
       end
       context 'has been taken' do
