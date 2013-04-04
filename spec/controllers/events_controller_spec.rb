@@ -146,6 +146,14 @@ describe EventsController do
         user.following?(event.group).should be_true
         response.should redirect_to(event_path(event))
       end
+      context 'and has already joined' do
+        before { event.participants.create(user_id: user.id) }
+        it 'should do nothing' do
+          expect do
+            post 'join', id: event.id
+          end.not_to change{event.participants.count}
+        end
+      end
     end
     context 'when user has not yet signed in' do
       it 'should be redirect to user login view' do
