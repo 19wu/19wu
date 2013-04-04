@@ -6,6 +6,9 @@ html ng-app='19wu'
     link href=image_path('favicon.ico') rel="shortcut icon" type="image/x-icon"
     = stylesheet_link_tag "application", media: "all"
     = csrf_meta_tags
+    /[if lt IE 7]
+      css:
+        #wrap {display:table;height:100%;width:100%}
 
   body *body_attributes
     header#header
