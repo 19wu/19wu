@@ -1,3 +1,5 @@
+@include sticky_footer;
+
 #content {
   padding: 2 * $baseLineHeight 0;
   min-height: 20 * $baseLineHeight;
@@ -7,7 +9,6 @@
   border-top: 1px solid $borderColor;
   padding: 2 * $baseLineHeight 0;
   background: $grayBackground;
-  @include footer_after($grayBackground);
   li {
     padding: 0 4px;
   }
@@ -55,6 +56,5 @@
   }
   #footer {
     background: $bodyBackground;
-    @include footer_after($bodyBackground);
   }
 }
