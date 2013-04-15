@@ -1,4 +1,4 @@
-## 19wu [![Build Status](https://travis-ci.org/saberma/19wu.png?branch=master)](https://travis-ci.org/saberma/19wu) [![Code Climate](https://codeclimate.com/github/saberma/19wu.png)](https://codeclimate.com/github/saberma/19wu)
+## 19wu [![Build Status](https://travis-ci.org/saberma/19wu.png?branch=master)](https://travis-ci.org/saberma/19wu) [![Code Climate](https://codeclimate.com/github/saberma/19wu.png)](https://codeclimate.com/github/saberma/19wu) [![Coverage Status](https://coveralls.io/repos/saberma/19wu/badge.png?branch=master)](https://coveralls.io/r/saberma/19wu)
 
 This is the source code of [19wu.com](http://19wu.com) website.
 
