@@ -8,8 +8,8 @@ feature 'user registration' do
   scenario 'through invitation' do
     visit '/'
     # apply sign up
-    fill_in 'user_email', with: user.email
-    fill_in 'user_invite_reason', with: '测试'
+    fill_in 'user[email]', with: user.email
+    fill_in 'user[invite_reason]', with: '测试'
     click_button I18n.t('labels.apply_sign_up')
     expect(page).to have_content(I18n.t('devise.invitations.received'))
 

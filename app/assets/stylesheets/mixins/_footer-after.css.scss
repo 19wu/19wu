@@ -1,9 +1,0 @@
-@mixin footer_after($color) {
-  &:after {
-    background: $color;
-    content: "";
-    position: fixed;
-    width: 100%;
-    height: 100%;
-  }
-}
