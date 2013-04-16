@@ -32,6 +32,6 @@ class ApplicationController < ActionController::Base
 
   # cancan exception handler
   rescue_from CanCan::AccessDenied do |exception|
-    redirect_to root_url, alert: I18n.t("unauthorized.default")
+    redirect_to new_user_session_path, alert: I18n.t("unauthorized.default")
   end
 end
