@@ -1,0 +1,5 @@
+en:
+  unauthorized:
+    default: "You are not authorized to access this page."
+    manage:
+      all: "Not authorized to %{action} %{subject}."
