@@ -8,7 +8,12 @@ class EventObserver < ActiveRecord::Observer
 
   def before_update(event)
     group = event.group
-    group.destroy if group and group.slug != event.slug and group.events.size <= 1
+    if group and group.slug != event.slug and group.events.size <= 1
+      group.destroy
+      fallback_url = FallbackUrl.find_or_initialize_by_origin(group.slug)
+      fallback_url.change_to = event.slug
+      fallback_url.save
+    end
     save_group event
   end
 

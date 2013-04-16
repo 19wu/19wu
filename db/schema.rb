@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130328114637) do
+ActiveRecord::Schema.define(:version => 20130403135737) do
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
@@ -54,6 +54,15 @@ ActiveRecord::Schema.define(:version => 20130328114637) do
   end
 
   add_index "events", ["group_id"], :name => "index_events_on_group_id"
+
+  create_table "fallback_urls", :force => true do |t|
+    t.string   "origin"
+    t.string   "change_to"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "fallback_urls", ["origin"], :name => "index_fallback_urls_on_origin", :unique => true
 
   create_table "follows", :force => true do |t|
     t.integer  "followable_id",                      :null => false
