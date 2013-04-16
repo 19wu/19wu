@@ -30,4 +30,8 @@ class ApplicationController < ActionController::Base
     session[:previous_url] || root_path
   end
 
+  # cancan exception handler
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to root_url, :alert => exception.message
+  end
 end
