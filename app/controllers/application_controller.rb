@@ -30,4 +30,8 @@ class ApplicationController < ActionController::Base
     session[:previous_url] || root_path
   end
 
+  # cancan exception handler
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to new_user_session_path, alert: I18n.t("unauthorized.default")
+  end
 end
