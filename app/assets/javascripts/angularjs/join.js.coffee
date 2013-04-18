@@ -1,22 +1,23 @@
 @JoinCtrl = ['$scope', '$http', '$location', ($scope, $http, $location) ->
-  btn_classes = { true: 'btn-warning disabled', false: 'btn-success'}
+  btn_classes = { true: 'btn-warning', false: 'btn-success'}
   $scope.init = (data) ->
-    [$scope.count, $scope.labels, $scope.joined] = data
+    [$scope.count, $scope.labels, $scope.titles, $scope.joined] = data
     $scope.updateLabel()
-    $scope.disabled = !$scope.user? || $scope.joined
-    $scope.title = '登录后马上报名'
+    $scope.disabled = !$scope.user?
+    $scope.href= "#"
     if $scope.disabled
-      $scope.title = "记得准时来参加哦"
+      $scope.title = "您需要登录后才能关注活动"
       $scope.href = "/users/sign_in?return_to=#{$location.absUrl()}"
   $scope.updateLabel = ->
     $scope.label = " #{$scope.labels[$scope.joined]}"
     $scope.btn_class = "#{btn_classes[$scope.joined]}"
+    $scope.title = "#{$scope.titles[$scope.joined]}"
   $scope.join = ->
     return if $scope.disabled
-    $scope.joined = !$scope.joined if !$scope.joined
-    $scope.updateLabel()
-    #action = if $scope.joined then 'join'
-    $http.post("/events/#{$scope.event.id}/join").success (data) -> 
+    action = if $scope.joined then 'quit' else 'join'
+    $http.post("/events/#{$scope.event.id}/#{action}").success (data) -> 
       $scope.count = data.count
       $scope.notice = data.notice
+      $scope.joined = data.joined
+      $scope.updateLabel()
 ]

@@ -82,6 +82,7 @@ zh-CN:
     participants:
       checked_in: "%{name}已签到"
       joined: "您已经报名参与此活动"
+      quited: "您已经取消参与此活动"
 
   views:
     edit: "修改"
@@ -107,6 +108,9 @@ zh-CN:
       state:
         false: "我要参加"
         true: "已报名"
+      title:
+        false: "赶快报名吧"
+        true: "记得准时来参加哦"
 
   email:
     welcome:

@@ -3,6 +3,7 @@ NineteenWu::Application.routes.draw do
   resources :events do
     member do
       post 'join'
+      post 'quit'
       post 'follow'
       post 'unfollow'
     end

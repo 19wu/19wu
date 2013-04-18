@@ -67,8 +67,13 @@ class EventsController < ApplicationController
   def join
     event = Event.find(params[:id])
     event.participants.create(:user_id => current_user.id)
-    #redirect_to event, notice: I18n.t('flash.participants.joined')
-    render json: { count: event.participated_users.size, notice: I18n.t('flash.participants.joined')}
+    render json: { count: event.participated_users.size, joined: event.has?(current_user), notice: I18n.t('flash.participants.joined')}
+  end
+
+  def quit
+    event = Event.find(params[:id])
+    event.participated_users.delete(current_user)
+    render json: { count: event.participated_users.size, joined: event.has?(current_user), notice: I18n.t('flash.participants.quited')}    
   end
 
   def follow
