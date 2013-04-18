@@ -24,8 +24,8 @@ article.event ng-init="event.id=#{@event.id}"
               i.icon-map-marker
               = @event.location
             li
-              a.btn.btn-large.btn-block href='{{href}}' ng-click='join()' ng-class='btn_class' data-toggle='tooltip' title='{{title}}'
-                = "{{ label }}"
+              a.btn.btn-large.btn-block href='{{href}}' ng-click='join()' ng-class="{true: 'btn-warning', false: 'btn-success'}[joined]" data-toggle='tooltip' title='{{titles[joined]}}'
+                = "{{ labels[joined] }}"
 
           .event-map == @event.location_guide_html
           hr
