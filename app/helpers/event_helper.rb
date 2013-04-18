@@ -30,6 +30,12 @@ module EventHelper
     entry.to_json
   end
 
+  def event_join_info(event)
+    entry = [ t('views.join.state'), false ]
+    entry[1] = true if event.has?(current_user)
+    entry.to_json
+  end
+
   private
   def format_year(time)
     (time.year == Time.zone.now.year) ? :stamp : :stamp_with_year

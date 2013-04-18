@@ -67,7 +67,8 @@ class EventsController < ApplicationController
   def join
     event = Event.find(params[:id])
     event.participants.create(:user_id => current_user.id)
-    redirect_to event, notice: I18n.t('flash.participants.joined')
+    #redirect_to event, notice: I18n.t('flash.participants.joined')
+    render json: { notice: I18n.t('flash.participants.joined')}
   end
 
   def follow

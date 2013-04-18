@@ -103,6 +103,10 @@ zh-CN:
       state:
         false: 关注
         true: 已关注
+    join:
+      state:
+        false: "我要参加"
+        true: "已报名"
 
   email:
     welcome:
