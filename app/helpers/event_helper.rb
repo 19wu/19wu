@@ -31,8 +31,8 @@ module EventHelper
   end
 
   def event_join_info(event)
-    entry = [ t('views.join.state'), false ]
-    entry[1] = true if event.has?(current_user)
+    entry = [ event.participated_users.size, t('views.join.state'), false ]
+    entry[2] = true if event.has?(current_user)
     entry.to_json
   end
 

@@ -24,7 +24,9 @@ article.event ng-init="event.id=#{@event.id}"
               i.icon-map-marker
               = @event.location
             li
-              button.btn.btn-large.btn-clock ng-click='join()' ng-class="btn_class" = "{{ label }}"
+              a.btn.btn-large.btn-block href='{{href}}' ng-click='join()' ng-class='btn_class' data-toggle='tooltip' title='{{title}}'
+                = "{{ label }}"
+
           .event-map == @event.location_guide_html
           hr
           p
@@ -38,6 +40,6 @@ article.event ng-init="event.id=#{@event.id}"
             hr
             h3
               |已参加用户
-              span.label.amount = @event.participated_users.size
+              span.label.amount = "{{ count }}"
             ul.event-participants
               = render partial: 'users/participant', collection: participated_users, as: :user

@@ -68,7 +68,7 @@ class EventsController < ApplicationController
     event = Event.find(params[:id])
     event.participants.create(:user_id => current_user.id)
     #redirect_to event, notice: I18n.t('flash.participants.joined')
-    render json: { notice: I18n.t('flash.participants.joined')}
+    render json: { count: event.participated_users.size, notice: I18n.t('flash.participants.joined')}
   end
 
   def follow
