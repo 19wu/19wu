@@ -28,6 +28,32 @@ describe Event do
       event.end_time = "2012-12-31 08:00:50"
       expect(event.save).to be_false
     end
+
+    describe 'slug' do
+      subject { event }
+      context 'is blank' do
+        before { event.slug = '' }
+        its(:valid?) { should be_false }
+      end
+      context 'has not been taken' do
+        before { event.slug = 'rubyconfchina' }
+        its(:valid?) { should be_true }
+      end
+      context 'has been taken' do
+        context 'by other group' do
+          before { event.slug = create(:group).slug }
+          its(:valid?) { should be_false }
+        end
+        context 'by other user' do
+          before { event.slug = event.user.login }
+          its(:valid?) { should be_false }
+        end
+        context 'by routes' do
+          before { event.slug = 'photos' }
+          its(:valid?) { should be_false }
+        end
+      end
+    end
   end
 
   describe 'content_html' do
@@ -41,6 +67,27 @@ describe Event do
     context 'when content is "# map #"' do
       subject { build :event, :location_guide => '# map #' }
       its(:location_guide_html) { should include('<h1>map</h1>') }
+    end
+  end
+
+  describe '#participated_users.recent' do
+    let(:event) { create(:event) }
+
+    it 'sorts participants by join date' do
+      first = create(:user)
+      second = create(:user)
+
+      EventParticipant.create({ :user_id => first.id, :event_id => event.id, :created_at => '2012-01-01' },
+                              :without_protection => true)
+      EventParticipant.create({ :user_id => second.id, :event_id => event.id, :created_at => '2012-01-02' },
+                              :without_protection => true)
+
+      event.participated_users.recent.should == [second, first]
+    end
+
+    it 'can limit the number of participants' do
+      event.participated_users << create_list(:user, 2)
+      event.participated_users.recent(1).should have(1).user
     end
   end
 end

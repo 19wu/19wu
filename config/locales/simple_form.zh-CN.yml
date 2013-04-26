@@ -25,4 +25,13 @@ zh-CN:
       photo:
         upload: "上传图片"
         uploading: "正在上传..."
+      preview:
+        nothing: "没有内容预览"
+        loading: "预览载入中。。。"
+    placeholders:
+      user:
+        invite_reason: "活动组织情况(最近组织的几场活动?计划组织的下一场活动?)"
+    navtabs:
+        write: "编写"
+        preview: "预览"
 

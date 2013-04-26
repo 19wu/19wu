@@ -1,0 +1,8 @@
+.amount {
+  margin-left: 4px;
+}
+
+.alpha {
+  @extend .label, .label-important;
+  margin-left: 10px;
+}

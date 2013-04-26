@@ -1,49 +1,51 @@
 doctype html
-html
+html ng-app='19wu'
   head
-    title =t('layout.title')
+    title = t('layout.title')
     meta name="viewport" content="width=device-width, initial-scale=1.0"
     link href=image_path('favicon.ico') rel="shortcut icon" type="image/x-icon"
     = stylesheet_link_tag "application", media: "all"
     = csrf_meta_tags
+    /[if lt IE 7]
+      css:
+        #wrap {display:table;height:100%;width:100%}
 
   body *body_attributes
     header#header
       .navbar.navbar-static-top
         .navbar-inner
           .container
-            a.btn.btn-navbar data-toggle="collapse" data-target=".nav-collapse"
-              span.icon-bar
-              span.icon-bar
-              span.icon-bar
-
             a.brand href="/"
               img.logo-wordmark src=image_path('logo-wordmark.png')
+              span.alpha alpha
+            - if can? :invite, User
+              ul.nav
+                li = link_to t('labels.invitations'), invitations_path
 
             .nav-collapse.collapse
               = render_user_bar
 
-    #main role="main"
+    #wrap
+      #main role="main"
 
-      .container
-        = render_flashes
-
-      = yield :before_content
-
-      #content
         .container
-          = content_for?(:content) ? yield(:content) : yield
+          = render_flashes
+
+        = yield :before_content
+
+        #content
+          .container
+            = content_for?(:content) ? yield(:content) : yield
+            .alpha-alert = raw t('layout.alpha_alert', :'19wu' => link_to(t('19wu'), root_url), :email => link_to('Email', 'mailto:mahb45@gmail.com'), :github => link_to('Github', 'https://github.com/saberma/19wu'))
 
     footer#footer
       .container
-        p.pull-right &copy; #{Date.current.year} 19wu.com
+        p.pull-right #{link_to('19WU.COM', root_url)} &copy; #{Date.current.year} #{t('layout.copyright')}
         ul.pull-left.horizontal
-          li
-            a href="http://github.com/saberma/19wu" = t('layout.opensource')
+          li = link_to t('layout.opensource'), "http://github.com/saberma/19wu"
           li.muted
             | /
-          li
-            a href="mailto:mahb45@gmail.com" = t('layout.contact_us')
+          li = link_to t('layout.contact_us'), "mailto:mahb45@gmail.com"
 
     = javascript_include_tag "application"
     = javascript_include_tag "locales/#{locale}"

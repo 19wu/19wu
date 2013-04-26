@@ -1,8 +1,22 @@
+.user-title, .user-title small {
+  font-size: $baseFontSize * 1.5;
+  line-height: $baseLineHeight * 1.5;
+}
+.user-title {
+  max-width: 100%;
+  word-break: break-all;
+  margin: 0 0 4px 0;
+  > small {
+    margin-left: 4px;
+  }
+}
+
 ul.user-info > li {
   padding-left: 0;
   padding-right: 14px;
 }
 
 .user-body {
+  margin-top: $baseLineHeight;
   color: $gray;
 }

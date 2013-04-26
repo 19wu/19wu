@@ -2,11 +2,10 @@
 require 'spec_helper'
 
 describe EventHelper do
-  let(:year) { Time.zone.now.year }
-  let(:next_year) { year + 1 }
-  let(:event) { build :event, start_time: "#{year}-12-30 08:00", end_time: "#{year}-12-30 10:00" }
-
-  describe 'time_merge' do
+  describe '#time_merge' do
+    let(:event) { build :event, start_time: "#{year}-12-30 08:00", end_time: "#{year}-12-30 10:00" }
+    let(:year) { Time.zone.now.year }
+    let(:next_year) { year + 1 }
     subject { helper.time_merge(event) }
     context 'when has not end time' do
       before { event.end_time = nil }
@@ -56,4 +55,24 @@ describe EventHelper do
     end
   end
 
+  describe '#group_event_path' do
+    let(:event) { create :event }
+    subject { helper.group_event_path(event) }
+    context 'when event is the last' do
+      it { should == "/#{event.group.slug}" }
+    end
+    context 'when event is not the last' do
+      before do
+        create :event, :slug => event.group.slug, :start_time => Time.now, :end_time => nil, user: event.user
+      end
+      it { should == "/events/#{event.id}" }
+    end
+  end
+
+  describe '#event_follow_info' do
+    before { helper.stub :current_user, nil }
+    let(:event) { create :event }
+    subject { helper.event_follow_info(event) }
+    it { should eql [0, { false: '关注' , true: '已关注' }, false].to_json }
+  end
 end

@@ -2,10 +2,19 @@
   @extend .horizontal;
   margin: 0;
   li {
-    margin-right: 5px;
+    margin-left: 10px;
     line-height: $navbarHeight;
     > .btn {
       margin-top: 0;
     }
+  }
+  .gravatar{
+    margin-right: 5px;
+  }
+}
+
+.signed-in {
+  .user-bar a {
+    color: $grayDarker;
   }
 }

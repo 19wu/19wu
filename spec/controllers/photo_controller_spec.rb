@@ -10,6 +10,7 @@ describe PhotoController do
       it 'creates the photo' do
         expect {
           post :create, :files => files
+          JSON[response.body]['files'][0]['name'].should == 'map'
           JSON[response.body]['files'][0]['url'].should_not be_blank
         }.to change{Photo.count}.by(1)
       end

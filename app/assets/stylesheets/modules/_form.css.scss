@@ -16,32 +16,43 @@ form {
     .btn {
       @extend .btn-block;
     }
+    .input-large {
+      min-height: $baseLineHeight * 2;
+      height: $baseLineHeight * 2;
+    }
+    .btn-large {
+      padding: 9px 19px; // http://git.io/D9i_5g
+    }
   }
+}
 
+/* fix the left margin when apply the span* classes */
+.compound-controls {
+  margin-left: 0;
 }
 
 .form-actions > .btn {
   margin-right: 5px;
 }
 
-.compound-datetime {
-  select {
-    width: auto;
+.compound_datetime {
+  @include clearfix;
+  .date {
+    float: left;
   }
-  > .date {
-    margin-bottom: $baseLineHeight / 4;
-    margin-right: 5px;
-    > .add-on {
-      margin-top: 1px;
-    }
+  .time {
+    float: left;
+    margin-left: 15px;
   }
-  > .time {
-    > .time-min {
-      margin-right: 5px;
-    }
-    > select {
-      margin-bottom: $baseLineHeight / 8;
-    }
+  .datepicker {
+    width: 6em;
+  }
+  .timepicker {
+    width: 6em;
+    margin-top: 1px;
+  }
+  .add-on {
+    margin-top: 1px;
   }
 }
 
@@ -50,6 +61,20 @@ form {
 }
 
 .uploadable {
+
+  .nav.nav-tabs{
+    margin-bottom: 8px;
+  }
+
+  .preview-pane {
+    border: 1px solid #cccccc;
+    border-bottom: 1px dashed #DDD;
+  }
+
+  .preview-hint {
+    display: none;
+  }
+
   textarea {
     border-bottom: 1px dashed #DDD;
     border-bottom-left-radius: 0;

@@ -1,0 +1,7 @@
+.row
+  .span4.offset4.well
+    = simple_form_for resource, :as => resource_name, :url => user_invitation_path(resource_name), :html => {:method => :post, :class => 'form-full-width'} do |f|
+      legend  = t('labels.need_upgrade_invitation')
+      = f.input :invite_reason, :as => :text, :label => false, :input_html => { :rows => 3}
+      .help-block = t('views.users.upgrade_invitation')
+      = f.submit t('labels.apply_sign_up'), :class => 'btn btn-success btn-large'

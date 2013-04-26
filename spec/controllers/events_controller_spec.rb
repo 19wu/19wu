@@ -2,6 +2,22 @@ require 'spec_helper'
 
 describe EventsController do
 
+  describe "GET 'index'" do
+    login_user
+    it "renders the event list" do
+      get 'index'
+      response.should render_template('index')
+    end
+  end
+
+  describe "GET 'joined'" do
+    login_user
+    it "renders the event list" do
+      get 'joined'
+      response.should render_template('joined')
+    end
+  end
+
   describe "GET 'new'" do
     context 'when user has signed in' do
       login_user
@@ -40,10 +56,7 @@ describe EventsController do
         let(:compound_start_time_attributes) do
           {
             'date' => '2013-12-31',
-            'hour' => '12',
-            'meridian' => 'pm',
-            'min' => '10',
-            'sec' => '30'
+            'time' => '12:10:30 PM'
           }
         end
         let(:attributes) do
@@ -66,13 +79,10 @@ describe EventsController do
   end
 
   describe "PUT 'update'" do
-    let(:event) { FactoryGirl.create(:event) }
+    let(:event_creator) { login_user }
+    let(:event) { FactoryGirl.create(:event, user: event_creator) }
     let(:valid_attributes) { attributes_for(:event) }
     context 'when user has signed in' do
-      login_user
-      before do
-        subject.current_user.events.should_receive(:find).with(event.id.to_s).and_return(event)
-      end
       context 'with valid attributes' do
         it 'update the event' do
           put 'update', :id => event.id, :event => valid_attributes
@@ -84,19 +94,13 @@ describe EventsController do
         let(:compound_start_time_attributes) do
           {
             'date' => '2013-01-08',
-            'hour' => '4',
-            'meridian' => 'pm',
-            'min' => '10',
-            'sec' => '30'
+            'time' => '4:10:30 PM'
           }
         end
         let(:compound_end_time_attributes) do
           {
             'date' => '2013-01-08',
-            'hour' => '6',
-            'meridian' => 'pm',
-            'min' => '10',
-            'sec' => '30'
+            'time' => '6:10:30 PM'
           }
         end
         let(:attributes) do
@@ -131,14 +135,24 @@ describe EventsController do
   end
 
   describe "POST 'join'" do
-    let(:event) { FactoryGirl.create(:event) }
+    let(:event) { FactoryGirl.create(:event, :user => FactoryGirl.create(:user)) }
     context 'when user has signed in' do
-      login_user
+      let(:user) { login_user }
+      before { user }
       it 'with join a event' do
         expect {
           post 'join', id: event.id
         }.to change{event.participants.count}.by(1)
+        user.following?(event.group).should be_true
         response.should redirect_to(event_path(event))
+      end
+      context 'and has already joined' do
+        before { event.participants.create(user_id: user.id) }
+        it 'should do nothing' do
+          expect do
+            post 'join', id: event.id
+          end.not_to change{event.participants.count}
+        end
       end
     end
     context 'when user has not yet signed in' do
@@ -149,4 +163,19 @@ describe EventsController do
     end
   end
 
+  describe "participant" do
+    let(:event) { create(:event, :user => create(:user)) }
+    let(:participant) { login_user }
+    subject { event.group }
+    context 'follow' do
+      before { participant }
+      before { post :follow, id: event.id }
+      its('followers.first') { should eql participant }
+    end
+    context 'unfollow' do
+      before { participant.follow(subject) }
+      before { post :unfollow, id: event.id }
+      its(:followers) { should be_empty }
+    end
+  end
 end

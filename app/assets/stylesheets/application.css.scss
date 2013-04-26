@@ -1,9 +1,10 @@
 /*
  *= require jquery.fileupload-ui
+ *= require bootstrap-timepicker
  */
 
 @import "0.variables";
-@import "bootstrap";
+@import "bootstrap-custom";
 @import "bootstrap/responsive-utilities";
 @import "bootstrap/responsive-768px-979px";
 @import "bootstrap/responsive-767px-max";
@@ -12,7 +13,7 @@
 
 /* mixins */
 
-@import "mixins/footer_after";
+@import "mixins/sticky-footer";
 
 /* main */
 
@@ -29,9 +30,13 @@
 @import "modules/list";
 @import "modules/form";
 @import "modules/icons";
+@import "modules/label";
 
 @import "modules/brand";
 @import "modules/jumbotron";
+@import "modules/social-count";
 
-@import "modules/sidebar";
+@import "modules/home";
 @import "modules/event";
+
+@import "modules/participant";

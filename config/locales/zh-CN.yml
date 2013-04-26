@@ -13,29 +13,40 @@ zh-CN:
       stamp: '%b%d日(%a) %p %I:%M'
       stamp_with_year: '%Y年%b%d日(%a) %p %I:%M'
 
+  19wu: "19屋"
+
   layout:
-    19wu: "19屋"
-    opensource: "开源社区"
+    opensource: "Fork us"
     contact_us: "联系我们"
-    title: "19屋－卖活动票的小屋"
+    alpha_alert: "%{19wu}正在 Alpha 阶段，如果您有任何意见或建议，可以通过%{email}或者%{github}联系我们。"
+    title: "19屋－让活动更好"
+    copyright: "版权所有"
 
     account: "注册信息"
     profile: "个人资料"
 
   slogan:
-    title: "卖活动票的小屋"
-    description: "由开源社区研发的活动票务平台，在这个小屋子发动活动、卖票都是免费的。"
+    title: "让活动更好"
+    description: "19屋致力于为活动组织者提供功能简洁、完全免费的服务"
 
   highlights:
     free:
       title: "完全免费"
-      description: "19屋不会收取任何费用。"
-    more_features:
-      title: "更多功能"
-      description: "更多活动管理功能正在开发中，欢迎向19屋提出要求。"
-    join_us:
+      description: "19屋不会收取任何的使用费，您因此节省下来的成本可以为与会者提供更好的参会体验。"
+    devices:
+      title: "随时访问"
+      description: "您和与会者可以随时随地通过电脑，或者平板电脑、手机等移动设备来管理活动。"
+    team:
       title: "加入我们"
-      description: "也许你愿意和我们一起成长，请加入19屋"
+      description: "我们是%{github}上的开源团队，如果您愿意与我们一起成长，欢迎%{join_us}。"
+
+  home:
+    menu:
+      activities: 最新动态
+      created_events: 发起的活动
+      joined_events: 参加的活动
+    body:
+      empty: 暂时没有内容
 
   helpers:
     submit:
@@ -47,16 +58,20 @@ zh-CN:
   labels:
     sign_in: "登录"
     sign_up: "注册"
-    sign_up_to_launch_event: "注册，发动活动"
-    launch_event: "发动活动"
+    need_upgrade_invitation: "需要发起活动?"
+    apply_sign_up: "申请注册"
+    sign_up_to_launch_event: "注册，发起活动"
+    invitations: "邀请列表"
+    launch_event: "发起活动"
     show_event: "查看活动"
     cancel: "取消"
     join_event_button: "我要参加"
     has_joined_event_button: "已报名"
-
-  text:
-    under_construction: "网站建设中"
-    visit_github_html: '在 Github 上查看19屋的<a href="%{url}">最新进展</a>。'
+    markdown_guide: "Markdown 格式说明"
+    checked_in_event: "签到"
+    check_in_button: "签到"
+    has_checked_in_button: "已签到"
+    invite_button: "邀请"
 
   flash:
     events:
@@ -64,20 +79,42 @@ zh-CN:
       updated: "活动已经更新"
     profiles:
       updated: "个人资料已经更新"
+    participants:
+      checked_in: "%{name}已签到"
+      joined: "您已经报名参与此活动"
 
   views:
+    edit: "修改"
+    check_in: "签到"
     events:
       new:
         title: "发起活动"
       edit:
         title: "修改活动"
+      slug:
+        hint: '相同链接的活动组成系列活动，访问此链接时显示最近一个活动'
     profiles:
       show:
         title: "个人资料"
+    users:
+      apply_sign_up: "活动组织者申请注册成功后才可以发起活动，普通参与者可以直接在活动报名页面注册。"
+      upgrade_invitation: "此功能只对少数活动组织者开放，申请后才能使用。普通参与者可以直接在活动报名页面注册"
+    follow:
+      state:
+        false: 关注
+        true: 已关注
 
   email:
     welcome:
       subject: "欢迎来到19屋"
+    invited:
+      subject: "%{login}, 您现在可以发起活动了"
+    notify:
+      subject: "19屋新活动 - %{title}"
     profiles:
       show:
         title: "个人资料"
+
+  errors:
+    messages:
+      invalid_login: 只允许大小写字母、数字和下划线

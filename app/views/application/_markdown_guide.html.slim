@@ -1,0 +1,55 @@
+#markdownModal.modal.hide.fade tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+
+  .modal-header
+    button.close data-dismiss="modal" aria-hidden="true" x
+    h3#myModalLabel =t('labels.markdown_guide')
+
+  .modal-body
+    .column
+      h5 格式化文本
+      p.muted 标题
+      pre
+        |# 这是一个 &lt;h1&gt; 标签
+         ## 这是一个 &lt;h2&gt; 标签
+         ###### 这是一个 &lt;h6&gt; 标签
+      p.muted 字体
+      pre
+        |*这是斜体*
+         **这是粗体**
+    .column
+      h5 列表
+      p.muted 无序
+      pre
+        |* 条目1
+         * 条目2
+           * 条目2a
+           * 条目2b
+      p.muted 有序
+      pre
+        |1. 条目1
+         2. 条目2
+           * 条目2a
+           * 条目2b
+    .column
+      h5 其他
+      p.muted 图片
+      pre
+        |![19wu Logo](/images/logo.png)
+          格式: [图片名](url)
+      p.muted 链接
+      pre
+        |http://19wu.com - 自动转换为链接!
+         [19wu](http://www.19wu.com)
+      p.muted 引用
+      pre
+        |孔子曾经曰过：
+         > 有朋自远方来，不亦乐乎!
+      p.muted 代码块
+      pre
+        |```
+         第一行无空格
+           第二行前面两个空格也会保留
+         ```
+
+  .modal-footer
+    button.btn data-dismiss="modal" aria-hidden="true" =t('labels.cancel')

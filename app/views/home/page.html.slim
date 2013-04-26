@@ -1,0 +1,29 @@
+- content_for :before_content do
+
+  .jumbotron
+    .container
+      .row
+        .span6
+          .slogan
+            h1.slogan-title = t('slogan.title')
+            p.slogan-description = t('slogan.description')
+        .span4.offset2
+          form.form-full-width action=user_invitation_path method="post"
+            input.input-large name='user[email]' type='email' ng-required='true' placeholder=User.human_attribute_name(:email)
+            textarea rows="3" cols="40" name="user[invite_reason]" ng-required='true' placeholder=t('simple_form.placeholders.user.invite_reason')
+            .help-block = t('views.users.apply_sign_up')
+            input.btn.btn-success.btn-large type="submit" value=t('labels.apply_sign_up')
+
+.row.spotlights
+  .spotlight.span4
+    = image_tag 'spotlight-free.png'
+    h3 = t('highlights.free.title')
+    p = t('highlights.free.description')
+  .spotlight.span4
+    = image_tag 'spotlight-devices.png'
+    h3 = t('highlights.devices.title')
+    p = t('highlights.devices.description')
+  .spotlight.span4
+    = image_tag 'spotlight-team.png'
+    h3 = t('highlights.team.title')
+    p = raw t('highlights.team.description', :github => link_to('Github', 'https://github.com/saberma/19wu'), :join_us => link_to(t('highlights.team.title'), 'https://github.com/saberma/19wu'))

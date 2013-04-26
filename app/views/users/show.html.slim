@@ -1,13 +1,16 @@
 = content_tag_for :article, @user do
 
   header
-    h1.l-page-title
-      = @user.login
-      -if @profile.name.present?
-        small = @profile.name
-    ul.user-info.unstyled.inline.muted
-      -if @profile.website.present?
-        li = @profile.website
-      li = "#{l @user.created_at.to_date} 加入"
+    .row
+      .span2 = image_tag @user.gravatar_url(:size => 160), :class => 'gravatar'
+      .span10
+        h1.user-title
+          = @user.login
+          -if @profile.name.present?
+            small = @profile.name
+        ul.user-info.unstyled.inline.muted
+          -if @profile.website.present?
+            li = @profile.website
+          li #{l @user.created_at.to_date} 加入
 
-  .user-body = raw @user.profile.bio_html
+        .user-body = raw @user.profile.bio_html

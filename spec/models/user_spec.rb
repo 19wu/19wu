@@ -1,3 +1,4 @@
+# encoding: utf-8
 require 'spec_helper'
 
 describe User do
@@ -9,20 +10,36 @@ describe User do
   end
 
   context "fails validation" do
-    it "with a blank login" do
-      user.login = ''
-      expect(user.save).to be_false
-    end
-
-    it "with a invalid format login" do
-      user.login = 'foo@bar'
-      expect(user.save).to be_false
-    end
-
-    it "with a duplicated login" do
-      create :user, :login => user.login
-
-      expect(user.save).to be_false
+    context "login" do
+      context 'is blank' do
+        before { user.login = '' }
+        its(:valid?) { should be_false }
+      end
+      context 'is format invalid' do
+        before { user.login = 'foo@bar' }
+        it 'should show clear message' do
+          subject.valid?.should be_false
+          subject.errors[:login].should eql ['只允许大小写字母、数字和下划线']
+        end
+      end
+      context 'is exploit_code' do
+        before { user.login = "javascript:it();\nok" }
+        it { should have(1).error_on(:login) }
+      end
+      context 'has been taken' do
+        context 'by other user' do
+          before { user.login = create(:user).login }
+          its(:valid?) { should be_false }
+        end
+        context 'by other group' do
+          before { user.login = create(:group).slug }
+          its(:valid?) { should be_false }
+        end
+        context 'by routes' do
+          before { user.login = 'photos' }
+          its(:valid?) { should be_false }
+        end
+      end
     end
 
     it "with a blank email" do
@@ -56,6 +73,15 @@ describe User do
     context 'without profile' do
       let(:user) { build :user, :profile => nil }
       its(:profile) { should be_a_kind_of(Profile) }
+    end
+  end
+  describe '#send_reset_password_instructions' do # issue#287
+    context 'user is waiting for invite' do
+      let(:user) { User.invite! email: 'demo@19wu.com', skip_invitation: true }
+      before { user.send_reset_password_instructions }
+      it 'should get errors' do
+        user.errors[:email].first.should eql '您正申请注册，请等待邀请邮件.'
+      end
     end
   end
 end

@@ -1,12 +1,17 @@
+@include sticky_footer;
+
 #content {
-  padding: 3 * $baseLineHeight 0;
+  padding: 2 * $baseLineHeight 0;
+  min-height: 20 * $baseLineHeight;
 }
 
 #footer {
   border-top: 1px solid $borderColor;
   padding: 2 * $baseLineHeight 0;
   background: $grayBackground;
-  @include footer_after($grayBackground);
+  li {
+    padding: 0 4px;
+  }
 }
 
 #flash .alert {
@@ -25,7 +30,7 @@
   }
 }
 
-.signed_out {
+.signed-out {
   #header {
     border-bottom: 1px solid $borderColor;
     padding: (0.5 * $baseFontSize) 0;
@@ -34,15 +39,6 @@
     @include box-shadow(none);
     border-width: 0;
     background: $bodyBackground;
-  }
-}
-
-.l-page-title {
-  font-size: $baseFontSize * 1.5;
-  line-height: $baseLineHeight * 1.5;
-  margin-bottom: 4px;
-  > small {
-    margin-left: 4px;
   }
 }
 
@@ -60,6 +56,5 @@
   }
   #footer {
     background: $bodyBackground;
-    @include footer_after($bodyBackground);
   }
 }

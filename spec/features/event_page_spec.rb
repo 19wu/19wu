@@ -9,7 +9,7 @@ feature 'event page' do
     MD
   }
 
-  given(:event) { create :event, :content => content }
+  given(:event) { FactoryGirl.create(:event, :content => content, :user => login_user) }
 
   scenario 'I see the markdown formatted event content' do
     visit event_path(event)
@@ -18,8 +18,16 @@ feature 'event page' do
     page.should have_selector('.event-body li', :text => 'list')
   end
 
+  scenario 'I see list of participants' do
+    users = create_list(:user, 5)
+    event.participated_users << users
+
+    visit event_path(event)
+    page.should have_selector('.event-participants img.gravatar', :count => 5)
+  end
+
   describe 'when user has signed in' do
-    let(:event) { FactoryGirl.create(:event) }
+    let(:event) { FactoryGirl.create(:event, :user => FactoryGirl.create(:user)) }
     before do
       sign_in
       Event.stub(:find).with(event.id.to_s).and_return(event)
@@ -48,18 +56,19 @@ feature 'event page' do
     end
   end
 
-  describe 'when user has signed in' do
+  describe 'when user has not signed in' do
+    let(:event) { FactoryGirl.create(:event, :user => FactoryGirl.create(:user)) }
     before do
       Event.stub(:find).with(event.id.to_s).and_return(event)
     end
 
     it 'init show' do
-        visit event_path(event)
-        page.should have_selector('button#join_event')
-        expect(page).to have_content I18n.t('labels.join_event_button')
+      visit event_path(event)
+      page.should have_selector('button#join_event')
+      expect(page).to have_content I18n.t('labels.join_event_button')
     end
 
-    it 'click join_event button will be seccses' do
+    it 'click join_event button will be redirect to user login view' do
       visit event_path(event)
       click_button 'join_event'
       current_path.should == new_user_session_path

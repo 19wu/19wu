@@ -1,7 +1,5 @@
+// event show
 .event {
-  header {
-    border-bottom: 1px solid $grayBackground;
-  }
   h1 {
     font-size: $baseFontSize * 2.25;
   }
@@ -11,12 +9,15 @@
   }
 }
 
+.social-count {
+  @include social-count(hsl(0, 0%, 98%), $btnBorder);
+}
+
 .event-body {
   margin-top: $baseLineHeight;
 }
 
 .event-sidebar {
-  margin: $baseLineHeight / 2;
   background-color: $grayLighter;
   padding: $baseLineHeight;
   > ul {
@@ -30,7 +31,48 @@
 .event-map img {
   border: 1px solid darken($grayLighter, 15%);
 }
-
 .event-contact {
   margin-left: $baseFontSize / 2;
+  a {
+    color: $grayDarker;
+    margin-right: 5px;
+  }
+}
+.event-participants {
+  @extend .horizontal;
+  li {
+    padding: 0 4px 4px 0;
+  }
+}
+
+// event list
+.event-list {
+  .avatar-wrapper {
+    line-height: 0;
+    float: left;
+    margin-top: 4px;
+    margin-right: 10px;
+    padding: 1px;
+    border: 1px solid $grayBackground;
+  }
+  .gravatar {
+    width: 50px;
+    height: 50px;
+  }
+}
+.event-item {
+  margin-bottom: $baseLineHeight / 2;
+}
+.event-item-time, .event-item-location {
+  @extend .muted;
+}
+
+// event form
+@media (max-width: 979px) {
+  input#event_slug {
+    width: 140px;
+  }
+}
+.event-form label.required abbr {
+    color: #CC0000;
 }
