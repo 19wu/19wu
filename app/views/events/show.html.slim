@@ -1,9 +1,9 @@
 article.event ng-init="event.id=#{@event.id}"
   header
     .actions.pull-right ng-controller="FollowsCtrl" ng-init="init(#{event_follow_info(@event)})"
-      a.btn href='{{href}}' ng-click='follow()' ng-class='{disabled: disabled}' data-toggle="tooltip" title='{{title}}'
+      a.btn ng-href='{{href}}' ng-click='follow()' ng-class='{disabled: disabled}' data-toggle="tooltip" title='{{title}}'
         i.icon-star
-        |{{ label }}
+        |&nbsp;{{labels[followed]}}
       a.social-count href="#" {{count}}
     h1 = @event.title
     h2 = time_merge(@event)
@@ -14,7 +14,7 @@ article.event ng-init="event.id=#{@event.id}"
         == @event.content_html
 
     .span4
-      .actions ng-controller="JoinCtrl" ng-init="init(#{event_join_info(@event)})"
+      .actions
         .event-sidebar
           ul.unstyled
             li
@@ -23,8 +23,8 @@ article.event ng-init="event.id=#{@event.id}"
             li
               i.icon-map-marker
               = @event.location
-            li
-              a.btn.btn-large.btn-block href='{{href}}' ng-click='join()' ng-class="{true: 'btn-warning', false: 'btn-success'}[joined]" data-toggle='tooltip' title='{{titles[joined]}}'
+            li ng-controller="JoinCtrl" ng-init="init(#{event_join_info(@event)})"
+              a.btn.btn-large.btn-block ng-href='{{href}}' ng-click='join()' ng-class="{true: 'btn-warning', false: 'btn-success'}[joined]" data-toggle='tooltip' title='{{titles[joined]}}'
                 = "{{ labels[joined] }}"
 
           .event-map == @event.location_guide_html
@@ -35,11 +35,23 @@ article.event ng-init="event.id=#{@event.id}"
               = link_to @event.user.login, user_path(@event.user)
               = @event.user.profile.phone
 
-          - participated_users = @event.participated_users.recent(10)
-          - unless participated_users.empty?
+          div ng-controller="ParticipantedUsersCtrl"
             hr
             h3
               |已参加用户
-              span.label.amount = "{{ count }}"
+              span.label.amount {{participated_users.length}}
             ul.event-participants
-              = render partial: 'users/participant', collection: participated_users, as: :user
+              li ng-repeat="user in participated_users"
+                .popover.top id="participant-{{user.id}}"
+                  .arrow
+                    h3.popover-title
+                      .user-title
+                        |{{user.login}}
+                        small ng-show="user.profile.name" {{user.profile.name}}
+                    .popover-content
+                      ul.user-info.unstyled.inline.muted
+                        li ng-show="user.profile.website" {{user.profile.website}}
+                        li {{user.created_at | date:'yyyy-MM-dd'}} 加入
+                      .user-body ng-bind-html-unsafe="user.profile.bio_html"
+                a ng-href="/{{user.login}}" bs-popover="" data-placement="left" data-target="#participant-{{user.id}}" data-trigger="hover" rel="popover"
+                  img.gravatar ng-src="{{user.avatar_url}}"

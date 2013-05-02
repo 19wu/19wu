@@ -218,6 +218,8 @@ GEM
       pry (>= 0.9.10)
     quiet_assets (1.0.1)
       railties (~> 3.1)
+    rabl (0.8.4)
+      activesupport (>= 2.3.14)
     rack (1.4.5)
     rack-cache (1.2)
       rack (>= 0.4)
@@ -372,6 +374,7 @@ DEPENDENCIES
   pry-nav
   pry-rails
   quiet_assets
+  rabl
   rails (= 3.2.13)
   rspec-rails
   rvm-capistrano

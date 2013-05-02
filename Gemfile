@@ -23,6 +23,7 @@ gem 'cancan'
 gem 'cohort_me'
 gem 'acts_as_follower'
 gem "angularjs-rails"
+gem "rabl"
 gem 'coveralls', require: false
 
 group :pg do
