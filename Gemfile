@@ -76,6 +76,7 @@ group :test do
   gem 'capybara'
   gem 'capybara-email'
   gem 'simplecov', :require => false
+  gem 'database_cleaner'
 end
 
 group :assets do
