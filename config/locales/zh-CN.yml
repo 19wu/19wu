@@ -65,8 +65,6 @@ zh-CN:
     launch_event: "发起活动"
     show_event: "查看活动"
     cancel: "取消"
-    join_event_button: "我要参加"
-    has_joined_event_button: "已报名"
     markdown_guide: "Markdown 格式说明"
     checked_in_event: "签到"
     check_in_button: "签到"

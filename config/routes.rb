@@ -34,7 +34,7 @@ NineteenWu::Application.routes.draw do
   devise_for :users, :controllers => { :registrations => "registrations", :invitations => 'invitations' }
 
   namespace :api, defaults: {format: 'json'} do
-    get '/events/:id/participated_users', to: "events#participated_users"
+    get '/events/:id/participants', to: "events#participants"
   end
 
   if defined?(MailsViewer)

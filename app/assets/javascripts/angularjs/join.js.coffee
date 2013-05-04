@@ -1,4 +1,4 @@
-@JoinCtrl = ['$scope', '$http', '$location', 'participated_users', ($scope, $http, $location, participated_users) ->
+@JoinCtrl = ['$scope', '$http', '$location', 'participants', ($scope, $http, $location, participants) ->
   $scope.init = (data) ->
     [$scope.count, $scope.labels, $scope.titles, $scope.joined] = data
     $scope.disabled = !$scope.user?
@@ -12,5 +12,5 @@
       $scope.count = data.count
       $scope.notice = data.notice
       $scope.joined = data.joined
-      participated_users.reload()
+      participants.reload()
 ]

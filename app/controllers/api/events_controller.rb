@@ -1,6 +1,6 @@
 module Api
   class EventsController < ApplicationController
-    def participated_users
+    def participants
       @event = Event.find(params[:id])
       @users = @event.participated_users.recent(10)
     end

@@ -24,8 +24,7 @@ article.event ng-init="event.id=#{@event.id}"
               i.icon-map-marker
               = @event.location
             li ng-controller="JoinCtrl" ng-init="init(#{event_join_info(@event)})"
-              a.btn.btn-large.btn-block ng-href='{{href}}' ng-click='join()' ng-class="{true: 'btn-warning', false: 'btn-success'}[joined]" data-toggle='tooltip' title='{{titles[joined]}}'
-                = "{{ labels[joined] }}"
+              a.btn.btn-large.btn-block ng-href='{{href}}' ng-click='join()' ng-class="{true: 'btn-warning', false: 'btn-success'}[joined]" data-toggle='tooltip' title='{{titles[joined]}}' {{labels[joined]}}
 
           .event-map == @event.location_guide_html
           hr
@@ -35,13 +34,13 @@ article.event ng-init="event.id=#{@event.id}"
               = link_to @event.user.login, user_path(@event.user)
               = @event.user.profile.phone
 
-          div ng-controller="ParticipantedUsersCtrl"
+          div ng-controller="ParticipantsCtrl"
             hr
             h3
               |已参加用户
-              span.label.amount {{participated_users.length}}
+              span.label.amount {{participants.length}}
             ul.event-participants
-              li ng-repeat="user in participated_users"
+              li ng-repeat="user in participants"
                 .popover.top id="participant-{{user.id}}"
                   .arrow
                     h3.popover-title

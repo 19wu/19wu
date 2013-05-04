@@ -15,7 +15,6 @@ describe "event", ->
         $httpBackend.when('POST', '/events/1/follow').respond(count: 2)
         scope.follow()
       it "should change label and count", ->
-        expect(scope.label).toBe(' 已关注')
         $httpBackend.flush()
         expect(scope.count).toBe(2)
     describe "unfollow", ->
@@ -24,7 +23,6 @@ describe "event", ->
         $httpBackend.when('POST', '/events/1/unfollow').respond(count: 0)
         scope.follow()
       it "should change label and count", ->
-        expect(scope.label).toBe(' 关注')
         $httpBackend.flush()
         expect(scope.count).toBe(0)
 
