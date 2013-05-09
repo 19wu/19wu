@@ -85,6 +85,7 @@ GEM
       simplecov (>= 0.7)
       thor
     daemons (1.1.9)
+    database_cleaner (0.9.1)
     delayed_job (3.0.4)
       activesupport (~> 3.0)
     delayed_job_active_record (0.3.3)
@@ -218,6 +219,8 @@ GEM
       pry (>= 0.9.10)
     quiet_assets (1.0.1)
       railties (~> 3.1)
+    rabl (0.8.4)
+      activesupport (>= 2.3.14)
     rack (1.4.5)
     rack-cache (1.2)
       rack (>= 0.4)
@@ -348,6 +351,7 @@ DEPENDENCIES
   cohort_me
   coveralls
   daemons
+  database_cleaner
   delayed_job_active_record
   devise
   devise_invitable
@@ -372,6 +376,7 @@ DEPENDENCIES
   pry-nav
   pry-rails
   quiet_assets
+  rabl
   rails (= 3.2.13)
   rspec-rails
   rvm-capistrano

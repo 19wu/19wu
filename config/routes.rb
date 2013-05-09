@@ -3,6 +3,7 @@ NineteenWu::Application.routes.draw do
   resources :events do
     member do
       post 'join'
+      post 'quit'
       post 'follow'
       post 'unfollow'
     end
@@ -31,6 +32,10 @@ NineteenWu::Application.routes.draw do
     end
   end
   devise_for :users, :controllers => { :registrations => "registrations", :invitations => 'invitations' }
+
+  namespace :api, defaults: {format: 'json'} do
+    get '/events/:id/participants', to: "events#participants"
+  end
 
   if defined?(MailsViewer)
     mount MailsViewer::Engine => '/delivered_mails'

@@ -144,7 +144,7 @@ describe EventsController do
           post 'join', id: event.id
         }.to change{event.participants.count}.by(1)
         user.following?(event.group).should be_true
-        response.should redirect_to(event_path(event))
+        response.should be_success
       end
       context 'and has already joined' do
         before { event.participants.create(user_id: user.id) }

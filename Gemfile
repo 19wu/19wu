@@ -23,6 +23,7 @@ gem 'cancan'
 gem 'cohort_me'
 gem 'acts_as_follower'
 gem "angularjs-rails"
+gem "rabl"
 gem 'coveralls', require: false
 
 group :pg do
@@ -75,6 +76,7 @@ group :test do
   gem 'capybara'
   gem 'capybara-email'
   gem 'simplecov', :require => false
+  gem 'database_cleaner'
 end
 
 group :assets do

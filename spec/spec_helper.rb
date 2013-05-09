@@ -5,6 +5,8 @@ Coveralls.wear!('rails')
 ENV["RAILS_ENV"] = 'test'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
+require 'capybara/rspec'
+require 'capybara/rails'
 #require 'rspec/autorun' # http://j.mp/WLeAs3
 require 'capybara/email/rspec'
 
@@ -40,7 +42,7 @@ RSpec.configure do |config|
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
   # instead of true.
-  config.use_transactional_fixtures = true
+  config.use_transactional_fixtures = false
 
   # If true, the base class of anonymous controllers will be inferred
   # automatically. This will be the default behavior in future versions of
@@ -52,4 +54,18 @@ RSpec.configure do |config|
   # the seed, which is printed after each run.
   #     --seed 1234
   config.order = "random"
+
+  config.before(:suite) do
+    DatabaseCleaner.strategy = :truncation
+    DatabaseCleaner.clean_with(:truncation)
+  end
+
+  config.before(:each) do
+    DatabaseCleaner.start
+  end
+
+  config.after(:each) do
+    DatabaseCleaner.clean
+  end
+
 end
