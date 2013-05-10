@@ -14,16 +14,21 @@
             .help-block = t('views.users.apply_sign_up')
             input.btn.btn-success.btn-large type="submit" value=t('labels.apply_sign_up')
 
-.row.spotlights
-  .spotlight.span4
-    = image_tag 'spotlight-free.png'
-    h3 = t('highlights.free.title')
-    p = t('highlights.free.description')
-  .spotlight.span4
-    = image_tag 'spotlight-devices.png'
-    h3 = t('highlights.devices.title')
-    p = t('highlights.devices.description')
-  .spotlight.span4
-    = image_tag 'spotlight-team.png'
-    h3 = t('highlights.team.title')
-    p = raw t('highlights.team.description', :github => link_to('Github', 'https://github.com/saberma/19wu'), :join_us => link_to(t('highlights.team.title'), 'https://github.com/saberma/19wu'))
+.features
+  .row
+    .span4.offset1
+      h3 = t('features.follow.title')
+      h4 = t('features.follow.subtitle1')
+      p = t('features.follow.description1')
+      h4 = t('features.follow.subtitle2')
+      p = t('features.follow.description2')
+    .span5.offset1 = image_tag 'feature-follow.png'
+  hr
+  .row
+    .span5.offset1 = image_tag 'feature-slug.png'
+    .span4.offset1
+      h3 = t('features.slug.title')
+      h4 = t('features.slug.subtitle1')
+      p = t('features.slug.description1')
+      h4 = t('features.slug.subtitle2')
+      p = t('features.slug.description2')

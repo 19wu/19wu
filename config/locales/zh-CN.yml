@@ -18,7 +18,7 @@ zh-CN:
   layout:
     opensource: "Fork us"
     contact_us: "联系我们"
-    alpha_alert: "%{19wu}正在 Alpha 阶段，如果您有任何意见或建议，可以通过%{email}或者%{github}联系我们。"
+    alpha_alert: "您可以通过 %{email} 或者 %{github} 向我们反馈问题。"
     title: "19屋－让活动更好"
     copyright: "版权所有"
 
@@ -29,16 +29,19 @@ zh-CN:
     title: "让活动更好"
     description: "19屋致力于为活动组织者提供功能简洁、完全免费的服务"
 
-  highlights:
-    free:
-      title: "完全免费"
-      description: "19屋不会收取任何的使用费，您因此节省下来的成本可以为与会者提供更好的参会体验。"
-    devices:
-      title: "随时访问"
-      description: "您和与会者可以随时随地通过电脑，或者平板电脑、手机等移动设备来管理活动。"
-    team:
-      title: "加入我们"
-      description: "我们是%{github}上的开源团队，如果您愿意与我们一起成长，欢迎%{join_us}。"
+  features:
+    follow:
+      title: "让活动参与者越来越多"
+      subtitle1: "提高重复参加率"
+      description1: "参与者报名时会默认关注活动，以后每次举办新活动时，他都能得到及时通知"
+      subtitle2: "提升品牌价值"
+      description2: "随着举办次数的增加，关注者会随之增加；关注者越多，表示活动越吸引人"
+    slug:
+      title: "让活动更好推广"
+      subtitle1: "简短的活动地址"
+      description1: "参与者更容易记忆，可以随时使用手机查看活动时间、地址等信息"
+      subtitle2: "只记一个地址"
+      description2: "不管活动举办多少次，参与者都只需记住一个活动永久地址"
 
   home:
     menu:
