@@ -36,7 +36,7 @@ describe "event", ->
         scope.join()
       it "should be nothing to done", ->
         expect(scope.count).toBe(1)
-        expect(scope.joined).toBe('evnet_end')
+        expect(scope.joined).toBe('event_end')
 
   describe 'guest', ->
     describe "follow", ->
