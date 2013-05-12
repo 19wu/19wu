@@ -63,7 +63,7 @@ describe EventHelper do
     end
     context 'when event is not the last' do
       before do
-        create :event, :slug => event.group.slug, :start_time => Time.now, :end_time => nil, user: event.user
+        create :event, :slug => event.group.slug, :start_time => Time.now + 3.day, :end_time => nil, user: event.user
       end
       it { should == "/events/#{event.id}" }
     end

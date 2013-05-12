@@ -28,12 +28,19 @@ feature 'event page' do
 
   describe 'when user has signed in', js: true do
     let(:event) { FactoryGirl.create(:event, :user => FactoryGirl.create(:user)) }
+    let(:old_event) { FactoryGirl.create(:event, :slug => "rubyconfchina2", :start_time => Time.now - 3.day, :end_time => nil, :user => FactoryGirl.create(:user)) }
     before do
       sign_in
       Event.stub(:find).with(event.id.to_s).and_return(event)
+      Event.stub(:find).with(old_event.id.to_s).and_return(old_event) 
     end
 
     describe 'init show' do
+      it "event display end if start_time < Time.now" do 
+        visit event_path(old_event)
+        page.should have_selector('a', text: I18n.t('views.join.state')['event_end'])
+      end 
+
       it "hasn't join this event" do
         visit event_path(event)
         page.should have_selector('a', text: I18n.t('views.join.state')[false])
@@ -57,9 +64,16 @@ feature 'event page' do
 
   describe 'when user has not signed in', js: true do
     let(:event) { FactoryGirl.create(:event, :user => FactoryGirl.create(:user)) }
+    let(:old_event) { FactoryGirl.create(:event, :slug => "rubyconfchina2", :start_time => Time.now - 3.day, :end_time => nil, :user => FactoryGirl.create(:user)) }
     before do
       Event.stub(:find).with(event.id.to_s).and_return(event)
+      Event.stub(:find).with(old_event.id.to_s).and_return(old_event)
     end
+
+    it "event display end if start_time < Time.now" do 
+      visit event_path(old_event)
+      page.should have_selector('a', text: I18n.t('views.join.state')['event_end'])
+    end 
 
     it 'init show' do
       visit event_path(event)
