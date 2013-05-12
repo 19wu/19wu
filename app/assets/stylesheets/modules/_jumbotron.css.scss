@@ -28,17 +28,22 @@
   }
 }
 
-.spotlight {
-  text-align: center;
-  img {
-    margin-bottom: 0.5 * $baseLineHeight;
+.features {
+  h3, h4 {
+    font-weight: 300;
   }
   h3 {
     font-size: $baseFontSize * 1.75;
     line-height: $baseLineHeight * 2;
   }
-  p {
-    color: $gray;
+  h4 {
+    margin-top: $baseLineHeight;
+  }
+  img {
+    border: 1px solid $borderColor;
+  }
+  hr {
+    margin: $baseLineHeight * 4 $gridColumnWidth + $gridGutterWidth;
   }
 }
 

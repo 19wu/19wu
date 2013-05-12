@@ -36,7 +36,7 @@ html ng-app='19wu'
         #content
           .container
             = content_for?(:content) ? yield(:content) : yield
-            .alpha-alert = raw t('layout.alpha_alert', :'19wu' => link_to(t('19wu'), root_url), :email => link_to('Email', 'mailto:mahb45@gmail.com'), :github => link_to('Github', 'https://github.com/saberma/19wu'))
+            .alpha-alert = raw t('layout.alpha_alert', :email => link_to('Email', 'mailto:mahb45@gmail.com'), :github => link_to('Github', 'https://github.com/saberma/19wu/issues'))
 
     footer#footer
       .container
