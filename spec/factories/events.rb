@@ -3,8 +3,8 @@
 FactoryGirl.define do
   factory :event do
     title "19wu development meeting"
-    start_time "2012-12-31 08:00:51"
-    end_time "2012-12-31 09:00:51"
+    start_time Time.now + 1.day
+    end_time Time.now + 2.day
     location "Tianjin, China"
     content "Contents here"
     slug "rubyconfchina"

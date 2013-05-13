@@ -107,9 +107,11 @@ zh-CN:
         true: 已关注
     join:
       state:
+        event_end: "已结束"
         false: "我要参加"
         true: "已报名"
       title:
+        event_end: "活动已结束"
         false: "赶快报名吧"
         true: "记得准时来参加哦"
 

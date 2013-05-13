@@ -12,8 +12,10 @@ feature 'new event' do
 
     fill_in 'event_title', with: attributes[:title]
     fill_in 'event_slug', with: attributes[:slug]
-    fill_in 'event_compound_start_time_attributes_date', with: attributes[:start_time].split(' ')[0]
-    fill_in 'event_compound_start_time_attributes_time', with: attributes[:start_time].split(' ')[1]
+    fill_in 'event_compound_start_time_attributes_date', with: attributes[:start_time].strftime("%Y-%m-%d") 
+    fill_in 'event_compound_start_time_attributes_time', with: attributes[:start_time].strftime("%H:%M:%S")
+    fill_in 'event_compound_end_time_attributes_date', with: attributes[:end_time].strftime("%Y-%m-%d")
+    fill_in 'event_compound_end_time_attributes_time', with: attributes[:end_time].strftime("%H:%M:%S")  
     fill_in 'event_location', with: attributes[:location]
     fill_in 'event_content', with: attributes[:content]
 

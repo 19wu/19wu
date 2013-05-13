@@ -33,6 +33,7 @@ module EventHelper
   def event_join_info(event)
     entry = [ event.participated_users.size, t('views.join.state'), t('views.join.title'), false ]
     entry[3] = true if event.has?(current_user)
+    entry[3] = 'event_end' if event.start_time < Time.now
     entry.to_json
   end
 
