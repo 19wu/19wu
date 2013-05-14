@@ -56,7 +56,8 @@ feature 'event page' do
   end
 
   describe 'when user has not signed in', js: true do
-    let(:event) { FactoryGirl.create(:event, :user => FactoryGirl.create(:user)) }
+    let(:user) { create(:user, :confirmed) }
+    let(:event) { create(:event, user: user) }
     before do
       Event.stub(:find).with(event.id.to_s).and_return(event)
     end
@@ -70,6 +71,10 @@ feature 'event page' do
       visit event_path(event)
       find('a', text: I18n.t('views.join.state')[false]).click
       current_path.should == new_user_session_path
+      fill_in 'user_email', with: user.email
+      fill_in 'user_password', with: user.password
+      click_button I18n.t('labels.sign_in')
+      page.should have_content(event.title) # issue#339
     end
   end
 
