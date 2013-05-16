@@ -4,7 +4,7 @@
     $scope.disabled = !$scope.user?
     if $scope.disabled
       $scope.title = "您需要登录后才能关注活动"
-      $scope.href = "/users/sign_in?return_to=#{$location.absUrl()}"
+      $scope.href = "/users/sign_in"
   $scope.join = ->
     return if $scope.joined == "event_end"
     return if $scope.disabled

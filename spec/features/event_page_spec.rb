@@ -27,8 +27,9 @@ feature 'event page' do
   end
 
   describe 'when user has signed in', js: true do
-    let(:event) { FactoryGirl.create(:event, :user => FactoryGirl.create(:user)) }
-    let(:old_event) { FactoryGirl.create(:event, :slug => "rubyconfchina2", :start_time => Time.now - 3.day, :end_time => nil, :user => FactoryGirl.create(:user)) }
+    let(:user) { create(:user, :confirmed) }
+    let(:event) { create(:event, user: user) }
+    let(:old_event) { create(:event, slug: "rubyconfchina2", start_time: 3.day.ago, end_time: nil, user: user) }
     before do
       sign_in
       Event.stub(:find).with(event.id.to_s).and_return(event)
@@ -63,8 +64,9 @@ feature 'event page' do
   end
 
   describe 'when user has not signed in', js: true do
-    let(:event) { FactoryGirl.create(:event, :user => FactoryGirl.create(:user)) }
-    let(:old_event) { FactoryGirl.create(:event, :slug => "rubyconfchina2", :start_time => Time.now - 3.day, :end_time => nil, :user => FactoryGirl.create(:user)) }
+    let(:user) { create(:user, :confirmed) }
+    let(:event) { create(:event, user: user) }
+    let(:old_event) { create(:event, slug: "rubyconfchina2", start_time: 3.day.ago, end_time: nil, user: user) }
     before do
       Event.stub(:find).with(event.id.to_s).and_return(event)
       Event.stub(:find).with(old_event.id.to_s).and_return(old_event)
@@ -84,6 +86,10 @@ feature 'event page' do
       visit event_path(event)
       find('a', text: I18n.t('views.join.state')[false]).click
       current_path.should == new_user_session_path
+      fill_in 'user_email', with: user.email
+      fill_in 'user_password', with: user.password
+      click_button I18n.t('labels.sign_in')
+      page.should have_content(event.title) # issue#339
     end
   end
 
