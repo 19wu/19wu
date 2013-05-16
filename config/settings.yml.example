@@ -16,6 +16,9 @@ defaults: &defaults
     # from: '19wu staging <19wu@19wu.mailgun.org>'
     from: '19wu <support@19wu.com>'
 
+    exception_recipients:
+      - 'mahb45@gmail.com'
+
     delivery_method: :smtp
 
     smtp_settings:
