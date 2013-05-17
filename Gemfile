@@ -11,7 +11,7 @@ mysql2_group = is_heroku ? :development : :mysql2
 source 'https://rubygems.org'
 
 # http://j.mp/11IRZng
-ruby '2.0.0'
+ruby '2.0.0' if is_heroku
 
 gem 'rails', '3.2.13'
 gem 'slim-rails', '1.1.1'
