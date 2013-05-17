@@ -22,6 +22,15 @@ defaults: &defaults
     delivery_method: :smtp
 
     smtp_settings:
+      # Sendgrid
+      #user_name: '19wu'
+      #password: '666666'
+      #domain: '19wu.com'
+      #address: 'smtp.sendgrid.net'
+      #port: 587
+      #authentication: :plain
+      #enable_starttls_auto: true
+
       # Gmail example
       # port: 587
       # address: 'smtp.gmail.com'
