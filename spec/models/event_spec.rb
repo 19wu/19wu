@@ -1,3 +1,4 @@
+# encoding: utf-8
 require 'spec_helper'
 
 describe Event do
@@ -88,6 +89,26 @@ describe Event do
     it 'can limit the number of participants' do
       event.participated_users << create_list(:user, 2)
       event.participated_users.recent(1).should have(1).user
+    end
+  end
+
+  describe '#sibling_events' do
+    it 'should return all events under the same group except itself' do
+      user   = create(:user)
+      event1 = create(:event, :user => user)
+      event2 = create(:event, :user => user)
+
+      event1.sibling_events.should == [event2]
+    end
+  end
+
+  describe '#history_url_text' do
+    it 'should return string contains event date along with number of participated users' do
+      event = create(:event, :start_time => Time.at(1368969404)) # Time.at(1368969404) == "2013-05-19 21:16:44 +0800"
+      event.participated_users << create(:user)
+      event.participated_users << create(:user)
+
+      event.history_url_text.should == "2013-05-19 2人参加"
     end
   end
 end
