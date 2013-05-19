@@ -1,3 +1,4 @@
+# encoding: utf-8
 class Event < ActiveRecord::Base
   extend CompoundDatetime::HasCompoundDatetime
   extend HasHtmlPipeline
@@ -31,6 +32,14 @@ class Event < ActiveRecord::Base
 
   def has?(user)
     return user && participants.exists?(user_id: user.id)
+  end
+
+  def sibling_events
+    group.events.latest.select { |e| e != self }
+  end
+
+  def history_url_text
+    start_time.strftime("%Y-%m-%d ") + participated_users.size.to_s + "人参加"
   end
 
   private
