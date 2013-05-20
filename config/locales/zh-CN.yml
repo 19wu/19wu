@@ -114,6 +114,9 @@ zh-CN:
         event_end: "活动已结束"
         false: "赶快报名吧"
         true: "记得准时来参加哦"
+    history:
+      title: "往期活动"
+      participants: "%{number}人参加"
 
   email:
     welcome:

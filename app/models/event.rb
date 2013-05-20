@@ -1,4 +1,3 @@
-# encoding: utf-8
 class Event < ActiveRecord::Base
   extend CompoundDatetime::HasCompoundDatetime
   extend HasHtmlPipeline
@@ -39,7 +38,7 @@ class Event < ActiveRecord::Base
   end
 
   def history_url_text
-    start_time.strftime("%Y-%m-%d ") + participated_users.size.to_s + "人参加"
+    start_time.strftime("%Y-%m-%d ") + I18n.t('views.history.participants', number: participated_users.size)
   end
 
   private

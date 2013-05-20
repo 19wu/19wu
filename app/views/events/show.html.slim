@@ -58,7 +58,7 @@ article.event ng-init="event.id=#{@event.id}"
         .sibling-events
           .event-sidebar
             i.icon-list
-            |历次活动
+            = t('views.history.title')
             ul
               - @event.sibling_events.each do |sibling_event|
                 li

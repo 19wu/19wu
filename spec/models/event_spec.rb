@@ -1,4 +1,3 @@
-# encoding: utf-8
 require 'spec_helper'
 
 describe Event do
@@ -108,7 +107,7 @@ describe Event do
       event.participated_users << create(:user)
       event.participated_users << create(:user)
 
-      event.history_url_text.should == "2013-05-19 2人参加"
+      event.history_url_text.should == "2013-05-19 " + I18n.t('views.history.participants', number: 2)
     end
   end
 end
