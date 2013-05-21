@@ -76,3 +76,49 @@
 .event-form label.required abbr {
     color: #CC0000;
 }
+
+// event follower
+.event-follower-title{
+    font-size: $baseFontSize * 2.25;
+    font-weight: bold;
+}
+
+.event-follower-title:hover{
+  text-decoration:none; 
+}
+
+h2 {
+  font-size: $baseFontSize * 1.25;
+}
+
+.follower-list{
+  border-top: 1px solid #DDDDDD;
+  margin: 15px 0;
+  list-style: none outside none;
+}
+
+.follower-item{
+  border-bottom: 1px solid #DDDDDD;
+  padding: 5px 0;
+}
+
+.follower-item .avatar-wrapper{
+  float: left;
+  line-height: 0;
+  margin-right: 10px;
+  padding: 1px;
+}
+.follower-url{
+  display: inline-block;
+  line-height: 30px;
+  margin-right: 5px;
+}
+
+.follower-login-name{
+  font-weight: bold;
+}
+
+.follower-name{
+  color: #999999;
+  font-style: bold;
+}

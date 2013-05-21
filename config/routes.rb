@@ -6,10 +6,12 @@ NineteenWu::Application.routes.draw do
       post 'quit'
       post 'follow'
       post 'unfollow'
+      get 'followers'
     end
     resources :participants, :only => [:index, :update]
   end
   get ":slug" => "group#event", :constraints => SlugConstraint, :as => :slug_event
+  get ":slug/followers" => "group#followers"
   get 'joined_events', to: "events#joined"
   match '/photos', to: "photo#create", :via => [:post, :put]
   post "/content/preview/" => "home#content_preview"

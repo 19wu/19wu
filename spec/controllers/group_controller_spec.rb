@@ -10,4 +10,12 @@ describe GroupController do
     end
   end
 
+  describe "GET 'followers'" do
+    let(:event) { create :event }
+    it "returns http success" do
+      get 'event', :slug => event.group.slug
+      response.should be_success
+    end
+  end
+
 end

@@ -95,6 +95,8 @@ zh-CN:
         title: "修改活动"
       slug:
         hint: '相同链接的活动组成系列活动，访问此链接时显示最近一个活动'
+      followers:
+        title: "关注者列表"
     profiles:
       show:
         title: "个人资料"

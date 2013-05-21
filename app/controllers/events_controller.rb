@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   include EventHelper
-  prepend_before_filter :authenticate_user!, except: [:show]
+  prepend_before_filter :authenticate_user!, except: [:show,:followers]
 
   def index
     @events = current_user.events.latest
@@ -85,5 +85,13 @@ class EventsController < ApplicationController
     group = Event.find(params[:id]).group
     current_user.stop_following group
     render json: { count: group.followers_count }
+  end
+
+  def followers
+    @event = Event.find(params[:id])
+    respond_to do |format|
+      format.html 
+      format.json { render json: @event }
+    end
   end
 end

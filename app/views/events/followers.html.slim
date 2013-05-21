@@ -1,2 +1,19 @@
-h1 Events#followers
-p Find me in app/views/events/followers.html.slim
+article.event-follower
+  header 
+    a.event-follower-title href=group_event_path(@event) =@event.title
+    h2 = t('.title', :scope => 'views')
+
+  ul.follower-list
+    - @event.group.followers.each do |user|
+      li.follower-item.row-fluid
+        a ng-href="/#{user.login}" 
+            .avatar-wrapper = image_tag user.gravatar_url(:size => 30), :class => 'gravatar', :title => "#{user.login}"
+        a.follower-url ng-href="/#{user.login}" 
+            span.follower-login-name = user.login
+        - if user.profile.name
+          span.follower-name
+            | (
+            = user.profile.name
+            | )
+
+
