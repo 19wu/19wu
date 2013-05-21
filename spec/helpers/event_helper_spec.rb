@@ -69,6 +69,20 @@ describe EventHelper do
     end
   end
 
+  describe '#group_event_followers_path' do
+    let(:event) { create :event }
+    subject { helper.group_event_followers_path(event) }
+    context 'when event is the last' do
+      it { should == "/#{event.group.slug}/followers" }
+    end
+    context 'when event is not the last' do
+      before do
+        create :event, :slug => event.group.slug, :start_time => 3.days.since, :end_time => nil, user: event.user
+      end
+      it { should == "/events/#{event.id}/followers" }
+    end
+  end
+
   describe '#event_follow_info' do
     before { helper.stub :current_user, nil }
     let(:event) { create :event }

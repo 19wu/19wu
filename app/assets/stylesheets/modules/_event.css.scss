@@ -78,6 +78,11 @@
 }
 
 // event follower
+.event-follower{
+  h2 {
+    font-size: $baseFontSize * 1.25;
+  }
+}
 .event-follower-title{
     font-size: $baseFontSize * 2.25;
     font-weight: bold;
@@ -85,10 +90,6 @@
 
 .event-follower-title:hover{
   text-decoration:none; 
-}
-
-h2 {
-  font-size: $baseFontSize * 1.25;
 }
 
 .follower-list{

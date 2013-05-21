@@ -5,7 +5,7 @@ article.event-follower
 
   ul.follower-list
     - @event.group.followers.each do |user|
-      li.follower-item.row-fluid
+      li.follower-item.row-fluid id="group_event_#{user.id}"
         a ng-href="/#{user.login}" 
             .avatar-wrapper = image_tag user.gravatar_url(:size => 30), :class => 'gravatar', :title => "#{user.login}"
         a.follower-url ng-href="/#{user.login}" 
@@ -15,5 +15,3 @@ article.event-follower
             | (
             = user.profile.name
             | )
-
-

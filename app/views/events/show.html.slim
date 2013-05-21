@@ -4,7 +4,7 @@ article.event ng-init="event.id=#{@event.id}"
       a.btn ng-href='{{href}}' ng-click='follow()' ng-class='{disabled: disabled}' data-toggle="tooltip" title='{{title}}'
         i.icon-star
         |&nbsp;{{labels[followed]}}
-      a.social-count href=group_event_path(@event)+"/followers" {{count}}
+      a.social-count href=group_event_followers_path(@event) {{count}}
     h1 = @event.title
     h2 = time_merge(@event)
 
