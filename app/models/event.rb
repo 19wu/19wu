@@ -33,6 +33,10 @@ class Event < ActiveRecord::Base
     return user && participants.exists?(user_id: user.id)
   end
 
+  def sibling_events
+    group.events.latest.select { |e| e != self }
+  end
+
   private
   def end_time_must_after_start_time
     if end_time.present? && start_time.present? && end_time < start_time

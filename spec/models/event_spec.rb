@@ -90,4 +90,14 @@ describe Event do
       event.participated_users.recent(1).should have(1).user
     end
   end
+
+  describe '#sibling_events' do
+    it 'should return all events under the same group except itself' do
+      user   = create(:user)
+      event1 = create(:event, :user => user)
+      event2 = create(:event, :user => user)
+
+      event1.sibling_events.should == [event2]
+    end
+  end
 end

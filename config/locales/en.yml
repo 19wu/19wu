@@ -103,6 +103,9 @@ en:
       state:
         false: Follow 
         true: Following
+    history:
+      title: "Previous Events"
+      participants: "%{number} people joined"
 
   email:
     welcome:
