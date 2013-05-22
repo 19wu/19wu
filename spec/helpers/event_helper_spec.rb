@@ -75,4 +75,14 @@ describe EventHelper do
     subject { helper.event_follow_info(event) }
     it { should eql [0, { false: '关注' , true: '已关注' }, false].to_json }
   end
+
+  describe '#history_url_text' do
+    it 'should return string contains event date along with number of participated users' do
+      event = create(:event, :start_time => Time.at(1368969404)) # Time.at(1368969404) == "2013-05-19 21:16:44 +0800"
+      event.participated_users << create(:user)
+      event.participated_users << create(:user)
+
+      history_url_text(event).should == "2013-05-19 " + I18n.t('views.history.participants', number: 2)
+    end
+  end
 end

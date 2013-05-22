@@ -62,4 +62,4 @@ article.event ng-init="event.id=#{@event.id}"
             ul
               - @event.sibling_events.each do |sibling_event|
                 li
-                  = link_to sibling_event.history_url_text, sibling_event
+                  = link_to history_url_text(sibling_event), sibling_event

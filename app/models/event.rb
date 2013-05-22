@@ -37,10 +37,6 @@ class Event < ActiveRecord::Base
     group.events.latest.select { |e| e != self }
   end
 
-  def history_url_text
-    start_time.strftime("%Y-%m-%d ") + I18n.t('views.history.participants', number: participated_users.size)
-  end
-
   private
   def end_time_must_after_start_time
     if end_time.present? && start_time.present? && end_time < start_time
