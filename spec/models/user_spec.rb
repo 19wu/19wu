@@ -84,4 +84,19 @@ describe User do
       end
     end
   end
+
+  describe "#owner_of_event?" do
+    let(:lilei) { create :user }
+    let(:hanmeimei) { create :user }
+    let(:event1) { create :event, user: lilei }
+    let(:event2) { create :event, user: hanmeimei }
+
+    it "should return true if user is the owner of event" do
+      lilei.owner_of_event?(event1).should == true
+    end
+
+    it "should return false if user is not the owner of event" do
+      lilei.owner_of_event?(event2).should == false
+    end
+  end
 end

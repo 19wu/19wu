@@ -5,6 +5,8 @@ article.event ng-init="event.id=#{@event.id}"
         i.icon-star
         |&nbsp;{{labels[followed]}}
       a.social-count href="#" {{count}}
+    - if user_signed_in? && current_user.owner_of_event?(@event)
+      = link_to I18n.t('views.edit'), edit_event_path(@event), class: "btn pull-right"
     h1 = @event.title
     h2 = time_merge(@event)
 
