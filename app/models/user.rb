@@ -47,6 +47,10 @@ class User < ActiveRecord::Base
     end
   end
 
+  def owns?(event)
+    event.user == self
+  end
+
   private
   def login_must_uniq
     if Group.exists?(:slug => login) || !FancyUrl.valid_for_short_url?(login)

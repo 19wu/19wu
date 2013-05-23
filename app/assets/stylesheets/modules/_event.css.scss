@@ -1,4 +1,13 @@
 // event show
+header {
+  .event-title {
+    color: $grayDark;
+  }
+  .btn {
+    margin-left: 5px;
+  }
+}
+
 .event {
   h1 {
     font-size: $baseFontSize * 2.25;
