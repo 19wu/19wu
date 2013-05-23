@@ -1,5 +1,11 @@
 // participant list
 .participant-list {
+  .center {
+    width: auto;
+    display: table;
+    margin-left: auto;
+    margin-right: auto;
+  }
   .avatar-wrapper {
     line-height: 0;
     float: left;
@@ -9,14 +15,21 @@
     border: 1px solid $grayBackground;
   }
   .gravatar {
-    width: 50px;
-    height: 50px;
+    width: 132px;
+    height: 132px;
   }
 }
-.participant-item {
-  margin-bottom: $baseLineHeight / 2;
-  height: 60px;
+.participant-login-name {
+  color: #333;
+  font-weight: bold;
+  text-align: center;
+  margin: 7px 0;
+  height: 20px;
 }
 .participant-name {
-  @extend .muted;
+  color: #999;
+  font-size: 12px;
+  text-align: center;
+  margin: 7px 0;
+  height: 20px;
 }
