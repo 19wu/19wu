@@ -109,8 +109,6 @@ $ ->
               previewSec.find('.previews').append(data.result)
         })
 
-
-
   $('[rel=popover]').each ->
     options = {}
     $this = $(this)
@@ -125,3 +123,21 @@ $ ->
     $this.popover(options)
 
   $("a[data-toggle='tooltip']").tooltip()
+
+  updateMap = (location) ->
+    markers = map.getOverlays()
+    i = 0
+    while i < markers.length
+      map.removeOverlay markers[i]
+      i++
+
+    myGeo.getPoint location, ((point) ->
+      if point
+        map.centerAndZoom point, 17
+        map.addOverlay new BMap.Marker(point)
+    ), "中国"
+
+  $("#event_location").keyup ->
+    updateMap(@value)
+
+  updateMap $("#event_location").val() unless $("#event_location").val() is ""

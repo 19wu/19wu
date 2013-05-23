@@ -58,3 +58,22 @@
     background: $bodyBackground;
   }
 }
+
+#mapPreview {
+  overflow: hidden;
+  margin: 0;
+  height: 350px;
+}
+
+#l-map {
+  height: 100%;
+  width: 78%;
+  float: left;
+  border-right: 2px solid #bcbcbc;
+}
+
+#r-result {
+  height: 100%;
+  width: 100%;
+  float: left;
+}
