@@ -1,9 +1,6 @@
-legend
-  |#{t('views.check_in')}
-  |  - 
-  = link_to @event.title, @event
-  .pull-right
-    = link_to t('views.edit'), edit_event_path(@event), :class => 'btn btn-link pull-left'
+article
+  h1 = link_to @event.title, event_path(@event)
+  = render 'events/menu'
 
 .participant-list
   = div_for(@participants, :class => "participant-item row-fluid") do |participant|

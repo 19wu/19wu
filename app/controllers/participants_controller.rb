@@ -1,6 +1,7 @@
 class ParticipantsController < ApplicationController
   prepend_before_filter :authenticate_user!
   before_filter :authenticate_event_creator!
+  set_tab :check_in
 
   def index
     @participants = @event.participants.joins(:user).order('users.login ASC').includes(:user => :profile)

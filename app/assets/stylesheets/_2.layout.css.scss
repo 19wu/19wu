@@ -1,7 +1,7 @@
 @include sticky_footer;
 
 #content {
-  padding: 2 * $baseLineHeight 0;
+  padding: $baseLineHeight 0;
   min-height: 20 * $baseLineHeight;
 }
 

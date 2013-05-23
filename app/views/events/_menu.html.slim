@@ -1,0 +1,7 @@
+.navbar
+  .navbar-inner
+    = tabs_tag builder: EventMenu do |tab|
+      = tab.edit t('views.edit'), edit_event_path(@event)
+      li.divider-vertical
+      = tab.check_in t('views.check_in'), event_participants_path(@event)
+      li.divider-vertical

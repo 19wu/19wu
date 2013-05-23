@@ -5,10 +5,10 @@ article.event ng-init="event.id=#{@event.id}"
         i.icon-star
         |&nbsp;{{labels[followed]}}
       a.social-count href=group_event_followers_path(@event) {{count}}
-    - if current_user.try(:owns?, @event)
-      = link_to I18n.t('views.edit'), edit_event_path(@event), class: "btn pull-right"
     h1 = link_to @event.title, event_path(@event), class: 'event-title'
     h2 = time_merge(@event)
+    - if current_user.try(:owns?, @event)
+      = render 'menu'
 
   .row-fluid
     .span8
