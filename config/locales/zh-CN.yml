@@ -127,6 +127,8 @@ zh-CN:
       subject: "%{login}, 您现在可以发起活动了"
     notify:
       subject: "19屋新活动 - %{title}"
+    reminder:
+      subject: "19屋活动提醒"
     profiles:
       show:
         title: "个人资料"

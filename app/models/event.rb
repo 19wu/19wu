@@ -37,6 +37,14 @@ class Event < ActiveRecord::Base
     group.events.latest.select { |e| e != self }
   end
 
+  def self.reminder_participant
+    Event.where(:start_time => 1.day.since.beginning_of_day..1.day.since.end_of_day).each do |e|
+      e.participated_users.each do |participant|
+        UserMailer.delay.reminder_email participant, e
+      end
+    end
+  end
+
   private
   def end_time_must_after_start_time
     if end_time.present? && start_time.present? && end_time < start_time

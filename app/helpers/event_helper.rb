@@ -62,5 +62,4 @@ module EventHelper
   def history_url_text(event)
     event.start_time.strftime("%Y-%m-%d ") + I18n.t('views.history.participants', number: event.participated_users.size)
   end
-
 end

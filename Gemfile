@@ -25,6 +25,7 @@ gem 'acts_as_follower'
 gem "angularjs-rails"
 gem "rabl"
 gem 'coveralls', require: false
+gem 'whenever', :require => false
 
 group :pg do
   gem 'pg', :platform => [:ruby, :mswin, :mingw]
