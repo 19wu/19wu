@@ -21,8 +21,3 @@
 
 = render 'markdown_guide'
 = javascript_include_tag "http://api.map.baidu.com/api?v=1.5&ak=8E2cc2a4c3ec7b773963499fd744e42c"
-javascript:
-  var map = new BMap.Map("mapPreview");
-  map.addControl(new BMap.NavigationControl());
-  map.addControl(new BMap.ScaleControl());  
-  var myGeo = new BMap.Geocoder();

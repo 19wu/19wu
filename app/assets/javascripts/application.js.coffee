@@ -124,6 +124,15 @@ $ ->
 
   $("a[data-toggle='tooltip']").tooltip()
 
+  if $("#mapPreview").length or $("#baiduMap").length
+    if $("#mapPreview").length
+      map = new BMap.Map("mapPreview")
+    else
+      map = new BMap.Map("baiduMap")
+    map.addControl new BMap.NavigationControl()
+    map.addControl new BMap.ScaleControl()
+    myGeo = new BMap.Geocoder()
+
   updateMap = (location) ->
     markers = map.getOverlays()
     i = 0
