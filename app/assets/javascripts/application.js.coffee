@@ -142,7 +142,7 @@ $ ->
 
     myGeo.getPoint location, ((point) ->
       if point
-        map.centerAndZoom point, 17
+        map.centerAndZoom point, 16
         map.addOverlay new BMap.Marker(point)
     ), "中国"
 
@@ -150,3 +150,4 @@ $ ->
     updateMap(@value)
 
   updateMap $("#event_location").val() unless $("#event_location").val() is ""
+  updateMap $("#baiduMap").data("location") if $("#baiduMap").length
