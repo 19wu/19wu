@@ -93,6 +93,8 @@ en:
         title: "Edit event"
       slug:
         hint: '相同链接的活动组成系列活动，访问此链接时显示最近一个活动'
+      followers:
+        title: "Followers-List"
     profiles:
       show:
         title: "Profile"
