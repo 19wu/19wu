@@ -8,7 +8,7 @@ article.event ng-init="event.id=#{@event.id}"
     h1 = link_to @event.title, event_path(@event), class: 'event-title'
     h2 = time_merge(@event)
     - if current_user.try(:owns?, @event)
-      = render 'menu'
+      = render 'events/menu'
 
   .row-fluid
     .span8
