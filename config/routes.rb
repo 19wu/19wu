@@ -9,6 +9,7 @@ NineteenWu::Application.routes.draw do
       get 'followers'
     end
     resources :participants, :only => [:index, :update]
+    resources :summary, :only => [:new, :create]
   end
   get ":slug" => "group#event", :constraints => SlugConstraint, :as => :slug_event
   get ":slug/followers" => "group#followers"
