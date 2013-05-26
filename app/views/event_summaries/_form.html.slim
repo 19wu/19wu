@@ -1,0 +1,9 @@
+= f.error_notification
+
+.form-inputs
+  = f.input :content, :input_html => { :rows => 10, :class => 'span7' }, :as => 'uploadable'
+.form-actions
+  = f.button :submit, :class => 'btn-info'
+  a.btn href=root_path = t('labels.cancel')
+
+= render 'markdown_guide'
