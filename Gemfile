@@ -24,8 +24,8 @@ gem 'cohort_me'
 gem 'acts_as_follower'
 gem "angularjs-rails"
 gem "rabl"
-gem 'coveralls', require: false
 gem 'whenever', :require => false
+gem "tabs_on_rails"
 
 group :pg do
   gem 'pg', :platform => [:ruby, :mswin, :mingw]
@@ -76,8 +76,9 @@ end
 group :test do
   gem 'capybara'
   gem 'capybara-email'
-  gem 'simplecov', :require => false
   gem 'database_cleaner'
+  gem 'simplecov', :require => false
+  gem 'coveralls', require: false
 end
 
 group :assets do
