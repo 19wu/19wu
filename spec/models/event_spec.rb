@@ -1,3 +1,4 @@
+# coding: utf-8
 require 'spec_helper'
 
 describe Event do
@@ -98,6 +99,25 @@ describe Event do
       event2 = create(:event, :user => user)
 
       event1.sibling_events.should == [event2]
+    end
+  end
+
+  describe '#reminder_participant' do
+    let(:user) { create(:user, :confirmed) }
+    let(:event) { create(:event, start_time: 1.day.since, end_time: nil, user: user) }
+    subject { ActionMailer::Base.deliveries.last }
+    
+    before do
+      ActionMailer::Base.deliveries.clear
+
+    end
+    it 'should remind all participant' do
+      first = create(:user)
+      EventParticipant.create({ :user_id => first.id, :event_id => event.id, :created_at => Time.now },
+                              :without_protection => true)
+      Event.reminder_participant
+
+      subject.subject.should eql '19屋活动提醒'
     end
   end
 end
