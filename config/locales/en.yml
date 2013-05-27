@@ -93,6 +93,8 @@ en:
         title: "Edit event"
       slug:
         hint: '相同链接的活动组成系列活动，访问此链接时显示最近一个活动'
+      followers:
+        title: "Followers"
     profiles:
       show:
         title: "Profile"
@@ -114,6 +116,8 @@ en:
       subject: "%{login}, 您现在可以发起活动了"
     notify:
       subject: "19wu New events - %{title}"
+    reminder:
+      subject: "19屋活动提醒"
     profiles:
       show:
         title: "Profile"

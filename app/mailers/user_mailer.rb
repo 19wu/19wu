@@ -15,4 +15,10 @@ class UserMailer < ActionMailer::Base
     @event = event
     mail(:to => user.email, :subject => I18n.t('email.notify.subject', :title => event.title)).deliver
   end
+
+  def reminder_email(user, event)
+    @user = user
+    @event = event
+    mail(:to => user.email, :subject => I18n.t('email.reminder.subject')).deliver
+  end
 end

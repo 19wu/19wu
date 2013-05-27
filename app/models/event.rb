@@ -29,12 +29,25 @@ class Event < ActiveRecord::Base
 
   scope :latest, order('start_time DESC')
 
+  scope :upcoming, lambda { |today = Time.zone.now|
+    tomorrow = today.since(1.day)
+    where(:start_time => tomorrow.beginning_of_day..tomorrow.end_of_day)
+  }
+
   def has?(user)
     return user && participants.exists?(user_id: user.id)
   end
 
   def sibling_events
     group.events.latest.select { |e| e != self }
+  end
+
+  def self.remind_participants
+    Event.upcoming.find_each do |e|
+      e.participated_users.each do |participant|
+        UserMailer.delay.reminder_email participant, e
+      end
+    end
   end
 
   private
