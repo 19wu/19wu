@@ -40,7 +40,8 @@ article.event ng-init="event.id=#{@event.id}"
             hr
             h3
               |已参加用户
-              span.label.amount {{participants.length}}
+              span.label.amount
+                | {{participants.length}}
             ul.event-participants
               li ng-repeat="user in participants"
                 .popover.top id="participant-{{user.id}}"
@@ -48,11 +49,14 @@ article.event ng-init="event.id=#{@event.id}"
                     h3.popover-title
                       .user-title
                         |{{user.login}}
-                        small ng-show="user.profile.name" {{user.profile.name}}
+                        small ng-show="user.profile.name"
+                          |{{user.profile.name}}
                     .popover-content
                       ul.user-info.unstyled.inline.muted
-                        li ng-show="user.profile.website" {{user.profile.website}}
-                        li {{user.created_at | date:'yyyy-MM-dd'}} 加入
+                        li ng-show="user.profile.website"
+                          |{{user.profile.website}}
+                        li
+                          |{{user.created_at | date:'yyyy-MM-dd'}} 加入
                       .user-body ng-bind-html-unsafe="user.profile.bio_html"
                 a ng-href="/{{user.login}}" bs-popover="" data-placement="left" data-target="#participant-{{user.id}}" data-trigger="hover" rel="popover"
                   img.gravatar ng-src="{{user.avatar_url}}"
