@@ -14,6 +14,10 @@ article.event ng-init="event.id=#{@event.id}"
     .span8
       .event-body
         == @event.content_html
+      - if @event.event_summary
+        .event-summary
+          h2 = t('views.summary')
+          == @event.event_summary.content_html
 
     .span4
       .actions
