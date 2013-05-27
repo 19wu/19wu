@@ -51,6 +51,14 @@ class Event < ActiveRecord::Base
     end
   end
 
+  def finished?
+    !end_time.nil? && Time.now.utc > end_time.utc
+  end
+
+  def show_summary?
+    !!(event_summary || !finished? && group.last_event_with_summary)
+  end
+
   private
   def end_time_must_after_start_time
     if end_time.present? && start_time.present? && end_time < start_time

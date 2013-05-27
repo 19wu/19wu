@@ -86,6 +86,7 @@ en:
   views:
     edit: "Edit"
     summary: "Summary"
+    previous_summary: "Previous Event Summary"
     check_in: "Check in"
     events:
       new:
