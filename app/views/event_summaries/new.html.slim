@@ -1,4 +1,5 @@
 article
-  h1 = link_to(@event.title, event_path(@event)) + " - " + I18n.t('views.summary')
+  h1 = link_to(@event.title, event_path(@event))
+  = render 'events/menu'
   = simple_form_for @summary, :url => create_evnet_summary_path(@event), :html => { :class => "form-horizontal event-form" } do |f|
     = render 'form', :f => f

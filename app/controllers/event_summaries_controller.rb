@@ -1,5 +1,6 @@
 class EventSummariesController < ApplicationController
   prepend_before_filter :authenticate_user!
+  set_tab :event_summary, only: :new
 
   def new
     @event = current_user.events.find(params[:event_id])
