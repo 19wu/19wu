@@ -42,7 +42,7 @@ class Event < ActiveRecord::Base
     group.events.latest.select { |e| e != self }
   end
 
-  def self.reminder_participants
+  def self.remind_participants
     Event.upcoming.find_each do |e|
       e.participated_users.each do |participant|
         UserMailer.delay.reminder_email participant, e

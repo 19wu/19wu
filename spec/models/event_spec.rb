@@ -113,7 +113,7 @@ describe Event do
     end
   end
 
-  describe '#reminder_participants' do
+  describe '#remind_participants' do
     let(:user) { create(:user, :confirmed) }
     let(:event) { create(:event, start_time: 1.day.since, end_time: nil, user: user) }
     subject { ActionMailer::Base.deliveries.last }
@@ -127,7 +127,7 @@ describe Event do
     end
 
     it 'should remind all participants' do
-      Event.reminder_participants
+      Event.remind_participants
       subject.subject.should eql '19屋活动提醒'
       subject.to.should eql [user.email]
     end
