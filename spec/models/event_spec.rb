@@ -7,7 +7,7 @@ describe Event do
     expect(event).to be_valid
   end
 
-  context "fails validation" do
+  context "validation" do
     it "with a blank title" do
       event.title = ''
       expect(event.save).to be_false
@@ -41,8 +41,20 @@ describe Event do
       end
       context 'has been taken' do
         context 'by other group' do
-          before { event.slug = create(:group).slug }
-          its(:valid?) { should be_false }
+          let(:group) { create(:group) }
+          before { event.slug = group.slug }
+          context 'is not a collaborator' do
+            its(:valid?) { should be_false }
+          end
+          context 'is a collaborator' do
+            let(:partner) { create(:user) }
+            let(:collaborator) { create(:group_collaborator, group_id: group.id, user_id: partner.id) }
+            before do
+              collaborator
+              event.user = partner
+            end
+            its(:valid?) { should be_true }
+          end
         end
         context 'by other user' do
           before { event.slug = event.user.login }

@@ -18,5 +18,12 @@ describe Ability do
       let(:event) { create(:event) }
       it{ should_not be_able_to(:update, event) }
     end
+    context 'he is the collaborator' do
+      let(:event) { create(:event) }
+      let(:collaborator) { create(:group_collaborator, group_id: event.group.id, user_id: user.id) }
+      before { collaborator }
+      it{ should be_able_to(:create, Event) }
+      it{ should be_able_to(:update, event) }
+    end
   end
 end

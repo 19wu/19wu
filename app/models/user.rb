@@ -51,6 +51,15 @@ class User < ActiveRecord::Base
     event.user == self
   end
 
+  def collaborator?
+    GroupCollaborator.exists?(user_id: self.id)
+  end
+
+  def has?(slug)
+    group = Group.find_by_slug(slug)
+    group.nil? or group.user == self or group.collaborator?(self)
+  end
+
   private
   def login_must_uniq
     if Group.exists?(:slug => login) || !FancyUrl.valid_for_short_url?(login)
