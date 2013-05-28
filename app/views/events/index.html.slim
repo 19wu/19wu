@@ -1,8 +1,8 @@
 = render 'home/menu', :current => :events
 
-.event-list
+.list
   - @events.each do |event|
-    .event-item
+    .item
       .avatar-wrapper = image_tag event.user.gravatar_url(:size => 50), :class => 'gravatar'
       = link_to event.title, edit_event_path(event)
       .event-item-time

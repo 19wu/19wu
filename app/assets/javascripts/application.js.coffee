@@ -6,6 +6,7 @@
 #= require jquery-fileupload/basic
 #= require jquery.textarea.caret
 #= require bootstrap-timepicker
+#= require angular-strap.min
 #= require_self
 $ ->
   body = $("body")

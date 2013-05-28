@@ -1,4 +1,5 @@
 NineteenWu::Application.routes.draw do
+  get "autocomplete/users"
 
   resources :events do
     member do
@@ -9,6 +10,7 @@ NineteenWu::Application.routes.draw do
       get 'followers'
     end
     resources :participants, :only => [:index, :update]
+    resources :collaborators, :only => [:index, :create, :destroy]
   end
   get ":slug" => "group#event", :constraints => SlugConstraint, :as => :slug_event
   get ":slug/followers" => "group#followers"

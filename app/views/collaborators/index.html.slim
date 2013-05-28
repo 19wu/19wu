@@ -1,0 +1,15 @@
+article ng-init="event.id=#{@event.id}"
+  h1 = link_to @event.title, event_path(@event)
+  = render 'events/menu'
+
+.collaborators-list ng-controller='CollaboratorsCtrl' ng-init='items = #{@collaborators.to_json}'
+  .list
+    .item.clearfix ng-repeat="item in items"
+      .avatar-wrapper
+        img.gravatar ng-src="{{item.avatar_url}}"
+      a ng-href="/{{item.login}}" {{item.login}}
+      a.text-error href='javascript:void(0)' ng-click="remove($index)" (删除)
+  form.form-inline ng-submit="add()"
+    input.span3 bs-typeahead='load' ng-model='login' type='text' placeholder='输入他的登录名...'
+    button.btn type='submit' 增加
+  p.alert.alert-error ng-show='error' 此用户已经是协办者

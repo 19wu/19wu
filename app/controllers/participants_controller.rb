@@ -14,10 +14,4 @@ class ParticipantsController < ApplicationController
 
     redirect_to event_participants_path(@event), notice: I18n.t('flash.participants.checked_in', :name => participant.user.login)
   end
-
-  private
-  def authenticate_event_creator!
-    @event = Event.find(params[:event_id])
-    authorize! :update, @event
-  end
 end
