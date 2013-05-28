@@ -5,6 +5,7 @@
 #= require bootstrap-datepicker/core
 #= require jquery-fileupload/basic
 #= require jquery.textarea.caret
+#= require jquery.ba-throttle-debounce.min
 #= require bootstrap-timepicker
 #= require_self
 $ ->
@@ -133,18 +134,19 @@ $ ->
     map.addControl new BMap.ScaleControl()
     myGeo = new BMap.Geocoder()
 
-    updateMap = (location) ->
-      markers = map.getOverlays()
-      i = 0
-      while i < markers.length
-        map.removeOverlay markers[i]
-        i++
+    updateMap = $.debounce(200, (location) ->
+        console.log('hi')
+        markers = map.getOverlays()
+        i = 0
+        while i < markers.length
+          map.removeOverlay markers[i]
+          i++
 
-      myGeo.getPoint location, ((point) ->
-        if point
-          map.centerAndZoom point, 17
-          map.addOverlay new BMap.Marker(point)
-      ), "中国"
+        myGeo.getPoint location, ((point) ->
+          if point
+            map.centerAndZoom point, 17
+            map.addOverlay new BMap.Marker(point)
+        ), "中国")
 
     $("#event_location").keyup ->
       updateMap(@value)

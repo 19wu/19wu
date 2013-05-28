@@ -69,6 +69,6 @@ module ApplicationHelper
   end
 
   def baidu_map_enabled?
-    ! BaiduMap::ACCESS_KEY.nil?
+    ! Settings.baidumap_ak.empty?
   end
 end

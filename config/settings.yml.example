@@ -9,6 +9,11 @@ defaults: &defaults
   # host: '19wu.herokuapp.com'
   host: '19wu.com'
 
+  # Used to generate event location map automaticlly with Baidu Map API.
+  # You can request your access key from http://lbsyun.baidu.com/apiconsole/key
+  # By default, with an empty string, this feature will be disabled.
+  baidumap_ak: ''
+
   email: &email
     # Edit according to the smtp account domain.
     # e.g.

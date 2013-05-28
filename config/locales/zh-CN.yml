@@ -88,6 +88,7 @@ zh-CN:
   views:
     edit: "修改"
     check_in: "签到"
+    map_preview: "地图预览"
     events:
       new:
         title: "发起活动"

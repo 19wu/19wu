@@ -31,7 +31,7 @@ article.event ng-init="event.id=#{@event.id}"
           .event-map == @event.location_guide_html
           - if baidu_map_enabled?
             #baiduMap data-location={@event.location}
-            = javascript_include_tag "http://api.map.baidu.com/api?v=1.5&ak=" + BaiduMap::ACCESS_KEY
+            = javascript_include_tag "http://api.map.baidu.com/api?v=1.5&ak=" + Settings.baidumap_ak
           hr
           p
             span.label.label-important 联系人
