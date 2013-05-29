@@ -58,3 +58,14 @@
     background: $bodyBackground;
   }
 }
+
+#mapPreview {
+  overflow: hidden;
+  margin: 0;
+  height: 350px;
+}
+
+#baiduMap {
+  height: 320px;
+  width: 100%;
+}

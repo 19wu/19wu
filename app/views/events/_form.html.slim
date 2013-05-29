@@ -9,6 +9,12 @@
   = f.input :compound_end_time, :as => :compound_datetime, :compound_wrapper_html => { :class => 'span5' }
   = f.input :location, :input_html => { :class => 'span5' }
   = f.input :location_guide, :input_html => { :rows => 6, :class => 'span5' }, :as => 'uploadable'
+  - if baidu_map_enabled?
+    .control-group
+      label.string.required.control-label = I18n.t('views.map_preview')
+      .controls
+        #mapPreview.span5
+    = javascript_include_tag "http://api.map.baidu.com/api?v=1.5&ak=" + Settings.baidumap_ak
   = f.input :content, :input_html => { :rows => 12, :class => 'span5' }, :as => 'uploadable'
 .form-actions
   = f.button :submit, :class => 'btn-info'
