@@ -86,7 +86,6 @@ en:
   views:
     edit: "Edit"
     check_in: "Check in"
-    map_preview: "Map Preview"
     events:
       new:
         title: "Launch event"
