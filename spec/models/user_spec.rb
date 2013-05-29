@@ -84,19 +84,4 @@ describe User do
       end
     end
   end
-
-  describe "#owns?" do
-    let(:lilei) { create :user }
-    let(:hanmeimei) { create :user }
-    let(:event1) { create :event, user: lilei }
-    let(:event2) { create :event, user: hanmeimei }
-
-    it "should return true if user is the owner of event" do
-      lilei.owns?(event1).should == true
-    end
-
-    it "should return false if user is not the owner of event" do
-      lilei.owns?(event2).should == false
-    end
-  end
 end

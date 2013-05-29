@@ -47,15 +47,11 @@ class User < ActiveRecord::Base
     end
   end
 
-  def owns?(event)
-    event.user == self
-  end
-
   def collaborator?
     GroupCollaborator.exists?(user_id: self.id)
   end
 
-  def has?(slug)
+  def owns?(slug)
     group = Group.find_by_slug(slug)
     group.nil? or group.user == self or group.collaborator?(self)
   end

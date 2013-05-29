@@ -47,7 +47,7 @@ class Event < ActiveRecord::Base
   end
 
   def slug_must_uniq
-    if User.exists?(:login => slug) || !user.has?(slug) || !FancyUrl.valid_for_short_url?(slug)
+    if User.exists?(:login => slug) || !user.owns?(slug) || !FancyUrl.valid_for_short_url?(slug)
       errors.add(:slug, I18n.t('errors.messages.taken'))
     end
   end

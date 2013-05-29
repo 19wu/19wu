@@ -7,7 +7,7 @@ article.event ng-init="event.id=#{@event.id}"
       a.social-count href=group_event_followers_path(@event) {{count}}
     h1 = link_to @event.title, event_path(@event), class: 'event-title'
     h2 = time_merge(@event)
-    - if current_user.try(:owns?, @event)
+    - if can? :update, @event
       = render 'events/menu'
 
   .row-fluid
