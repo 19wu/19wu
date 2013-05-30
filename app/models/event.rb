@@ -3,6 +3,7 @@ class Event < ActiveRecord::Base
   extend HasHtmlPipeline
   belongs_to :user
   belongs_to :group
+  has_one :event_summary
   has_many :participants, :class_name => "EventParticipant"
   has_many :participated_users, :source => :user, :through => :participants do
     def recent(count = nil)
@@ -48,6 +49,14 @@ class Event < ActiveRecord::Base
         UserMailer.delay.reminder_email participant, e
       end
     end
+  end
+
+  def finished?
+    !end_time.nil? && Time.now.utc > end_time.utc
+  end
+
+  def show_summary?
+    !!(event_summary || !finished? && group.last_event_with_summary)
   end
 
   private

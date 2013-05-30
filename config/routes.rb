@@ -10,6 +10,11 @@ NineteenWu::Application.routes.draw do
     end
     resources :participants, :only => [:index, :update]
   end
+
+  get "events/:event_id/summary", to: "event_summaries#new", as: :new_evnet_summary
+  post "events/:event_id/summary", to: "event_summaries#create", as: :create_evnet_summary
+  put "events/:event_id/summary", to: "event_summaries#update"
+
   get ":slug" => "group#event", :constraints => SlugConstraint, :as => :slug_event
   get ":slug/followers" => "group#followers"
   get 'joined_events', to: "events#joined"

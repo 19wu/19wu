@@ -14,7 +14,10 @@ article.event ng-init="event.id=#{@event.id}"
     .span8
       .event-body
         == @event.content_html
-
+      - if @event.show_summary?
+        .event-summary
+          h2 = build_summary_title(@event)
+          == build_summary_content(@event)
     .span4
       .actions
         .event-sidebar

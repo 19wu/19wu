@@ -99,4 +99,48 @@ describe EventHelper do
       history_url_text(event).should == "2013-05-19 " + I18n.t('views.history.participants', number: 2)
     end
   end
+
+  describe '#build_summary_title' do
+    let(:user) { create(:user) }
+
+    it 'should return t("views.summary") if it has a summary' do
+      event1 = create(:event, user: user, start_time: 6.day.ago, end_time: 5.day.ago)
+      event2 = create(:event, user: user, start_time: 4.day.ago, end_time: 3.day.ago)
+      event3 = create(:event, user: user, start_time: 1.day.since, end_time: 2.day.since)
+      create(:event_summary, event: event2)
+
+      build_summary_title(event2).should == I18n.t("views.summary")
+    end
+
+    it 'should return I18n.t("views.previous_summary") along with the date of the last event with summary' do
+      event1 = create(:event, user: user, start_time: 6.day.ago, end_time: 5.day.ago)
+      event2 = create(:event, user: user, start_time:  Time.at(1368969404), end_time: 1.day.since) # Time.at(1368969404) == "2013-05-19 21:16:44 +0800"
+      event3 = create(:event, user: user, start_time: 1.day.since, end_time: 2.day.since)
+      create(:event_summary, event: event2)
+
+      build_summary_title(event3).should == I18n.t("views.previous_summary") + '(20130519)'
+    end
+  end
+
+  describe '#build_summary_content' do
+    let(:user) { create(:user) }
+
+    it 'should return content of its summary if it has a summary' do
+      event1 = create(:event, user: user, start_time: 6.day.ago, end_time: 5.day.ago)
+      event2 = create(:event, user: user, start_time: 4.day.ago, end_time: 3.day.ago)
+      event3 = create(:event, user: user, start_time: 1.day.since, end_time: 2.day.since)
+      create(:event_summary, event: event2)
+
+      build_summary_content(event2).should == create(:event_summary, event: event1).content_html
+    end
+
+    it 'should return content of summary of the last event with summary in group' do
+      event1 = create(:event, user: user, start_time: 6.day.ago, end_time: 5.day.ago)
+      event2 = create(:event, user: user, start_time: 4.day.ago, end_time: 3.day.ago)
+      event3 = create(:event, user: user, start_time: 1.day.since, end_time: 2.day.since)
+      create(:event_summary, event: event2)
+
+      build_summary_content(event3).should == event2.event_summary.content_html
+    end
+  end
 end

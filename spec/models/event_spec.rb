@@ -132,4 +132,55 @@ describe Event do
       subject.to.should eql [user.email]
     end
   end
+
+  describe '#finished?' do
+    it 'should return true if current time has past the end time' do
+      event = create(:event, start_time: 2.day.ago, end_time: 1.day.ago)
+      event.finished?.should == true
+    end
+
+    it 'should return false if current time does not reach the end time' do
+      event = create(:event, start_time: 1.day.since, end_time: 2.day.since)
+      event.finished?.should == false
+    end
+  end
+
+  describe '#show_summary?' do
+    let(:user) { create(:user) }
+
+    it 'should return true if it has a summary' do
+      event1 = create(:event, user: user, start_time: 6.day.ago, end_time: 5.day.ago)
+      event2 = create(:event, user: user, start_time: 4.day.ago, end_time: 3.day.ago)
+      event3 = create(:event, user: user, start_time: 1.day.since, end_time: 2.day.since)
+      create(:event_summary, event: event2)
+
+      event2.show_summary?.should == true
+    end
+
+    it 'should return ture if it has no summary and it is not finished and its group has an event with summary' do
+      event1 = create(:event, user: user, start_time: 6.day.ago, end_time: 5.day.ago)
+      event2 = create(:event, user: user, start_time: 4.day.ago, end_time: 3.day.ago)
+      event3 = create(:event, user: user, start_time: 1.day.since, end_time: 2.day.since)
+      create(:event_summary, event: event2)
+
+      event3.show_summary?.should == true
+    end
+
+    it 'should return false if it is finished and has not summary' do
+      event1 = create(:event, user: user, start_time: 6.day.ago, end_time: 5.day.ago)
+      event2 = create(:event, user: user, start_time: 4.day.ago, end_time: 3.day.ago)
+      event3 = create(:event, user: user, start_time: 1.day.since, end_time: 2.day.since)
+      create(:event_summary, event: event1)
+
+      event2.show_summary?.should == false
+    end
+
+    it 'should return false if is not finished and none of its siblings has a summary' do
+      event1 = create(:event, user: user, start_time: 6.day.ago, end_time: 5.day.ago)
+      event2 = create(:event, user: user, start_time: 4.day.ago, end_time: 3.day.ago)
+      event3 = create(:event, user: user, start_time: 1.day.since, end_time: 2.day.since)
+
+      event3.show_summary?.should == false
+    end
+  end
 end
