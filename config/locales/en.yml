@@ -88,7 +88,6 @@ en:
     summary: "Summary"
     previous_summary: "Previous Event Summary"
     check_in: "Check in"
-    map_preview: "Map Preview"
     events:
       new:
         title: "Launch event"

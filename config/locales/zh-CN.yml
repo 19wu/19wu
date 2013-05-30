@@ -90,7 +90,6 @@ zh-CN:
     summary: "活动总结"
     previous_summary: "往期活动总结"
     check_in: "签到"
-    map_preview: "地图预览"
     events:
       new:
         title: "发起活动"
