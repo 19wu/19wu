@@ -10,7 +10,7 @@ feature "add event summary to an event" do
   end
 
   scenario "submit with valid data" do
-    visit new_evnet_summary_path(event)
+    visit new_event_summary_path(event)
     fill_in :event_summary_content, with: "I really like this project, I learned a lot and growed my self."
     click_button submit
 
@@ -18,7 +18,7 @@ feature "add event summary to an event" do
   end
 
   scenario "submit with invalid data" do
-    visit new_evnet_summary_path(event)
+    visit new_event_summary_path(event)
     fill_in :event_summary_content, with: "broken!"
     click_on submit
 
