@@ -32,7 +32,11 @@ class ApplicationController < ActionController::Base
 
   # cancan exception handler
   rescue_from CanCan::AccessDenied do |exception|
-    redirect_to new_user_session_path, alert: I18n.t("unauthorized.default")
+    if current_user
+      render "application/403", status: 403
+    else
+      redirect_to new_user_session_path, alert: I18n.t("unauthorized.default")
+    end
   end
 
   protected
