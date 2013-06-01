@@ -1,6 +1,6 @@
 class ParticipantsController < ApplicationController
   prepend_before_filter :authenticate_user!
-  before_filter :authenticate_event_creator!
+  before_filter :authorize_event!
   set_tab :check_in
 
   def index
@@ -13,5 +13,11 @@ class ParticipantsController < ApplicationController
     participant.save
 
     redirect_to event_participants_path(@event), notice: I18n.t('flash.participants.checked_in', :name => participant.user.login)
+  end
+
+  private
+  def authorize_event!
+    @event = Event.find(params[:event_id])
+    authorize! :update, @event
   end
 end
