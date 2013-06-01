@@ -145,6 +145,7 @@ describe Event do
     end
   end
 
+<<<<<<< HEAD
   describe '#finished?' do
     it 'should return true if current time has past the end time' do
       event = create(:event, start_time: 2.day.ago, end_time: 1.day.ago)
@@ -193,6 +194,13 @@ describe Event do
       event3 = create(:event, user: user, start_time: 1.day.since, end_time: 2.day.since)
 
       event3.show_summary?.should == false
+    end
+
+  describe '#checkin_code' do
+    it "should return the checkin code of event" do
+      event = create(:event, slug: "ruby", start_time: '2013-05-25')
+
+      expect(event.checkin_code).to eq("c4f") # Digest::SHA1.hexdigest("ruby20130525") => c4f6638b33d630540d6af2230ca1e1d431e1c552
     end
   end
 end

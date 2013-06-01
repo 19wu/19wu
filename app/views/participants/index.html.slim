@@ -2,6 +2,13 @@ article
   h1 = link_to @event.title, event_path(@event)
   = render 'events/menu'
 
+.checkin-info.span6.offset3
+  #qrcode data-checkin-url="#{checkin_event_url(@event, checkin_code: @event.checkin_code)}"
+  #checkin-code
+    h1 = I18n.t('views.check_in_code')
+    h1 = @event.checkin_code
+    p 扫描左侧二维码快速签到
+
 - @participants.each_slice(4) do |line_participant|
   .participant-list
     .row-fluid
