@@ -1,7 +1,7 @@
 NineteenWu::Application.routes.draw do
   get "autocomplete/users"
 
-  resources :events do
+  resources :events, except: [:destroy] do
     member do
       post 'join'
       post 'quit'

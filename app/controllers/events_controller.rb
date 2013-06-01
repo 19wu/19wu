@@ -1,6 +1,7 @@
 class EventsController < ApplicationController
   include EventHelper
   prepend_before_filter :authenticate_user!, except: [:show,:followers]
+  load_and_authorize_resource only: [:edit, :update]
   set_tab :edit, only: :edit
 
   def index
@@ -38,12 +39,9 @@ class EventsController < ApplicationController
   end
 
   def edit
-    @event = current_user.events.find(params[:id])
   end
 
   def update
-    @event = current_user.events.find(params[:id])
-
     respond_to do |format|
       if @event.update_attributes(params[:event])
         format.html { redirect_to edit_event_path(@event), notice: I18n.t('flash.events.updated') }
@@ -52,16 +50,6 @@ class EventsController < ApplicationController
         format.html { render action: "edit" }
         format.json { render json: @event.errors, status: :unprocessable_entity }
       end
-    end
-  end
-
-  def destroy
-    @event = current_user.events.find(params[:id])
-    @event.destroy
-
-    respond_to do |format|
-      format.html { redirect_to events_url }
-      format.json { head :no_content }
     end
   end
 
