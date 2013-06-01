@@ -83,4 +83,20 @@ class EventsController < ApplicationController
       format.json { render json: @event }
     end
   end
+
+  def checkin
+    event = Event.find(params[:id])
+    participant = event.participants.find_by_user_id(current_user.id)
+    if participant.nil?
+      redirect_to event_path(event), alert: I18n.t('flash.participants.checked_in_need_join_first')
+    else
+      if params[:checkin_code] == event.checkin_code
+        participant.joined = true
+        participant.save
+        redirect_to event_path(event), notice: I18n.t('flash.participants.checked_in_welcome')
+      else
+        redirect_to event_path(event), alert: I18n.t('flash.participants.checked_in_wrong_checkin_code')
+      end
+    end
+  end
 end

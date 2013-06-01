@@ -82,6 +82,9 @@ en:
       updated: "Profile has been updated."
     participants:
       checked_in: "%{name} has checked."
+      checked_in_welcome: "You have checked in successfully!"
+      checked_in_need_join_first: "You havn't join this event yet!"
+      checked_in_wrong_checkin_code: "Your checkin code is wrong, please contact organizer!"
       joined: "您已经报名参与此活动"
 
   views:

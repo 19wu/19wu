@@ -83,6 +83,9 @@ zh-CN:
       updated: "个人资料已经更新"
     participants:
       checked_in: "%{name}已签到"
+      checked_in_welcome: "您已成功签到!"
+      checked_in_need_join_first: "您还没有报名哦，先去报名吧！"
+      checked_in_wrong_checkin_code: "您的签到码不正确，请联系现场工作人员!"
       joined: "您已经报名参与此活动"
       quited: "您已经取消参与此活动"
 
