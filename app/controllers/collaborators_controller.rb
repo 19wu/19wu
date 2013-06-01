@@ -1,7 +1,6 @@
 class CollaboratorsController < ApplicationController
   prepend_before_filter :authenticate_user!
-  before_filter :find_group
-  authorize_resource :group
+  before_filter :authorize_group!
   set_tab :collaborators
 
   def index
@@ -23,8 +22,9 @@ class CollaboratorsController < ApplicationController
   end
 
   private
-  def find_group
+  def authorize_group!
     @event = Event.find(params[:event_id])
     @group = @event.group
+    authorize! :update, @group
   end
 end

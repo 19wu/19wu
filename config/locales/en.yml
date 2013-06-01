@@ -50,6 +50,7 @@ en:
 
   helpers:
     submit:
+      add: "Add"
       event:
         create: "New event"
       profile:

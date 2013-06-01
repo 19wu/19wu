@@ -53,6 +53,7 @@ zh-CN:
 
   helpers:
     submit:
+      add: "增加"
       event:
         create: "新活动"
       profile:
