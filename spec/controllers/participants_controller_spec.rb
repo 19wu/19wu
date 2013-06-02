@@ -67,14 +67,14 @@ describe ParticipantsController do
       describe "GET 'index'" do
         it 'should be redirect to user login view' do
           get :index, :event_id => event.id
-          response.should redirect_to(new_user_session_path)
+          response.should render_template('application/403')
         end
       end
       describe "PUT 'update'" do
         let(:participant) { create(:event_participant, event_id: event.id, user_id: user.id) }
         it 'should be redirect to user login view' do
           put :update, event_id: event.id, id: participant.id
-          response.should redirect_to(new_user_session_path)
+          response.should render_template('application/403')
         end
       end
     end
