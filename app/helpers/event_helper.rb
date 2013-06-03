@@ -33,6 +33,10 @@ module EventHelper
     )
   end
 
+  def user_checked_in?(event, user)
+    event.participants.find_by_user_id(user.id).joined
+  end
+
   def event_follow_info(event)
     entry = [ event.group.followers_count, t('views.follow.state'), false ]
     entry[2] = true if current_user.try(:following?, event.group)
@@ -43,6 +47,7 @@ module EventHelper
     entry = [ event.participated_users.size, t('views.join.state'), t('views.join.title'), false ]
     entry[3] = true if event.has?(current_user)
     entry[3] = 'event_end' if event.start_time < Time.now
+    entry[3] = 'checked_in' if event.has?(current_user) && user_checked_in?(event, current_user)
     entry.to_json
   end
 

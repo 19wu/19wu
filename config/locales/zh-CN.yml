@@ -124,10 +124,12 @@ zh-CN:
         event_end: "已结束"
         false: "我要参加"
         true: "已报名"
+        checked_in: "已签到"
       title:
         event_end: "活动已结束"
         false: "赶快报名吧"
         true: "记得准时来参加哦"
+        checked_in: "尽情享受精彩活动吧"
     history:
       title: "往期活动"
       participants: "%{number}人参加"

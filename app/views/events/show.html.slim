@@ -33,7 +33,7 @@ article.event ng-init="event.id=#{@event.id}"
               i.icon-map-marker
               = @event.location
             li ng-controller="JoinCtrl" ng-init="init(#{event_join_info(@event)})"
-              a.btn.btn-large.btn-block ng-href='{{href}}' ng-click='join()' ng-class="{true: 'btn-warning', false: 'btn-success', event_end: 'btn-warning'}[joined]" data-toggle='tooltip' title='{{titles[joined]}}' {{labels[joined]}}
+              a.btn.btn-large.btn-block ng-href='{{href}}' ng-click='join()' ng-class="{true: 'btn-warning', false: 'btn-success', event_end: 'btn-warning', checked_in: 'btn-warning'}[joined]" data-toggle='tooltip' title='{{titles[joined]}}' {{labels[joined]}}
 
           .event-map == @event.location_guide_html
           - if baidu_map_enabled?

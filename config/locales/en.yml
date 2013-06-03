@@ -118,6 +118,17 @@ en:
     history:
       title: "Previous Events"
       participants: "%{number} people joined"
+    join:
+      state:
+        event_end: "Ended"
+        false: "Join"
+        true: "Joined"
+        checked_in: "Checked in"
+      title:
+        event_end: "This event has ended"
+        false: "Join now"
+        true: "Don't forget to attend"
+        checked_in: "Enjoy your time"
 
   email:
     welcome:
