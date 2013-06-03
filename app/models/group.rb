@@ -8,4 +8,11 @@ class Group < ActiveRecord::Base
   def collaborator?(user)
     self.collaborators.exists?(user_id: user.id)
   end
+
+  def last_event_with_summary
+    events.latest.each do |event|
+      return event unless event.event_summary.nil?
+    end
+    nil
+  end
 end

@@ -5,6 +5,8 @@
       li.divider-vertical
       = tab.check_in t('views.check_in'), event_participants_path(@event)
       li.divider-vertical
+      = tab.event_summary t('views.summary'), new_event_summary_path(@event)
+      li.divider-vertical
       - if can? :update, @event.group
         = tab.collaborators t('views.groups.collaborators'), event_collaborators_path(@event)
         li.divider-vertical

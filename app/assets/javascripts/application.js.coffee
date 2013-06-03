@@ -5,8 +5,10 @@
 #= require bootstrap-datepicker/core
 #= require jquery-fileupload/basic
 #= require jquery.textarea.caret
+#= require jquery.ba-throttle-debounce.min
 #= require bootstrap-timepicker
 #= require angular-strap.min
+#= require map
 #= require_self
 $ ->
   body = $("body")
@@ -109,8 +111,6 @@ $ ->
               previewSec.find('.preview-loading').hide()
               previewSec.find('.previews').append(data.result)
         })
-
-
 
   $('[rel=popover]').each ->
     options = {}

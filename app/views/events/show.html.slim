@@ -14,7 +14,10 @@ article.event ng-init="event.id=#{@event.id}"
     .span8
       .event-body
         == @event.content_html
-
+      - if @event.show_summary?
+        .event-summary
+          h2 = build_summary_title(@event)
+          == build_summary_content(@event)
     .span4
       .actions
         .event-sidebar
@@ -29,6 +32,9 @@ article.event ng-init="event.id=#{@event.id}"
               a.btn.btn-large.btn-block ng-href='{{href}}' ng-click='join()' ng-class="{true: 'btn-warning', false: 'btn-success', event_end: 'btn-warning'}[joined]" data-toggle='tooltip' title='{{titles[joined]}}' {{labels[joined]}}
 
           .event-map == @event.location_guide_html
+          - if baidu_map_enabled?
+            #baiduMap data-location={@event.location}
+            = javascript_include_tag "http://api.map.baidu.com/api?v=1.5&ak=" + Settings.baidumap_ak
           hr
           p
             span.label.label-important 联系人
@@ -40,7 +46,8 @@ article.event ng-init="event.id=#{@event.id}"
             hr
             h3
               |已参加用户
-              span.label.amount {{participants.length}}
+              span.label.amount
+                | {{participants.length}}
             ul.event-participants
               li ng-repeat="user in participants"
                 .popover.top id="participant-{{user.id}}"
@@ -48,11 +55,14 @@ article.event ng-init="event.id=#{@event.id}"
                     h3.popover-title
                       .user-title
                         |{{user.login}}
-                        small ng-show="user.profile.name" {{user.profile.name}}
+                        small ng-show="user.profile.name"
+                          |{{user.profile.name}}
                     .popover-content
                       ul.user-info.unstyled.inline.muted
-                        li ng-show="user.profile.website" {{user.profile.website}}
-                        li {{user.created_at | date:'yyyy-MM-dd'}} 加入
+                        li ng-show="user.profile.website"
+                          |{{user.profile.website}}
+                        li
+                          |{{user.created_at | date:'yyyy-MM-dd'}} 加入
                       .user-body ng-bind-html-unsafe="user.profile.bio_html"
                 a ng-href="/{{user.login}}" bs-popover="" data-placement="left" data-target="#participant-{{user.id}}" data-trigger="hover" rel="popover"
                   img.gravatar ng-src="{{user.avatar_url}}"

@@ -24,6 +24,7 @@ gem 'cohort_me'
 gem 'acts_as_follower'
 gem "angularjs-rails"
 gem "rabl"
+gem 'whenever', :require => false
 gem "tabs_on_rails"
 
 group :pg do

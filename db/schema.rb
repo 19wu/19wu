@@ -40,6 +40,11 @@ ActiveRecord::Schema.define(:version => 20130527075012) do
   add_index "event_participants", ["event_id"], :name => "index_event_participants_on_event_id"
   add_index "event_participants", ["user_id"], :name => "index_event_participants_on_user_id"
 
+  create_table "event_summaries", :force => true do |t|
+    t.text    "content"
+    t.integer "event_id"
+  end
+
   create_table "events", :force => true do |t|
     t.string   "title",          :null => false
     t.datetime "start_time"

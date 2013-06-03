@@ -12,6 +12,11 @@ NineteenWu::Application.routes.draw do
     resources :participants, :only => [:index, :update]
     resources :collaborators, :only => [:index, :create, :destroy]
   end
+
+  get "events/:event_id/summary", to: "event_summaries#new", as: :new_event_summary
+  post "events/:event_id/summary", to: "event_summaries#create", as: :create_event_summary
+  put "events/:event_id/summary", to: "event_summaries#update"
+
   get ":slug" => "group#event", :constraints => SlugConstraint, :as => :slug_event
   get ":slug/followers" => "group#followers"
   get 'joined_events', to: "events#joined"

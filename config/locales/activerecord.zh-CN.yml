@@ -3,6 +3,7 @@ zh-CN:
     models:
       user: "用户"
       event: "活动"
+      event_summary: "活动总结"
       profile: "资料"
     attributes:
       user:
@@ -23,6 +24,8 @@ zh-CN:
         location: "地点"
         location_guide: "交通指引"
         content: "简介"
+      event_summary:
+        content: "总结"
       profile:
         name: "名字"
         website: "主页"

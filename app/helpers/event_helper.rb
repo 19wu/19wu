@@ -46,6 +46,22 @@ module EventHelper
     entry.to_json
   end
 
+  def build_summary_title(event)
+    if event.event_summary
+      return I18n.t("views.summary")
+    elsif !event.finished? && event.group.last_event_with_summary
+      return I18n.t("views.previous_summary") + "(#{event.group.last_event_with_summary.start_time.strftime('%Y%m%d')})"
+    end
+  end
+
+  def build_summary_content(event)
+    if event.event_summary
+      return event.event_summary.content_html
+    elsif !event.finished? && event.group.last_event_with_summary
+      return event.group.last_event_with_summary.event_summary.content_html
+    end
+  end
+
   private
   def format_year(time)
     (time.year == Time.zone.now.year) ? :stamp : :stamp_with_year
@@ -62,5 +78,4 @@ module EventHelper
   def history_url_text(event)
     event.start_time.strftime("%Y-%m-%d ") + I18n.t('views.history.participants', number: event.participated_users.size)
   end
-
 end

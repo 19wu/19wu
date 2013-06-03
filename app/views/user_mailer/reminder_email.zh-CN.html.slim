@@ -1,0 +1,4 @@
+p #{@user.login}, 您好：
+
+p
+  |您报名参加的 #{@event.title} 将于明天（#{@event.start_time.strftime("%Y年%m月%d日")}） #{@event.start_time.strftime("%p")} #{@event.start_time.strftime("%I:%M")} 开始，请您准时参加。
