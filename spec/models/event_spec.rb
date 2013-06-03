@@ -145,7 +145,6 @@ describe Event do
     end
   end
 
-<<<<<<< HEAD
   describe '#finished?' do
     it 'should return true if current time has past the end time' do
       event = create(:event, start_time: 2.day.ago, end_time: 1.day.ago)
@@ -195,6 +194,7 @@ describe Event do
 
       event3.show_summary?.should == false
     end
+  end
 
   describe '#checkin_code' do
     it "should return the checkin code of event" do
