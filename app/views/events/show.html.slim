@@ -21,7 +21,7 @@ article.event ng-init="event.id=#{@event.id}"
     .span4
       .actions
         .event-sidebar
-          - if display_checkin_form?(@event, current_user) || true
+          - if display_checkin_form?(@event, current_user)
             .checkin.input-append
               input id="appendedInputButton" type="text" placeholder="请输入签到码"
               button.btn.btn-info 签到
