@@ -182,6 +182,18 @@ describe EventsController do
   describe "GET checkin" do
     context "user has joined this event" do
       context "with valid checkin code" do
+        it "should alert user if user already checked in" do
+          event = create(:event)
+          user  = create(:user, :confirmed)
+          participant = create(:event_participant, event: event, user: user)
+          participant.joined = true
+          participant.save
+          login_user user
+
+          get :checkin, id: event.id, checkin_code: event.checkin_code
+          expect(flash[:alert]).to eq(I18n.t('flash.participants.checked_in_more_than_1_time'))
+        end
+
         it "should checkin user"  do
           event = create(:event)
           user  = create(:user, :confirmed)
