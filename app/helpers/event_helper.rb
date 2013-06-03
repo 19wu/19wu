@@ -78,4 +78,9 @@ module EventHelper
   def history_url_text(event)
     event.start_time.strftime("%Y-%m-%d ") + I18n.t('views.history.participants', number: event.participated_users.size)
   end
+
+  def display_checkin_form?(event, user)
+    event.start_time.today? && event.has?(user) && ! event.participants.find_by_user_id(user.id).joined
+  end
+
 end
