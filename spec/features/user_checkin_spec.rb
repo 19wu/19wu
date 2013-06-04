@@ -7,7 +7,7 @@ feature "user check in", js: true do
   end
 
   scenario "checkin with valid checkin code" do
-    @event = create(:event, user: @lilei, start_time: Time.now)
+    @event = create(:event, user: @lilei, start_time: 0.day.since)
     @participant = create(:event_participant, event: @event, user: @hanmeimei)
     login_user @hanmeimei
 
@@ -21,7 +21,7 @@ feature "user check in", js: true do
   end
 
   scenario "checkin with invalid checkin code" do
-    @event = create(:event, user: @lilei, start_time: Time.now)
+    @event = create(:event, user: @lilei, start_time: 0.day.since)
     @participant = create(:event_participant, event: @event, user: @hanmeimei)
     login_user @hanmeimei
 
@@ -35,7 +35,7 @@ feature "user check in", js: true do
   end
 
   scenario "checkin 1 day before event start" do
-    @event = create(:event, user: @lilei, start_time: Time.now + 1.day)
+    @event = create(:event, user: @lilei, start_time: 1.day.since)
     @participant = create(:event_participant, event: @event, user: @hanmeimei)
     login_user @hanmeimei
 
@@ -44,7 +44,7 @@ feature "user check in", js: true do
   end
 
   scenario "checkin without join event" do
-    @event = create(:event, user: @lilei, start_time: Time.now)
+    @event = create(:event, user: @lilei, start_time: 0.day.since)
     login_user @hanmeimei
 
     visit checkin_event_path(@event, checkin_code: @event.checkin_code)
@@ -52,7 +52,7 @@ feature "user check in", js: true do
   end
 
   scenario "checkin twice" do
-    @event = create(:event, user: @lilei, start_time: Time.now)
+    @event = create(:event, user: @lilei, start_time: 0.day.since)
     @participant = create(:event_participant, event: @event, user: @hanmeimei)
     login_user @hanmeimei
 
