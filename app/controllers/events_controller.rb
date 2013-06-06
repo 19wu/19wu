@@ -62,7 +62,7 @@ class EventsController < ApplicationController
   def quit
     event = Event.find(params[:id])
     event.participated_users.delete(current_user)
-    render json: { count: event.participated_users.size, joined: event.has?(current_user), notice: I18n.t('flash.participants.quited')}    
+    render json: { count: event.participated_users.size, joined: event.has?(current_user), notice: I18n.t('flash.participants.quited')}
   end
 
   def follow
@@ -79,35 +79,59 @@ class EventsController < ApplicationController
   def followers
     @event = Event.find(params[:id])
     respond_to do |format|
-      format.html 
+      format.html
       format.json { render json: @event }
     end
   end
 
   def checkin
-    event = Event.find(params[:id])
-    participant = event.participants.find_by_user_id(current_user.id)
-    respond_to do |format|
-      if participant.nil?
-        format.html { redirect_to event_path(event), alert: I18n.t('flash.participants.checkin_need_join_first') }
-        format.json { render json: {"message_type" => "alert", "message_body" => I18n.t('flash.participants.checkin_need_join_first'), "keep" => false} }
-      elsif ! event.start_time.today?
-        format.html { redirect_to event_path(event), alert: I18n.t('flash.participants.checkin_in_need_the_same_day_of_event_starttime') }
-        format.json { render json: {"message_type" => "alert", "message_body" => I18n.t('flash.participants.checkin_in_need_the_same_day_of_event_starttime'), "keep" => false} }
-      elsif participant.joined
-        format.html { redirect_to event_path(event), alert: I18n.t('flash.participants.checkin_more_than_1_time') }
-        format.json { render json: {"message_type" => "alert", "message_body" => I18n.t('flash.participants.checkin_more_than_1_time'), "keep" => false} }
-      else
-        if params[:checkin_code] == event.checkin_code
-          participant.joined = true
-          participant.save
-          format.html { redirect_to event_path(event), notice: I18n.t('flash.participants.checkin_welcome') }
-          format.json { render json: {"message_type" => "notice", "message_body" => I18n.t('flash.participants.checkin_welcome'), "keep" => false} }
-        else
-          format.html { redirect_to event_path(event), alert: I18n.t('flash.participants.checkin_wrong_checkin_code') }
-          format.json { render json: {"message_type" => "alert", "message_body" => I18n.t('flash.participants.checkin_wrong_checkin_code'), "keep" => true} }
-        end
-      end
+    @event = Event.find(params[:id])
+    participant = @event.participants.find_by_user_id(current_user.id)
+    error = validate_checkin(@event, participant)
+    json = checkin_response_json(error)
+
+    unless error
+      participant.joined = true
+      participant.save
     end
+
+    respond_to do |format|
+      format.html {
+        flash[json['message_type']] = json['message_body']
+        redirect_to event_path(@event)
+      }
+      format.json {
+        render :json => json
+      }
+    end
+  end
+
+  private
+  # TODO: move these to a model using ActiveModel validation
+
+  # Return symbol representing validation result
+  def validate_checkin(event, participant)
+    if participant.nil?
+      :checkin_need_join_first
+    elsif ! event.start_time.today?
+      :checkin_in_need_the_same_day_of_event_starttime
+    elsif participant.joined
+      :checkin_more_than_1_time
+    elsif params[:checkin_code] != event.checkin_code
+      :checkin_wrong_checkin_code
+    end
+  end
+
+  def checkin_response_json(error)
+    # Only keep the button when user entered wrong code
+    keep_button = error == :checkin_wrong_checkin_code
+    message_type = error ? :alert : :notice
+    message = I18n.t("flash.participants.#{error || 'checkin_welcome'}")
+
+    {
+      "message_type" => message_type,
+      "message_body" => message,
+      "keep" => keep_button
+    }
   end
 end
