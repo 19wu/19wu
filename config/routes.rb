@@ -11,6 +11,7 @@ NineteenWu::Application.routes.draw do
     end
     resources :participants, :only => [:index, :update]
     resources :collaborators, :only => [:index, :create, :destroy]
+    resources :export, :only => [:index]
   end
 
   get "events/:event_id/summary", to: "event_summaries#new", as: :new_event_summary
