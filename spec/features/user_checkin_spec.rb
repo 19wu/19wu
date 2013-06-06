@@ -1,12 +1,12 @@
 require 'spec_helper'
 
-feature "user check in", js: true do
+feature "user check in" do
   background do
     @lilei = create(:user, :confirmed)
     @hanmeimei = create(:user, :confirmed)
   end
 
-  scenario "checkin with valid checkin code" do
+  scenario "checkin with valid checkin code", js: true do
     @event = create(:event, user: @lilei, start_time: 0.day.since)
     @participant = create(:event_participant, event: @event, user: @hanmeimei)
     login_user @hanmeimei
@@ -20,7 +20,7 @@ feature "user check in", js: true do
     expect(page).to have_content I18n.t('flash.participants.checkin_welcome')
   end
 
-  scenario "checkin with invalid checkin code" do
+  scenario "checkin with invalid checkin code", js: true do
     @event = create(:event, user: @lilei, start_time: 0.day.since)
     @participant = create(:event_participant, event: @event, user: @hanmeimei)
     login_user @hanmeimei
