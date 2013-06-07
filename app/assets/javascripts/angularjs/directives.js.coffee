@@ -1,4 +1,4 @@
-@app.directive 'bsPopover', () ->
+@app.directive 'bsPopoverCustom', () ->
   (scope, element, attrs) ->
     attrs.$observe 'target', (value) ->
       options = {}

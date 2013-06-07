@@ -68,7 +68,7 @@ article.event ng-init="event.id=#{@event.id}"
                         li
                           |{{user.created_at | date:'yyyy-MM-dd'}} 加入
                       .user-body ng-bind-html-unsafe="user.profile.bio_html"
-                a ng-href="/{{user.login}}" bs-popover="" data-placement="left" data-target="#participant-{{user.id}}" data-trigger="hover" rel="popover"
+                a ng-href="/{{user.login}}" bs-popover-custom="" data-placement="left" data-target="#participant-{{user.id}}" data-trigger="hover" rel="popover"
                   img.gravatar ng-src="{{user.avatar_url}}"
       - if @event.sibling_events.any?
         .sibling-events
