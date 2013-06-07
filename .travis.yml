@@ -23,7 +23,7 @@ after_script: "ruby script/travis/bundle_cache.rb"
 env:
   global:
     - BUNDLE_ARCHIVE="19wu"
-    - AWS_S3_REGION="us-west-1"
+    - AWS_S3_REGION="us-east-1"
     - AWS_S3_BUCKET="19wu"
     - secure: "EcbipPYfZxMS62cfroLKM7MGaShkuUH6Me2jMB/l9OhlD2gRUzXR9bQZx+1I\nGQMtk1v6D8KH2shR+8h6iKJzbD09mh8fDNBOBlLX2dlbCE1ZYJ2rYRFiCbcd\nSbcdP/xN+kOKo1Fe/eVCuQRTVYqHmMpwSSQA3Cbxv8pR31TCjNU="
   matrix:
