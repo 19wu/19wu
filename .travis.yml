@@ -1,7 +1,7 @@
 # http://about.travis-ci.org/docs/user/build-configuration/
 language: ruby
 
-bundler_args: --without production development
+bundler_args: --without production development --path=~/.bundle
 
 script: bundle exec rake travis:script
 
@@ -10,33 +10,28 @@ before_install:
   - "export DISPLAY=:99.0"
   - "export JASMINE_BROWSER=firefox"
   - "firefox --version"
+  - "cat /etc/timezone"
+  - "echo 'gem: --no-ri --no-rdoc' > ~/.gemrc"
+  - gem install bundler fog
+  - "./script/travis/bundle_install.sh"
 
 before_script:
   - "bundle exec rake travis:before_script"
 
+after_script: "ruby script/travis/bundle_cache.rb"
+
 env:
-  - DATABASE=pg
-  - DATABASE=sqlite3
-  - DATABASE=mysql2
+  global:
+    - BUNDLE_ARCHIVE="19wu"
+    - AWS_S3_REGION="us-east-1"
+    - AWS_S3_BUCKET="19wu"
+    - secure: "EcbipPYfZxMS62cfroLKM7MGaShkuUH6Me2jMB/l9OhlD2gRUzXR9bQZx+1I\nGQMtk1v6D8KH2shR+8h6iKJzbD09mh8fDNBOBlLX2dlbCE1ZYJ2rYRFiCbcd\nSbcdP/xN+kOKo1Fe/eVCuQRTVYqHmMpwSSQA3Cbxv8pR31TCjNU="
+  matrix:
+    - DATABASE=pg
+    - DATABASE=mysql2
+    - DATABASE=sqlite3
 
 rvm:
   - 1.9.3
   - 2.0.0
   #- ruby-head    # will cause timeout
-
-matrix:
-  include:
-    - rvm: jruby-19mode
-      jdk: openjdk7
-      env:
-        - DATABASE=pg
-        - TIMEOUT=1000
-        - JRUBY_OPTS="-Xcext.enabled=true"
-  # jruby alwyas fails by unknown causes.
-  allow_failures:
-    - rvm: jruby-19mode
-      jdk: openjdk7
-      env:
-        - DATABASE=pg
-        - TIMEOUT=1000
-        - JRUBY_OPTS="-Xcext.enabled=true"
