@@ -1,7 +1,7 @@
 #!/bin/sh
 
 ARCHITECTURE=`uname -m`
-FILE_NAME="$BUNDLE_ARCHIVE-$ARCHITECTURE.tgz"
+FILE_NAME="$BUNDLE_ARCHIVE-$ARCHITECTURE-$TRAVIS_RUBY_VERSION.tgz"
 
 cd ~
 wget -O "remote_$FILE_NAME" "https://$AWS_S3_BUCKET.s3.amazonaws.com/$FILE_NAME" && tar -xf "remote_$FILE_NAME"

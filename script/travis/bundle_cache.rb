@@ -6,7 +6,7 @@ require "fog"
 bucket_name     = ENV["AWS_S3_BUCKET"]
 architecture    = `uname -m`.strip
 
-file_name       = "#{ENV['BUNDLE_ARCHIVE']}-#{architecture}.tgz"
+file_name       = "#{ENV['BUNDLE_ARCHIVE']}-#{architecture}-#{ENV['TRAVIS_RUBY_VERSION']}.tgz"
 file_path       = File.expand_path("~/#{file_name}")
 lock_file       = File.join(File.expand_path(ENV["TRAVIS_BUILD_DIR"]), "Gemfile.lock")
 digest_filename = "#{file_name}.sha2"
