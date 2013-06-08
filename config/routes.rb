@@ -8,6 +8,7 @@ NineteenWu::Application.routes.draw do
       post 'follow'
       post 'unfollow'
       get 'followers'
+      get 'checkin/:checkin_code', to: 'events#checkin', as: :checkin
     end
     resources :participants, :only => [:index, :update]
     resources :collaborators, :only => [:index, :create, :destroy]

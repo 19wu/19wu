@@ -2,6 +2,7 @@
 #= require jquery_ujs
 #= require angularjs
 #= require bootstrap-custom
+#= require jquery.qrcode.min
 #= require bootstrap-datepicker/core
 #= require jquery-fileupload/basic
 #= require jquery.textarea.caret
@@ -9,6 +10,7 @@
 #= require bootstrap-timepicker
 #= require angular-strap.min
 #= require map
+#= require checkin
 #= require_self
 $ ->
   body = $("body")

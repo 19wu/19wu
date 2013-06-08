@@ -83,6 +83,11 @@ zh-CN:
       updated: "个人资料已经更新"
     participants:
       checked_in: "%{name}已签到"
+      checkin_welcome: "您已成功签到!"
+      checkin_need_join_first: "您还没有报名哦，先去报名吧!"
+      checkin_in_need_the_same_day_of_event_starttime: "此活动尚未开放签到，请于活动当天签到!"
+      checkin_wrong_checkin_code: "您的签到码不正确，请联系现场工作人员!"
+      checkin_more_than_1_time: "您已签到，请勿重复签到!"
       joined: "您已经报名参与此活动"
       quited: "您已经取消参与此活动"
 
@@ -91,6 +96,8 @@ zh-CN:
     summary: "活动总结"
     previous_summary: "往期活动总结"
     check_in: "签到"
+    check_in_code: "签到码"
+    map_preview: "地图预览"
     events:
       new:
         title: "发起活动"
@@ -117,10 +124,12 @@ zh-CN:
         event_end: "已结束"
         false: "我要参加"
         true: "已报名"
+        checked_in: "已签到"
       title:
         event_end: "活动已结束"
         false: "赶快报名吧"
         true: "记得准时来参加哦"
+        checked_in: "尽情享受精彩活动吧"
     history:
       title: "往期活动"
       participants: "%{number}人参加"
