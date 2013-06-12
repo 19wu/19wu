@@ -1,10 +1,10 @@
 $(document).ready ->
-  if $(".checkin-info").length
+  if $("#qrcode").length
     $qrcode = $("#qrcode")
     $qrcode.qrcode
       text: $qrcode.data("checkin-url")
-      width: 180
-      height: 180
+      width: 360
+      height: 360
 
   $("div.checkin button").on "click", ->
     checkin_code = $("div.checkin button").siblings("input").val()

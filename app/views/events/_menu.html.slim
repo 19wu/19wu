@@ -3,7 +3,7 @@
     = tabs_tag builder: EventMenu do |tab|
       = tab.edit t('views.edit'), edit_event_path(@event)
       li.divider-vertical
-      = tab.check_in t('views.check_in'), event_participants_path(@event)
+      = tab.check_in t('views.check_in'), event_qcode_path(@event)
       li.divider-vertical
       = tab.event_summary t('views.summary'), new_event_summary_path(@event)
       li.divider-vertical

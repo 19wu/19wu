@@ -44,7 +44,7 @@ class Event < ActiveRecord::Base
   end
 
   def checkin_code
-    Digest::SHA1.hexdigest(group.slug + start_time.strftime("%Y%m%d"))[0,3]
+    created_at.strftime("%L") # Millisecond of the second (000..999)
   end
 
   def self.remind_participants

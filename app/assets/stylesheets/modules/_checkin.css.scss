@@ -1,35 +1,12 @@
-.checkin-info {
-  height: 200px;
-  margin-bottom: 10px;
-  float: none;
-}
-
 #qrcode {
   display: inline-block;
-  margin: 10px;
-  height: 180px;
-  width: 180px;
-}
-
-#checkin-code {
-  position: absolute;
-  display: inline-block;
-  margin: 10px;
-  height: 180px;
-
-  h1 {
-    text-align: center;
-    color: green;
-
-    &:first-child {
-      color: red;
-    }
-  }
+  margin: $baseLineHeight 0;
+  height: 360px;
+  width: 360px;
 }
 
 .checkin {
   margin-bottom: 20px;
-
   #appendedInputButton {
     width: auto;
   }
