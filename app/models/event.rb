@@ -43,6 +43,10 @@ class Event < ActiveRecord::Base
     group.events.latest.select { |e| e != self }
   end
 
+  def checkin_code
+    Digest::SHA1.hexdigest(group.slug + start_time.strftime("%Y%m%d"))[0,3]
+  end
+
   def self.remind_participants
     Event.upcoming.find_each do |e|
       e.participated_users.each do |participant|

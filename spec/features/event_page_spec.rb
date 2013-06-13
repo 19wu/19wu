@@ -31,7 +31,7 @@ feature 'event page' do
     let(:event) { create(:event, user: user) }
     let(:old_event) { create(:event, slug: "rubyconfchina2", start_time: 3.day.ago, end_time: nil, user: user) }
     before do
-      sign_in
+      sign_in user
       Event.stub(:find).with(event.id.to_s).and_return(event)
       Event.stub(:find).with(old_event.id.to_s).and_return(old_event) 
     end
@@ -49,6 +49,7 @@ feature 'event page' do
 
       it 'has join this event' do
         event.stub(:has?).and_return(true)
+        event.participants.stub(:find_by_user_id).and_return(create(:event_participant))
         visit event_path(event)
         page.should have_selector('a', text: I18n.t('views.join.state')[true])
       end
