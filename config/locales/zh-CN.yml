@@ -133,6 +133,9 @@ zh-CN:
     history:
       title: "往期活动"
       participants: "%{number}人参加"
+    export:
+      export_link: "导出"
+      event_time: "活动时间"
 
   email:
     welcome:
