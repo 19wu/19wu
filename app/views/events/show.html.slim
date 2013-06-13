@@ -22,9 +22,12 @@ article.event ng-init="event.id=#{@event.id}"
       .actions
         .event-sidebar
           - if current_user && display_checkin_form?(@event, current_user)
-            .checkin.input-append
-              input id="appendedInputButton" type="text" placeholder="请输入签到码"
-              button.btn.btn-info 签到
+            div ng-controller="CheckinCtrl"
+              p.alert ng-show='alert' ng-class="{false: 'alert-success'}[keep]" {{message}}
+              form.form-inline ng-submit="checkin()" ng-show="keep"
+                .input-append
+                  input#appendedInputButton.span8 ng-model="code" type="text" placeholder="请输入签到码"
+                  button.btn.btn-info 签到
           ul.unstyled
             li
               i.icon-calendar
