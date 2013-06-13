@@ -198,9 +198,8 @@ describe Event do
 
   describe '#checkin_code' do
     it "should return the checkin code of event" do
-      event = create(:event, slug: "ruby", start_time: '2013-05-25')
-
-      expect(event.checkin_code).to eq("c4f") # Digest::SHA1.hexdigest("ruby20130525") => c4f6638b33d630540d6af2230ca1e1d431e1c552
+      event = create(:event, slug: "ruby")
+      expect(event.checkin_code).to eq(event.created_at.strftime('%L'))
     end
   end
 end
