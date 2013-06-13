@@ -15,7 +15,7 @@ Password：`666666`
 * Ruby 2.0.0 (or 1.9.3)
 * PostgreSQL (or MySQL, SQLite)
 
-## Install
+## Installation
 
 ```bash
 git clone git://github.com/saberma/19wu.git
@@ -25,7 +25,13 @@ rake setup
 rails server
 ```
 
-More [Here](https://github.com/saberma/19wu/issues/19)
+[Detail](https://github.com/saberma/19wu/issues/19)
+
+## More
+
+[Documentation](https://github.com/saberma/19wu/wiki)
+
+[FAQ](https://github.com/saberma/19wu/wiki/%E6%96%B0%E6%89%8B%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB)
 
 ## Team
 
