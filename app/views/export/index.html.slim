@@ -7,7 +7,7 @@ article ng-init="event.id=#{@event.id}"
     li.active
       = link_to '#markdown', {'data-toggle' =>"tab"} do
         | Markdown
-        span = clippy(markdown_format_content(@event))
+        span = render 'application/clippy', text: markdown_format_content(@event)
   .tab-content#export-content
     #markdown.tab-pane.active
       pre.pre-scrollable style="max-height: 480px;"
