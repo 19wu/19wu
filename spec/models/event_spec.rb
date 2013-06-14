@@ -198,8 +198,8 @@ describe Event do
 
   describe '#checkin_code' do
     it "should return the checkin code of event" do
-      event = create(:event, slug: "ruby")
-      expect(event.checkin_code).to eq(event.created_at.strftime('%L'))
+      event = create(:event, slug: "ruby", created_at: '2013-05-05 23:12:08')
+      expect(event.checkin_code).to eq '328'
     end
   end
 end

@@ -44,7 +44,7 @@ class Event < ActiveRecord::Base
   end
 
   def checkin_code
-    created_at.strftime("%L") # Millisecond of the second (000..999)
+    created_at.strftime('%H%M%S').chars.to_a.values_at(1, 3, 5).join # 12:11:10 => 210
   end
 
   def self.remind_participants
