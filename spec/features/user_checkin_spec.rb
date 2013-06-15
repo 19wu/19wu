@@ -37,6 +37,17 @@ feature "user check in" do
         expect(page).to have_content I18n.t('flash.participants.checkin_need_join_first')
       end
     end
+    context 'user not sign in' do
+      scenario "checkin success after sign in" do
+        @event = create(:event, user: lilei, start_time: 0.day.since)
+        @participant = create(:event_participant, event: @event, user: hanmeimei)
+        visit checkin_event_path(@event, checkin_code: @event.checkin_code)
+        fill_in 'user_email', with: hanmeimei.email
+        fill_in 'user_password', with: hanmeimei.password
+        click_button I18n.t('labels.sign_in')
+        expect(page).to have_content I18n.t('flash.participants.checkin_welcome')
+      end
+    end
   end
 
   context 'event start tomorrow' do

@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   include EventHelper
-  prepend_before_filter :authenticate_user!, except: [:show,:followers]
+  before_filter :authenticate_user!, except: [:show,:followers]
   load_and_authorize_resource only: [:edit, :update]
   set_tab :edit, only: :edit
 

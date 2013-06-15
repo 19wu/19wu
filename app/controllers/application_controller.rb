@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  after_filter :store_location # http://git.io/-lVTIA
+  before_filter :store_location # http://git.io/-lVTIA
 
   def user_path(user_or_login)
     if user_or_login.is_a?(User)
