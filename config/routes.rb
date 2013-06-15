@@ -10,6 +10,7 @@ NineteenWu::Application.routes.draw do
       get 'followers'
       get 'checkin/:checkin_code', to: 'events#checkin', as: :checkin
     end
+    get 'qcode', to: 'participants#qcode'
     resources :participants, :only => [:index, :update]
     resources :collaborators, :only => [:index, :create, :destroy]
     resources :export, :only => [:index]

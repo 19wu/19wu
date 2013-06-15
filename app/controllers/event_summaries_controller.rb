@@ -1,5 +1,5 @@
 class EventSummariesController < ApplicationController
-  prepend_before_filter :authenticate_user!
+  before_filter :authenticate_user!
   set_tab :event_summary, only: :new
 
   def new

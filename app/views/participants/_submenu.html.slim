@@ -1,0 +1,5 @@
+.span3
+  .submenu
+    = tabs_tag namespace: :sidebar, builder: EventSubmenu do |tab|
+      = tab.checkin_code t('views.check_in_code'), event_qcode_path(@event)
+      = tab.participants t('views.manual_check_in'), event_participants_path(@event)

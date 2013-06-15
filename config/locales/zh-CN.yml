@@ -97,6 +97,7 @@ zh-CN:
     previous_summary: "往期活动总结"
     check_in: "签到"
     check_in_code: "签到码"
+    manual_check_in: "手动签到"
     map_preview: "地图预览"
     events:
       new:

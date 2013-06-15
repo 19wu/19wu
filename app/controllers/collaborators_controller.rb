@@ -1,5 +1,5 @@
 class CollaboratorsController < ApplicationController
-  prepend_before_filter :authenticate_user!
+  before_filter :authenticate_user!
   before_filter :authorize_group!
   set_tab :collaborators
 

@@ -1,10 +1,15 @@
 class ParticipantsController < ApplicationController
-  prepend_before_filter :authenticate_user!
+  before_filter :authenticate_user!
   before_filter :authorize_event!
   set_tab :check_in
+  set_tab :checkin_code, :sidebar, only: [:qcode]
+  set_tab :participants, :sidebar, only: [:index]
 
   def index
     @participants = @event.participants.joins(:user).order('users.login ASC').includes(:user => :profile)
+  end
+
+  def qcode
   end
 
   def update

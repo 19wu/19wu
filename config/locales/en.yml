@@ -95,6 +95,7 @@ en:
     previous_summary: "Previous Event Summary"
     check_in: "Check in"
     check_in_code: "Checkin Code"
+    manual_check_in: "Manual Checkin"
     map_preview: "Map Preview"
     events:
       new:
