@@ -25,9 +25,9 @@ rake setup
 rails server
 ```
 
-[Detail](https://github.com/saberma/19wu/issues/19)
+[More Here](https://github.com/saberma/19wu/issues/19)
 
-## More
+## Resources
 
 [Documentation](https://github.com/saberma/19wu/wiki)
 
