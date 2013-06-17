@@ -7,6 +7,6 @@ class EventMenu < TabsOnRails::Tabs::Builder
     item_options[:class] = (current_tab?(tab) ? 'active' : '')
     @context.content_tag(:li, item_options) do
       @context.link_to(name, options)
-    end
+    end + @context.tag("li", class: 'divider-vertical')
   end
 end
