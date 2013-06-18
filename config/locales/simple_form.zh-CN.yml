@@ -32,7 +32,7 @@ zh-CN:
       user:
         invite_reason: "活动组织情况(最近组织的几场活动?计划组织的下一场活动?)"
       event_change:
-        content: "请输入活动的时间、地点等变更信息，这些信息将以邮件的方式通知所有关注者"
+        content: "请输入活动的时间、地点等变更信息，这些信息将以邮件的方式通知当前所有参与者"
     navtabs:
         write: "编写"
         preview: "预览"

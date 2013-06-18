@@ -144,6 +144,9 @@ en:
     profiles:
       show:
         title: "Profile"
+    event:
+      change:
+        subject: "[IMPORTANT]%{title} Change Notification"
 
   errors:
     messages:
