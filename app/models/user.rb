@@ -56,6 +56,10 @@ class User < ActiveRecord::Base
     group.nil? or group.user == self or group.collaborator?(self)
   end
 
+  def email_with_login
+    "#{login} <#{email}>"
+  end
+
   private
   def login_must_uniq
     if Group.exists?(:slug => login) || !FancyUrl.valid_for_short_url?(login)

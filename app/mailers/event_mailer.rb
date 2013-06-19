@@ -4,6 +4,6 @@ class EventMailer < ActionMailer::Base
   def change_email(change, emails)
     @change = change
     @event = change.event
-    mail(bcc: emails, subject: I18n.t('email.event.change.subject', title: @event.title))
+    mail(to: emails.shift, bcc: emails, subject: I18n.t('email.event.change.subject', title: @event.title))
   end
 end
