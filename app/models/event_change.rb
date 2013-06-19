@@ -3,7 +3,8 @@ class EventChange < ActiveRecord::Base
   belongs_to :event
 
   after_create do
-    emails = event.participated_users.map(&:email_with_login)
-    EventMailer.delay.change_email(self, emails) unless emails.empty?
+    event.participated_users.each do |user|
+      EventMailer.delay.change_email(self, user)
+    end
   end
 end
