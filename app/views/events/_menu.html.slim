@@ -1,5 +1,9 @@
-.navbar
+.menu.navbar
   .navbar-inner
+    ul.nav.pull-right
+      li
+        a data-toggle='tooltip' title='只有活动管理员能看到此菜单'
+          i.icon-th-list
     = tabs_tag builder: EventMenu do |tab|
       = tab.edit t('views.edit'), edit_event_path(@event)
       = tab.check_in t('views.check_in'), event_qcode_path(@event)
