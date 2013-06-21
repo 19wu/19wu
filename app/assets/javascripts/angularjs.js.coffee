@@ -1,5 +1,6 @@
 #= require angular
 #= require angular-resource
+#= require angular-strap.min
 #= require_self
 #= require_tree ./angularjs
 
