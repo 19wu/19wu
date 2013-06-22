@@ -102,6 +102,7 @@ zh-CN:
     events:
       new:
         title: "发起活动"
+        copy: "复制"
       edit:
         title: "修改活动"
       slug:

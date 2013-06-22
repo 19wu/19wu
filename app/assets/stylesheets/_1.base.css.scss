@@ -2,3 +2,7 @@ h3 {
   @extend h5;
   line-height: $baseLineHeight;
 }
+
+.space {
+  padding-right: $baseFontSize / 2;
+}
