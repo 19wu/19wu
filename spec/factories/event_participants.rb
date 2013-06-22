@@ -3,6 +3,8 @@
 FactoryGirl.define do
   factory :event_participant do
     event_id 1
-    user_id 1
+    trait :random_user do
+      user
+    end
   end
 end

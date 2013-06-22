@@ -38,4 +38,10 @@ class ApplicationController < ActionController::Base
       redirect_to new_user_session_path, alert: I18n.t("unauthorized.default")
     end
   end
+
+  protected
+  def authorize_event!
+    @event = Event.find(params[:event_id])
+    authorize! :update, @event
+  end
 end

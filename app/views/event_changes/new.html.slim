@@ -1,0 +1,10 @@
+= render 'events/header'
+.row
+  = render 'event_changes/submenu'
+  .span9
+    = simple_form_for @change do |f|
+      = f.error_notification
+      = f.label :content
+      = f.input_field :content, as: 'text', rows: 7, class: 'span5', placeholder: t('simple_form.placeholders.event_change.content')
+      .form-actions
+        = f.button :submit, class: 'btn-info'

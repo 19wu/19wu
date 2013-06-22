@@ -8,7 +8,11 @@ is_heroku = ['/app/','/app'].include?(ENV['HOME']) # ENV['HOME'] = '/app' in rai
 sqlite3_group = is_heroku ? :development : :sqlite3
 mysql2_group = is_heroku ? :development : :mysql2
 
-source 'https://rubygems.org'
+if ENV['TRAVIS']
+  source 'https://rubygems.org'
+else
+  source 'http://ruby.taobao.org'
+end
 
 gem 'rails', '3.2.13'
 gem 'slim-rails', '1.1.1'

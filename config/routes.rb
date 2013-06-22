@@ -11,9 +11,10 @@ NineteenWu::Application.routes.draw do
       get 'checkin/:checkin_code', to: 'events#checkin', as: :checkin
     end
     get 'qcode', to: 'participants#qcode'
-    resources :participants, :only => [:index, :update]
+    resources :participants , :only => [:index, :update]
     resources :collaborators, :only => [:index, :create, :destroy]
-    resources :export, :only => [:index]
+    resources :export       , :only => [:index]
+    resources :changes      , :only => [:index, :new, :create]    , :controller => 'event_changes'
   end
 
   get "events/:event_id/summary", to: "event_summaries#new", as: :new_event_summary

@@ -1,0 +1,15 @@
+= render 'events/header'
+.row
+  = render 'event_changes/submenu'
+  .span9
+    .changes-list
+      table.table.table-striped
+        thead
+          tr
+            td width='140px' 时间
+            td 变更内容
+        tbody
+          - @changes.each do |change|
+            tr
+              td = change.created_at.to_s(:db)
+              td = change.content

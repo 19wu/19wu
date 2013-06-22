@@ -132,9 +132,6 @@ describe Event do
 
     before do
       ActionMailer::Base.deliveries.clear
-    end
-
-    before do
       event.participated_users << user
     end
 

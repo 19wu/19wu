@@ -93,7 +93,8 @@ zh-CN:
 
   views:
     edit: "修改"
-    summary: "活动总结"
+    change: "变更"
+    summary: "总结"
     previous_summary: "往期活动总结"
     check_in: "签到"
     check_in_code: "签到码"
@@ -150,6 +151,9 @@ zh-CN:
     profiles:
       show:
         title: "个人资料"
+    event:
+      change:
+        subject: "「重要」%{title} 变更通知"
 
   errors:
     messages:

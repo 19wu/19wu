@@ -3,6 +3,7 @@ require 'spec_helper'
 describe EventParticipant do
   let(:event) { FactoryGirl.create(:event) }
   let(:user) { FactoryGirl.create(:user) }
+  let(:participant) { create(:event_participant, event_id: event.id, user_id: user.id) }
 
   it "success save" do
     participant =  Event.find(event.id).participants.build(:user_id => user.id)

@@ -1,7 +1,4 @@
-article ng-init="event.id=#{@event.id}"
-  h1 = link_to @event.title, event_path(@event)
-  = render 'events/menu'
-
+= render 'events/header'
 .collaborators-list ng-controller='CollaboratorsCtrl' ng-init='items = #{@collaborators.to_json}'
   .list
     .item.clearfix ng-repeat="item in items"

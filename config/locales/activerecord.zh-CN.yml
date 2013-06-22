@@ -4,6 +4,7 @@ zh-CN:
       user: "用户"
       event: "活动"
       event_summary: "活动总结"
+      event_change: "变更"
       profile: "资料"
     attributes:
       user:
@@ -26,6 +27,8 @@ zh-CN:
         content: "简介"
       event_summary:
         content: "总结"
+      event_change:
+        content: "变更内容"
       profile:
         name: "名字"
         website: "主页"

@@ -1,0 +1,5 @@
+.span3
+  .submenu
+    = tabs_tag namespace: :sidebar, builder: EventSubmenu do |tab|
+      = tab.new_change '发布通知', new_event_change_path(@event)
+      = tab.changes '变更记录', event_changes_path(@event)

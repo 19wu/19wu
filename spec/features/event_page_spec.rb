@@ -49,7 +49,7 @@ feature 'event page' do
 
       it 'has join this event' do
         event.stub(:has?).and_return(true)
-        event.participants.stub(:find_by_user_id).and_return(create(:event_participant))
+        event.participants.stub(:find_by_user_id).and_return(create(:event_participant, user: user))
         visit event_path(event)
         page.should have_selector('a', text: I18n.t('views.join.state')[true])
       end
