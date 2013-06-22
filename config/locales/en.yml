@@ -91,6 +91,7 @@ en:
 
   views:
     edit: "Edit"
+    change: "Change"
     summary: "Summary"
     previous_summary: "Previous Event Summary"
     check_in: "Check in"
@@ -143,6 +144,9 @@ en:
     profiles:
       show:
         title: "Profile"
+    event:
+      change:
+        subject: "[IMPORTANT]%{title} Change Notification"
 
   errors:
     messages:

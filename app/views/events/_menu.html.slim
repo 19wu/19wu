@@ -3,6 +3,10 @@
     = tabs_tag builder: EventMenu do |tab|
       = tab.edit t('views.edit'), edit_event_path(@event)
       li.divider-vertical
+      = tab.export t('views.export.export_link'), event_export_index_path(@event)
+      li.divider-vertical
+      = tab.change t('views.change'), new_event_change_path(@event)
+      li.divider-vertical
       = tab.check_in t('views.check_in'), event_qcode_path(@event)
       li.divider-vertical
       = tab.event_summary t('views.summary'), new_event_summary_path(@event)
@@ -10,5 +14,3 @@
       - if can? :update, @event.group
         = tab.collaborators t('views.groups.collaborators'), event_collaborators_path(@event)
         li.divider-vertical
-      = tab.export t('views.export.export_link'), event_export_index_path(@event)
-      li.divider-vertical
