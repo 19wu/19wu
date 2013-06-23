@@ -21,7 +21,13 @@ class EventsController < ApplicationController
   end
 
   def new
-    @event = current_user.events.new
+    group_ids = (current_user.group_ids + GroupCollaborator.where(user_id: current_user.id).map(&:group_id)).uniq
+    @events = Event.where(group_id: group_ids).latest.limit(1)
+    @event = if params[:from]
+               current_user.events.find(params[:from]).dup
+             else
+               current_user.events.new
+             end
   end
 
   def create

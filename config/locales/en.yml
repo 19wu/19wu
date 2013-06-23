@@ -101,6 +101,7 @@ en:
     events:
       new:
         title: "Launch event"
+        copy: "Copy"
       edit:
         title: "Edit event"
       slug:

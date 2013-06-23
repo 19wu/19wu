@@ -20,16 +20,29 @@ describe EventsController do
 
   describe "GET 'new'" do
     context 'when user has signed in' do
-      login_user
+      let(:user) { login_user }
+      before { login_user }
       it "builds a new event" do
         get 'new'
         assigns[:event].should be_a_kind_of(Event)
         assigns[:event].should be_a_new_record
       end
-
       it "renders the new event form" do
         get 'new'
         response.should render_template('new')
+      end
+      context 'with other event' do
+        let(:event) { create(:event, user: user) }
+        before { event }
+        it "should show source events" do
+          get 'new'
+          assigns[:events].should_not be_empty
+        end
+        it "should be copy" do
+          get 'new', from: event.id
+          assigns[:event].should be_a_new_record
+          assigns[:event].title.should eql event.title
+        end
       end
     end
     context 'when user has not yet signed in' do
