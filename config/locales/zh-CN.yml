@@ -140,6 +140,9 @@ zh-CN:
       export_link: "导出"
       event_time: "活动时间"
 
+  sms:
+    event:
+      change: 活动通知：%{content}【19屋】
   email:
     welcome:
       subject: "欢迎来到19屋"

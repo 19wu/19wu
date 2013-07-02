@@ -30,6 +30,7 @@ gem "angularjs-rails"
 gem "rabl"
 gem 'whenever', :require => false
 gem "tabs_on_rails"
+gem "china_sms"
 
 group :pg do
   gem 'pg', :platform => [:ruby, :mswin, :mingw]
