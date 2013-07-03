@@ -14,6 +14,7 @@ describe EventChange do
     describe 'by email' do
       subject { ActionMailer::Base.deliveries.last }
       before do
+        ChinaSMS.stub(:to)
         ActionMailer::Base.deliveries.clear
         change
       end
