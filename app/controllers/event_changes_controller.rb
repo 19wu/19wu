@@ -11,8 +11,6 @@ class EventChangesController < ApplicationController
 
   def new
     @change = @event.changes.build
-    @participants = @event.participated_users.size
-    @participants_with_phone = @event.participated_users.with_phone.size
   end
 
   def create
