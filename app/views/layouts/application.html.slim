@@ -40,12 +40,15 @@ html ng-app='19wu'
 
     footer#footer
       .container
-        p.pull-right #{link_to('19WU.COM', root_url)} &copy; #{Date.current.year} #{t('layout.copyright')}
-        ul.pull-left.horizontal
-          li = link_to t('layout.opensource'), "http://github.com/saberma/19wu"
-          li.muted
-            | /
-          li = link_to t('layout.contact_us'), "mailto:mahb45@gmail.com"
+        .row
+          .span8
+            p = t('layout.sponsors.title')
+            = link_to image_tag('sponsors/tui3.png'), 'http://tui3.com/?ref=19wu', target: '_blank', title: t('layout.sponsors.sms'), data: {toggle: 'tooltip'}
+          .span4
+            ul.pull-right
+              li #{link_to('19WU.COM', root_url)} &copy; #{Date.current.year} #{t('layout.copyright')}
+              li = link_to t('layout.opensource'), "http://github.com/saberma/19wu"
+              li = link_to t('layout.contact_us'), "mailto:mahb45@gmail.com"
 
     = javascript_include_tag "application"
     = javascript_include_tag "locales/#{locale}"

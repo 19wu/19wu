@@ -30,6 +30,12 @@ rails server
 
 [详情](https://github.com/saberma/19wu/issues/19)
 
+## 文档资源
+
+[Wiki文档](https://github.com/saberma/19wu/wiki)
+
+[常见问题](https://github.com/saberma/19wu/wiki/%E6%96%B0%E6%89%8B%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB)
+
 ## 变更记录
 
 * 06-22 [#380](https://github.com/saberma/19wu/pull/380) 主办者可以复制以前的活动信息 [@saberma](https://github.com/saberma)
@@ -52,12 +58,6 @@ rails server
 
 [所有变更记录](CHANGELOG.md)
 
-## 文档资源
-
-[Wiki文档](https://github.com/saberma/19wu/wiki)
-
-[常见问题](https://github.com/saberma/19wu/wiki/%E6%96%B0%E6%89%8B%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB)
-
 ## 团队
 
 * [@saberma](https://github.com/saberma)
@@ -66,6 +66,12 @@ rails server
 * [@windy](https://github.com/windy)
 
 [所有贡献者](https://github.com/saberma/19wu/graphs/contributors)
+
+## 赞助商
+
+感谢以下赞助商：
+
+* [推立方](http://tui3.com/) 短信赞助商
 
 ## License
 
