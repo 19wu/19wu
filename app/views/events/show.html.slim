@@ -47,7 +47,7 @@ article.event ng-init="event.id=#{@event.id}"
             span.label.label-important 联系人
             span.event-contact
               = link_to @event.user.login, user_path(@event.user)
-              = @event.user.profile.phone
+              = @event.user.phone
 
           div ng-controller="ParticipantsCtrl"
             hr
