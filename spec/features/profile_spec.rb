@@ -16,7 +16,6 @@ feature 'profile settings' do
   scenario "I update my profile" do
     fill_in 'profile_name', :with => '19wu'
     fill_in 'profile_website', :with => 'http://19wu.com'
-    fill_in 'profile_phone', :with => '195195195'
     fill_in 'profile_bio', :with => '**Launch your event now**'
 
     find('.btn-primary').click

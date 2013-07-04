@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130617104446) do
+ActiveRecord::Schema.define(:version => 20130702125422) do
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
@@ -116,7 +116,6 @@ ActiveRecord::Schema.define(:version => 20130617104446) do
 
   create_table "profiles", :force => true do |t|
     t.string   "name"
-    t.string   "phone"
     t.string   "website"
     t.text     "bio"
     t.integer  "user_id"
@@ -152,6 +151,7 @@ ActiveRecord::Schema.define(:version => 20130617104446) do
     t.string   "invited_by_type"
     t.boolean  "admin",                                :default => false
     t.string   "invite_reason"
+    t.string   "phone"
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true

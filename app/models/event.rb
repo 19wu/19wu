@@ -10,6 +10,9 @@ class Event < ActiveRecord::Base
     def recent(count = nil)
       order('event_participants.created_at DESC').limit(count)
     end
+    def with_phone
+      where("users.phone is not null and users.phone != ''")
+    end
   end
 
   has_compound_datetime :start_time

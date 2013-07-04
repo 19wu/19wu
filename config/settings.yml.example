@@ -14,6 +14,11 @@ defaults: &defaults
   # By default, with an empty string, this feature will be disabled.
   baidumap_ak: ''
 
+  sms:
+    tui3:
+      username: 'saberma'
+      api_key: '666666'
+
   email: &email
     # Edit according to the smtp account domain.
     # e.g.
