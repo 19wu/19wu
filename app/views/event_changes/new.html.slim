@@ -16,4 +16,4 @@
         |&nbsp;人登记了手机号码，将收到短信通知。
       p.alert.alert-error ng-show="form.$invalid" 变更内容 不能超过 50 个字
       .form-actions
-        = f.button :submit, class: 'btn-info'
+        = f.button :submit, class: 'btn-info', 'ng-disabled' => "form.$invalid"
