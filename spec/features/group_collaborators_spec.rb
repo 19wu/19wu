@@ -1,7 +1,7 @@
 # encoding: utf-8
 require File.expand_path('../../spec_helper', __FILE__)
 
-feature 'event collaborators', js: true do
+feature 'group collaborators', js: true do
   given(:user) { create(:user, :confirmed) }
   given(:event) { create(:event, user: user) }
   given(:partner) { create(:user, :confirmed) }

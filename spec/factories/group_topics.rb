@@ -2,8 +2,8 @@
 
 FactoryGirl.define do
   factory :group_topic do
-    title "MyString"
-    body "MyText"
-    user_id 1
+    title "收集大家感兴趣的主题"
+    body "如题"
+    user
   end
 end
