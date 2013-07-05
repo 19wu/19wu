@@ -7,8 +7,7 @@ article.event ng-init="event.id=#{@event.id}"
       a.social-count href=group_event_followers_path(@event) {{count}}
     h1 = link_to @event.title, event_path(@event), class: 'event-title'
     h2 = time_merge(@event)
-    - if can? :update, @event
-      = render 'events/menu'
+    = render 'events/menu'
 
   .row-fluid
     .span8
@@ -18,6 +17,7 @@ article.event ng-init="event.id=#{@event.id}"
         .event-summary
           h2 = build_summary_title(@event)
           == build_summary_content(@event)
+      = render 'topics/index'
     .span4
       .actions
         .event-sidebar

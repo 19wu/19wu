@@ -1,0 +1,28 @@
+// topic index item
+.topics-nav {
+  @extend .nav, .nav-tabs;
+  margin: $baseLineHeight*4 0 $baseLineHeight/2 0;
+}
+
+.topic-item {
+  @extend .media;
+  margin-bottom: 0 !important;
+  padding: $baseLineHeight/2 0;
+  border-bottom: 1px solid #DDD
+}
+.topic-item-avatar {
+  @extend .pull-left;
+  margin-right: 8px;
+}
+.topic-item-title {
+  @extend .media-heading;
+  margin-bottom: 3px;
+}
+.topic-item-info {
+  @extend .muted;
+  font-size: 12px;
+}
+
+//topic show
+.topic-title {
+}

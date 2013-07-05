@@ -1,7 +1,8 @@
 class Group < ActiveRecord::Base
   belongs_to :user
   has_many :events
-  has_many :collaborators, :class_name => "GroupCollaborator"
+  has_many :collaborators, class_name: "GroupCollaborator"
+  has_many :topics, class_name: "GroupTopic"
   attr_accessible :slug
   acts_as_followable
 

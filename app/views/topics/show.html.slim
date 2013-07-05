@@ -1,0 +1,10 @@
+= render 'events/header'
+.row
+  .span12
+    .page-header
+      h5 = @topic.title
+      .muted
+        = link_to @topic.user.login, user_path(@topic.user), class: 'muted'
+        |  •  
+        = @topic.created_at.to_s(:db)
+    div == @topic.body

@@ -26,6 +26,10 @@ form {
   }
 }
 
+label.required abbr {
+  color: #CC0000;
+}
+
 /* fix the left margin when apply the span* classes */
 .compound-controls {
   margin-left: 0;
