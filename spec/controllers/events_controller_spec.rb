@@ -36,7 +36,7 @@ describe EventsController do
         before { event }
         it "should show source events" do
           get 'new'
-          assigns[:events].should_not be_empty
+          assigns[:source_events].should_not be_empty
         end
         it "should be copy" do
           get 'new', from: event.id
@@ -62,6 +62,15 @@ describe EventsController do
           expect {
             post 'create', :event => valid_attributes
           }.to change{Event.count}.by(1)
+        end
+      end
+      context 'with invalid attributes' do # issue#392
+        render_views
+        it 'should not creates the event' do
+          expect {
+            post 'create', :event => valid_attributes.except(:start_time)
+          }.to_not change{Event.count}
+          response.should be_success
         end
       end
 

@@ -21,10 +21,9 @@ class EventsController < ApplicationController
   end
 
   def new
-    group_ids = (current_user.group_ids + GroupCollaborator.where(user_id: current_user.id).map(&:group_id)).uniq
-    @events = Event.where(group_id: group_ids).latest.limit(1)
+    find_source_events
     @event = if params[:from]
-               current_user.events.find(params[:from]).dup
+               Event.find(params[:from]).dup
              else
                current_user.events.new
              end
@@ -38,6 +37,7 @@ class EventsController < ApplicationController
         format.html { redirect_to group_event_path(@event), notice: I18n.t('flash.events.created') }
         format.json { render json: @event, status: :created, location: @event }
       else
+        find_source_events
         format.html { render action: "new" }
         format.json { render json: @event.errors, status: :unprocessable_entity }
       end
@@ -139,5 +139,10 @@ class EventsController < ApplicationController
       "message_body" => message,
       "keep" => keep_button
     }
+  end
+
+  def find_source_events
+    group_ids = (current_user.group_ids + GroupCollaborator.where(user_id: current_user.id).map(&:group_id)).uniq
+    @source_events = Event.where(group_id: group_ids).latest.limit(1)
   end
 end
