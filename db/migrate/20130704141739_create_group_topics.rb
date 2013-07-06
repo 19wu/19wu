@@ -8,5 +8,6 @@ class CreateGroupTopics < ActiveRecord::Migration
 
       t.timestamps
     end
+    add_index :group_topics, :group_id
   end
 end

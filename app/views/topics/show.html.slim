@@ -1,10 +1,32 @@
 = render 'events/header'
 .row
-  .span12
+  .span8
     .page-header
       h5 = @topic.title
       .muted
         = link_to @topic.user.login, user_path(@topic.user), class: 'muted'
         |  •  
         = @topic.created_at.to_s(:db)
-    div == @topic.body
+    .topic-body == @topic.body
+
+    ul.replies.media-list.unstyled
+      - @replies.each do |reply|
+        li.reply-item
+          a.reply-item-avatar href=user_path(reply.user)
+            img.media-object src=reply.user.gravatar_url(size: 48)
+          .media-body
+            .muted
+              = link_to reply.user.login, user_path(reply.user), class: 'muted'
+              |  •  
+              = reply.created_at.to_s(:db)
+            .reply-body = reply.body
+
+    = simple_form_for @reply, url: event_topic_reply_path(@event, @topic), html: {class: 'reply-form'} do |f|
+      = f.error_notification
+      .form-inputs
+        = f.input_field :body, class: 'span8', rows: 5
+      .form-actions
+        = f.button :submit, class: 'btn-info'
+  .span4
+    .event-sidebar
+      = link_to t('views.events.topics.new.button'), new_event_topic_path(@event), class: "btn btn-info"

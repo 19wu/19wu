@@ -18,6 +18,8 @@ class TopicsController < ApplicationController
 
   def show
     @topic = @group.topics.find(params[:id])
+    @replies = @topic.replies
+    @reply = GroupTopicReply.new
   end
 
   private

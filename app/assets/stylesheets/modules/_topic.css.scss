@@ -24,5 +24,20 @@
 }
 
 //topic show
-.topic-title {
+.topic-body {
+  margin-bottom: $baseLineHeight * 2;
+}
+
+//reply
+.reply-form {
+  margin-top: $baseLineHeight * 2;
+}
+.reply-item {
+  @extend .topic-item;
+}
+.reply-item-avatar {
+  @extend .topic-item-avatar;
+}
+.reply-body {
+  margin-top: 3px;
 }

@@ -13,7 +13,9 @@ NineteenWu::Application.routes.draw do
     get 'qcode', to: 'participants#qcode'
     resources :participants , :only => [:index, :update]
     resources :collaborators, :only => [:index, :create, :destroy]
-    resources :topics       , :only => [:new, :create, :show]
+    resources :topics       , :only => [:new, :create, :show] do
+      resource :reply       , :only => [:create]                  , :controller => 'topic_reply'
+    end
     resources :export       , :only => [:index]
     resources :changes      , :only => [:index, :new, :create]    , :controller => 'event_changes'
   end

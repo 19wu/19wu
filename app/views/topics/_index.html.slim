@@ -6,7 +6,7 @@ div
   ul.media-list.unstyled
     - @event.group.topics.each do |topic|
       li.topic-item
-        a.topic-item-avatar href="#"
+        a.topic-item-avatar href=user_path(topic.user)
           img.media-object src=topic.user.gravatar_url(size: 48)
         .media-body
           .topic-item-title = link_to topic.title, event_topic_path(@event, topic)
