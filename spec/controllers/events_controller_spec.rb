@@ -36,7 +36,7 @@ describe EventsController do
         before { event }
         it "should show source events" do
           get 'new'
-          assigns[:events].should_not be_empty
+          assigns[:source_events].should_not be_empty
         end
         it "should be copy" do
           get 'new', from: event.id
