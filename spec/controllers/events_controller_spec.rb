@@ -64,6 +64,15 @@ describe EventsController do
           }.to change{Event.count}.by(1)
         end
       end
+      context 'with invalid attributes' do # issue#392
+        render_views
+        it 'should not creates the event' do
+          expect {
+            post 'create', :event => valid_attributes.except(:start_time)
+          }.to_not change{Event.count}
+          response.should be_success
+        end
+      end
 
       context 'post with compound_start_time_attributes' do
         let(:compound_start_time_attributes) do

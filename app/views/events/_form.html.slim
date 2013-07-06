@@ -1,7 +1,5 @@
 .row
   .span8
-    = f.error_notification
-
     .form-inputs
       = f.input :title, :input_html => { :class => 'span5', "ng-init" => "title='#{@event.title}'", "ng-model" => "title" }
       = f.input :slug, :wrapper => :prepend, :hint => t('views.events.slug.hint'), :input_html => { :class => 'span5' } do
