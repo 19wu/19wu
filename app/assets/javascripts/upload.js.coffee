@@ -11,7 +11,7 @@ $(document).ready ->
 
       done: (e, data) ->
         $.each data.result.files, (index, file) ->
-          targetTextarea = $(e.target).closest(".control-group").find("textarea")
+          targetTextarea = $(e.target).closest(".uploadable-input").find("textarea")
           markdownImage = "![" + file.name + "](" + file.url + ")"
           markdownImage = "\n" + markdownImage + "\n"  unless targetTextarea.val() is ""
           targetTextarea.insertAtCursor markdownImage

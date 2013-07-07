@@ -5,7 +5,7 @@
       = f.error_notification
       .form-inputs
         = f.input :title, input_html: { class: 'span5' }
-        = f.input :body , input_html: { class: 'span5', rows: 18 }
+        = f.input :body , input_html: { class: 'span5', rows: 18 }, as: 'uploadable'
       .form-actions
         = f.button :submit, class: 'btn-info'
   .span4

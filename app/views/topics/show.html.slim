@@ -7,7 +7,7 @@
         = link_to @topic.user.login, user_path(@topic.user), class: 'muted'
         |  •  
         = @topic.created_at.to_s(:db)
-    .topic-body == @topic.body
+    .topic-body == @topic.body_html
 
     ul.replies.media-list.unstyled
       - @replies.each do |reply|
@@ -19,12 +19,12 @@
               = link_to reply.user.login, user_path(reply.user), class: 'muted'
               |  •  
               = reply.created_at.to_s(:db)
-            .reply-body = reply.body
+            .reply-body == reply.body_html
 
     = simple_form_for @reply, url: event_topic_reply_path(@event, @topic), html: {class: 'reply-form'} do |f|
       = f.error_notification
-      .form-inputs
-        = f.input_field :body, class: 'span8', rows: 5
+      .form-inputs.clearfix
+        = f.input_field :body, class: 'span8', rows: 5, as: 'uploadable'
       .form-actions
         = f.button :submit, class: 'btn-info'
   .span4
