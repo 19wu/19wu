@@ -13,4 +13,4 @@ div
           .topic-item-info
             = link_to topic.user.login, user_path(topic.user), class: 'muted'
             |  •  
-            = topic.created_at.to_s(:db)
+            = timeago_tag topic.created_at
