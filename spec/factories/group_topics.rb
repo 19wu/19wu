@@ -1,5 +1,4 @@
-# Read about factories at https://github.com/thoughtbot/factory_girl
-
+# encoding: utf-8
 FactoryGirl.define do
   factory :group_topic do
     title "收集大家感兴趣的主题"
