@@ -117,6 +117,8 @@ ActiveRecord::Schema.define(:version => 20130706130132) do
     t.datetime "updated_at", :null => false
   end
 
+  add_index "group_topics", ["group_id"], :name => "index_group_topics_on_group_id"
+
   create_table "groups", :force => true do |t|
     t.integer  "user_id",    :null => false
     t.string   "slug",       :null => false
