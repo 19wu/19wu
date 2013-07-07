@@ -1,9 +1,8 @@
-# Read about factories at https://github.com/thoughtbot/factory_girl
-
+# encoding: utf-8
 FactoryGirl.define do
   factory :group_topic_reply do
-    body "MyText"
-    topic_id 1
+    body "非常赞成！"
+    group_topic_id 1
     user_id 1
   end
 end
