@@ -57,7 +57,6 @@ namespace :deploy do
     end
   end
 
-
   desc "Populates the Production Database"
   task :seed do
     run "cd #{release_path} ; bundle exec rake db:seed"
@@ -73,6 +72,14 @@ namespace :deploy do
 
 end
 
+namespace :carrierwave do
+  task :symlink, roles: :app do
+    run "mkdir -p #{shared_path}/uploads"
+    run "ln -nfs #{shared_path}/uploads/ #{release_path}/public/uploads"
+  end
+end
+
+
 before 'deploy:migrate'          , 'deploy:symlink_shared'
 before 'deploy:assets:precompile', 'deploy:symlink_shared'
 after 'deploy:setup'             , 'deploy:add_shared_dir'
@@ -84,3 +91,5 @@ after "deploy:restart", "delayed_job:restart"
 
 before 'deploy:setup', 'rvm:install_rvm'   # install RVM
 before 'deploy:setup', 'rvm:install_ruby'  # install Ruby and create gemset, or:
+
+after "deploy:finalize_update", "carrierwave:symlink"
