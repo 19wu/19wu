@@ -1,7 +1,7 @@
 class EventChange < ActiveRecord::Base
   attr_accessible :content
   belongs_to :event
-  validates :content, length: { maximum: 50 }
+  validates :content, length: { maximum: 100 }
 
   after_create do
     event.participated_users.each do |user|
