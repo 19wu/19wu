@@ -4,6 +4,8 @@
 #= require jquery-fileupload/basic
 #= require jquery.textarea.caret
 #= require jquery.ba-throttle-debounce.min
+#= require rails-timeago
+#= require locales/jquery.timeago.zh-CN.js
 #= require bootstrap-custom
 #= require bootstrap-datepicker/core
 #= require bootstrap-timepicker

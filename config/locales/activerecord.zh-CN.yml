@@ -6,6 +6,7 @@ zh-CN:
       event_summary: "活动总结"
       event_change: "变更"
       profile: "资料"
+      group_topic: "贴子"
     attributes:
       user:
         login: "登录名"
@@ -34,3 +35,6 @@ zh-CN:
         website: "主页"
         phone: "联系电话"
         bio: "个人简介"
+      group_topic:
+        title: "标题"
+        body: "正文"

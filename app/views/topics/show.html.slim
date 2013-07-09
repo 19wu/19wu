@@ -1,0 +1,32 @@
+= render 'events/header'
+.row
+  .span8
+    .page-header
+      h5 = @topic.title
+      .muted
+        = link_to @topic.user.login, user_path(@topic.user), class: 'muted'
+        |  •  
+        = timeago_tag @topic.created_at
+    .topic-body == @topic.body_html
+
+    ul.replies.media-list.unstyled
+      - @replies.each do |reply|
+        li.reply-item
+          a.reply-item-avatar href=user_path(reply.user)
+            img.media-object src=reply.user.gravatar_url(size: 48)
+          .media-body
+            .muted
+              = link_to reply.user.login, user_path(reply.user), class: 'muted'
+              |  •  
+              = timeago_tag reply.created_at
+            .reply-body == reply.body_html
+
+    = simple_form_for @reply, url: event_topic_reply_path(@event, @topic), html: {class: 'reply-form'} do |f|
+      = f.error_notification
+      .form-inputs.clearfix
+        = f.input_field :body, class: 'span8', rows: 5, as: 'uploadable'
+      .form-actions
+        = f.button :submit, class: 'btn-info'
+  .span4
+    .event-sidebar
+      = link_to t('views.events.topics.new.button'), new_event_topic_path(@event), class: "btn btn-info"
