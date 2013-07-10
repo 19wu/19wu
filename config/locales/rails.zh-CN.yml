@@ -131,6 +131,8 @@ zh-CN:
       create: 新增%{model}
       submit: 储存%{model}
       update: 更新%{model}
+      user:
+        update: 提交
   number:
     currency:
       format:
