@@ -89,6 +89,8 @@ zh-CN:
       created: "活动已经发布"
       updated: "活动已经更新"
     user_phones:
+      here: 这里
+      blank: 建议您绑定手机，以便活动时间、地点等信息发生变化时，及时收到短信通知；点击 %{here} 绑定 。
       updated: 手机已经绑定！
     profiles:
       updated: "个人资料已经更新"
