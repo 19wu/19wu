@@ -79,6 +79,10 @@ zh-CN:
     has_checked_in_button: "已签到"
     invite_button: "邀请"
 
+  buttons:
+    user_phone:
+      get_code: 获取短信校验码
+
   flash:
     events:
       created: "活动已经发布"

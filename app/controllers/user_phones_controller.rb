@@ -19,6 +19,7 @@ class UserPhonesController < ApplicationController
 
   def send_code
     code = cookies.signed[:code] || rand(1000..9999)
+    code = 1234 if Rails.env.test?
     Rails.logger.info I18n.t('sms.user.phone_code', code: code)
     ChinaSMS.to params[:phone], I18n.t('sms.user.phone_code', code: code)
     cookies.signed[:code] = { value: code, expires: 1.hour.from_now }
