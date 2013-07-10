@@ -8,7 +8,8 @@
           input name="phone" size="50" type="tel" ng-model="phone" ng-init="phone='#{@user.phone}'" ng-pattern="/^\d{11}$/" ng-required="true" placeholder=t('simple_form.placeholders.user.phone')
       .control-group
         .controls
-          input.btn type="button" value=t('buttons.user_phone.get_code') ng-disabled="form.phone.$invalid" ng-click="send_code()"
+          input.btn type="button" ng-hide="wait" value=t('buttons.user_phone.get_code') ng-disabled="form.phone.$invalid" ng-click="send_code()"
+          input.btn type="button" ng-show="wait" value=t('buttons.user_phone.get_code_until')
       .control-group ng-show='showed'
         = f.label :phone_valid_code
         .controls

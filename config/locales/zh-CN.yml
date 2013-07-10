@@ -82,6 +82,7 @@ zh-CN:
   buttons:
     user_phone:
       get_code: 获取短信校验码
+      get_code_until: 重新获取短信校验码（等待 {{timeleft}} 秒）
 
   flash:
     events:

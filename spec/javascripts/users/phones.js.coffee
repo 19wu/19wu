@@ -12,3 +12,5 @@ describe "user phones send code", ->
     scope.send_code()
     $httpBackend.flush()
     expect(scope.showed).toEqual true
+    expect(scope.wait).toEqual true
+    expect(scope.timeleft).toBeLessThan 60
