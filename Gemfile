@@ -53,6 +53,7 @@ gem 'daemons'
 gem 'carrierwave'
 gem 'friendly_id'
 gem 'mini_magick'
+gem 'rails-timeago'
 
 group :production do
   # Use unicorn as the app server

@@ -1,0 +1,11 @@
+= render 'events/header'
+.row
+  .span8
+    = simple_form_for @topic, url: event_topics_path(@event), html: { class: "form-horizontal" } do |f|
+      = f.error_notification
+      .form-inputs
+        = f.input :title, input_html: { class: 'span5' }
+        = f.input :body , input_html: { class: 'span5', rows: 18 }, as: 'uploadable'
+      .form-actions
+        = f.button :submit, class: 'btn-info'
+  .span4

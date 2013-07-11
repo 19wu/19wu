@@ -4,7 +4,7 @@ class UploadableInput < SimpleForm::Inputs::TextInput
     template.content_tag(:div, :class => @input_html_classes.select {|c| c =~ /span[1-9]+/}.push('uploadable-input')) do
       result = ''
       
-      result += template.content_tag(:ul, :class => 'content-form-head nav nav-tabs') do
+      result += template.content_tag(:ul, :class => 'uploadable-nav') do
         
       template.content_tag(:li, :class => 'write-tab active') do
           template.content_tag(:a, I18n.t('simple_form.navtabs.write'), :href => '#', 'data-toggle' => 'tab')

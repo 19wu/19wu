@@ -133,6 +133,8 @@ zh-CN:
       update: 更新%{model}
       user:
         update: 提交
+      group_topic_reply:
+        create: 提交回复
   number:
     currency:
       format:

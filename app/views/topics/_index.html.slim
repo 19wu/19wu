@@ -1,0 +1,16 @@
+div
+  = link_to t('views.events.topics.new.button'), new_event_topic_path(@event), class: "btn btn-info pull-right"
+  ul.topics-nav
+    li.active
+      a href="#" = t('views.events.topics.title')
+  ul.media-list.unstyled
+    - @event.group.topics.each do |topic|
+      li.topic-item
+        a.topic-item-avatar href=user_path(topic.user)
+          img.media-object src=topic.user.gravatar_url(size: 48)
+        .media-body
+          .topic-item-title = link_to topic.title, event_topic_path(@event, topic)
+          .topic-item-info
+            = link_to topic.user.login, user_path(topic.user), class: 'muted'
+            |  •  
+            = timeago_tag topic.created_at

@@ -123,6 +123,10 @@ zh-CN:
         hint: '相同链接的活动组成系列活动，访问此链接时显示最近一个活动'
       followers:
         title: "关注者列表"
+      topics:
+        title: 迷你论坛
+        new:
+          button: 发起新贴
     groups:
       collaborators: 协办者
     profiles:
