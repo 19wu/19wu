@@ -27,6 +27,7 @@ zh-CN:
 
     account: "注册信息"
     profile: "个人资料"
+    user_phone: 绑定手机
 
   slogan:
     title: "让活动更好"
@@ -78,10 +79,19 @@ zh-CN:
     has_checked_in_button: "已签到"
     invite_button: "邀请"
 
+  buttons:
+    user_phone:
+      get_code: 获取短信校验码
+      get_code_until: 重新获取短信校验码（等待 {{timeleft}} 秒）
+
   flash:
     events:
       created: "活动已经发布"
       updated: "活动已经更新"
+    user_phones:
+      here: 这里
+      blank: 建议您绑定手机，以便活动时间、地点等信息发生变化时，及时收到短信通知；点击 %{here} 绑定 。
+      updated: 手机已经绑定！
     profiles:
       updated: "个人资料已经更新"
     participants:
@@ -122,6 +132,9 @@ zh-CN:
     profiles:
       show:
         title: "个人资料"
+    user_phones:
+      edit:
+        title: 绑定手机
     users:
       apply_sign_up: "活动组织者申请注册成功后才可以发起活动，普通参与者可以直接在活动报名页面注册。"
       upgrade_invitation: "此功能只对少数活动组织者开放，申请后才能使用。普通参与者可以直接在活动报名页面注册"
@@ -150,6 +163,8 @@ zh-CN:
   sms:
     event:
       change: 活动通知：%{content}【19屋】
+    user:
+      phone_code: 尊敬的用户,您的手机绑定码是%{code},谢谢【19屋】
   email:
     welcome:
       subject: "欢迎来到19屋"

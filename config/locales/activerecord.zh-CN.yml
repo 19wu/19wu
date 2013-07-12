@@ -11,6 +11,8 @@ zh-CN:
       user:
         login: "登录名"
         email: "Email 地址"
+        phone: "手机号码"
+        phone_valid_code: "校验码"
         password: "密码"
         password_confirmation: "确认密码"
         current_password: "当前密码"
@@ -33,7 +35,6 @@ zh-CN:
       profile:
         name: "名字"
         website: "主页"
-        phone: "联系电话"
         bio: "个人简介"
       group_topic:
         title: "标题"

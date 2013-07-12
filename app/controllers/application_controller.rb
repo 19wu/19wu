@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   before_filter :store_location # http://git.io/-lVTIA
+  before_filter :system_notification
 
   def user_path(user_or_login)
     if user_or_login.is_a?(User)
@@ -43,5 +44,11 @@ class ApplicationController < ActionController::Base
   def authorize_event!
     @event = Event.find(params[:event_id])
     authorize! :update, @event
+  end
+
+  private
+  def system_notification
+    message = I18n.t('flash.user_phones.blank', here: view_context.link_to(I18n.t('flash.user_phones.here'), edit_user_phone_path)).html_safe
+    flash.now[:alert] = message if current_user && current_user.phone.blank?
   end
 end

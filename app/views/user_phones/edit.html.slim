@@ -1,0 +1,19 @@
+= simple_form_for @user, url: user_phone_path, :html => {name: 'form', novalidate: '', class: 'form-horizontal' } do |f|
+  fieldset ng-controller="UserPhonesCtrl"
+    legend = t('.title', :scope => 'views')
+    .form-inputs
+      .control-group
+        = f.label :phone
+        .controls
+          input name="phone" size="50" type="tel" ng-model="phone" ng-init="phone='#{@user.phone}'" ng-pattern="/^\d{11}$/" ng-required="true" placeholder=t('simple_form.placeholders.user.phone')
+      .control-group
+        .controls
+          input.btn type="button" ng-hide="wait" value=t('buttons.user_phone.get_code') ng-disabled="form.phone.$invalid" ng-click="send_code()"
+          input.btn type="button" ng-show="wait" value=t('buttons.user_phone.get_code_until')
+      .control-group ng-show='showed'
+        = f.label :phone_valid_code
+        .controls
+          input name="code" size="50" type="text" ng-model="code" ng-pattern="/^\d{4}$/" ng-required="true" placeholder=t('simple_form.placeholders.user.phone_valid_code')
+
+    .form-actions
+      = f.button :submit, :class => 'btn-primary', "ng-disabled" => "form.$invalid"

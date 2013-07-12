@@ -31,6 +31,10 @@ zh-CN:
     placeholders:
       user:
         invite_reason: "活动组织情况(最近组织的几场活动?计划组织的下一场活动?)"
+        phone: "请输入11位手机号码"
+        phone_valid_code: "请输入手机短信中的校验码"
+      event_change:
+        content: "可以输入活动的时间、地点等变更信息"
     navtabs:
         write: "编写"
         preview: "预览"
