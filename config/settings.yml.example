@@ -67,6 +67,7 @@ development:
   <<: *defaults
   host: 'localhost:3000'
 
+  sms: []
   email:
     <<: *email
     from: 'development@19wu.com'
@@ -78,6 +79,7 @@ test:
   default_locale: 'zh-CN'
   host: 'localhost:3000'
 
+  sms: []
   email:
     <<: *email
     from: 'test@19wu.com'
