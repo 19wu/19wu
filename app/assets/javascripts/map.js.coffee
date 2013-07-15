@@ -35,4 +35,5 @@ $(document).ready ->
                     .appendTo('body')
       $(this).clone().appendTo(mapModal.find('.modal-body'))
       $(this).on 'click', ->
-        $("\##{mapModalId}").modal('show')
+        mapModal.modal('show')
+        mapModal.css('margin-left', -(mapModal.outerWidth() / 2))
