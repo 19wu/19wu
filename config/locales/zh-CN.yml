@@ -46,6 +46,12 @@ zh-CN:
       description1: "参与者更容易记忆，可以随时使用手机查看活动时间、地址等信息"
       subtitle2: "只记一个地址"
       description2: "不管活动举办多少次，参与者都只需记住一个活动永久地址"
+    notification:
+      title: 及时通知参与者
+      subtitle1: 时间地点变了？
+      description1: 当活动时间、地点发送变化时可以向参与者发送邮件和短信通知
+      subtitle2: 免费发送短信
+      description2: 此项服务完全免费
 
   home:
     menu:
