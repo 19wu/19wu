@@ -34,6 +34,7 @@ $(document).ready ->
       mapModal = $("<div id='#{mapModalId}' class='modal hide fade'><div class='modal-body'></div><div class='modal-footer'><button class='btn' data-dismiss='modal' aria-hidden='true'>Close</button></div></div>")
                     .appendTo('body')
       $(this).clone().appendTo(mapModal.find('.modal-body'))
+      $(this).attr('title', '点击查看大图')
       $(this).on 'click', ->
         mapModal.modal('show')
         mapModal.css('margin-left', -(mapModal.outerWidth() / 2))
