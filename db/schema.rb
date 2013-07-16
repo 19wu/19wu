@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130706130132) do
+ActiveRecord::Schema.define(:version => 20130716040406) do
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
@@ -111,10 +111,11 @@ ActiveRecord::Schema.define(:version => 20130706130132) do
   create_table "group_topics", :force => true do |t|
     t.string   "title"
     t.text     "body"
-    t.integer  "user_id",    :null => false
-    t.integer  "group_id",   :null => false
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.integer  "user_id",                      :null => false
+    t.integer  "group_id",                     :null => false
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
+    t.integer  "replies_count", :default => 0
   end
 
   add_index "group_topics", ["group_id"], :name => "index_group_topics_on_group_id"

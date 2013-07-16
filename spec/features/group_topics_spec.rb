@@ -37,10 +37,17 @@ feature 'group topics' do
         page.should have_content(reply.body)
       end
       context 'with a reply' do
-        before { reply.save }
+        before do
+          reply.save
+          topic.replies_count = 1
+        end
         scenario 'I can see it' do
           visit event_topic_path(event, topic)
           page.should have_content(reply.body)
+        end
+        scenario 'show replies count with this topic' do
+          visit event_path(event)
+          find("li#group_topic_#{topic.id} div.media-body div.replies-count").should have_content(topic.replies.size)
         end
       end
     end

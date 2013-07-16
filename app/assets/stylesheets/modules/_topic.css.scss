@@ -22,6 +22,22 @@
   @extend .muted;
   font-size: 12px;
 }
+.replies-count {
+  margin: 10px 10px 0 0;
+  text-align: right;
+  vertical-align: middle;
+  span {
+    background-color: #08C;
+    border-radius: 3px 3px 3px 3px;
+    color: #FFF;
+    display: inline-block;
+    font-weight: bold;
+    line-height: 14px;
+    padding: 3px 7px;
+    text-decoration: none;
+  }
+}
+
 
 //topic show
 .topic-body {
