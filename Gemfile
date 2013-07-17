@@ -46,13 +46,13 @@ group mysql2_group do
 end
 
 gem 'devise', '3.0.0.rc'
-gem 'devise_invitable', git: 'https://github.com/scambra/devise_invitable.git', branch: 'rails4'
+gem 'devise_invitable', github: 'scambra/devise_invitable', branch: 'rails4'
 gem 'settingslogic'
 gem "delayed_job", "~> 4.0.0.beta2"
 gem 'delayed_job_active_record', '~> 4.0.0.beta3'
 gem 'daemons'
 gem 'carrierwave'
-gem 'friendly_id'
+gem 'friendly_id', github: 'FriendlyId/friendly_id', branch: 'rails4'
 gem 'mini_magick'
 gem 'rails-timeago'
 
@@ -102,3 +102,7 @@ gem 'bootstrap-timepicker-rails-addon'
   #gem 'libv8', '3.11.8.3', :platforms => :ruby # therubyracer 从 0.11 开始没有依赖 lib8. http://git.io/EtMkCg
   #gem 'therubyracer', :platforms => :ruby
 # end
+
+# fallback
+gem 'protected_attributes'
+gem 'rails-observers'
