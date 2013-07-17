@@ -25,7 +25,7 @@ gem 'kramdown', :platform => [:jruby]
 gem 'gravtastic'
 gem 'cancan'
 gem 'cohort_me'
-gem 'acts_as_follower'
+gem 'acts_as_follower', github: 'flingbob/acts_as_follower'
 gem "angularjs-rails"
 gem "rabl"
 gem 'whenever', :require => false
