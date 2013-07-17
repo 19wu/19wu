@@ -14,11 +14,17 @@ class EventChangesController < ApplicationController
   end
 
   def create
-    @change = @event.changes.build(params[:event_change])
+    @change = @event.changes.build(event_change_params)
     if @change.save
       redirect_to event_changes_path(@event)
     else
       render :new
     end
+  end
+
+  private
+
+  def event_change_params
+    params.require(:event_change).permit :content
   end
 end

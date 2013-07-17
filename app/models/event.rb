@@ -21,9 +21,9 @@ class Event < ActiveRecord::Base
   has_html_pipeline :location_guide, :markdown
 
   attr_accessor :slug
-  attr_accessible :content, :location, :location_guide, :start_time, :end_time, :title, :slug
-  attr_accessible :compound_start_time_attributes
-  attr_accessible :compound_end_time_attributes
+  # attr_accessible :content, :location, :location_guide, :start_time, :end_time, :title, :slug
+  # attr_accessible :compound_start_time_attributes
+  # attr_accessible :compound_end_time_attributes
 
   validates :title, :location, presence: true
   validates :slug, presence: true
@@ -32,7 +32,7 @@ class Event < ActiveRecord::Base
   validate :end_time_must_after_start_time
   validate :slug_must_uniq
 
-  scope :latest, order('start_time DESC')
+  scope :latest, -> { order('start_time DESC') }
 
   scope :upcoming, lambda { |today = Time.zone.now|
     tomorrow = today.since(1.day)

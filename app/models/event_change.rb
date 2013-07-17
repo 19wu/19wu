@@ -1,5 +1,5 @@
 class EventChange < ActiveRecord::Base
-  attr_accessible :content
+  # attr_accessible :content
   belongs_to :event
   validates :content, length: { maximum: 100 }
 

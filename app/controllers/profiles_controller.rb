@@ -7,7 +7,7 @@ class ProfilesController < ApplicationController
   end
 
   def update
-    @profile.assign_attributes(params[:profile])
+    @profile.assign_attributes(profile_params)
 
     if @profile.save
       redirect_to profile_path, :notice => I18n.t('flash.profiles.updated')
@@ -19,5 +19,9 @@ class ProfilesController < ApplicationController
   private
   def find_profile
     @profile = current_user.profile
+  end
+
+  def profile_params
+    params.require(:profile).permit :bio, :name, :website
   end
 end
