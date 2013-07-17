@@ -27,8 +27,8 @@
   text-align: right;
   vertical-align: middle;
   span {
+    @include border-radius(3px);
     background-color: #08C;
-    border-radius: 3px 3px 3px 3px;
     color: #FFF;
     display: inline-block;
     font-weight: bold;
