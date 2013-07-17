@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   before_filter :store_location # http://git.io/-lVTIA
   before_filter :system_notification
+  before_filter :configure_permitted_parameters, if: :devise_controller?
 
   def user_path(user_or_login)
     if user_or_login.is_a?(User)
@@ -44,6 +45,19 @@ class ApplicationController < ActionController::Base
   def authorize_event!
     @event = Event.find(params[:event_id])
     authorize! :update, @event
+  end
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.for(:sign_up) do |u|
+      u.permit(:login, :email, :phone, :password, :password_confirmation,
+        :remember_me, :skip_invitation, :invite_reason, :confirmed_at)
+    end
+    devise_parameter_sanitizer.for(:accept_invitation) do |u|
+      u.permit(:login, :password, :password_confirmation, :invitation_token)
+    end
+    # TODO: which should permit?
+    # devise_parameter_sanitizer.for(:account_update) do |u|
+    # end
   end
 
   private
