@@ -1,6 +1,6 @@
 class GroupTopicReply < ActiveRecord::Base
   extend HasHtmlPipeline
-  belongs_to :topic, class_name: 'GroupTopic'
+  belongs_to :topic, class_name: 'GroupTopic', foreign_key: 'group_topic_id'
   belongs_to :user
   attr_accessible :body, :topic_id, :user_id
   validates :body, presence: true
