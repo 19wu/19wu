@@ -49,15 +49,14 @@ class ApplicationController < ActionController::Base
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up) do |u|
-      u.permit(:login, :email, :phone, :password, :password_confirmation,
-        :remember_me, :skip_invitation, :invite_reason, :confirmed_at)
+      u.permit(:login, :email, :phone, :password, :password_confirmation,:remember_me)
     end
     devise_parameter_sanitizer.for(:accept_invitation) do |u|
       u.permit(:login, :password, :password_confirmation, :invitation_token)
     end
-    # TODO: which should permit?
-    # devise_parameter_sanitizer.for(:account_update) do |u|
-    # end
+    devise_parameter_sanitizer.for(:account_update) do |u|
+      u.permit(:login, :email, :phone, :password, :password_confirmation, :current_password)
+    end
   end
 
   private
