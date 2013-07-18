@@ -10,7 +10,8 @@ describe "event", ->
       ctrl = $controller(JoinCtrl, {$scope: scope, $http: $http, participants: participants})
 
   describe 'user', ->
-    beforeEach inject ($rootScope) -> $rootScope.user = {id: 1}
+    beforeEach ->
+      inject ($rootScope) -> $rootScope.user = {id: 1}
     describe "join", ->
       beforeEach ->
         scope.init([1, {true: '已报名', false: '我要参加', event_end: '已结束'}, {true: '记得准时来参加哦', false: '赶快报名吧', event_end: '活动已结束'}, false])

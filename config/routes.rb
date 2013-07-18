@@ -59,6 +59,7 @@ NineteenWu::Application.routes.draw do
   if defined?(MailsViewer)
     mount MailsViewer::Engine => '/delivered_mails'
   end
+  mount JasmineRails::Engine => "/specs" if defined?(JasmineRails)
 
   # Fallback for /:login when user login is conflict with other routes
   #

@@ -1,14 +1,14 @@
 describe "event", ->
   scope = $httpBackend = null
-  beforeEach(inject(($rootScope, $controller, $injector, $http) ->
-    $rootScope.event = {id: 1}
-    scope = $rootScope.$new()
-    $httpBackend = $injector.get('$httpBackend')
-    ctrl = $controller(FollowsCtrl, {$scope: scope, $http: $http})
-  ))
+  beforeEach ->
+    inject ($rootScope, $controller, $injector, $http) ->
+      $rootScope.event = {id: 1}
+      scope = $rootScope.$new()
+      $httpBackend = $injector.get('$httpBackend')
+      ctrl = $controller(FollowsCtrl, {$scope: scope, $http: $http})
 
   describe 'user', ->
-    beforeEach inject ($rootScope) -> $rootScope.user = {id: 1}
+    beforeEach -> inject ($rootScope) -> $rootScope.user = {id: 1}
     describe "follow", ->
       beforeEach ->
         scope.init([1, {true: '已关注', false: '关注'}, false])
