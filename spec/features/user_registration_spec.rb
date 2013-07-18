@@ -57,6 +57,7 @@ feature 'user registration' do
     # email notify
     open_email(user.email)
     expect(current_email.subject).to have_content(I18n.t('email.invited.subject', login: user.login))
+    expect(current_email).to have_content user.login
 
     # login in
     visit '/users/sign_in'

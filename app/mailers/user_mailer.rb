@@ -7,6 +7,7 @@ class UserMailer < ActionMailer::Base
   end
 
   def invited_email(user)
+    @user = user
     mail(:to => user.email, :subject => I18n.t('email.invited.subject', :login => user.login)).deliver
   end
 
