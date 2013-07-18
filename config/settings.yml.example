@@ -91,6 +91,10 @@ production:
   # Generate a secret setting for production and do not share it in public repo
   #
   # The token must be at least 30 characters, otherwise the default on in
-  # config/initializers/secret_token.rb is used
+  # config/initializers/secret_token.rb is used.
+  #
+  # The option `secret_key_base` is for Rails 4. Set it and keep the original
+  # `secret_token` setting.
   #
   # secret_token: ''
+  # secret_key_base: ''
