@@ -1,11 +1,12 @@
 describe "event collaborators", ->
   scope = $httpBackend = null
-  beforeEach(inject(($rootScope, $controller, $injector, $http) ->
-    $rootScope.event = {id: 1}
-    scope = $rootScope.$new()
-    $httpBackend = $injector.get('$httpBackend')
-    ctrl = $controller(CollaboratorsCtrl, {$scope: scope, $http: $http})
-  ))
+  beforeEach ->
+    module '19wu'
+    inject ($rootScope, $controller, $injector, $http) ->
+      $rootScope.event = {id: 1}
+      scope = $rootScope.$new()
+      $httpBackend = $injector.get('$httpBackend')
+      ctrl = $controller(CollaboratorsCtrl, {$scope: scope, $http: $http})
 
   describe 'when login', ->
     describe 'do not exists', ->

@@ -43,3 +43,6 @@ public/assets/
 
 # SimpleCov
 coverage
+
+# jasmine-rails
+spec/tmp
