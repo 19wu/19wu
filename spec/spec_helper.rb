@@ -20,6 +20,16 @@ class Capybara::Email::Driver
   end
 end
 
+Capybara.server do |app, port|
+  # if thin is available, start server using thin
+  begin
+    require 'rack/handler/thin'
+    Rack::Handler::Thin.run(app, :Port => port)
+  rescue LoadError
+    # ignore
+  end
+end
+
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
 Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
