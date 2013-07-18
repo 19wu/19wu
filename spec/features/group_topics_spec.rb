@@ -47,7 +47,7 @@ feature 'group topics' do
         end
         scenario 'show replies count with this topic' do
           visit event_path(event)
-          find("li#group_topic_#{topic.id} div.media-body div.replies-count").should have_content(topic.replies.size)
+          find("li#group_topic_#{topic.id} div.media-body span.replies-count").should have_content(topic.replies.size)
         end
       end
     end

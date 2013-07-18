@@ -8,8 +8,7 @@ div
       a.topic-item-avatar href=user_path(topic.user)
         img.media-object src=topic.user.gravatar_url(size: 48)
       .media-body
-        .pull-right.replies-count
-          span = topic.replies.size
+        span.replies-count = topic.replies.size
         .topic-item-title = link_to topic.title, event_topic_path(@event, topic)
         .topic-item-info
           = link_to topic.user.login, user_path(topic.user), class: 'muted'
