@@ -67,6 +67,8 @@ rails server
 
 [所有贡献者](https://github.com/saberma/19wu/graphs/contributors)
 
+[如何贡献](https://github.com/saberma/19wu/blob/master/CONTRIBUTING.md)
+
 ## 赞助商
 
 感谢以下赞助商：

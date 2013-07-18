@@ -16,8 +16,10 @@ Pull Request 中的代码更改需要测试代码覆盖，以保证这些更改�
     细参考 capistrano 的文档。测试文件放到 spec/features 下。通过 `rspec
     spec/features` 运行。
 -   单元测试，使用 rspec。通过 `rake rspec` 运行（也会运行集成测试）。
--   Javascript 测试，使用 [jasmine](http://pivotal.github.com/jasmine/)。测试文件
-    放到 spec/javascripts 下。通过 `rake jasmine:ci` 运行。
+-   Javascript 测试，使用 [jasmine-rails](https://github.com/searls/jasmine-rails)。测试文件
+    放到 spec/javascripts 下。通过 `rake spec:javascript` 运行 (需要安装
+    [PhantomJS](http://phantomjs.org/)，或者打开 http://localhost:3000/specs
+    查看测试结果 （替换 `localhost:3000` 为你实际 Rails server 的地址）。
 
 新功能，改变网站行为，或者对后续开发有影响的改动需要在 Pull Request 中更新
 [CHANGELOG](https://github.com/saberma/19wu/blob/master/CHANGELOG.md)。
