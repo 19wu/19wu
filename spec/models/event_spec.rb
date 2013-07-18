@@ -197,4 +197,21 @@ describe Event do
       expect(event.checkin_code).to eq '328'
     end
   end
+
+  describe '#has?' do
+    let(:user) { create(:user) }
+    before { event.save }
+
+    context 'when user has joined' do
+      before { event.participated_users << user }
+      it 'returns true' do
+        expect(event.has?(user)).to be(true)
+      end
+    end
+    context 'when user has not joined yet' do
+      it 'returns false' do
+        expect(event.has?(user)).to be(false)
+      end
+    end
+  end
 end
