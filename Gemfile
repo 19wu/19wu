@@ -14,9 +14,9 @@ else
   source 'http://ruby.taobao.org'
 end
 
-gem 'rails', '3.2.13'
+gem 'rails', '4.0.0'
 gem 'slim-rails', '1.1.1'
-gem 'simple_form'
+gem 'simple_form', '~> 3.0.0.rc'
 gem 'html-pipeline'
 # html-pipeline depends on escape_utils, lock its version for Windows
 gem 'escape_utils', '0.2.4'
@@ -25,7 +25,7 @@ gem 'kramdown', :platform => [:jruby]
 gem 'gravtastic'
 gem 'cancan'
 gem 'cohort_me'
-gem 'acts_as_follower'
+gem 'acts_as_follower', github: 'flingbob/acts_as_follower'
 gem "angularjs-rails"
 gem "rabl"
 gem 'whenever', :require => false
@@ -45,13 +45,14 @@ group mysql2_group do
   gem 'mysql2'
 end
 
-gem 'devise'
-gem 'devise_invitable'
+gem 'devise', '3.0.0.rc'
+gem 'devise_invitable', github: 'scambra/devise_invitable', branch: 'rails4'
 gem 'settingslogic'
-gem 'delayed_job_active_record'
+gem "delayed_job", "~> 4.0.0.beta2"
+gem 'delayed_job_active_record', '~> 4.0.0.beta3'
 gem 'daemons'
 gem 'carrierwave'
-gem 'friendly_id'
+gem 'friendly_id', github: 'FriendlyId/friendly_id', branch: 'rails4'
 gem 'mini_magick'
 gem 'rails-timeago'
 
@@ -87,17 +88,20 @@ group :test do
   gem 'coveralls', require: false
 end
 
-group :assets do
-  gem 'sass-rails',     '~> 3.2.3'
-  gem 'coffee-rails',   '~> 3.2.1'
-  gem 'bootstrap-sass', '~> 2.2.2.0'
-  gem 'uglifier',       '>= 1.0.3'
-  gem 'jquery-rails'
-  gem 'bootstrap-datepicker-rails'
-  gem 'jquery-fileupload-rails'
-  gem 'bootstrap-timepicker-rails-addon'
+# group :assets do
+gem 'sass-rails',     '~> 4.0.0'
+gem 'coffee-rails',   '~> 4.0.0'
+gem 'bootstrap-sass', '~> 2.2.2.0'
+gem 'uglifier',       '>= 1.3.0'
+gem 'jquery-rails'
+gem 'bootstrap-datepicker-rails'
+gem 'jquery-fileupload-rails'
+gem 'bootstrap-timepicker-rails-addon'
 
   # 推荐安装 node.js，而不要 therubyracer
   #gem 'libv8', '3.11.8.3', :platforms => :ruby # therubyracer 从 0.11 开始没有依赖 lib8. http://git.io/EtMkCg
   #gem 'therubyracer', :platforms => :ruby
-end
+# end
+
+# fallback
+gem 'rails-observers'

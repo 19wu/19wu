@@ -31,7 +31,7 @@ NineteenWu::Application.routes.draw do
   post "/content/preview/" => "home#content_preview"
 
   authenticated :user do
-    root to: "home#index"
+    root to: "home#index", as: :authenticated_root
   end
   as :user do
     root to: 'home#page'

@@ -90,10 +90,8 @@ describe Event do
       first = create(:user)
       second = create(:user)
 
-      EventParticipant.create({ :user_id => first.id, :event_id => event.id, :created_at => '2012-01-01' },
-                              :without_protection => true)
-      EventParticipant.create({ :user_id => second.id, :event_id => event.id, :created_at => '2012-01-02' },
-                              :without_protection => true)
+      EventParticipant.create({ :user_id => first.id, :event_id => event.id, :created_at => '2012-01-01' })
+      EventParticipant.create({ :user_id => second.id, :event_id => event.id, :created_at => '2012-01-02' })
 
       event.participated_users.recent.should == [second, first]
     end

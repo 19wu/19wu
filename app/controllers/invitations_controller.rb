@@ -14,7 +14,7 @@ class InvitationsController < Devise::InvitationsController
              current_user.invite!
              current_user
            else
-             User.invite!(resource_params.merge(skip_invitation: true, confirmed_at: Time.now.utc))
+             User.invite!(resource_params.merge skip_invitation: true, confirmed_at: Time.now.utc)
            end
     notice = t('devise.invitations.received') unless user.email.blank?
     redirect_to root_url, notice: notice
@@ -40,5 +40,17 @@ class InvitationsController < Devise::InvitationsController
     user.accept_invitation!
     UserMailer.delay.invited_email(user)
     redirect_to invitations_path
+  end
+
+  private
+
+  # devise has removed this method
+  # https://github.com/scambra/devise_invitable/commit/61005bcfdc5340ded9ef3185d4a5ceb82617e14d
+  def build_resource
+    self.resource = resource_class.new
+  end
+
+  def resource_params
+    params.require(:user).permit(:email, :invite_reason, :skip_invitation, :confirmed_at)
   end
 end

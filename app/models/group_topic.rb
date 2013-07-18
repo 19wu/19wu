@@ -1,6 +1,6 @@
 class GroupTopic < ActiveRecord::Base
   extend HasHtmlPipeline
-  attr_accessible :body, :title
+  # attr_accessible :body, :title
   belongs_to :group
   belongs_to :user
   has_many :replies, class_name: "GroupTopicReply"

@@ -4,9 +4,15 @@ class TopicReplyController < ApplicationController
   def create
     @event = Event.find(params[:event_id])
     @topic = @event.group.topics.find(params[:topic_id])
-    @reply = @topic.replies.build params[:group_topic_reply]
+    @reply = @topic.replies.build topic_reply_params
     @reply.user = current_user
     @reply.save
     redirect_to event_topic_path(@event, @topic)
+  end
+
+  private
+
+  def topic_reply_params
+    params.require(:group_topic_reply).permit :body, :topic_id, :user_id
   end
 end

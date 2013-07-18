@@ -30,7 +30,7 @@ class EventsController < ApplicationController
   end
 
   def create
-    @event = current_user.events.new(params[:event])
+    @event = current_user.events.new(event_params)
 
     respond_to do |format|
       if @event.save
@@ -49,7 +49,7 @@ class EventsController < ApplicationController
 
   def update
     respond_to do |format|
-      if @event.update_attributes(params[:event])
+      if @event.update_attributes(event_params)
         format.html { redirect_to edit_event_path(@event), notice: I18n.t('flash.events.updated') }
         format.json { head :no_content }
       else
@@ -113,6 +113,12 @@ class EventsController < ApplicationController
   end
 
   private
+  def event_params
+    params.require(:event).permit(
+      :content, :location, :location_guide, :start_time, :end_time, :title, :slug,
+      compound_start_time_attributes: [:date, :time], compound_end_time_attributes: [:date, :time]
+      )
+  end
   # TODO: move these to a model using ActiveModel validation
 
   # Return symbol representing validation result

@@ -3,7 +3,7 @@ class Group < ActiveRecord::Base
   has_many :events
   has_many :collaborators, class_name: "GroupCollaborator"
   has_many :topics, class_name: "GroupTopic"
-  attr_accessible :slug
+  # attr_accessible :slug
   acts_as_followable
 
   def collaborator?(user)

@@ -7,7 +7,7 @@ class TopicsController < ApplicationController
   end
 
   def create
-    @topic = @group.topics.build params[:group_topic]
+    @topic = @group.topics.build group_topic_params
     @topic.user = current_user
     if @topic.save
       redirect_to event_path(@event)
@@ -28,4 +28,7 @@ class TopicsController < ApplicationController
     @group = @event.group
   end
 
+  def group_topic_params
+    params.require(:group_topic).permit :body, :title
+  end
 end
