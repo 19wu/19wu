@@ -4,13 +4,13 @@ div
     li.active
       a href="#" = t('views.events.topics.title')
   ul.media-list.unstyled
-    - @event.group.topics.each do |topic|
-      li.topic-item
-        a.topic-item-avatar href=user_path(topic.user)
-          img.media-object src=topic.user.gravatar_url(size: 48)
-        .media-body
-          .topic-item-title = link_to topic.title, event_topic_path(@event, topic)
-          .topic-item-info
-            = link_to topic.user.login, user_path(topic.user), class: 'muted'
-            |  •  
-            = timeago_tag topic.created_at
+    = content_tag_for('li', @event.group.topics, class: 'topic-item') do |topic|
+      a.topic-item-avatar href=user_path(topic.user)
+        img.media-object src=topic.user.gravatar_url(size: 48)
+      .media-body
+        span.replies-count = topic.replies.size
+        .topic-item-title = link_to topic.title, event_topic_path(@event, topic)
+        .topic-item-info
+          = link_to topic.user.login, user_path(topic.user), class: 'muted'
+          |  •
+          = timeago_tag topic.created_at

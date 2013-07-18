@@ -22,6 +22,11 @@
   @extend .muted;
   font-size: 12px;
 }
+.replies-count {
+  @extend .pull-right, .badge, .badge-info;
+  margin: 10px 10px 0 0;
+}
+
 
 //topic show
 .topic-body {
