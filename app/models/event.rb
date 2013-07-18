@@ -39,8 +39,11 @@ class Event < ActiveRecord::Base
     where(:start_time => tomorrow.beginning_of_day..tomorrow.end_of_day)
   }
 
+  # Must return boolean, because angularjs depends on the value to update UI.
+  # @see EventsController#join
+  # @see EventsController#quit
   def has?(user)
-    return user && participants.exists?(user_id: user.id)
+    return !!(user && participants.exists?(user_id: user.id))
   end
 
   def sibling_events
