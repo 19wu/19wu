@@ -12,7 +12,7 @@ table.table.table-striped.table-bordered
       tr
         td = user.email
         td = user.invite_reason
-        td = user.invitation_sent_at.to_s(:db)
+        td = user.invitation_sent_at.try(:to_s, :db)
         td = :Yes if user.login
         td
           - if user.invited_by_id?
