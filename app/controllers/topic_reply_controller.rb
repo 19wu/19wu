@@ -13,6 +13,6 @@ class TopicReplyController < ApplicationController
   private
 
   def topic_reply_params
-    params.require(:group_topic_reply).permit :body, :topic_id, :user_id
+    params.require(:group_topic_reply).permit :body
   end
 end

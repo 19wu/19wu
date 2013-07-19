@@ -51,6 +51,6 @@ class InvitationsController < Devise::InvitationsController
   end
 
   def resource_params
-    params.require(:user).permit(:email, :invite_reason, :skip_invitation, :confirmed_at)
+    params.require(:user).permit(:email, :invite_reason)
   end
 end

@@ -31,6 +31,6 @@ class EventSummariesController < ApplicationController
   private
 
   def event_summary_params
-    params.require(:event_summary).permit :content, :event_id
+    params.require(:event_summary).permit :content
   end
 end
