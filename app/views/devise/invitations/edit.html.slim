@@ -1,6 +1,6 @@
 .row
   .span4.offset4.well
-    = simple_form_for resource, :as => resource_name, :url => invitation_path(resource_name), :html => { :method => :put, :class => 'form-full-width' } do |f|
+    = simple_form_for resource, :as => resource_name, :url => invitation_path(resource_name), :html => { :method => :patch, :class => 'form-full-width' } do |f|
       fieldset
         legend  = t 'devise.invitations.edit.header'
         = devise_error_messages!

@@ -1,6 +1,6 @@
 .row
   .span4.offset4.well
-    = simple_form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f|
+    = simple_form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :patch }) do |f|
 
       fieldset
         legend
