@@ -14,9 +14,6 @@ class User < ActiveRecord::Base
   devise :invitable, :database_authenticatable, :registerable,:confirmable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  # Setup accessible (or protected) attributes for your model
-  # attr_accessible :login, :email, :phone, :password, :password_confirmation, :remember_me, :skip_invitation, :invite_reason, :confirmed_at
-  # # attr_accessible :title, :body
   attr_accessor :phone_valid_code
   validates :login, presence: true, uniqueness: { case_sensitive: false }, format: { with: /\A[a-zA-Z0-9_]+\z/, message: I18n.t('errors.messages.invalid_login') }, length: {in: 3..20}
   validate :login_must_uniq, unless: "login.blank?"
