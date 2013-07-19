@@ -35,7 +35,7 @@ describe ParticipantsController do
     end
   end
 
-  describe "PUT 'update'" do
+  describe "PATCH 'update'" do
     let(:event) { create(:event) }
     let(:event_creator) { event.user }
     let(:user) { create(:user) }
@@ -44,7 +44,7 @@ describe ParticipantsController do
     context 'when user has signed in' do
       before { login_user(event_creator) }
       it 'with check in event' do
-        put :update, event_id: event.id, id: participant.id
+        patch :update, event_id: event.id, id: participant.id
         participant.reload.joined.should be_true
         response.should redirect_to(event_participants_path(event))
       end
@@ -52,7 +52,7 @@ describe ParticipantsController do
 
     context 'when user has not yet signed in' do
       it 'should be redirect to user login view' do
-        put :update, event_id: event.id, id: participant.id
+        patch :update, event_id: event.id, id: participant.id
         response.should redirect_to(new_user_session_path)
       end
     end
@@ -70,10 +70,10 @@ describe ParticipantsController do
           response.should render_template('application/403')
         end
       end
-      describe "PUT 'update'" do
+      describe "PATCH 'update'" do
         let(:participant) { create(:event_participant, event_id: event.id, user_id: user.id) }
         it 'should be redirect to user login view' do
-          put :update, event_id: event.id, id: participant.id
+          patch :update, event_id: event.id, id: participant.id
           response.should render_template('application/403')
         end
       end

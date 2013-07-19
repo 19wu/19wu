@@ -24,7 +24,7 @@ describe ProfilesController do
 
   describe '#update' do
     context 'not logged in' do
-      before { put 'update' }
+      before { patch 'update' }
       it 'redirects to login page' do
         response.should redirect_to(new_user_session_path)
       end
@@ -37,7 +37,7 @@ describe ProfilesController do
       }
 
       before { login_user(user) }
-      before { put 'update', :profile => profile_attributes }
+      before { patch 'update', :profile => profile_attributes }
 
       it 'updates current user profile' do
         user.reload.profile.name.should == profile_attributes[:name]
