@@ -1,11 +1,11 @@
 module EventJoinHelper
   def joined?(event)
-    current_user && current_user.joined?(event) ? true : false
+    !!(current_user && current_user.joined?(event))
   end
 
   def init_join(event)
     options = {
-      'user.joined' => event.has?(current_user) ? true : false,
+      'user.joined' => !!(event.has?(current_user)),
       labels: t('views.join.state'),
       titles: t('views.join.title')
     }
