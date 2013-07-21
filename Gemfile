@@ -14,6 +14,17 @@ else
   source 'http://ruby.taobao.org'
 end
 
+# if not encoding, `bundle install` command would be error. (Invalid byte sequence in GBK)
+# see http://bit.ly/12VbO9n
+if RUBY_VERSION =~ /1.9/
+  Encoding.default_external = Encoding::UTF_8
+  Encoding.default_internal = Encoding::UTF_8
+end
+
+def windows_only
+  RbConfig::CONFIG['host_os'] =~ /mingw|mswin/i
+end
+
 gem 'rails', '4.0.0'
 gem 'slim-rails', '1.1.1'
 gem 'simple_form', '~> 3.0.0.rc'
@@ -42,7 +53,12 @@ group sqlite3_group do
 end
 
 group mysql2_group do
-  gem 'mysql2'
+  # newest version hasn't installed in windows
+  if windows_only
+    gem 'mysql2', '0.3.11'
+  else
+    gem 'mysql2'
+  end
 end
 
 gem 'devise', '3.0.0.rc'
@@ -53,7 +69,13 @@ gem 'delayed_job_active_record', '~> 4.0.0.beta3'
 gem 'daemons'
 gem 'carrierwave'
 gem 'friendly_id', github: 'FriendlyId/friendly_id', branch: 'rails4'
-gem 'mini_magick'
+# newest version hasn't installed in windows.
+# but in #146, it has fixed it in master branch. see http://git.io/PlPFbw
+if windows_only
+  gem 'mini_magick', '3.5.0'
+else
+  gem 'mini_magick'
+end
 gem 'rails-timeago'
 
 group :production do
