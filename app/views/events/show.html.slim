@@ -27,7 +27,7 @@ article.event ng-init=init_event(@event)
               form.form-inline ng-submit="checkin()" ng-show="keep"
                 .input-append
                   input#appendedInputButton.input-medium ng-model="code" type="text" placeholder="请在会场输入签到码"
-                  button.btn.btn-info 签到
+                  button.btn.btn-info = t('labels.check_in_button')
           ul.unstyled
             li
               i.icon-calendar
