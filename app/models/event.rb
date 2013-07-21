@@ -21,9 +21,6 @@ class Event < ActiveRecord::Base
   has_html_pipeline :location_guide, :markdown
 
   attr_accessor :slug
-  # attr_accessible :content, :location, :location_guide, :start_time, :end_time, :title, :slug
-  # attr_accessible :compound_start_time_attributes
-  # attr_accessible :compound_end_time_attributes
 
   validates :title, :location, presence: true
   validates :slug, presence: true

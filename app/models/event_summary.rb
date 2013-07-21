@@ -1,8 +1,6 @@
 class EventSummary < ActiveRecord::Base
   extend HasHtmlPipeline
 
-  # attr_accessible :content, :event_id
-
   belongs_to :event
 
   has_html_pipeline :content, :markdown
