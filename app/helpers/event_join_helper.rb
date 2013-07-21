@@ -9,6 +9,7 @@ module EventJoinHelper
       labels: t('views.join.state'),
       titles: t('views.join.title')
     }
+    options['user.joined'] = 'event_end' if event.start_time.past?
     options.to_ng_init
   end
 end
