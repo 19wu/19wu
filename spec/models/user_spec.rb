@@ -84,4 +84,41 @@ describe User do
       end
     end
   end
+
+  describe 'devise mails', :delay => true do
+    before { user.save }
+
+    describe '#send_reset_password_instructions' do
+      context 'when user is waiting for invitation' do
+        before { user.stub(:invited_to_sign_up? => true) }
+        it 'does not send asynchronously' do
+          expect {
+            user.send_reset_password_instructions
+          }.to change{Delayed::Job.count}.by(0)
+        end
+      end
+      context 'when user is not waiting for invitation' do
+        before { user.stub(:invited_to_sign_up? => false) }
+        it 'sends asynchronously' do
+          expect {
+            user.send_reset_password_instructions
+          }.to change{Delayed::Job.count}.by(1)
+        end
+      end
+    end
+    describe '#send_confirmation_instructions' do
+      it 'sends asynchronously' do
+        expect {
+          user.send_confirmation_instructions
+        }.to change{Delayed::Job.count}.by(1)
+      end
+    end
+    describe '#send_on_create_confirmation_instructions' do
+      it 'sends asynchronously' do
+        expect {
+          user.send :send_on_create_confirmation_instructions
+        }.to change{Delayed::Job.count}.by(1)
+      end
+    end
+  end
 end
