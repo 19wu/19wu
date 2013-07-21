@@ -62,7 +62,7 @@ describe EventSummariesController do
     end
   end
 
-  describe "PUT update" do
+  describe "PATCH update" do
     let(:user) { create(:user, :confirmed) }
     let(:event) { create(:event, user: user) }
 
@@ -70,14 +70,14 @@ describe EventSummariesController do
       it "should update event summary" do
         login_user user
         summary = create(:event_summary, event: event)
-        put :update, event_id: event.id, event_summary: { content: "12345678900987654321" }
+        patch :update, event_id: event.id, event_summary: { content: "12345678900987654321" }
         expect(summary.reload.content).to eq("12345678900987654321")
       end
 
       it "should redirect to event show page" do
         login_user user
         summary = create(:event_summary, event: event)
-        put :update, event_id: event.id, event_summary: { content: "12345678900987654321" }
+        patch :update, event_id: event.id, event_summary: { content: "12345678900987654321" }
         expect(response).to redirect_to event_path(event)
       end
     end
@@ -86,14 +86,14 @@ describe EventSummariesController do
       it "should not update event summary" do
         login_user user
         summary = create(:event_summary, event: event)
-        put :update, event_id: event.id, event_summary: { content: "abc" }
+        patch :update, event_id: event.id, event_summary: { content: "abc" }
         expect(summary.reload.content).to_not eq("abc")
       end
 
       it "should render :new template" do
         login_user user
         summary = create(:event_summary, event: event)
-        put :update, event_id: event.id, event_summary: { content: "abc" }
+        patch :update, event_id: event.id, event_summary: { content: "abc" }
         expect(response).to render_template(:new)
       end
     end

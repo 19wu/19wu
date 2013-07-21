@@ -14,5 +14,5 @@
               - if participant.joined
                 button.btn.disabled disabled="disabled" id="check-in-event-participant-#{participant.id}" = I18n.t('labels.has_checked_in_button')
               - else
-                = form_for('', :url => event_participant_path(@event, participant), :method => :put, :html => {:style=>"margin-bottom: 10px;"}) do |f|
+                = form_for('', :url => event_participant_path(@event, participant), :method => :patch, :html => {:style=>"margin-bottom: 10px;"}) do |f|
                   button.btn.btn-info type="submit" id="check-in-event-participant-#{participant.id}" = I18n.t('labels.check_in_button')

@@ -22,12 +22,12 @@ NineteenWu::Application.routes.draw do
 
   get "events/:event_id/summary", to: "event_summaries#new", as: :new_event_summary
   post "events/:event_id/summary", to: "event_summaries#create", as: :create_event_summary
-  put "events/:event_id/summary", to: "event_summaries#update"
+  patch "events/:event_id/summary", to: "event_summaries#update"
 
   get ":slug" => "group#event", :constraints => SlugConstraint, :as => :slug_event
   get ":slug/followers" => "group#followers"
   get 'joined_events', to: "events#joined"
-  match '/photos', to: "photo#create", :via => [:post, :put]
+  post '/photos', to: "photo#create"
   post "/content/preview/" => "home#content_preview"
 
   authenticated :user do
@@ -37,9 +37,9 @@ NineteenWu::Application.routes.draw do
     root to: 'home#page'
     get 'cohort' => 'users#cohort'
     get 'invitations' => 'invitations#index'
-    put '/invitations/:id/mail' => 'invitations#mail', :as => :mail_invitation
+    patch '/invitations/:id/mail' => 'invitations#mail', :as => :mail_invitation
     get 'invitations/upgrade' => 'invitations#upgrade', :as => :upgrade_invitation
-    put 'invitations/:id/upgrade_invite' => 'invitations#upgrade_invite', :as => :upgrade_invite_invitation
+    patch 'invitations/:id/upgrade_invite' => 'invitations#upgrade_invite', :as => :upgrade_invite_invitation
     resource :user_phone, only: [:edit, :update], format: false do
       post 'send_code'
     end

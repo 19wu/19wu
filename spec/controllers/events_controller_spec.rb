@@ -100,14 +100,14 @@ describe EventsController do
     end
   end
 
-  describe "PUT 'update'" do
+  describe "PATCH 'update'" do
     let(:event_creator) { login_user }
     let(:event) { FactoryGirl.create(:event, user: event_creator) }
     let(:valid_attributes) { attributes_for(:event) }
     context 'when user has signed in' do
       context 'with valid attributes' do
         it 'update the event' do
-          put 'update', :id => event.id, :event => valid_attributes
+          patch 'update', :id => event.id, :event => valid_attributes
           response.should redirect_to(edit_event_path(event))
         end
       end
@@ -137,7 +137,7 @@ describe EventsController do
         end
 
         it 'when all input changed' do
-          put 'update', :id => event.id, :event => attributes
+          patch 'update', :id => event.id, :event => attributes
           assigns[:event].title.should == "19wu development meeting by issuse #185"
           assigns[:event].location.should ==  "Dalian, China"
           assigns[:event].content.should == "Dalian 19wu development meeting by issuse #185"
@@ -150,7 +150,7 @@ describe EventsController do
 
     context 'when user has not yet signed in' do
       it "should be redirect" do
-        put 'update', :id => event.id, :event => valid_attributes
+        patch 'update', :id => event.id, :event => valid_attributes
         response.should be_redirect
       end
     end
