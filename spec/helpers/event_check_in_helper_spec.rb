@@ -39,7 +39,7 @@ describe EventCheckInHelper do
           end_time.should_receive(:past?).and_return(true)
           event.stub(:end_time).and_return(end_time)
         end
-        it { should eql "outdate=true;message='#{t('flash.participants.checkin_welcome')}'" }
+        it { should eql "outdate=true;message=\"#{t('flash.participants.checkin_welcome')}\"" }
       end
       context 'without end_time' do
         before do
@@ -49,7 +49,7 @@ describe EventCheckInHelper do
           start_time.should_receive(:past?).and_return(true)
           event.stub(:start_time).and_return(start_time)
         end
-        it { should eql "outdate=true;message='#{t('flash.participants.checkin_welcome')}'" }
+        it { should eql "outdate=true;message=\"#{t('flash.participants.checkin_welcome')}\"" }
       end
     end
   end

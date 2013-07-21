@@ -35,7 +35,7 @@ describe EventJoinHelper do
     it { should eql "user.joined=true;labels=#{t('views.join.state').to_json};titles=#{t('views.join.title').to_json}" }
     context 'event started' do
       let(:event_end?) { true }
-      it { should eql "user.joined='event_end';labels=#{t('views.join.state').to_json};titles=#{t('views.join.title').to_json}" }
+      it { should eql "user.joined=\"event_end\";labels=#{t('views.join.state').to_json};titles=#{t('views.join.title').to_json}" }
     end
   end
 end
