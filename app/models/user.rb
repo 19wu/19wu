@@ -59,6 +59,15 @@ class User < ActiveRecord::Base
     group.nil? or group.user == self or group.collaborator?(self)
   end
 
+  def joined?(event)
+    event.has?(self)
+  end
+
+  def checked_in?(event)
+    participant = event.participants.find_by_user_id(self.id)
+    !!(participant && participant.joined)
+  end
+
   def email_with_login
     "#{login} <#{email}>"
   end

@@ -37,7 +37,7 @@ feature 'event page' do
     end
 
     describe 'init show' do
-      it "event display end if start_time < Time.now" do 
+      it "event display end if start_time past" do
         visit event_path(old_event)
         page.should have_selector('a', text: I18n.t('views.join.state')['event_end'])
       end 
@@ -59,7 +59,8 @@ feature 'event page' do
       visit event_path(event)
       # click_link '我要参加' # a with ng-href attribute will raise: Capybara::ElementNotFound: Unable to find link "我要参加"
       find('a', text: I18n.t('views.join.state')[false]).click
-      current_path.should == event_path(event)
+      expect(current_path).to eql event_path(event)
+      expect(find('button', text: I18n.t('labels.check_in_button')).visible?).to be_true
       expect(page).to have_content I18n.t('views.join.state')[true]
     end
   end
