@@ -17,6 +17,7 @@ Password：`666666`
 
 * Ruby 2.0.0 (or 1.9.3)
 * PostgreSQL (or MySQL, SQLite)
+* ImageMagick
 
 ## 安装步骤
 
