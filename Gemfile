@@ -8,6 +8,11 @@ is_heroku = ['/app/','/app'].include?(ENV['HOME']) # ENV['HOME'] = '/app' in rai
 sqlite3_group = is_heroku ? :development : :sqlite3
 mysql2_group = is_heroku ? :development : :mysql2
 
+# Uncomment following lines to deploy 19wu to heroku
+# https://devcenter.heroku.com/articles/rails4
+# ruby '2.0.0'
+# gem 'rails_12factor', group: :production
+
 if ENV['TRAVIS']
   source 'https://rubygems.org'
 else
