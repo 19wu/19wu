@@ -49,7 +49,7 @@ class CompoundDatetime
   end
 
   def time=(time)
-    @datetime ||= Time.zone.now.beginning_of_day
+    return if @datetime == nil
 
     if time.blank?
       @datetime = @datetime.change(:hour => 0, :min => 0, :sec => 0)
