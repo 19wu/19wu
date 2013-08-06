@@ -19,7 +19,8 @@ class User < ActiveRecord::Base
   validate :login_must_uniq, unless: "login.blank?"
 
   #async devise mailing with delayed job
-  handle_asynchronously :send_reset_password_instructions
+  # #send_reset_password_instructions is redefined below
+  # handle_asynchronously :send_reset_password_instructions
   handle_asynchronously :send_confirmation_instructions
   handle_asynchronously :send_on_create_confirmation_instructions
 
@@ -37,13 +38,14 @@ class User < ActiveRecord::Base
     super || build_profile
   end
 
-  def send_reset_password_instructions # http://git.io/Y9Q9eQ
+  def send_reset_password_instructions_with_invite_check # http://git.io/Y9Q9eQ
     if self.invited_to_sign_up?
       self.errors.add(:email, :wait_for_invite)
     else
-      super
+      delay.send_reset_password_instructions_without_invite_check
     end
   end
+  alias_method_chain :send_reset_password_instructions, :invite_check
 
   def collaborator?
     GroupCollaborator.exists?(user_id: self.id)
@@ -52,6 +54,15 @@ class User < ActiveRecord::Base
   def owns?(slug)
     group = Group.find_by_slug(slug)
     group.nil? or group.user == self or group.collaborator?(self)
+  end
+
+  def joined?(event)
+    event.has?(self)
+  end
+
+  def checked_in?(event)
+    participant = event.participants.find_by_user_id(self.id)
+    !!(participant && participant.joined)
   end
 
   def email_with_login

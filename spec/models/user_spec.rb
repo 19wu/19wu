@@ -75,12 +75,76 @@ describe User do
       its(:profile) { should be_a_kind_of(Profile) }
     end
   end
+
+  describe '#joined' do
+    let(:event) { build(:event) }
+    subject { user.joined?(event) }
+    context 'without event' do
+      it { should be false }
+    end
+    context 'with event' do
+      let(:participant) { create(:event_participant, user: user, event: event) }
+      before { participant }
+      it { should be true }
+    end
+  end
+
+  describe '#checked_in?' do
+    let(:event) { build(:event) }
+    subject { user.checked_in?(event) }
+    context 'without event' do
+      it { should be false }
+    end
+    context 'with event' do
+      let(:participant) { create(:event_participant, user: user, event: event, joined: true) }
+      before { participant }
+      it { should be true }
+    end
+  end
+
   describe '#send_reset_password_instructions' do # issue#287
     context 'user is waiting for invite' do
       let(:user) { User.invite! email: 'demo@19wu.com', skip_invitation: true }
       before { user.send_reset_password_instructions }
       it 'should get errors' do
         user.errors[:email].first.should eql '您正申请注册，请等待邀请邮件.'
+      end
+    end
+  end
+
+  describe 'devise mails', :delay => true do
+    before { user.save }
+
+    describe '#send_reset_password_instructions' do
+      context 'when user is waiting for invitation' do
+        before { user.stub(:invited_to_sign_up? => true) }
+        it 'does not send asynchronously' do
+          expect {
+            user.send_reset_password_instructions
+          }.to change{Delayed::Job.count}.by(0)
+        end
+      end
+      context 'when user is not waiting for invitation' do
+        before { user.stub(:invited_to_sign_up? => false) }
+        it 'sends asynchronously' do
+          expect {
+            user.send_reset_password_instructions
+          }.to change{Delayed::Job.count}.by(1)
+        end
+      end
+    end
+    describe '#send_confirmation_instructions' do
+      it 'sends asynchronously' do
+        expect {
+          user.send_confirmation_instructions
+        }.to change{Delayed::Job.count}.by(1)
+      end
+    end
+    describe '#send_on_create_confirmation_instructions' do
+      it 'sends asynchronously' do
+        expect {
+          user.send :send_on_create_confirmation_instructions
+        }.to change{Delayed::Job.count}.by(1)
       end
     end
   end

@@ -3,6 +3,7 @@ describe "event checkins", ->
   beforeEach ->
     inject ($rootScope, $controller, $injector, $http) ->
       $rootScope.event = {id: 1}
+      $rootScope.user = {checkin: false}
       scope = $rootScope.$new()
       scope.code = '666'
       $httpBackend = $injector.get('$httpBackend')
@@ -13,5 +14,6 @@ describe "event checkins", ->
     scope.checkin()
     $httpBackend.flush()
     expect(scope.message).toEqual 'success'
-    expect(scope.alert).toEqual true
+    expect(scope.user.checked_in).toEqual true
     expect(scope.keep).toEqual false
+    expect(scope.alert).toEqual true

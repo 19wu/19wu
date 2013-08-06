@@ -7,7 +7,7 @@ class FallbackUrlRedirector
     status, headers, body =
       begin
         @app.call(env)
-      rescue => e
+      rescue ActiveRecord::RecordNotFound
         if path = find_path(env)
           return [301, { 'Location' => path }, ["Redirecting you to #{path}"]]
         end
