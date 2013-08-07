@@ -93,6 +93,8 @@ zh-CN:
       new: 新增
 
   flash:
+    created: "新增成功!"
+    updated: "更新成功!"
     events:
       created: "活动已经发布"
       updated: "活动已经更新"

@@ -9,10 +9,11 @@
             td width='140px'  = t('activerecord.attributes.event_ticket.name')
             td width='140px'  = t('activerecord.attributes.event_ticket.price')
             td = t('activerecord.attributes.event_ticket.description')
+            td width='140px'  &nbsp;
         tbody
           - @tickets.each do |ticket|
             tr
               td = ticket.name
               td = ticket.price
               td = ticket.description
-
+              td = link_to t('views.edit'), edit_event_ticket_path(ticket.event, ticket)

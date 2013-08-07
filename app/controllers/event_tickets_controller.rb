@@ -20,6 +20,19 @@ class EventTicketsController < ApplicationController
     end
   end
 
+  def edit
+    @ticket = @event.tickets.find(params[:id])
+  end
+
+  def update
+    @ticket = @event.tickets.find(params[:id])
+    if @ticket.update_attributes(event_ticket_params)
+      redirect_to event_tickets_path(@event), notice: I18n.t('flash.updated')
+    else
+      render action: "edit"
+    end
+  end
+
   private
 
   def event_ticket_params
