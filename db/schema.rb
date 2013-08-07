@@ -61,22 +61,24 @@ ActiveRecord::Schema.define(version: 20130807005443) do
     t.string   "name"
     t.float    "price"
     t.string   "description"
+    t.boolean  "require_invoice"
     t.integer  "event_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "events", force: true do |t|
-    t.string   "title",          null: false
+    t.string   "title",            null: false
     t.datetime "start_time"
     t.datetime "end_time"
     t.string   "location"
     t.text     "content"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-    t.integer  "user_id",        null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.integer  "user_id",          null: false
     t.text     "location_guide"
-    t.integer  "group_id",       null: false
+    t.integer  "group_id",         null: false
+    t.integer  "tickets_quantity"
   end
 
   add_index "events", ["group_id"], name: "index_events_on_group_id", using: :btree

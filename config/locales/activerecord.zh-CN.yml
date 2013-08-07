@@ -37,6 +37,8 @@ zh-CN:
         name: "名称"
         price: "价格"
         description: "描述"
+        tickets_quantity: "活动总票数"
+        require_invoice: "是否提供发票"
       profile:
         name: "名字"
         website: "主页"

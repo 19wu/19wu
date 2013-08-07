@@ -8,6 +8,7 @@
           tr
             td width='140px'  = t('activerecord.attributes.event_ticket.name')
             td width='140px'  = t('activerecord.attributes.event_ticket.price')
+            td width='200px'  = t('activerecord.attributes.event_ticket.require_invoice')
             td = t('activerecord.attributes.event_ticket.description')
             td width='140px'  &nbsp;
         tbody
@@ -15,7 +16,10 @@
             tr
               td = ticket.name
               td = ticket.price
+              td = t('simple_form.options.event_ticket.require_invoice')[ticket.require_invoice?]
               td = ticket.description
               td.table-operate
                 = link_to t('views.edit'), edit_event_ticket_path(ticket.event, ticket)
                 = link_to t('views.destroy'), event_ticket_path(ticket.event, ticket), method: :delete, confirm: t('confirmation.destroy')
+    - if @event.tickets_quantity
+      .muted = "总票数：#{@event.tickets_quantity}"

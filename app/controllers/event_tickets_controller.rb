@@ -42,6 +42,6 @@ class EventTicketsController < ApplicationController
   private
 
   def event_ticket_params
-    params.require(:event_ticket).permit :name, :price, :description
+    params.require(:event_ticket).permit :name, :price, :require_invoice, :description, :tickets_quantity
   end
 end
