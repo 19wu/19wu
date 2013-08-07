@@ -12,7 +12,9 @@ feature 'event tickets' do
       visit event_tickets_path(event)
       expect(page).to have_content(ticket.name)
       expect(page).to have_content(ticket.price)
+      expect(page).to have_content(I18n.t('simple_form.options.event_ticket.require_invoice')[ticket.require_invoice])
       expect(page).to have_content(ticket.description)
+      expect(page).to have_content("总票数：#{event.tickets_quantity}")
     end
     scenario 'I can edit it' do
       visit event_tickets_path(event)
@@ -34,6 +36,7 @@ feature 'event tickets' do
       expect(page).not_to have_content(ticket.name)
       expect(page).not_to have_content(ticket.price)
       expect(page).not_to have_content(ticket.description)
+      expect(page).not_to have_content("总票数：#{event.tickets_quantity}")
     end
   end
 
