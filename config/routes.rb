@@ -18,6 +18,7 @@ NineteenWu::Application.routes.draw do
     end
     resources :export       , :only => [:index]
     resources :changes      , :only => [:index, :new, :create]    , :controller => 'event_changes'
+    resources :tickets      , :only => [:index, :new, :create]    , :controller => 'event_tickets'
   end
 
   get "events/:event_id/summary", to: "event_summaries#new", as: :new_event_summary

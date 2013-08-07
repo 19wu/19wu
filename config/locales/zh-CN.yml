@@ -89,6 +89,8 @@ zh-CN:
     user_phone:
       get_code: 获取短信校验码
       get_code_until: 重新获取短信校验码（等待 {{timeleft}} 秒）
+    event_ticket:
+      new: 新增
 
   flash:
     events:
@@ -112,6 +114,7 @@ zh-CN:
 
   views:
     edit: "修改"
+    ticket: "售票"
     change: "变更"
     summary: "总结"
     previous_summary: "往期活动总结"

@@ -1,0 +1,18 @@
+= render 'events/header'
+.row
+  .span12
+    = link_to t('buttons.event_ticket.new'), new_event_ticket_path, :class => "btn btn-info pull-right"
+    .tickets-list
+      table.table.table-striped
+        thead
+          tr
+            td width='140px'  = t('activerecord.attributes.event_ticket.name')
+            td width='140px'  = t('activerecord.attributes.event_ticket.price')
+            td = t('activerecord.attributes.event_ticket.description')
+        tbody
+          - @tickets.each do |ticket|
+            tr
+              td = ticket.name
+              td = ticket.price
+              td = ticket.description
+
