@@ -85,6 +85,9 @@ zh-CN:
     has_checked_in_button: "已签到"
     invite_button: "邀请"
 
+  confirmation:
+    destroy: 您确定要删除吗？
+
   buttons:
     user_phone:
       get_code: 获取短信校验码
@@ -95,6 +98,7 @@ zh-CN:
   flash:
     created: "新增成功!"
     updated: "更新成功!"
+    destroyed: "删除成功!"
     events:
       created: "活动已经发布"
       updated: "活动已经更新"
@@ -116,6 +120,7 @@ zh-CN:
 
   views:
     edit: "修改"
+    destroy: "删除"
     ticket: "售票"
     change: "变更"
     summary: "总结"

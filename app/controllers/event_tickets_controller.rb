@@ -33,6 +33,12 @@ class EventTicketsController < ApplicationController
     end
   end
 
+  def destroy
+    @ticket = @event.tickets.find(params[:id])
+    @ticket.destroy
+    redirect_to event_tickets_path(@event), notice: I18n.t('flash.destroyed')
+  end
+
   private
 
   def event_ticket_params

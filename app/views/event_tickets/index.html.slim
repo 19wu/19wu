@@ -16,4 +16,6 @@
               td = ticket.name
               td = ticket.price
               td = ticket.description
-              td = link_to t('views.edit'), edit_event_ticket_path(ticket.event, ticket)
+              td.table-operate
+                = link_to t('views.edit'), edit_event_ticket_path(ticket.event, ticket)
+                = link_to t('views.destroy'), event_ticket_path(ticket.event, ticket), method: :delete, confirm: t('confirmation.destroy')
