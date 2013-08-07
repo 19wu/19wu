@@ -6,6 +6,10 @@ class EventTicket < ActiveRecord::Base
   delegate :tickets_quantity, to: :event
 
   before_save do
-    event.update_column :tickets_quantity, @tickets_quantity
+    event.update_column :tickets_quantity, @tickets_quantity if @tickets_quantity.present?
+  end
+
+  after_destroy do
+    event.update_column :tickets_quantity, nil if event.tickets.count.zero?
   end
 end
