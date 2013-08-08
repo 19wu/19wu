@@ -12,7 +12,7 @@ article.event ng-init=init_event(@event)
   .row
     .span8
       .event-tickets ng-controller='OrdersCtrl'
-        table.table
+        table.table ng-show='tickets'
           thead
             tr
               th = t('activerecord.attributes.event_ticket.name')

@@ -1,5 +1,5 @@
 class EventOrdersController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, only: [:create, :alipay_done]
 
   def create
     @event = Event.find(params[:event_id]) # TODO: validate, event and its inventory
@@ -15,12 +15,27 @@ class EventOrdersController < ApplicationController
     end
   end
 
-  def done
-
+  def alipay_done
+    callback_params = params.except(*request.path_parameters.keys)
+    if callback_params.any? && Alipay::Sign.verify?(callback_params) && params[:trade_status] == 'TRADE_SUCCESS'
+      @order = current_user.orders.find params[:out_trade_no]
+      @order.pay(params[:trade_no])
+    end
   end
 
-  def notify
-
+  def alipay_notify
+    notify_params = params.except(*request.path_parameters.keys)
+    if Alipay::Sign.verify?(notify_params) && Alipay::Notify.verify?(notify_params)
+      @order = EventOrder.find params[:out_trade_no]
+      if ['TRADE_SUCCESS', 'TRADE_FINISHED'].include?(params[:trade_status])
+        @order.pay(params[:trade_no])
+      # elsif params[:trade_status] == 'TRADE_CLOSED'
+      #   @order.cancel
+      end
+      render text: 'success'
+    else
+      render text: 'fail'
+    end
   end
 
   private
@@ -36,8 +51,8 @@ class EventOrdersController < ApplicationController
       :price             => order.price,
       :quantity          => 1,
       :discount          => 0,
-      :return_url        => event_order_done_url(event, order), # localhost isn't work http://bit.ly/1cwKbsw
-      :notify_url        => event_order_notify_url(event, order)
+      :return_url        => event_order_alipay_done_url(event, order), # localhost isn't work http://bit.ly/1cwKbsw
+      :notify_url        => event_order_alipay_notify_url(event, order)
     }
     Alipay::Service.create_direct_pay_by_user_url(options)
   end

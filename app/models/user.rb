@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   friendly_id :login
   has_one :profile
   has_many :events
+  has_many :orders,       :class_name => "EventOrder"
   has_many :groups
   has_many :photos
   has_many :event_participants
