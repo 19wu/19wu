@@ -46,3 +46,6 @@ coverage
 
 # jasmine-rails
 spec/tmp
+
+# selenium
+libpeerconnection.log

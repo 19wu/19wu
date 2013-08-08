@@ -10,6 +10,12 @@ require 'capybara/rails'
 #require 'rspec/autorun' # http://j.mp/WLeAs3
 require 'capybara/email/rspec'
 
+selenium_browser = (ENV['SELENIUM_BROWSER'] || 'firefox').to_sym
+Capybara.register_driver selenium_browser do |app|
+  Capybara::Selenium::Driver.new(app, :browser => selenium_browser)
+end
+Capybara.javascript_driver = selenium_browser
+
 class Capybara::Email::Driver
   def raw
     if email.mime_type == 'multipart/alternative' && email.html_part
