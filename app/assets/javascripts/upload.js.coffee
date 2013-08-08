@@ -20,13 +20,10 @@ $(document).ready ->
         el.show()
         el.next(".uploading").hide()
 
-
   $("textarea.uploadable").on("focus", ->
     $(this).next("p").addClass "focused"
   ).on "blur", ->
     $(this).next("p").removeClass "focused"
-
-
 
   $(".uploadable-input").each ->
     $this = $(this)
@@ -68,4 +65,3 @@ $(document).ready ->
               previewSec.find('.preview-loading').hide()
               previewSec.find('.previews').append(data.result)
         })
-
