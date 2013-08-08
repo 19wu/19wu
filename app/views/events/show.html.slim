@@ -11,6 +11,22 @@ article.event ng-init=init_event(@event)
 
   .row
     .span8
+      .event-tickets ng-controller='OrdersCtrl'
+        table.table
+          thead
+            tr
+              th = t('activerecord.attributes.event_ticket.name')
+              th width='100px' = t('activerecord.attributes.event_ticket.price')
+              th width='100px' 数量
+          tbody ng-init=init_tickets(@event)
+            tr ng-repeat="ticket in tickets"
+              td
+                |{{ticket.name}}
+                .muted {{ticket.description}}
+              td {{ticket.price}}
+              td
+                select.span1 ng-model='ticket.quantity' = options_for_select(0..10)
+        a.btn.btn-info.span1.pull-right ng-click='create()' 报名
       .event-body
         == @event.content_html
       - if @event.show_summary?

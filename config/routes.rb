@@ -1,4 +1,6 @@
 NineteenWu::Application.routes.draw do
+  resources :event_order_items
+
   get "autocomplete/users"
 
   resources :events, except: [:destroy] do
@@ -19,6 +21,7 @@ NineteenWu::Application.routes.draw do
     resources :export       , :only => [:index]
     resources :changes      , :only => [:index, :new, :create]    , :controller => 'event_changes'
     resources :tickets      , :controller => 'event_tickets'
+    resources :orders       , :only => [:create]                  , :controller => 'event_orders'
   end
 
   get "events/:event_id/summary", to: "event_summaries#new", as: :new_event_summary
