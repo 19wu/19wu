@@ -51,13 +51,18 @@ ActiveRecord::Schema.define(version: 20130808003107) do
   end
 
   create_table "event_orders", force: true do |t|
-    t.integer  "event_id",   null: false
-    t.integer  "user_id",    null: false
-    t.integer  "quantity",   null: false
-    t.float    "price",      null: false
+    t.integer  "event_id",              null: false
+    t.integer  "user_id",               null: false
+    t.integer  "quantity",              null: false
+    t.float    "price",                 null: false
+    t.string   "status",     limit: 16
+    t.string   "trade_no",   limit: 16
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "event_orders", ["event_id"], name: "index_event_orders_on_event_id", using: :btree
+  add_index "event_orders", ["user_id"], name: "index_event_orders_on_user_id", using: :btree
 
   create_table "event_participants", force: true do |t|
     t.integer  "event_id"
@@ -84,6 +89,8 @@ ActiveRecord::Schema.define(version: 20130808003107) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "event_tickets", ["event_id"], name: "index_event_tickets_on_event_id", using: :btree
 
   create_table "events", force: true do |t|
     t.string   "title",            null: false

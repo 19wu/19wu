@@ -9,6 +9,7 @@ class CreateEventTickets < ActiveRecord::Migration
 
       t.timestamps
     end
+    add_index :event_tickets, :event_id
     add_column :events, :tickets_quantity, :integer
   end
 end
