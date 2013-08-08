@@ -12,7 +12,7 @@ emails = [email]
 emails << 'demo@19wu.com' if Rails.env.development? || is_heroku
 emails.each do |email|
   login = email.sub(/@.*/,'')                      # 'support@19wu.com' => 'support'
-  user = User.find_or_create_by_login_and_email(login, email, :password => '666666').confirm!
+  user = User.where(:login => login, :email => email).first_or_create(:password => '666666').confirm!
   user.admin = true
   user.save(validate:false)
 end

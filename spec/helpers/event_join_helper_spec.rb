@@ -3,7 +3,7 @@ require 'spec_helper'
 
 describe EventJoinHelper do
   let(:user) { build :user }
-  let(:event) { mock 'event' }
+  let(:event) { double 'event' }
   describe '#joined?' do
     subject { helper.joined?(event) }
     context 'without current_user' do
@@ -23,7 +23,7 @@ describe EventJoinHelper do
     end
   end
   describe '#init_join' do
-    let(:start_time) { mock('start_time') }
+    let(:start_time) { double('start_time') }
     let(:event_end?) { false }
     subject { helper.init_join(event) }
     before do

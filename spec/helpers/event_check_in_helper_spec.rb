@@ -3,7 +3,7 @@ require 'spec_helper'
 
 describe EventCheckInHelper do
   let(:user) { build :user }
-  let(:event) { mock 'event' }
+  let(:event) { double 'event' }
   describe '#checked_in?' do
     subject { helper.checked_in?(event) }
     context 'without current_user' do
@@ -35,7 +35,7 @@ describe EventCheckInHelper do
       end
       context 'with end_time' do
         before do
-          end_time = mock('end_time')
+          end_time = double('end_time')
           end_time.should_receive(:past?).and_return(true)
           event.stub(:end_time).and_return(end_time)
         end
@@ -44,7 +44,7 @@ describe EventCheckInHelper do
       context 'without end_time' do
         before do
           event.stub(:end_time).and_return(nil)
-          start_time = mock('start_time')
+          start_time = double('start_time')
           start_time.should_receive(:to_date).and_return(start_time)
           start_time.should_receive(:past?).and_return(true)
           event.stub(:start_time).and_return(start_time)
