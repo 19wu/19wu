@@ -1,5 +1,8 @@
-@OrdersCtrl = ['$scope', '$http', ($scope, $http) ->
+@OrdersCtrl = ['$scope', '$http', '$window', ($scope, $http, $window) ->
   $scope.create = ->
+    if !($scope.user? && $scope.user.id)
+      $window.location.href = "/users/sign_in"
+      return
     $scope.error = false
     tickets = []
     for ticket in $scope.tickets
