@@ -4,7 +4,7 @@ describe EventOrder do
   let(:user) { create(:user, :confirmed) }
   let(:event) { create(:event, user: user) }
   let(:trade_no) { '2013080841700373' }
-  let(:order) { create(:order_with_items, tickets_quantity: 400, event: event) }
+  let(:order) { create(:order_with_items, event: event) }
   subject { order }
 
   describe '#status' do
