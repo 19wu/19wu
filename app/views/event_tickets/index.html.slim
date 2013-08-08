@@ -20,6 +20,6 @@
               td = ticket.description
               td.table-operate
                 = link_to t('views.edit'), edit_event_ticket_path(ticket.event, ticket)
-                = link_to t('views.destroy'), event_ticket_path(ticket.event, ticket), method: :delete, confirm: t('confirmation.destroy')
+                = link_to t('views.destroy'), event_ticket_path(ticket.event, ticket), method: :delete, data: { confirm: t('confirmation.destroy') }
     - if @event.tickets_quantity
       .muted = "总票数：#{@event.tickets_quantity}"
