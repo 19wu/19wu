@@ -4,6 +4,8 @@ class Hash
     self.inject([]) do |result,(key,value)|
       value = if value.is_a?(Hash)
                 value.to_json
+              elsif value.is_a?(Array)
+                "[#{value.map(&:to_json).join(',')}]"
               else
                 value.inspect
               end
