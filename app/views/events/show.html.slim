@@ -26,7 +26,11 @@ article.event ng-init=init_event(@event)
               td {{ticket.price}}
               td
                 select.span1 ng-model='ticket.quantity' = options_for_select(0..10)
-        a.btn.btn-info.span1.pull-right ng-click='create()' 报名
+        .payment.clearfix
+          a.btn.btn-info.span1.pull-right ng-hide='pay_url' ng-click='create()' 报名
+          p.text-info ng-show='pay_url' 您已经提交了订单，订单号为{{id}}，请尽快支付。
+          p.muted ng-show='pay_url' 超过三天未支付的订单会自动取消。
+          a.btn.btn-warning.pull-right ng-show='pay_url' ng-href='{{pay_url}}' target='_blank' 使用支付宝支付
       .event-body
         == @event.content_html
       - if @event.show_summary?
