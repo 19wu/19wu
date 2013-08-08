@@ -8,5 +8,9 @@ describe Hash do
       subject { {a: {b: 1}}.to_ng_init }
       it { should eql "a={\"b\":1}" }
     end
+    context 'with array value' do
+      subject { {tickets: [{name: 'person'}, {name: 'company'}]}.to_ng_init }
+      it { should eql "tickets=[{\"name\":\"person\"},{\"name\":\"company\"}]" }
+    end
   end
 end

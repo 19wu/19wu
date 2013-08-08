@@ -11,6 +11,29 @@ article.event ng-init=init_event(@event)
 
   .row
     .span8
+      .event-tickets ng-controller='OrdersCtrl'
+        table.table ng-show='tickets'
+          thead
+            tr
+              th = t('activerecord.attributes.event_ticket.name')
+              th width='100px' = t('activerecord.attributes.event_ticket.price')
+              th width='100px' 数量
+          tbody ng-init=init_tickets(@event)
+            tr ng-repeat="ticket in tickets"
+              td
+                |{{ticket.name}}
+                .muted
+                  |{{ticket.description}}
+              td
+                |{{ticket.price}}
+              td
+                select.span1 ng-model='ticket.quantity' = options_for_select(0..10)
+        .payment.clearfix
+          p.text-warning ng-show='error' 请先选择门票数量。
+          a.btn.btn-info.span1.pull-right ng-hide='pay_url' ng-click='create()' 报名
+          p.text-info ng-show='pay_url' 您已经提交了订单，订单号为{{id}}，请尽快支付。
+          p.muted ng-show='pay_url' 超过三天未支付的订单会自动取消。
+          a.btn.btn-warning.pull-right ng-show='pay_url' ng-href='{{pay_url}}' target='_blank' 使用支付宝支付
       .event-body
         == @event.content_html
       - if @event.show_summary?

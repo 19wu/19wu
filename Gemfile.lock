@@ -6,6 +6,12 @@ GIT
     friendly_id (4.1.0.beta.2)
 
 GIT
+  remote: git://github.com/chloerei/alipay.git
+  revision: b790ea88b32de8b5aaca39bbbe6c1ca5125ddca0
+  specs:
+    alipay (0.0.1)
+
+GIT
   remote: git://github.com/flingbob/acts_as_follower.git
   revision: 28a1f3f98ba7965a9b546aad8fdac325927989ee
   specs:
@@ -367,6 +373,7 @@ PLATFORMS
 DEPENDENCIES
   activerecord-jdbcpostgresql-adapter
   acts_as_follower!
+  alipay!
   angularjs-rails
   bootstrap-datepicker-rails
   bootstrap-sass (~> 2.2.2.0)

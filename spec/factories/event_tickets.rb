@@ -9,4 +9,7 @@ FactoryGirl.define do
     tickets_quantity 400
     event_id 1
   end
+
+  factory :ticket, parent: :event_ticket do
+  end
 end
