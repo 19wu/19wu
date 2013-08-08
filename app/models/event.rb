@@ -6,6 +6,7 @@ class Event < ActiveRecord::Base
   has_one :event_summary
   has_many :participants, :class_name => "EventParticipant"
   has_many :changes,      :class_name => "EventChange"
+  has_many :tickets,      :class_name => "EventTicket"
   has_many :participated_users, :source => :user, :through => :participants do
     def recent(count = nil)
       order('event_participants.created_at DESC').limit(count)

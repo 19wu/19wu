@@ -5,6 +5,7 @@ zh-CN:
       event: "活动"
       event_summary: "活动总结"
       event_change: "变更"
+      event_ticket: "门票"
       profile: "资料"
       group_topic: "贴子"
     attributes:
@@ -32,6 +33,12 @@ zh-CN:
         content: "总结"
       event_change:
         content: "变更内容"
+      event_ticket:
+        name: "名称"
+        price: "价格"
+        description: "描述"
+        tickets_quantity: "活动总票数"
+        require_invoice: "是否提供发票"
       profile:
         name: "名字"
         website: "主页"

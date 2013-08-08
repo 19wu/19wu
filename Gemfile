@@ -80,6 +80,7 @@ group :development do
   gem 'quiet_assets'
   gem 'guard-delayed'
   gem 'guard-rails'
+  gem 'guard-zeus'
 end
 
 group :development, :test do

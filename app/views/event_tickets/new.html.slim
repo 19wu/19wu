@@ -1,0 +1,5 @@
+= render 'events/header'
+.row
+  .span12
+    = simple_form_for @ticket, html: {class: "form-horizontal", name: 'form', novalidate: ''} do |f|
+      = render 'form', :f => f

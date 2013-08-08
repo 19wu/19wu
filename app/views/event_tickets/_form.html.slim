@@ -1,0 +1,9 @@
+= f.error_notification
+.form-inputs
+  = f.input :name, input_html: { class: 'span4' }
+  = f.input :price, input_html: { class: 'span4' }
+  = f.input :require_invoice
+  = f.input :description, as: :text, input_html: { rows: 3, class: 'span4' }
+  = f.input :tickets_quantity, input_html: { class: 'span4' }
+.form-actions
+  = f.button :submit, class: 'btn-info'

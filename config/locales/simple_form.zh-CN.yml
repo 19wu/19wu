@@ -28,6 +28,8 @@ zh-CN:
       preview:
         nothing: "没有内容预览"
         loading: "预览载入中。。。"
+      event_ticket:
+        tickets_quantity: 此票数不属于当前门票，而是指活动所有门票的总票数；为方便设置，会显示在所有门票的表单中。
     placeholders:
       user:
         invite_reason: "活动组织情况(最近组织的几场活动?计划组织的下一场活动?)"
@@ -35,6 +37,11 @@ zh-CN:
         phone_valid_code: "请输入手机短信中的校验码"
       event_change:
         content: "可以输入活动的时间、地点等变更信息"
+    options:
+      event_ticket:
+        require_invoice:
+          true: 提供
+          false: 不提供
     navtabs:
         write: "编写"
         preview: "预览"

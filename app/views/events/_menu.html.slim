@@ -7,6 +7,7 @@
             i.icon-th-list
       = tabs_tag builder: EventMenu do |tab|
         = tab.edit t('views.edit'), edit_event_path(@event)
+        = tab.ticket t('views.ticket'), event_tickets_path(@event)
         = tab.export t('views.export.export_link'), event_export_index_path(@event)
         = tab.change t('views.change'), new_event_change_path(@event)
         = tab.check_in t('views.check_in'), event_qcode_path(@event)
