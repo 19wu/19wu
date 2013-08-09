@@ -27,8 +27,8 @@ env:
     - secure: "EcbipPYfZxMS62cfroLKM7MGaShkuUH6Me2jMB/l9OhlD2gRUzXR9bQZx+1I\nGQMtk1v6D8KH2shR+8h6iKJzbD09mh8fDNBOBlLX2dlbCE1ZYJ2rYRFiCbcd\nSbcdP/xN+kOKo1Fe/eVCuQRTVYqHmMpwSSQA3Cbxv8pR31TCjNU="
   matrix:
     - DATABASE=pg
-    #- DATABASE=mysql2
-    #- DATABASE=sqlite3
+    - DATABASE=mysql2
+    - DATABASE=sqlite3
 
 rvm:
   #- 1.9.3
