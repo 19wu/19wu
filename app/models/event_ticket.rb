@@ -1,5 +1,6 @@
 class EventTicket < ActiveRecord::Base
   belongs_to :event
+  priceable :price
   validates :name, :price, presence: true
   validates :name, :description, length: { maximum: 255 }
   attr_writer :tickets_quantity

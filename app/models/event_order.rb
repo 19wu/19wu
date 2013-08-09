@@ -2,11 +2,12 @@ class EventOrder < ActiveRecord::Base
   belongs_to :event
   belongs_to :user
   has_many :items, class_name: 'EventOrderItem', foreign_key: "order_id"
+  priceable :price
 
   before_create do
     self.status = :pending
     self.quantity = self.items.map(&:quantity).sum
-    self.price = self.items.map(&:price).sum
+    self.price_in_cents = self.items.map(&:price_in_cents).sum
     event.decrement! :tickets_quantity, self.quantity
   end
 
