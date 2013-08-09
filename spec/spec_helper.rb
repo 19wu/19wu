@@ -10,9 +10,25 @@ require 'capybara/rails'
 #require 'rspec/autorun' # http://j.mp/WLeAs3
 require 'capybara/email/rspec'
 
-selenium_browser = (ENV['SELENIUM_BROWSER'] || 'firefox').to_sym
-Capybara.register_driver selenium_browser do |app|
-  Capybara::Selenium::Driver.new(app, :browser => selenium_browser)
+# `phantomjs --version` is slow, use `which` to check whether it exists. The
+# drawback is that Windows does not have it. Windows developers can use
+# environment variable SELENIUM_BROWSER to set the driver to poltergeist
+selenium_browser = if ENV['SELENIUM_BROWSER'] == 'phantomjs'
+                     :poltergeist
+                   elsif ENV['SELENIUM_BROWSER']
+                     ENV['SELENIUM_BROWSER'].to_sym
+                   elsif `which phantomjs`.empty?
+                     :firefox
+                   else
+                     :poltergeist
+                   end
+
+if selenium_browser == :poltergeist
+  require 'capybara/poltergeist'
+else
+  Capybara.register_driver selenium_browser do |app|
+    Capybara::Selenium::Driver.new(app, :browser => selenium_browser)
+  end
 end
 Capybara.javascript_driver = selenium_browser
 
