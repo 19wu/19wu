@@ -58,8 +58,8 @@ group mysql2_group do
   gem 'mysql2', '0.3.11'
 end
 
-gem 'devise', '3.0.0.rc'
-gem 'devise_invitable', github: 'scambra/devise_invitable', branch: 'rails4'
+gem 'devise', '~> 3.0.1'
+gem 'devise_invitable', github: 'scambra/devise_invitable'
 gem 'settingslogic'
 gem "delayed_job", "~> 4.0.0.beta2"
 gem 'delayed_job_active_record', '~> 4.0.0.beta3'
