@@ -235,6 +235,7 @@ GEM
       faye-websocket (>= 0.4.4, < 0.5.0)
       http_parser.rb (~> 0.5.3)
     polyglot (0.3.3)
+    priceable (0.0.7)
     pry (0.9.12.2)
       coderay (~> 1.0.5)
       method_source (~> 0.8)
@@ -417,6 +418,7 @@ DEPENDENCIES
   mysql2 (= 0.3.11)
   pg
   poltergeist
+  priceable
   pry-nav
   pry-rails
   quiet_assets
