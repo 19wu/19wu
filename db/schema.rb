@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130808003107) do
+ActiveRecord::Schema.define(version: 20130809010150) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,23 +42,23 @@ ActiveRecord::Schema.define(version: 20130808003107) do
   add_index "event_changes", ["event_id"], name: "index_event_changes_on_event_id", using: :btree
 
   create_table "event_order_items", force: true do |t|
-    t.integer  "order_id",   null: false
-    t.integer  "ticket_id",  null: false
-    t.integer  "quantity",   null: false
-    t.float    "price",      null: false
+    t.integer  "order_id",                   null: false
+    t.integer  "ticket_id",                  null: false
+    t.integer  "quantity",                   null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "price_in_cents", default: 0, null: false
   end
 
   create_table "event_orders", force: true do |t|
-    t.integer  "event_id",              null: false
-    t.integer  "user_id",               null: false
-    t.integer  "quantity",              null: false
-    t.float    "price",                 null: false
-    t.string   "status",     limit: 16
-    t.string   "trade_no",   limit: 16
+    t.integer  "event_id",                              null: false
+    t.integer  "user_id",                               null: false
+    t.integer  "quantity",                              null: false
+    t.string   "status",         limit: 16
+    t.string   "trade_no",       limit: 16
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "price_in_cents",            default: 0, null: false
   end
 
   add_index "event_orders", ["event_id"], name: "index_event_orders_on_event_id", using: :btree
@@ -82,12 +82,12 @@ ActiveRecord::Schema.define(version: 20130808003107) do
 
   create_table "event_tickets", force: true do |t|
     t.string   "name"
-    t.float    "price"
     t.string   "description"
     t.boolean  "require_invoice"
     t.integer  "event_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "price_in_cents",  default: 0, null: false
   end
 
   add_index "event_tickets", ["event_id"], name: "index_event_tickets_on_event_id", using: :btree
