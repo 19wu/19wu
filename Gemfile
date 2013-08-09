@@ -87,7 +87,6 @@ end
 
 group :development, :test do
   gem 'rspec-rails'
-  gem 'selenium-webdriver'
   gem 'jasmine-rails', github: 'searls/jasmine-rails'
   gem 'factory_girl_rails', '~> 4.0' # generator will use it in development.
   gem 'thin', '~> 1.5.0', :platform => [:ruby, :mswin, :mingw] # thin cannot run under jruby
@@ -100,6 +99,8 @@ group :test do
   gem 'capybara'
   gem 'capybara-email'
   gem 'database_cleaner'
+  gem 'selenium-webdriver'
+  gem 'poltergeist'
   gem 'simplecov', :require => false
   gem 'coveralls', require: false
 end
