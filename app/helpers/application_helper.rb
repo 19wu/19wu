@@ -36,6 +36,10 @@ module ApplicationHelper
     end
   end
 
+  def render_nav_bar
+    render 'signed_in_nav_bar' if user_signed_in?
+  end
+
   # Allow page to place flashes in specified place.
   # If the page did, do not render again.
   def render_flashes
