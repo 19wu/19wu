@@ -8,11 +8,12 @@
             h1.slogan-title = t('slogan.title')
             p.slogan-description = t('slogan.description')
         .span4.offset2
-          form.form-full-width action=user_invitation_path method="post"
-            input.input-large name='user[email]' type='email' ng-required='true' placeholder=User.human_attribute_name(:email)
-            textarea rows="3" cols="40" name="user[invite_reason]" ng-required='true' placeholder=t('simple_form.placeholders.user.invite_reason')
+          = simple_form_for(User.new, :as => resource_name, :url => user_registration_path, :html => { :class => 'form-full-width'}) do |f|
+            = f.input :login, :label => false, :placeholder => User.human_attribute_name(:login), class: 'input-large', :input_html => { 'ng-required' =>'true' }
+            = f.input :email, :label => false, :placeholder => resource.class.human_attribute_name(:email), class: 'input-large', :input_html => { 'ng-required' =>'true' }
+            = f.input :password, :label => false, :placeholder => resource.class.human_attribute_name(:password), class: 'input-large', :input_html => { 'ng-required' =>'true' }
             .help-block = t('views.users.apply_sign_up')
-            input.btn.btn-success.btn-large type="submit" value=t('labels.apply_sign_up')
+            = f.submit t('labels.sign_up'), :class => 'btn btn-success btn-large'
 
 .features
   .row
