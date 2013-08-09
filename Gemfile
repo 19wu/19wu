@@ -44,6 +44,7 @@ gem 'whenever', :require => false
 gem "tabs_on_rails"
 gem "china_sms"
 gem 'alipay', github: 'chloerei/alipay'
+gem 'priceable'
 
 group :pg do
   gem 'pg', :platform => [:ruby, :mswin, :mingw]
