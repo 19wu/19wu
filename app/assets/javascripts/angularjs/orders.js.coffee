@@ -1,5 +1,7 @@
 @OrdersCtrl = ['$scope', '$http', '$window', ($scope, $http, $window) ->
+  $scope.disabled = $scope.event.started?
   $scope.create = ->
+    return if $scope.disabled
     if !($scope.user? && $scope.user.id)
       $window.location.href = "/users/sign_in"
       return

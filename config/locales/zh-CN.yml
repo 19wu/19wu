@@ -121,7 +121,7 @@ zh-CN:
   views:
     edit: "修改"
     destroy: "删除"
-    ticket: "售票"
+    ticket: "门票"
     change: "变更"
     summary: "总结"
     previous_summary: "往期活动总结"
