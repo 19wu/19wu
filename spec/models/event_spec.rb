@@ -214,4 +214,9 @@ describe Event do
       end
     end
   end
+
+  describe 'tickets' do
+    subject { event.tap(&:save) }
+    its('tickets.size') { should eql 1 }
+  end
 end
