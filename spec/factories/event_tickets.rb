@@ -8,6 +8,10 @@ FactoryGirl.define do
     description "提供发票，发票项目为技术服务费，会后45天内统一发快递，票价包含顺丰发票快递费22元"
     tickets_quantity 400
     event_id 1
+
+    trait :free do
+      price 0
+    end
   end
 
   factory :ticket, parent: :event_ticket do

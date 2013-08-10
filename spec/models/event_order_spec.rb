@@ -7,9 +7,16 @@ describe EventOrder do
   let(:order) { create(:order_with_items, event: event) }
   subject { order }
 
-  describe '#status' do
-    its(:pending?) { should be_true }
-    its(:paid?) { should be_false }
+  describe '#create' do
+    describe '#status' do
+      its(:pending?) { should be_true }
+      its(:paid?) { should be_false }
+    end
+    context 'free' do
+      let(:order) { create(:order_with_items, price: 0, event: event) }
+      its(:pending?) { should be_false }
+      its(:paid?) { should be_true }
+    end
   end
 
   describe '#pay' do

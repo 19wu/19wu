@@ -9,7 +9,9 @@ class EventOrdersController < ApplicationController
       @order.items.build ticket_id: ticket[:id], quantity: ticket[:quantity], price: (event_ticket.price * ticket[:quantity].to_i)
     end
     if @order.save
-      render json: {result: 'ok', id: @order.id, link: pay_link(@order)}
+      json = {result: 'ok', id: @order.id, status: @order.status}
+      json[:link] = pay_link(@order) if @order.pending?
+      render json: json
     else
       render json: {result: 'errror'}
     end

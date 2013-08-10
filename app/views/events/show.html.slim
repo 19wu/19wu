@@ -30,11 +30,13 @@ article.event ng-init=init_event(@event)
                 select.span1 ng-model='ticket.quantity' = options_for_select(0..10)
         .payment.clearfix
           p.text-warning ng-show='error' 请先选择门票数量。
-          a.btn.btn-info.span1.pull-right ng-hide='pay_url' ng-disabled='disabled' ng-click='create()' ng-init={labels: t('views.order.labels')}.to_ng_init
+          a.btn.btn-info.span1.pull-right ng-hide='status' ng-disabled='disabled' ng-click='create()' ng-init={labels: t('views.order.labels')}.to_ng_init
             |{{labels[disabled]}}
-          p.text-info ng-show='pay_url' 您已经提交了订单，订单号为{{id}}，请尽快支付。
-          p.muted ng-show='pay_url' 超过三天未支付的订单会自动取消。
-          a.btn.btn-warning.pull-right ng-show='pay_url' ng-href='{{pay_url}}' target='_blank' 使用支付宝支付
+          p.text-info ng-show="status=='paid'" 您已经提交了订单，订单号为{{id}}，此订单为免费订单，不需要支付，谢谢。
+          .pending-order-tip ng-show='pay_url'
+            p.text-info 您已经提交了订单，订单号为{{id}}，请尽快支付。
+            p.muted 超过三天未支付的订单会自动取消。
+            a.btn.btn-warning.pull-right ng-href='{{pay_url}}' target='_blank' 使用支付宝支付
       .event-body
         == @event.content_html
       - if @event.show_summary?

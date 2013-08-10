@@ -14,6 +14,7 @@
       $http.post("/events/#{$scope.event.id}/orders", tickets: tickets).success (data) ->
         if data['result'] == 'ok'
           $scope.id = data['id']
+          $scope.status = data['status']
           $scope.pay_url = data['link']
     else
       $scope.error = true
