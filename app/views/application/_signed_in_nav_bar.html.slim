@@ -1,0 +1,3 @@
+ul.nav
+  - if can? :invite, User
+    li = link_to t('labels.invitations'), invitations_path

@@ -18,9 +18,7 @@ html ng-app='19wu'
             a.brand href="/"
               img.logo-wordmark src=image_path('logo-wordmark.png')
               span.alpha alpha
-            - if can? :invite, User
-              ul.nav
-                li = link_to t('labels.invitations'), invitations_path
+            = render_nav_bar
 
             .nav-collapse.collapse
               = render_user_bar
