@@ -30,7 +30,8 @@ article.event ng-init=init_event(@event)
                 select.span1 ng-model='ticket.quantity' = options_for_select(0..10)
         .payment.clearfix
           p.text-warning ng-show='error' 请先选择门票数量。
-          a.btn.btn-info.span1.pull-right ng-hide='pay_url' ng-disabled='disabled' ng-click='create()' 报名
+          a.btn.btn-info.span1.pull-right ng-hide='pay_url' ng-disabled='disabled' ng-click='create()' ng-init={labels: t('views.order.labels')}.to_ng_init
+            |{{labels[disabled]}}
           p.text-info ng-show='pay_url' 您已经提交了订单，订单号为{{id}}，请尽快支付。
           p.muted ng-show='pay_url' 超过三天未支付的订单会自动取消。
           a.btn.btn-warning.pull-right ng-show='pay_url' ng-href='{{pay_url}}' target='_blank' 使用支付宝支付
@@ -58,9 +59,6 @@ article.event ng-init=init_event(@event)
             li
               i.icon-map-marker
               = @event.location
-            li ng-controller="JoinCtrl" ng-init=init_join(@event)
-              a.btn.btn-large.btn-block ng-href='{{href}}' ng-click='join()' ng-class="{true: 'btn-warning', false: 'btn-success', event_end: 'btn-warning', checked_in: 'btn-warning'}[user.joined]" data-toggle='tooltip' title='{{titles[user.joined]}}' {{labels[user.joined]}}
-
           .event-map == @event.location_guide_html
           - if baidu_map_enabled?
             #baiduMap data-location=@event.location

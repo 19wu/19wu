@@ -11,8 +11,10 @@ describe "orders", ->
       describe 'when event is not start', ->
         beforeEach ->
           inject ($rootScope, $injector, $http, $window, $controller) ->
-            $rootScope.event = {id: 1}
+            $rootScope.event = {id: 1, started: false}
             controller $rootScope, $injector, $http, $window, $controller
+        it "should not be diabled", ->
+          expect(scope.disabled).toBe(false)
         describe 'with tickets', ->
           beforeEach ->
             scope.tickets = [{"id":1,"name":"个人票","price":0.01,"require_invoice":false,"description":"","quantity":1}]

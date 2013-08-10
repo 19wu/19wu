@@ -22,20 +22,4 @@ describe EventJoinHelper do
       end
     end
   end
-  describe '#init_join' do
-    let(:start_time) { double('start_time') }
-    let(:event_end?) { false }
-    subject { helper.init_join(event) }
-    before do
-      helper.stub(:current_user).and_return(user)
-      event.stub(:has?).and_return(true)
-      start_time.should_receive(:past?).and_return(event_end?)
-      event.stub(:start_time).and_return(start_time)
-    end
-    it { should eql "user.joined=true;labels=#{t('views.join.state').to_json};titles=#{t('views.join.title').to_json}" }
-    context 'event started' do
-      let(:event_end?) { true }
-      it { should eql "user.joined=\"event_end\";labels=#{t('views.join.state').to_json};titles=#{t('views.join.title').to_json}" }
-    end
-  end
 end
