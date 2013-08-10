@@ -26,7 +26,7 @@ describe EventTicket do
           its(:tickets_quantity) { should eql 500 }
         end
         context 'without other ticket' do
-          before { ticket.destroy }
+          before { event.tickets.destroy_all }
           its(:tickets_quantity) { should eql nil }
         end
       end

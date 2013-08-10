@@ -4,17 +4,15 @@ require File.expand_path('../../spec_helper', __FILE__)
 feature 'event tickets' do
   given(:user) { create(:user, :confirmed) }
   given(:event) { create(:event, user: user) }
-  given(:ticket) { build(:event_ticket, event: event) }
+  given(:ticket) { event.tickets.first }
   before { sign_in user }
   context 'with tickets' do
-    before { ticket.save }
     scenario 'I can see it' do
       visit event_tickets_path(event)
       expect(page).to have_content(ticket.name)
       expect(page).to have_content(ticket.price)
       expect(page).to have_content(I18n.t('simple_form.options.event_ticket.require_invoice')[ticket.require_invoice])
       expect(page).to have_content(ticket.description)
-      expect(page).to have_content("总票数：#{event.tickets_quantity}")
     end
     scenario 'I can edit it' do
       visit event_tickets_path(event)
@@ -30,13 +28,14 @@ feature 'event tickets' do
       expect(page).to have_content('description')
     end
     scenario 'I can destroy it', js: true do
-      visit event_tickets_path(event)
+      visit event_tickets_path(ticket.event)
       page.execute_script("window.confirm = function(msg) { return true; }")
       click_on I18n.t('views.destroy')
-      expect(page).not_to have_content(ticket.name)
-      expect(page).not_to have_content(ticket.price)
-      expect(page).not_to have_content(ticket.description)
-      expect(page).not_to have_content("总票数：#{event.tickets_quantity}")
+      within '.tickets-list' do
+        expect(page).not_to have_content(ticket.name)
+        expect(page).not_to have_content(ticket.price)
+        expect(page).not_to have_content("总票数：#{event.tickets_quantity}")
+      end
     end
   end
 
@@ -45,9 +44,11 @@ feature 'event tickets' do
     fill_in 'event_ticket[name]', with: ticket.name
     fill_in 'event_ticket[price]', with: ticket.price
     fill_in 'event_ticket[description]', with: ticket.description
+    fill_in 'event_ticket[tickets_quantity]', with: 400
     click_on '新增门票'
     expect(page).to have_content(ticket.name)
     expect(page).to have_content(ticket.price)
     expect(page).to have_content(ticket.description)
+    expect(page).to have_content("总票数：400")
   end
 end
