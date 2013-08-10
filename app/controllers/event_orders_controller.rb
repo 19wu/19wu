@@ -11,7 +11,7 @@ class EventOrdersController < ApplicationController
     if @order.save
       render json: {result: 'ok', id: @order.id, link: pay_link(@order)}
     else
-      render json: {result: 'errror'}
+      render json: {result: 'error'}
     end
   end
 
