@@ -8,6 +8,10 @@ class EventOrdersController < ApplicationController
       event_ticket = @event.tickets.find(ticket[:id])
       @order.items.build ticket_id: ticket[:id], quantity: ticket[:quantity], price: (event_ticket.price * ticket[:quantity].to_i)
     end
+    if params[:user] # transaction
+      current_user.update_attribute :phone, params[:user][:phone]
+      current_user.profile.update_attribute :name, params[:user][:name]
+    end
     if @order.save
       json = {result: 'ok', id: @order.id, status: @order.status}
       json[:link] = pay_link(@order) if @order.pending?

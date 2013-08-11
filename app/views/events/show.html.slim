@@ -29,7 +29,13 @@ article.event ng-init=init_event(@event)
               td
                 select.span1 ng-model='ticket.quantity' = options_for_select(0..10)
         .payment.clearfix
-          p.text-warning ng-show='error' 请先选择门票数量。
+          p.text-warning ng-show="errors['tickets']" 请先选择门票数量。
+          div ng-show="errors['user_info']"
+            p.text-warning 请完善用户信息，完成订单后您的手机将收到签到码
+            label.control-label for="user_name" 姓名
+            input.input-large ng-model="name" type="text" ng-init="name='#{current_user.name}'"
+            label.control-label for="user_name" 手机
+            input.input-large ng-model="phone" type="text" ng-init="phone='#{current_user.phone}'"
           a.btn.btn-info.span1.pull-right ng-hide='status' ng-disabled='disabled' ng-click='create()' ng-init={labels: t('views.order.labels')}.to_ng_init
             |{{labels[disabled]}}
           p.text-info ng-show="status=='paid'" 您已经提交了订单，订单号为{{id}}，此订单为免费订单，不需要支付，谢谢。
