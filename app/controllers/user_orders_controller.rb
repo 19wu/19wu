@@ -3,7 +3,7 @@ class UserOrdersController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    @orders = current_user.orders
+    @orders = current_user.orders.includes(items: :ticket)
   end
 
   def pay
