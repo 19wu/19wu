@@ -140,15 +140,27 @@ describe Event do
     end
   end
 
-  describe '#finished?' do
-    it 'should return true if current time has past the end time' do
-      event = create(:event, start_time: 2.day.ago, end_time: 1.day.ago)
-      event.finished?.should == true
+  describe '#started?' do
+    subject { event }
+    context '2 days ago' do
+      before { event.update_attribute :start_time, 2.day.ago }
+      its(:started?) { should be_true }
     end
+    context '1 day later' do
+      before { event.update_attribute :start_time, 1.day.since }
+      its(:started?) { should be_false }
+    end
+  end
 
-    it 'should return false if current time does not reach the end time' do
-      event = create(:event, start_time: 1.day.since, end_time: 2.day.since)
-      event.finished?.should == false
+  describe '#finished?' do
+    subject { event }
+    context '2 days ago' do
+      before { event.update_attribute :end_time, 2.day.ago }
+      its(:finished?) { should be_true }
+    end
+    context '1 day later' do
+      before { event.update_attribute :end_time, 1.day.since }
+      its(:finished?) { should be_false }
     end
   end
 
@@ -213,5 +225,10 @@ describe Event do
         expect(event.has?(user)).to be(false)
       end
     end
+  end
+
+  describe 'tickets' do
+    subject { event.tap(&:save) }
+    its('tickets.size') { should eql 1 }
   end
 end

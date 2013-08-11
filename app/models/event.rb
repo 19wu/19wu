@@ -61,6 +61,10 @@ class Event < ActiveRecord::Base
     end
   end
 
+  def started?
+    start_time.past?
+  end
+
   def finished?
     !end_time.nil? && Time.now.utc > end_time.utc
   end

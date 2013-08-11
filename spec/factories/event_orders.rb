@@ -9,9 +9,10 @@ FactoryGirl.define do
     factory :order_with_items do
       ignore do
         items_count 1
+        price 299
       end
       before(:create) do |order, evaluator|
-        FactoryGirl.create_list(:ticket, evaluator.items_count, event: order.event).each do |ticket|
+        FactoryGirl.create_list(:ticket, evaluator.items_count, price: evaluator.price, event: order.event).each do |ticket|
           order.items.build ticket_id: ticket.id, quantity: 1, price: ticket.price
         end
       end

@@ -1,5 +1,7 @@
 @OrdersCtrl = ['$scope', '$http', '$window', ($scope, $http, $window) ->
+  $scope.disabled = $scope.event.started
   $scope.create = ->
+    return if $scope.disabled
     if !($scope.user? && $scope.user.id)
       $window.location.href = "/users/sign_in"
       return
@@ -12,6 +14,7 @@
       $http.post("/events/#{$scope.event.id}/orders", tickets: tickets).success (data) ->
         if data['result'] == 'ok'
           $scope.id = data['id']
+          $scope.status = data['status']
           $scope.pay_url = data['link']
     else
       $scope.error = true

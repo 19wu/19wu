@@ -5,10 +5,11 @@ class EventOrder < ActiveRecord::Base
   priceable :price
 
   before_create do
-    self.status = :pending
     self.quantity = self.items.map(&:quantity).sum
     self.price_in_cents = self.items.map(&:price_in_cents).sum
-    event.decrement! :tickets_quantity, self.quantity
+    self.status = :pending
+    self.status = :paid if self.price_in_cents.zero?
+    event.decrement! :tickets_quantity, self.quantity if event.tickets_quantity
   end
 
   def pending?
