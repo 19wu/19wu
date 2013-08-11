@@ -19,10 +19,7 @@ NineteenWu::Application.routes.draw do
     resources :export       , :only => [:index]
     resources :changes      , :only => [:index, :new, :create]    , :controller => 'event_changes'
     resources :tickets      , :controller => 'event_tickets'
-    resources :orders       , :only => [:create]                  , :controller => 'event_orders' do
-      get 'alipay_done'
-      post 'alipay_notify'
-    end
+    resources :orders       , :only => [:create]                  , :controller => 'event_orders'
   end
 
   get "events/:event_id/summary", to: "event_summaries#new", as: :new_event_summary
@@ -48,7 +45,13 @@ NineteenWu::Application.routes.draw do
     resource :user_phone, only: [:edit, :update], format: false do
       post 'send_code'
     end
-    resources :user_orders, only: [:index], format: false
+    resources :user_orders, only: [:index], format: false do
+      member do
+        get 'pay'
+        get 'alipay_done'
+        post 'alipay_notify'
+      end
+    end
   end
   scope 'settings' do
     resource :profile, :only => [:show, :update]
