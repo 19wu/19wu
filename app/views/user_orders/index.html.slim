@@ -17,4 +17,5 @@ table.table.table-striped.table-bordered
         td = order.price
         td = order.trade_no
         td = order_status(order)
-        td NYI
+        td
+          = pay_link(order)
