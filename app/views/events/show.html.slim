@@ -25,7 +25,7 @@ article.event ng-init=init_event(@event)
                 .muted
                   |{{ticket.description}}
               td
-                |{{ticket.price}}
+                |{{ticket.price | money }}
               td
                 select.span1 ng-model='ticket.quantity' = options_for_select(0..10)
         .payment.clearfix
