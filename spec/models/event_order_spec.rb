@@ -8,6 +8,14 @@ describe EventOrder do
   subject { order }
 
   describe '#create' do
+    describe 'validate' do
+      subject { order.errors.messages }
+      let(:order) { build(:order, event: event) }
+      describe 'tickets' do
+        before { order.valid? }
+        its([:items]) { should_not be_empty }
+      end
+    end
     describe '#status' do
       its(:pending?) { should be_true }
       its(:paid?) { should be_false }

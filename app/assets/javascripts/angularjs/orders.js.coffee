@@ -13,6 +13,8 @@
         $scope.id = data['id']
         $scope.status = data['status']
         $scope.pay_url = data['link']
+      else # error
+        alert data['errors']
 
   # private
 

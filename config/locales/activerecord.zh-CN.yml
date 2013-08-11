@@ -33,6 +33,8 @@ zh-CN:
         content: "总结"
       event_change:
         content: "变更内容"
+      event_order:
+        items: '门票'
       event_ticket:
         name: "名称"
         price: "价格"

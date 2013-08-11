@@ -7,7 +7,7 @@ class EventOrdersController < ApplicationController
     params[:tickets].each do |ticket|
       event_ticket = @event.tickets.find(ticket[:id])
       @order.items.build ticket_id: ticket[:id], quantity: ticket[:quantity], price: (event_ticket.price * ticket[:quantity].to_i)
-    end
+    end if params[:tickets]
     if params[:user] # transaction
       current_user.update_attribute :phone, params[:user][:phone]
       current_user.profile.update_attribute :name, params[:user][:name]
@@ -17,7 +17,7 @@ class EventOrdersController < ApplicationController
       json[:link] = pay_link(@order) if @order.pending?
       render json: json
     else
-      render json: {result: 'errror'}
+      render json: {result: 'error', errors: @order.errors.full_messages.join(', ')}
     end
   end
 
