@@ -58,7 +58,7 @@ module EventHelper
   def init_event(event)
     {
       'event.id' => event.id,
-      'event.started' => event.start_time.past?,
+      'event.started' => event.started?,
       'user.joined' => joined?(event),
       'user.checked_in' => checked_in?(event)
     }.to_ng_init
