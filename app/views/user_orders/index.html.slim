@@ -1,0 +1,20 @@
+h2 = t('labels.my_orders')
+table.table.table-striped.table-bordered
+  thead
+    tr
+      th = t('views.my_orders.event')
+      th = t('views.my_orders.items')
+      th = t('views.my_orders.price')
+      th = t('views.my_orders.trade_no')
+      th = t('views.my_orders.status')
+      th = t('views.my_orders.operations')
+  tbody
+    - @orders.each do |order|
+      tr
+        td = link_to order.event.title, order.event, target: '_blank'
+        td
+          ul = render partial: 'user_orders/order_item', collection: order.items, as: 'item'
+        td = order.price
+        td = order.trade_no
+        td = order_status(order)
+        td NYI

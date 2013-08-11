@@ -48,6 +48,7 @@ NineteenWu::Application.routes.draw do
     resource :user_phone, only: [:edit, :update], format: false do
       post 'send_code'
     end
+    resources :user_orders, only: [:index], format: false
   end
   scope 'settings' do
     resource :profile, :only => [:show, :update]

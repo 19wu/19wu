@@ -84,6 +84,7 @@ zh-CN:
     check_in_button: "签到"
     has_checked_in_button: "已签到"
     invite_button: "邀请"
+    my_orders: "我的订单"
 
   confirmation:
     destroy: 您确定要删除吗？
@@ -168,6 +169,19 @@ zh-CN:
     export:
       export_link: "导出"
       event_time: "活动时间"
+    my_orders:
+      event: '活动'
+      items: '票种'
+      price: '价格（￥）'
+      status: '状态'
+      trade_no: '订单编号'
+      created_at: '下单时间'
+      operations: '操作'
+      pay: '支付'
+      pay_status:
+        pending: '未支付'
+        paid: '已支付'
+        canceled: '已取消'
 
   sms:
     event:
