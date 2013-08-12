@@ -8,21 +8,22 @@
     return if $scope.validate_login()
     return if $scope.validate_quantity()
     return if $scope.validate_user_info()
-    $http.post("/events/#{$scope.event.id}/orders", tickets: $scope.tickets_with_quantity(), user: { name: $scope.name, phone: $scope.phone } ).success (data) ->
-      if data['result'] == 'ok'
-        $scope.id = data['id']
-        $scope.status = data['status']
-        $scope.pay_url = data['link']
-      else # error
-        alert data['errors']
+
+    request = $http.post("/events/#{$scope.event.id}/orders", $scope.postData())
+    request.success (data) ->
+      $scope.id = data['id']
+      $scope.status = data['status']
+      $scope.pay_url = data['link']
+    request.error (data) ->
+      alert data['errors']
 
   # private
-
   $scope.validate_quantity = ->
-    if $scope.tickets_with_quantity().length == 0
-      $scope.errors['tickets'] = true
-      return true
-    false
+    for ticket in $scope.tickets
+      return false if parseInt(ticket.quantity, 10) > 0
+
+    $scope.errors['tickets'] = true
+    true
 
   $scope.validate_user_info = ->
     unless $scope.name && $scope.phone
@@ -36,10 +37,16 @@
       return true
     false
 
-  $scope.tickets_with_quantity = ->
-    tickets = []
+  $scope.postData = ->
+    items = []
     for ticket in $scope.tickets
-      quantity = parseInt(ticket.quantity)
-      tickets.push { id: ticket.id, quantity: quantity } if quantity > 0
-    tickets
+      quantity = parseInt(ticket.quantity, 10)
+      items.push { ticket_id: ticket.id, quantity: quantity } if quantity > 0
+
+    order:
+      items_attributes: items
+    user:
+      phone: $scope.phone
+      profile_attributes:
+        name: $scope.name
 ]

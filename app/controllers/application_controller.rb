@@ -32,6 +32,7 @@ class ApplicationController < ActionController::Base
     session[:previous_url] || root_path
   end
 
+  # TODO: return json for angular
   # cancan exception handler
   rescue_from CanCan::AccessDenied do |exception|
     if current_user
