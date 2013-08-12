@@ -17,4 +17,6 @@ module AlipayGeneratable
     }
     Alipay::Service.create_direct_pay_by_user_url(options)
   end
+
+  included { hide_action :generate_pay_link_by_order }
 end
