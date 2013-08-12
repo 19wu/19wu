@@ -67,7 +67,7 @@ gem "delayed_job", "~> 4.0.0.beta2"
 gem 'delayed_job_active_record', '~> 4.0.0.beta3'
 gem 'daemons'
 gem 'carrierwave'
-gem 'friendly_id', github: 'FriendlyId/friendly_id', branch: 'rails4'
+gem 'friendly_id', github: 'norman/friendly_id', branch: 'master'
 gem 'mini_magick', '3.5.0'
 gem 'rails-timeago'
 

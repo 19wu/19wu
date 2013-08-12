@@ -1,11 +1,4 @@
 GIT
-  remote: git://github.com/FriendlyId/friendly_id.git
-  revision: c49ce30ff2b370669ccf1708e99fb08ab51435d9
-  branch: rails4
-  specs:
-    friendly_id (4.1.0.beta.2)
-
-GIT
   remote: git://github.com/chloerei/alipay.git
   revision: b790ea88b32de8b5aaca39bbbe6c1ca5125ddca0
   specs:
@@ -16,6 +9,13 @@ GIT
   revision: 28a1f3f98ba7965a9b546aad8fdac325927989ee
   specs:
     acts_as_follower (0.1.1)
+
+GIT
+  remote: git://github.com/norman/friendly_id.git
+  revision: 9a2086d8f2e3260318470674104be3b1254c8b2d
+  branch: master
+  specs:
+    friendly_id (5.0.0.beta1)
 
 GIT
   remote: git://github.com/scambra/devise_invitable.git
