@@ -10,7 +10,7 @@ class CollaboratorsController < ApplicationController
   end
 
   def create
-    user = User.find_by_login(params[:login])
+    user = User.where(login: params[:login]).first!
     collaborator = @group.collaborators.create user_id: user.id
     render json: {id: collaborator.id, login: user.login, avatar_url: user.gravatar_url(size: 50)}
   end

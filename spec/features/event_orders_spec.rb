@@ -7,8 +7,9 @@ feature 'event orders', js: true do
   given(:ticket) { event.tickets.first }
 
   before do
+    ticket.update_attribute :price, 199
+    event.update_attribute :tickets_quantity, 10
     sign_in user
-    ticket.update_attribute :price, 299
   end
 
   context 'with user name and phone' do
@@ -38,19 +39,6 @@ feature 'event orders', js: true do
       find('a', text: '购买').click
       expect(page).to have_content('使用支付宝支付')
     end
-  end
-
-  scenario 'I can create order' do
-    event.update_attribute :tickets_quantity, 20
-
-    visit event_path(event)
-    within '.event-tickets' do
-      select '1'
-    end
-    find('a', text: '购买').click
-
-    expect(page).to have_content('您已经提交了订单，订单号为1，请尽快支付')
-    expect(page).to have_content('使用支付宝支付')
   end
 
   scenario 'I want to buy tickets, but sold out' do
