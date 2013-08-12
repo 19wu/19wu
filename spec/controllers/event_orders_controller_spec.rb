@@ -24,6 +24,24 @@ describe EventOrdersController do
         expect(json['status']).to eql 'paid'
       end
     end
+
+    describe "with user information" do
+      before {  post :create, event_id: event.id, tickets: [{id: ticket.id, quantity: 2}], user: { name: 'saberma', phone: '13928452888' } }
+      context 'profile is not a new record' do
+        before { user.profile.save }
+        it "should be update" do
+          expect(user.reload.phone).to eql '13928452888'
+          expect(user.profile.name).to eql 'saberma'
+        end
+      end
+      context 'profile is a new record' do
+        it "should be save" do
+          expect(user.reload.phone).to eql '13928452888'
+          expect(user.profile.new_record?).to be_false
+          expect(user.profile.reload.name).to eql 'saberma'
+        end
+      end
+    end
   end
 
   describe 'alipay' do

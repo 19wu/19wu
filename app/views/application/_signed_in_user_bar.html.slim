@@ -1,4 +1,4 @@
-ul.user-bar.pull-right ng-init="user.id=#{current_user.id}"
+ul.user-bar.pull-right ng-init=init_user
   li
     = link_to user_path(current_user), :title => t('devise.navigation.home') do
       = image_tag current_user.gravatar_url(:size => 20), :class => 'gravatar'

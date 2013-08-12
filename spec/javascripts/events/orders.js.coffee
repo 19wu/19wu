@@ -2,6 +2,8 @@ describe "orders", ->
   scope = $httpBackend = null
   controller = ($rootScope, $injector, $http, $window, $controller) -> # disabled was inited
     scope = $rootScope.$new()
+    scope.name = 'saberma'
+    scope.phone = '13928452888'
     $httpBackend = $injector.get('$httpBackend')
     $controller(OrdersCtrl, {$scope: scope, $http: $http, $window: $window})
 
@@ -29,7 +31,7 @@ describe "orders", ->
             scope.tickets = [{"id":1,"name":"个人票","price":0.01,"require_invoice":false,"description":"","quantity":0}]
             scope.create()
           it "should be fail", ->
-            expect(scope.error).toBe(true)
+            expect(scope.errors['tickets']).toBe(true)
       describe 'when event is started', ->
         beforeEach ->
           inject ($rootScope, $injector, $http, $window, $controller) ->
@@ -38,4 +40,4 @@ describe "orders", ->
           scope.create()
         it "should be diabled", ->
           expect(scope.disabled).toBe(true)
-          expect(scope.error).toBeUndefined()
+          expect(scope.errors['tickets']).toBeUndefined()

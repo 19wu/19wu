@@ -12,5 +12,9 @@ describe Hash do
       subject { {tickets: [{name: 'person'}, {name: 'company'}]}.to_ng_init }
       it { should eql "tickets=[{\"name\":\"person\"},{\"name\":\"company\"}]" }
     end
+    context 'with nil value' do
+      subject { {a: nil}.to_ng_init }
+      it { should eql "a=null" }
+    end
   end
 end

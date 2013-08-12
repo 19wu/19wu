@@ -14,6 +14,7 @@ class User < ActiveRecord::Base
   # :lockable, :timeoutable and :omniauthable
   devise :invitable, :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable
+  delegate :name, to: :profile
 
   attr_accessor :phone_valid_code
   validates :login, presence: true, uniqueness: { case_sensitive: false }, format: { with: /\A[a-zA-Z0-9_]+\z/, message: I18n.t('errors.messages.invalid_login') }, length: {in: 3..20}
