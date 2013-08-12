@@ -13,7 +13,7 @@ class EventOrdersController < ApplicationController
       json[:link] = pay_link(@order) if @order.pending?
       render json: json
     else
-      render json: {result: 'error'}
+      render json: {result: 'error', errors: @order.errors}
     end
   end
 

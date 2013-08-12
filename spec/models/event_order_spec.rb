@@ -32,6 +32,13 @@ describe EventOrder do
     end
   end
 
+  describe 'forbid participant when total quantity is 0' do
+    let(:order) { build(:order_with_items, items_count: 600, event: event) }
+
+    subject { order }
+    its(:save) { should be_false }
+  end
+
   describe 'event tickets quantity' do
     let(:order) { create(:order_with_items, items_count: 2, event: event) }
     subject { event }
