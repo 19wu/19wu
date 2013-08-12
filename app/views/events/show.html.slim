@@ -11,38 +11,42 @@ article.event ng-init=init_event(@event)
 
   .row
     .span8
-      .event-tickets ng-controller='OrdersCtrl'
-        table.table ng-show='tickets'
-          thead
-            tr
-              th = t('activerecord.attributes.event_ticket.name')
-              th width='100px' = t('activerecord.attributes.event_ticket.price')
-              th width='100px' 数量
-          tbody ng-init=init_tickets(@event)
-            tr ng-repeat="ticket in tickets"
-              td
-                |{{ticket.name}}
-                .muted
-                  |{{ticket.description}}
-              td
-                |{{ticket.price | money }}
-              td
-                select.span1 ng-model='ticket.quantity' = options_for_select(0..10)
-        .payment.clearfix
-          p.text-warning ng-show="errors['tickets']" 请先选择门票数量。
-          div ng-show="errors['user_info']"
-            p.text-warning 请完善用户信息，完成订单后您的手机将收到签到码
-            label.control-label for="user_name" 姓名
-            input.input-large name='user_name' ng-model="name" type="text" ng-init="name='#{current_user.try(:name)}'"
-            label.control-label for="user_phone" 手机
-            input.input-large name='user_phone' ng-model="phone" type="text" ng-init="phone='#{current_user.try(:phone)}'"
-          a.btn.btn-info.span1.pull-right ng-hide='status' ng-disabled='disabled' ng-click='create()' ng-init={labels: t('views.order.labels')}.to_ng_init
-            |{{labels[disabled]}}
-          p.text-info ng-show="status=='paid'" 您已经提交了订单，订单号为{{id}}，此订单为免费订单，不需要支付，谢谢。
-          .pending-order-tip ng-show='pay_url'
-            p.text-info 您已经提交了订单，订单号为{{id}}，请尽快支付。
-            p.muted 超过三天未支付的订单会自动取消。
-            a.btn.btn-warning.pull-right ng-href='{{pay_url}}' target='_blank' 使用支付宝支付
+      - if @event.tickets_quantity != 0
+        .event-tickets ng-controller='OrdersCtrl'
+          table.table ng-show='tickets'
+            thead
+              tr
+                th = t('activerecord.attributes.event_ticket.name')
+                th width='100px' = t('activerecord.attributes.event_ticket.price')
+                th width='100px' 数量
+            tbody ng-init=init_tickets(@event)
+              tr ng-repeat="ticket in tickets"
+                td
+                  |{{ticket.name}}
+                  .muted
+                    |{{ticket.description}}
+                td
+                  |{{ticket.price | money }}
+                td
+                  select.span1 ng-model='ticket.quantity' = options_for_select(0..10)
+          .payment.clearfix
+            p.text-warning ng-show="errors['tickets']" 请先选择门票数量。
+            div ng-show="errors['user_info']"
+              p.text-warning 请完善用户信息，完成订单后您的手机将收到签到码
+              label.control-label for="user_name" 姓名
+              input.input-large name='user_name' ng-model="name" type="text" ng-init="name='#{current_user.try(:name)}'"
+              label.control-label for="user_phone" 手机
+              input.input-large name='user_phone' ng-model="phone" type="text" ng-init="phone='#{current_user.try(:phone)}'"
+            a.btn.btn-info.span1.pull-right ng-hide='status' ng-disabled='disabled' ng-click='create()' ng-init={labels: t('views.order.labels')}.to_ng_init
+              |{{labels[disabled]}}
+            p.text-info ng-show="status=='paid'" 您已经提交了订单，订单号为{{id}}，此订单为免费订单，不需要支付，谢谢。
+            .pending-order-tip ng-show='pay_url'
+              p.text-info 您已经提交了订单，订单号为{{id}}，请尽快支付。
+              p.muted 超过三天未支付的订单会自动取消。
+              a.btn.btn-warning.pull-right ng-href='{{pay_url}}' target='_blank' 使用支付宝支付
+      - else
+        .sold-out.alert.alert-alert
+          | 名额已满，停止报名 :(
       .event-body
         == @event.content_html
       - if @event.show_summary?

@@ -4,9 +4,16 @@ class EventOrder < ActiveRecord::Base
   has_many :items, class_name: 'EventOrderItem', foreign_key: "order_id"
   priceable :price
 
-  validates :quantity, presence: true, numericality: { greater_than: 0 }
-
   accepts_nested_attributes_for :items
+
+  validates :event_id, :user_id, presence: true
+  validates :quantity, presence: true, numericality: { greater_than: 0 }
+  validate do
+    order_quantity = self.quantity || 0
+    if event.tickets_quantity == 0 || order_quantity > event.tickets_quantity
+      errors.add(:quantity, I18n.t('errors.messages.quantity_overflow'))
+    end
+  end
 
   before_validation do
     self.quantity = calculate_quantity

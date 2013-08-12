@@ -1,4 +1,4 @@
-zh-CN:
+en:
   errors:
     messages:
       quantity_overflow: '您购买的票数超过了最大数量。'
@@ -36,9 +36,6 @@ zh-CN:
         content: "总结"
       event_change:
         content: "变更内容"
-      event_order:
-        quantity: '门票数量'
-        items: '门票'
       event_ticket:
         name: "名称"
         price: "价格"
