@@ -4,11 +4,19 @@ describe EventOrdersController do
   let(:user) { create(:user, :confirmed) }
   let(:event) { create(:event, user: user) }
   let(:ticket) { create(:event_ticket, event: event, tickets_quantity: 400) }
+  let(:order_params) {
+    { items_attributes: [{ticket_id: ticket.id, quantity: 2}] }
+  }
+  let(:user_params) {
+    { phone: '13928452888', profile_attributes: { name: 'saberma' } }
+  }
   before { login_user user }
 
   describe "POST create" do
+    render_views
+
     it "should be success" do
-      post :create, event_id: event.id, tickets: [{id: ticket.id, quantity: 2}]
+      post :create, format: :json, event_id: event.id, order: order_params
       expect(response).to be_success
       expect(assigns[:order].items.size).to eql 1
       json = JSON(response.body)
@@ -18,7 +26,7 @@ describe EventOrdersController do
     context 'free' do
       let(:ticket) { create(:event_ticket, :free, event: event, tickets_quantity: 400) }
       it "should not return pay link" do
-        post :create, event_id: event.id, tickets: [{id: ticket.id, quantity: 2}]
+        post :create, format: :json, event_id: event.id, order: order_params
         json = JSON(response.body)
         expect(json['link']).to be_nil
         expect(json['status']).to eql 'paid'
@@ -26,9 +34,9 @@ describe EventOrdersController do
     end
 
     describe "with user information" do
-      before {  post :create, event_id: event.id, tickets: [{id: ticket.id, quantity: 2}], user: { name: 'saberma', phone: '13928452888' } }
+      before {  post :create, event_id: event.id, order: order_params, user: user_params }
       context 'profile is not a new record' do
-        before { user.profile.save }
+        let(:user) { create(:user, :confirmed, :with_profile) }
         it "should be update" do
           expect(user.reload.phone).to eql '13928452888'
           expect(user.profile.name).to eql 'saberma'

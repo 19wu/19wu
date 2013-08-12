@@ -45,6 +45,7 @@ gem "tabs_on_rails"
 gem "china_sms"
 gem 'alipay', github: 'chloerei/alipay'
 gem 'priceable'
+gem 'jbuilder'
 
 group :pg do
   gem 'pg', :platform => [:ruby, :mswin, :mingw]

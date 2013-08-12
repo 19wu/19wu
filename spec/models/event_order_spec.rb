@@ -13,7 +13,7 @@ describe EventOrder do
       let(:order) { build(:order, event: event) }
       describe 'tickets' do
         before { order.valid? }
-        its([:items]) { should_not be_empty }
+        its([:quantity]) { should_not be_empty }
       end
     end
     describe '#status' do

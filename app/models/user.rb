@@ -16,6 +16,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   delegate :name, to: :profile
 
+  accepts_nested_attributes_for :profile
+
   attr_accessor :phone_valid_code
   validates :login, presence: true, uniqueness: { case_sensitive: false }, format: { with: /\A[a-zA-Z0-9_]+\z/, message: I18n.t('errors.messages.invalid_login') }, length: {in: 3..20}
   validate :login_must_uniq, unless: "login.blank?"

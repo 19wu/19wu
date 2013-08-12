@@ -1,5 +1,11 @@
+# -*- coding: utf-8 -*-
 module AlipayGeneratable
   extend ActiveSupport::Concern
+
+  included do
+    hide_action :generate_pay_link_by_order
+    helper_method :generate_pay_link_by_order
+  end
 
   def generate_pay_link_by_order(order)
     event = order.event
@@ -17,6 +23,4 @@ module AlipayGeneratable
     }
     Alipay::Service.create_direct_pay_by_user_url(options)
   end
-
-  included { hide_action :generate_pay_link_by_order }
 end
