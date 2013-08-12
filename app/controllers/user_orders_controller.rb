@@ -11,11 +11,17 @@ class UserOrdersController < ApplicationController
     redirect_to generate_pay_link_by_order(order)
   end
 
+  def cancel
+    order = current_user.orders.find params[:id]
+    order.cancel!
+    redirect_to user_orders_path, notice: t('flash.my_orders.canceled')
+  end
+
   def alipay_done
     callback_params = params.except(*request.path_parameters.keys)
     if callback_params.any? && Alipay::Sign.verify?(callback_params) && params[:trade_status] == 'TRADE_SUCCESS'
       @order = current_user.orders.find params[:out_trade_no]
-      @order.pay(params[:trade_no])
+      @order.pay!(params[:trade_no])
     end
   end
 
@@ -24,9 +30,9 @@ class UserOrdersController < ApplicationController
     if Alipay::Sign.verify?(notify_params) && Alipay::Notify.verify?(notify_params)
       @order = EventOrder.find params[:out_trade_no]
       if ['TRADE_SUCCESS', 'TRADE_FINISHED'].include?(params[:trade_status])
-        @order.pay(params[:trade_no])
-        # elsif params[:trade_status] == 'TRADE_CLOSED'
-        #   @order.cancel
+        @order.pay!(params[:trade_no])
+      elsif params[:trade_status] == 'TRADE_CLOSED'
+        @order.cancel!
       end
       render text: 'success'
     else

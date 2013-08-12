@@ -28,16 +28,23 @@ describe EventOrder do
   end
 
   describe '#pay' do
-    before { subject.pay(trade_no) }
+    before { subject.pay!(trade_no) }
     context 'pending' do
       its(:pending?) { should be_false }
       its(:paid?) { should be_true }
+      its(:canceled?) { should be_false }
       its(:trade_no) { should eql trade_no }
     end
     context 'refund' do # only pending order can be pay
       before { subject.update_attribute :status, 'refund' }
       its(:paid?) { should be_false }
     end
+  end
+
+  describe 'cancel order' do
+    before { order.cancel! }
+    subject { event }
+    its(:tickets_quantity) { should eql 400 }
   end
 
   describe 'event tickets quantity' do

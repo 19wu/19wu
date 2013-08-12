@@ -19,9 +19,19 @@ class EventOrder < ActiveRecord::Base
   def paid?
     self.status.to_sym == :paid
   end
+  def canceled?
+    self.status.to_sym == :canceled
+  end
 
-  def pay(trade_no)
-    self.update_attributes status: 'paid', trade_no: trade_no if pending?
+  def pay!(trade_no)
+    return false unless pending?
+    self.update_attributes status: 'paid', trade_no: trade_no
+  end
+  def cancel!
+    return false unless pending?
+
+    self.update_attributes status: 'canceled', canceled_at: Time.now
+    event.increment! :tickets_quantity, self.quantity if event.tickets_quantity
   end
 
   private
