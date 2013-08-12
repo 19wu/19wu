@@ -7,14 +7,15 @@ feature 'event orders', js: true do
   given(:ticket) { event.tickets.first }
 
   before do
-    ticket.update_attribute :price, 199
-    event.update_attribute :tickets_quantity, 10
     sign_in user
+    event.update_attribute :tickets_quantity, 20
   end
 
   context 'with user name and phone' do
     before { user.profile.update_attribute :name, 'saberma' }
     scenario 'I can create order' do
+      ticket.update_attribute :price, 299
+
       visit event_path(event)
       within '.event-tickets' do
         select '1'
@@ -22,6 +23,23 @@ feature 'event orders', js: true do
       find('a', text: '购买').click
       expect(page).to have_content('您已经提交了订单，订单号为1，请尽快支付')
       expect(page).to have_content('使用支付宝支付')
+    end
+
+    scenario 'I buy a free ticket' do
+      visit event_path(event)
+      within '.event-tickets' do
+        select '1'
+      end
+      find('a', text: '购买').click
+      expect(page).to have_content('您已经提交了订单，订单号为1，此订单为免费订单，不需要支付，谢谢。')
+    end
+
+    scenario 'I want to buy tickets, but sold out' do
+      event.update_attribute :tickets_quantity, 0
+
+      visit event_path(event)
+
+      expect(page).to have_selector('.sold-out')
     end
   end
 
@@ -37,15 +55,7 @@ feature 'event orders', js: true do
         fill_in 'user_phone', with: '13928452888'
       end
       find('a', text: '购买').click
-      expect(page).to have_content('使用支付宝支付')
+      expect(page).to have_content('您已经提交了订单，订单号为1，此订单为免费订单，不需要支付，谢谢。')
     end
-  end
-
-  scenario 'I want to buy tickets, but sold out' do
-    event.update_attribute :tickets_quantity, 0
-
-    visit event_path(event)
-
-    expect(page).to have_selector('.sold-out')
   end
 end
