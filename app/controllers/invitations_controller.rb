@@ -23,14 +23,14 @@ class InvitationsController < Devise::InvitationsController
 
   def mail
     authorize! :invite, User
-    user = User.find(params[:id])
+    user = User.friendly.find(params[:id])
     user.invite! current_user
     redirect_to invitations_path
   end
 
   def upgrade_invite
     authorize! :invite, User
-    user = User.find(params[:id])
+    user = User.friendly.find(params[:id])
     user.skip_invitation = true
     user.invite! current_user
     user.accept_invitation!
