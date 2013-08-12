@@ -29,7 +29,7 @@ class EventOrder < ActiveRecord::Base
   def cancel!
     return false unless pending?
 
-    self.update_attributes status: 'canceled'
+    self.update_attributes status: 'canceled', canceled_at: Time.now
     event.increment! :tickets_quantity, self.quantity if event.tickets_quantity
   end
 end
