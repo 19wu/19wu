@@ -34,6 +34,7 @@ zh-CN:
       event_change:
         content: "变更内容"
       event_order:
+        quantity: '门票数量'
         items: '门票'
       event_ticket:
         name: "名称"

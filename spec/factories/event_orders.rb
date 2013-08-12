@@ -13,7 +13,7 @@ FactoryGirl.define do
       end
       before(:create) do |order, evaluator|
         FactoryGirl.create_list(:ticket, evaluator.items_count, price: evaluator.price, event: order.event).each do |ticket|
-          order.items.build ticket_id: ticket.id, quantity: 1, price: ticket.price
+          order.items.build ticket: ticket, quantity: 1, price: ticket.price
         end
       end
     end
