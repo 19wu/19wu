@@ -3,7 +3,6 @@ require 'spec_helper'
 describe UserOrdersController do
   let(:user) { create(:user, :confirmed) }
   let(:event) { create(:event, user: user) }
-  let(:ticket) { create(:event_ticket, event: event, tickets_quantity: 400) }
   before { login_user user }
 
   describe 'alipay' do
