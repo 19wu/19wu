@@ -1,0 +1,36 @@
+require 'spec_helper'
+
+describe UserOrdersController do
+  let(:user) { create(:user, :confirmed) }
+  let(:event) { create(:event, user: user) }
+  before { login_user user }
+
+  describe 'alipay' do
+    let(:trade_no) { '2013080841700373' }
+    let(:order) { create(:order_with_items, event: event) }
+    let(:attrs) { { trade_no: trade_no, out_trade_no: order.id, trade_status: trade_status, total_fee: order.price } }
+    describe "GET alipay_done" do
+      context 'trade is success' do
+        let(:trade_status) { 'TRADE_SUCCESS' }
+        it "should be success" do
+          get :alipay_done, attrs.merge(id: order.id, sign_type: 'md5', sign: Alipay::Sign.generate(attrs))
+          expect(response).to be_success
+          expect(order.reload.paid?).to be_true
+        end
+      end
+    end
+
+    describe "POST alipay_notify" do
+      let(:attrs) { { trade_no: trade_no, out_trade_no: order.id, notify_id: '123', trade_status: trade_status, total_fee: order.price } }
+      before { Alipay::Notify.stub(:verify?).and_return(true) }
+      context 'trade is success' do
+        let(:trade_status) { 'TRADE_SUCCESS' }
+        it "should be success" do
+          post :alipay_notify, attrs.merge(id: order.id, sign_type: 'md5', sign: Alipay::Sign.generate(attrs))
+          expect(response).to be_success
+          expect(order.reload.paid?).to be_true
+        end
+      end
+    end
+  end
+end

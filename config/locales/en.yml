@@ -73,6 +73,7 @@ en:
     check_in_button: "Check in"
     has_checked_in_button: "Checked"
     invite_button: "Invite"
+    my_orders: "My orders"
 
   flash:
     events:
@@ -132,6 +133,19 @@ en:
         false: "Join now"
         true: "Don't forget to attend"
         checked_in: "Enjoy your time"
+    my_orders:
+      event: '活动'
+      items: '票种'
+      price: '价格（￥）'
+      status: '状态'
+      trade_no: '订单编号'
+      created_at: '下单时间'
+      operations: '操作'
+      pay: '支付'
+      pay_status:
+        pending: '未支付'
+        paid: '已支付'
+        canceled: '已取消'
 
   email:
     welcome:
