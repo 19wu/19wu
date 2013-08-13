@@ -12,7 +12,7 @@ end
 
 group :worker do
 
-  guard 'delayed', :environment => 'development' do
+  guard 'delayed', :environment => 'development', :command => 'bin/delayed_job' do
     watch(%r{^app/(.+)\.rb})
   end
 

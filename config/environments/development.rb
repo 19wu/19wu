@@ -36,4 +36,7 @@ NineteenWu::Application.configure do
   config.assets.debug = true
 
   config.eager_load = false
+
+  # for foreman, instant output rails log
+  $stdout.sync = true
 end

@@ -81,7 +81,7 @@ group :development do
   gem 'rvm-capistrano'
   gem 'mails_viewer'
   gem 'quiet_assets'
-  gem 'guard-delayed'
+  gem 'guard-delayed', github: 'jasl/guard-delayed'
   gem 'guard-rails'
   gem 'guard-zeus'
 end
