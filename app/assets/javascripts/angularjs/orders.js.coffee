@@ -22,7 +22,6 @@
   $scope.validate_quantity = ->
     for ticket in $scope.tickets
       return false if parseInt(ticket.quantity, 10) > 0
-
     $scope.errors['tickets'] = true
     true
 
@@ -34,9 +33,13 @@
   $scope.validate_user_info = ->
     $scope.errors['user_info'] = true unless $scope.name && $scope.phone
 
+  $scope.require_invoice = ->
+    for ticket in $scope.tickets
+      return true if parseInt(ticket.quantity, 10) > 0 && ticket.require_invoice
+    false
+
   $scope.validate_invoice_info = ->
-    tickets = (ticket for ticket in $scope.tickets when (parseInt(ticket.quantity, 10) > 0 && ticket.require_invoice))
-    if tickets[0]
+    if $scope.require_invoice()
       unless $scope.invoice_title && $scope.province && $scope.city && $scope.district && $scope.address && $scope.shipping_name && $scope.shipping_phone
         $scope.errors['invoice_info'] = true
 
@@ -52,16 +55,20 @@
       quantity = parseInt(ticket.quantity, 10)
       items.push { ticket_id: ticket.id, quantity: quantity } if quantity > 0
 
+    shipping_address = if $scope.require_invoice()
+      invoice_title: $scope.invoice_title,
+      province:      $scope.province,
+      city:          $scope.city,
+      district:      $scope.district,
+      address:       $scope.address,
+      name:          $scope.shipping_name,
+      phone:         $scope.shipping_phone
+    else
+      null
+
     order:
-      items_attributes: items
-      shipping_address_attributes:
-        invoice_title: $scope.invoice_title,
-        province:      $scope.province,
-        city:          $scope.city,
-        district:      $scope.district,
-        address:       $scope.address,
-        name:          $scope.shipping_name,
-        phone:         $scope.shipping_phone
+      items_attributes: items,
+      shipping_address_attributes: shipping_address
     user:
       phone: $scope.phone
       profile_attributes:

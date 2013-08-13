@@ -32,13 +32,13 @@ class EventOrder < ActiveRecord::Base
       event,
       params[:items_attributes]
     )
-
-    event.orders.build(
+    order_params = {
       user: user,
       status: :pending,
-      items_attributes: items_attributes,
-      shipping_address_attributes: params[:shipping_address_attributes]
-    )
+      items_attributes: items_attributes
+    }
+    order_params[:shipping_address_attributes] = params[:shipping_address_attributes] if params[:shipping_address_attributes]
+    event.orders.build order_params
   end
   
   # TODO: validate, event and its inventory, #457, #467
