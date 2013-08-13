@@ -1,2 +1,2 @@
 web: bundle exec rails s -p $PORT
-worker: bundle exec script/delayed_job run
+worker: bundle exec bin/delayed_job run
