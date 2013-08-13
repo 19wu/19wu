@@ -26,8 +26,8 @@ if RUBY_VERSION =~ /1.9/
   Encoding.default_internal = Encoding::UTF_8
 end
 
-gem 'rails', '4.0.0'
-gem 'slim-rails', '1.1.1'
+gem 'rails', '~> 4.0.0'
+gem 'slim-rails', '~> 1.1.1'
 gem 'simple_form', '~> 3.0.0.rc'
 gem 'html-pipeline'
 # html-pipeline depends on escape_utils, lock its version for Windows
@@ -81,7 +81,7 @@ group :development do
   gem 'rvm-capistrano'
   gem 'mails_viewer'
   gem 'quiet_assets'
-  gem 'guard-delayed'
+  gem 'guard-delayed', github: 'jasl/guard-delayed'
   gem 'guard-rails'
   gem 'guard-zeus'
 end
@@ -109,7 +109,7 @@ end
 # group :assets do
 gem 'sass-rails',     '~> 4.0.0'
 gem 'coffee-rails',   '~> 4.0.0'
-gem 'bootstrap-sass', '~> 2.2.2.0'
+gem 'bootstrap-sass', '~> 2.3.2.0'
 gem 'uglifier',       '>= 1.3.0'
 gem 'jquery-rails'
 gem 'bootstrap-datepicker-rails'

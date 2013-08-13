@@ -10,12 +10,12 @@ before_install:
   - "cat /etc/timezone"
   - "echo 'gem: --no-ri --no-rdoc' > ~/.gemrc"
   - gem install bundler fog
-  - "./script/travis/bundle_install.sh"
+  - "./bin/travis/bundle_install.sh"
 
 before_script:
   - "bundle exec rake travis:before_script"
 
-after_script: "ruby script/travis/bundle_cache.rb"
+after_script: "ruby bin/travis/bundle_cache.rb"
 
 env:
   global:
