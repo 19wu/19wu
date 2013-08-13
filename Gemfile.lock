@@ -95,6 +95,9 @@ GEM
       json (>= 1.7)
     childprocess (0.3.9)
       ffi (~> 1.0, >= 1.0.11)
+    china_city (0.0.1)
+      jquery-rails (~> 3.0.4)
+      rails (~> 4.0.0)
     china_sms (0.0.4)
     chronic (0.9.1)
     coderay (1.0.9)
@@ -391,6 +394,7 @@ DEPENDENCIES
   capybara
   capybara-email
   carrierwave
+  china_city
   china_sms
   coffee-rails (~> 4.0.0)
   cohort_me
