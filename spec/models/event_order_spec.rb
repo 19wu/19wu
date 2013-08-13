@@ -20,6 +20,10 @@ describe EventOrder do
       its(:pending?) { should be_true }
       its(:paid?) { should be_false }
     end
+    describe '#shipping_address' do
+      let(:order) { create(:order_with_items, shipping_address_attributes: attributes_for(:shipping_address), event: event) }
+      its(:shipping_address) { should_not be_nil }
+    end
     context 'free' do
       let(:order) { create(:order_with_items, price: 0, event: event) }
       its(:pending?) { should be_false }

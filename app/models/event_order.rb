@@ -2,9 +2,10 @@ class EventOrder < ActiveRecord::Base
   belongs_to :event
   belongs_to :user
   has_many :items, class_name: 'EventOrderItem', foreign_key: "order_id"
+  has_one :shipping_address, class_name: 'EventOrderShippingAddress', foreign_key: "order_id"
   priceable :price
 
-  accepts_nested_attributes_for :items
+  accepts_nested_attributes_for :items, :shipping_address
 
   validates :event_id, :user_id, presence: true
   validates :quantity, presence: true, numericality: { greater_than: 0 }
@@ -35,7 +36,8 @@ class EventOrder < ActiveRecord::Base
     event.orders.build(
       user: user,
       status: :pending,
-      items_attributes: items_attributes
+      items_attributes: items_attributes,
+      shipping_address_attributes: params[:shipping_address_attributes]
     )
   end
   
