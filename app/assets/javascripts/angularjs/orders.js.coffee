@@ -7,7 +7,8 @@
     return if $scope.disabled
     return if $scope.validate_login()
     return if $scope.validate_quantity()
-    return if $scope.validate_user_info()
+    return if $scope.validate_form()
+    return if $scope.validate_invoice_info()
 
     request = $http.post("/events/#{$scope.event.id}/orders", $scope.postData())
     request.success (data) ->
@@ -25,11 +26,19 @@
     $scope.errors['tickets'] = true
     true
 
+  $scope.validate_form = ->
+    $scope.validate_user_info()
+    $scope.validate_invoice_info()
+    $scope.errors['user_info'] || $scope.errors['invoice_info']
+
   $scope.validate_user_info = ->
-    unless $scope.name && $scope.phone
-      $scope.errors['user_info'] = true
-      return true
-    false
+    $scope.errors['user_info'] = true unless $scope.name && $scope.phone
+
+  $scope.validate_invoice_info = ->
+    tickets = (ticket for ticket in $scope.tickets when (parseInt(ticket.quantity, 10) > 0 && ticket.require_invoice))
+    if tickets[0]
+      unless $scope.invoice_title && $scope.province && $scope.city && $scope.district && $scope.address && $scope.shipping_name && $scope.shipping_phone
+        $scope.errors['invoice_info'] = true
 
   $scope.validate_login = ->
     if !($scope.user? && $scope.user.id)
@@ -45,6 +54,14 @@
 
     order:
       items_attributes: items
+      shipping_address_attributes:
+        invoice_title: $scope.invoice_title,
+        province:      $scope.province,
+        city:          $scope.city,
+        district:      $scope.district,
+        address:       $scope.address,
+        name:          $scope.shipping_name,
+        phone:         $scope.shipping_phone
     user:
       phone: $scope.phone
       profile_attributes:
