@@ -21,6 +21,7 @@ role :app, ENV['CAP_APP_HOST'], jobs: true              # This may be the same a
 role :db,  ENV['CAP_DB_HOST'], primary: true            # This is where Rails migrations will run
 #role :db,  "your slave db-server here"
 
+set :delayed_job_command, 'bin/delayed_job'
 
 set :repository,  "git://github.com/saberma/#{application}.git"
 set :scm, :git
