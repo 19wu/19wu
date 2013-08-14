@@ -67,7 +67,7 @@ NineteenWu::Application.routes.draw do
     get '/events/:id/participants', to: "events#participants"
   end
 
-  mount ChinaCity::Engine => '/china_city' if defined?(ChinaCity)
+  mount ChinaCity::Engine => '/china_city'
   mount MailsViewer::Engine => '/delivered_mails' if defined?(MailsViewer)
   mount JasmineRails::Engine => "/specs" if defined?(JasmineRails)
 

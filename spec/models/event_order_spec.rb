@@ -10,10 +10,19 @@ describe EventOrder do
   describe '#create' do
     describe 'validate' do
       subject { order.errors.messages }
-      let(:order) { build(:order, event: event) }
       describe 'tickets' do
         before { order.valid? }
+        let(:order) { EventOrder.build_order(user, event, {}) }
         its([:quantity]) { should_not be_empty }
+      end
+      describe 'shipping_address' do
+        let(:ticket) { event.tickets.first }
+        let(:order) { EventOrder.build_order(user, event, items_attributes: [{ticket_id: ticket.id, quantity: 1}]) }
+        before do
+          ticket.update_attribute :require_invoice, true
+          order.valid?
+        end
+        its([:shipping_address]) { should_not be_nil }
       end
     end
     describe '#status' do

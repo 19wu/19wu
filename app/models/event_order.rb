@@ -14,6 +14,9 @@ class EventOrder < ActiveRecord::Base
     if event.tickets_quantity == 0 || order_quantity > event.tickets_quantity
       errors.add(:quantity, I18n.t('errors.messages.quantity_overflow'))
     end
+    if self.require_invoice && shipping_address.nil?
+      errors.add(:shipping_address, I18n.t('errors.messages.event_order.miss_shipping_address'))
+    end
   end
 
   before_validation do
@@ -77,6 +80,10 @@ class EventOrder < ActiveRecord::Base
 
   def calculate_price_in_cents
     items.map(&:price_in_cents).sum
+  end
+
+  def require_invoice
+    items.map(&:require_invoice).any?
   end
 
   def pay(trade_no)
