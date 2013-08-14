@@ -53,12 +53,22 @@ class EventOrder < ActiveRecord::Base
   def paid?
     self.status.to_sym == :paid
   end
+
   def canceled?
     self.status.to_sym == :canceled
   end
 
+  def refunding?
+    self.status.to_sym == :refunding
+  end
+
+  def refunded?
+    self.status.to_sym == :refunded
+  end
+
   def pay!(trade_no)
     return false unless pending?
+
     self.update_attributes status: 'paid', trade_no: trade_no
   end
 
@@ -67,6 +77,19 @@ class EventOrder < ActiveRecord::Base
 
     self.update_attributes status: 'canceled', canceled_at: Time.now
     event.increment! :tickets_quantity, self.quantity if event.tickets_quantity
+  end
+
+  def refund!
+    return false unless paid?
+
+    self.update_attributes status: 'refunding', canceled_at: Time.now
+    event.increment! :tickets_quantity, self.quantity if event.tickets_quantity
+  end
+
+  def refunded!
+    return false unless refunding?
+
+    self.update_attributes status: 'refunded'
   end
 
   def calculate_quantity

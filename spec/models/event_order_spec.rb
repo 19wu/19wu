@@ -35,9 +35,10 @@ describe EventOrder do
       its(:canceled?) { should be_false }
       its(:trade_no) { should eql trade_no }
     end
-    context 'refund' do # only pending order can be pay
-      before { subject.update_attribute :status, 'refund' }
+    context 'refunding' do # only pending order can be pay
+      before { subject.update_attribute :status, 'refunding' }
       its(:paid?) { should be_false }
+      its(:refunding?) { should be_true }
     end
   end
 
@@ -46,6 +47,16 @@ describe EventOrder do
     subject { event }
     its(:tickets_quantity) { should eql 400 }
   end
+
+  describe "refund order back its ticket's quantity immediately" do
+    before do
+      order.pay!(trade_no)
+      order.refund!
+    end
+    subject { event }
+    its(:tickets_quantity) { should eql 400 }
+  end
+
   describe 'forbid participant when total quantity is 0' do
     let(:order) { build(:order_with_items, items_count: 600, event: event) }
 
