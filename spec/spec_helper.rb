@@ -53,7 +53,9 @@ Capybara.server do |app, port|
   # if thin is available, start server using thin
   begin
     require 'rack/handler/thin'
-    Rack::Handler::Thin.run(app, :Port => port)
+    Rack::Handler::Thin.run(app, :Port => port) do |server|
+      server.silent = true
+    end
   rescue LoadError
     # ignore
   end
