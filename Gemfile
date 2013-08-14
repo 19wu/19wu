@@ -99,7 +99,7 @@ end
 group :test do
   gem 'capybara'
   gem 'capybara-email'
-  gem 'database_cleaner'
+  gem 'database_cleaner', '1.0.1'
   gem 'selenium-webdriver'
   gem 'poltergeist'
   gem 'simplecov', :require => false
