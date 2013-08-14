@@ -75,14 +75,14 @@ class EventOrder < ActiveRecord::Base
   def cancel!
     return false unless pending?
 
-    self.update_attributes status: 'canceled', canceled_at: Time.now
+    self.update_attributes status: 'canceled'
     event.increment! :tickets_quantity, self.quantity if event.tickets_quantity
   end
 
   def refund!
     return false unless paid?
 
-    self.update_attributes status: 'refunding', canceled_at: Time.now
+    self.update_attributes status: 'refunding'
     event.increment! :tickets_quantity, self.quantity if event.tickets_quantity
   end
 
@@ -98,9 +98,5 @@ class EventOrder < ActiveRecord::Base
 
   def calculate_price_in_cents
     items.map(&:price_in_cents).sum
-  end
-
-  def pay(trade_no)
-    self.update_attributes status: 'paid', trade_no: trade_no if pending?
   end
 end
