@@ -49,6 +49,7 @@ NineteenWu::Application.routes.draw do
       member do
         get 'pay'
         get 'cancel'
+        get 'refund'
 
         get 'alipay_done'
         post 'alipay_notify'

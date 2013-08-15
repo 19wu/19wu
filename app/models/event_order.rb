@@ -92,6 +92,8 @@ class EventOrder < ActiveRecord::Base
     self.update_attributes status: 'refunded'
   end
 
+  private
+
   def calculate_quantity
     items.map(&:quantity).sum
   end

@@ -91,6 +91,12 @@ en:
       joined: "您已经报名参与此活动"
     my_orders:
       canceled: '你已经成功取消订单。'
+      refunding: '请等待管理员处理您的退款请求.'
+
+  confirmations:
+    my_orders:
+      cancel: '确定要取消订单么？'
+      refund: '确定要退款么？该操作无法撤销！'
 
   views:
     edit: "Edit"
@@ -145,12 +151,13 @@ en:
       operations: '操作'
       pay: '支付'
       cancel: '取消'
-      confirm:
-        cancel: '确定要取消订单么？'
+      refund: '退款'
       pay_status:
         pending: '未支付'
         paid: '已支付'
         canceled: '已取消'
+        refunding: '退款处理中'
+        refunded: '退款成功'
 
   email:
     welcome:

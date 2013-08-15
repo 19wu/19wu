@@ -8,10 +8,20 @@ module UserOrdersHelper
   end
 
   def cancel_link(order)
-    link_to t('views.my_orders.cancel'), cancel_user_order_path(order), data: { confirm: t('views.my_orders.confirm.cancel') } if order.pending?
+    if order.pending?
+      link_to t('views.my_orders.cancel'), cancel_user_order_path(order),
+              data: {confirm: t('confirmations.my_orders.cancel')}
+    end
+  end
+
+  def refund_link(order)
+    if order.paid?
+      link_to t('views.my_orders.refund'), refund_user_order_path(order),
+              data: {confirm: t('confirmations.my_orders.refund')}
+    end
   end
 
   def operations(order)
-    [pay_link(order), cancel_link(order)].delete_if {|i| i.nil?}.join(' | ').html_safe
+    [pay_link(order), cancel_link(order), refund_link(order)].delete_if { |i| i.nil? }.join(' | ').html_safe
   end
 end
