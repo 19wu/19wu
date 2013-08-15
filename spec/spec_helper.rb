@@ -10,17 +10,24 @@ require 'capybara/rails'
 #require 'rspec/autorun' # http://j.mp/WLeAs3
 require 'capybara/email/rspec'
 
-# `phantomjs --version` is slow, use `which` to check whether it exists. The
-# drawback is that Windows does not have it. Windows developers can use
-# environment variable SELENIUM_BROWSER to set the driver to poltergeist
+def locate_executable(name)
+  found = nil
+  (ENV['PATH'] || '').split(File::PATH_SEPARATOR).each do |dir|
+    path = File.join(dir, name)
+    found = [path, path + '.exe'].find { |p| File.executable?(p) }
+    break if found
+  end
+  found
+end
+
 selenium_browser = if ENV['SELENIUM_BROWSER'] == 'phantomjs'
                      :poltergeist
                    elsif ENV['SELENIUM_BROWSER']
                      ENV['SELENIUM_BROWSER'].to_sym
-                   elsif `which phantomjs`.empty?
-                     :firefox
-                   else
+                   elsif locate_executable('phantomjs')
                      :poltergeist
+                   else
+                     :firefox
                    end
 
 if selenium_browser == :poltergeist
@@ -46,7 +53,9 @@ Capybara.server do |app, port|
   # if thin is available, start server using thin
   begin
     require 'rack/handler/thin'
-    Rack::Handler::Thin.run(app, :Port => port)
+    Rack::Handler::Thin.run(app, :Port => port) do |server|
+      server.silent = true
+    end
   rescue LoadError
     # ignore
   end

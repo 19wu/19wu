@@ -50,6 +50,19 @@ ActiveRecord::Schema.define(version: 20130814191134) do
     t.integer  "price_in_cents", default: 0, null: false
   end
 
+  create_table "event_order_shipping_addresses", force: true do |t|
+    t.integer  "order_id",                 null: false
+    t.string   "invoice_title"
+    t.string   "province",      limit: 64
+    t.string   "city",          limit: 64
+    t.string   "district",      limit: 64
+    t.string   "address"
+    t.string   "name",          limit: 64
+    t.string   "phone",         limit: 64
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "event_orders", force: true do |t|
     t.integer  "event_id",                              null: false
     t.integer  "user_id",                               null: false

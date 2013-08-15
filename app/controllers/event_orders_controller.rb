@@ -16,11 +16,15 @@ class EventOrdersController < ApplicationController
   end
 
   private
+
   def user_params
     params.fetch(:user, {}).permit(:phone, profile_attributes: [:name])
   end
 
   def order_params
-    params.fetch(:order, {}).permit(items_attributes: [:ticket_id, :quantity])
+    params.fetch(:order, {}).permit({
+      items_attributes: [:ticket_id, :quantity],
+      shipping_address_attributes: [:invoice_title, :province, :city, :district, :address, :name, :phone]
+    })
   end
 end

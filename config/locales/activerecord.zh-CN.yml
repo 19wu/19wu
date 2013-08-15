@@ -2,6 +2,9 @@ zh-CN:
   errors:
     messages:
       quantity_overflow: '您购买的票数超过了最大数量。'
+      invalid_login: 只允许大小写字母、数字和下划线
+      event_order:
+        miss_shipping_address: 购买的门票包含发票，但没有提供收货地址
   activerecord:
     models:
       user: "用户"

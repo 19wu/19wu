@@ -6,6 +6,7 @@ class EventOrderItem < ActiveRecord::Base
   validates :ticket, presence: true, on: :create
   validates :quantity, presence: true, numericality: { greater_than: 0 }
   validates :price_in_cents, presence: true, numericality: { greater_than_or_equal_to: 0 }
+  delegate :require_invoice, to: :ticket
 
   before_validation do
     if new_record?
