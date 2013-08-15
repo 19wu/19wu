@@ -67,9 +67,8 @@ NineteenWu::Application.routes.draw do
     get '/events/:id/participants', to: "events#participants"
   end
 
-  if defined?(MailsViewer)
-    mount MailsViewer::Engine => '/delivered_mails'
-  end
+  mount ChinaCity::Engine => '/china_city'
+  mount MailsViewer::Engine => '/delivered_mails' if defined?(MailsViewer)
   mount JasmineRails::Engine => "/specs" if defined?(JasmineRails)
 
   # Fallback for /:login when user login is conflict with other routes

@@ -208,7 +208,3 @@ zh-CN:
     event:
       change:
         subject: "「重要」%{title} 变更通知"
-
-  errors:
-    messages:
-      invalid_login: 只允许大小写字母、数字和下划线

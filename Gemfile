@@ -43,6 +43,7 @@ gem "rabl"
 gem 'whenever', :require => false
 gem "tabs_on_rails"
 gem "china_sms"
+gem 'china_city'
 gem 'alipay', github: 'chloerei/alipay'
 gem 'priceable'
 gem 'jbuilder'

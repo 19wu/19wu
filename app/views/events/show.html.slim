@@ -37,6 +37,23 @@ article.event ng-init=init_event(@event)
               input.input-large name='user_name' ng-model="name" type="text" ng-init="name='#{current_user.try(:name)}'"
               label.control-label for="user_phone" 手机
               input.input-large name='user_phone' ng-model="phone" type="text" ng-init="phone='#{current_user.try(:phone)}'"
+            div ng-show="errors['invoice_info']"
+              p.muted 您购买的门票可以提供发票，请填写以下信息：
+              label.control-label for="invoice_title" 发票抬头
+              input.input-xlarge name='invoice_title' ng-model="invoice_title" type="text"
+              label.control-label for="address" 收货地址
+              .city-group
+                select.city-select.span2.margin-right ng-model="province" ng-init="province=''"
+                  option value='' --省份--
+                  = options_for_select(ChinaCity.list)
+                select.city-select.span2.margin-right ng-model="city" ng-init="city=''"
+                  option value='' --城市--
+                select.city-select.span2 ng-model="district" ng-init="district=''"
+                  option value='' --地区--
+              input.span5 name='address' ng-model="address" type="text" placeholder='详细地址'
+              .shipping_info
+                input.input-medium.margin-right name='shipping_name' ng-model="shipping_name" type="text" placeholder='收货人姓名'
+                input.input-medium name='shipping_phone' ng-model="shipping_phone" type="text" placeholder='收货人联系电话'
             a.btn.btn-info.span1.pull-right ng-hide='status' ng-disabled='disabled' ng-click='create()' ng-init={labels: t('views.order.labels')}.to_ng_init
               |{{labels[disabled]}}
             p.text-info ng-show="status=='paid'" 您已经提交了订单，订单号为{{id}}，此订单为免费订单，不需要支付，谢谢。
