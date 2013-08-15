@@ -9,15 +9,7 @@ class EventOrder < ActiveRecord::Base
 
   validates :event_id, :user_id, presence: true
   validates :quantity, presence: true, numericality: { greater_than: 0 }
-  validate do
-    order_quantity = self.quantity || 0
-    if event.tickets_quantity == 0 || order_quantity > event.tickets_quantity
-      errors.add(:quantity, I18n.t('errors.messages.quantity_overflow'))
-    end
-    if self.require_invoice && shipping_address.nil?
-      errors.add(:shipping_address, I18n.t('errors.messages.event_order.miss_shipping_address'))
-    end
-  end
+  validate :quantity_cannot_be_greater_than_event_quantity, :invoice_should_has_address, on: :create
 
   before_validation do
     self.quantity = calculate_quantity
@@ -88,5 +80,18 @@ class EventOrder < ActiveRecord::Base
 
   def pay(trade_no)
     self.update_attributes status: 'paid', trade_no: trade_no if pending?
+  end
+
+  private
+  def quantity_cannot_be_greater_than_event_quantity
+    order_quantity = self.quantity || 0
+    if event.tickets_quantity == 0 || order_quantity > event.tickets_quantity
+      errors.add(:quantity, I18n.t('errors.messages.quantity_overflow'))
+    end
+  end
+  def invoice_should_has_address
+    if self.require_invoice && shipping_address.nil?
+      errors.add(:shipping_address, I18n.t('errors.messages.event_order.miss_shipping_address'))
+    end
   end
 end
