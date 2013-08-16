@@ -16,4 +16,11 @@ class OrderMailer < ActionMailer::Base
     @user = order.user
     mail(to: @event.user.email_with_login, subject: I18n.t('email.order.organizer.created.subject', title: @event.title, id: @order.id, login: @user.login )).deliver
   end
+
+  def notify_user_paid(order)
+    @order = order
+    @event = order.event
+    @user = order.user
+    mail(to: @user.email_with_login, subject: I18n.t('email.order.user.paid.subject', id: order.id)).deliver
+  end
 end
