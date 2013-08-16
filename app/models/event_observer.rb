@@ -20,6 +20,10 @@ class EventObserver < ActiveRecord::Observer
     end
   end
 
+  def after_find(event)
+    event.slug ||= event.group.try(:slug)
+  end
+
   private
   def save_group(event)
     group = event.user.groups.where(:slug => event.slug).first_or_create!

@@ -61,8 +61,17 @@ describe EventOrder do
     its(:tickets_quantity) { should eql 400 }
   end
 
+  describe "can not refund when event start draws near" do
+    before do
+      order.pay!(trade_no)
+    end
+    subject { order }
+    its(:refund!) { should be_false }
+  end
+
   describe "refund order back its ticket's quantity immediately" do
     before do
+      event.update! start_time: 8.days.since, end_time: 9.days.since
       order.pay!(trade_no)
       order.refund!
     end

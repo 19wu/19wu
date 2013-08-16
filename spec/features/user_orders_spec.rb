@@ -16,8 +16,17 @@ feature 'user orders', js: true do
     scenario 'I can see pay link and cancel link' do
       visit user_orders_path
 
-      expect(page).to have_content(I18n.t('views.my_orders.pay'))
-      expect(page).to have_content(I18n.t('views.my_orders.cancel'))
+      expect(page).to have_content("#{I18n.t('views.my_orders.pay')} |")
+      expect(page).to have_content("| #{I18n.t('views.my_orders.cancel')}")
+    end
+
+    scenario 'I can not see pay link and cancel link when event finished' do
+      event.update! start_time: 7.days.ago, end_time: 6.days.ago
+
+      visit user_orders_path
+
+      expect(page).to have_no_content("#{I18n.t('views.my_orders.pay')} |")
+      expect(page).to have_no_content("| #{I18n.t('views.my_orders.cancel')}")
     end
 
     scenario 'I can cancel order' do
@@ -32,18 +41,20 @@ feature 'user orders', js: true do
   context 'has paid' do
     before { order.pay!('2013080841700373') }
 
-    scenario 'I can see refund link' do
-      visit user_orders_path
+    scenario 'I can refund at least 7 days before event starts' do
+      event.update! start_time: 8.days.since, end_time: 9.days.since
 
+      visit user_orders_path
       expect(page).to have_content(I18n.t('views.my_orders.refund'))
-    end
-
-    scenario 'I can refund order' do
-      visit user_orders_path
 
       find('a', text: I18n.t('views.my_orders.refund')).click
-
       expect(page).to have_content(I18n.t('views.my_orders.pay_status.refunding'))
+    end
+
+    scenario 'I can not refund order when event draws near' do
+      visit user_orders_path
+
+      expect(page).to have_no_content(I18n.t('views.my_orders.refund'))
     end
   end
 end
