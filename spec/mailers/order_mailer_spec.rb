@@ -31,6 +31,13 @@ describe OrderMailer do
         its(:to) { should eql [event.user.email] }
         its('body.decoded') { should match '刚刚新增了订单' }
       end
+      describe "order paid" do
+        subject { OrderMailer.notify_organizer_paid(order) }
+        its(:subject) { should eql "#{event.title} 订单 #{order.id}，#{order.user.login} 完成支付" }
+        its(:from) { should eql [Settings.email.from] }
+        its(:to) { should eql [event.user.email] }
+        its('body.decoded') { should match '成功支付款项' }
+      end
     end
   end
 

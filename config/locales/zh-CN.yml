@@ -217,3 +217,5 @@ zh-CN:
       organizer:
         created:
           subject: "%{title} 订单 %{id}，%{login} 下单"
+        paid:
+          subject: "%{title} 订单 %{id}，%{login} 完成支付"
