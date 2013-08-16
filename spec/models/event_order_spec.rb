@@ -64,7 +64,7 @@ describe EventOrder do
       its(:shipping_address) { should_not be_nil }
     end
     context 'free' do
-      let(:order) { create(:order_with_items, price: 0, event: event) }
+      let(:order) { create(:order_with_items, tickets_price: 0, event: event) }
       its(:pending?) { should be_false }
       its(:paid?) { should be_true }
     end
