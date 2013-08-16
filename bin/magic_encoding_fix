@@ -1,0 +1,21 @@
+#!/usr/bin/env ruby
+
+load File.expand_path('../magic_encoding_find', __FILE__)
+
+encoding_line = "# -*- coding: utf-8 -*-\n"
+files = magic_encoding_find
+
+Dir.chdir(File.expand_path('../..', __FILE__)) do
+  files.each do |f|
+    puts "Fix file #{f}"
+    lines = File.read(f).lines.to_a
+    if lines.first =~ /^\s*#!/
+      lines[1, 0] = encoding_line
+    else
+      lines.unshift encoding_line
+    end
+    File.open(f, 'w') do |io|
+      io.write lines.join
+    end
+  end
+end

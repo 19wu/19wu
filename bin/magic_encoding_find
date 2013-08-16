@@ -1,0 +1,23 @@
+#!/usr/bin/env ruby
+
+def magic_encoding_find
+  non_ascii_regexp = /[^\0-\177]/
+  magic_encoding_regexp = /\s*#.*(?:-\*-\s*)?(?:en)?coding\s*:\s*([-a-z0-9_]*)\s*(;|-\*-|$)/
+
+  files = []
+  Dir.chdir(File.expand_path('../..', __FILE__)) do
+    Dir['app/**/*.rb', 'lib/**/*.rb', 'spec/**/*.rb'].each do |f|
+      content = File.read(f)
+      if content =~ non_ascii_regexp && 
+          content.lines.take(2).none? { |l| l =~ magic_encoding_regexp }
+        files << f
+      end
+    end
+  end
+
+  files
+end
+
+if $0 == __FILE__
+  puts magic_encoding_find.join("\n")
+end
