@@ -22,6 +22,10 @@ class EventOrder < ActiveRecord::Base
     event.decrement! :tickets_quantity, self.quantity if event.tickets_quantity
   end
 
+  after_create do
+    OrderMailer.notify_user_created(self, self.user).deliver
+  end
+
   def self.build_order(user, event, params)
     items_attributes = EventOrderItem.filter_attributes(
       event,

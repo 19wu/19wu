@@ -25,6 +25,16 @@ describe EventOrder do
         its([:shipping_address]) { should_not be_nil }
       end
     end
+    describe 'notification' do
+      let(:mail) { double('mail') }
+      before { mail.should_receive(:deliver) }
+      describe 'user' do
+        describe 'order created' do
+          before { OrderMailer.should_receive(:notify_user_created).and_return(mail) }
+          it { should_not be_nil }
+        end
+      end
+    end
     describe '#status' do
       its(:pending?) { should be_true }
       its(:paid?) { should be_false }
