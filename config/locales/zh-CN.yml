@@ -208,3 +208,7 @@ zh-CN:
     event:
       change:
         subject: "「重要」%{title} 变更通知"
+    order:
+      user:
+        created:
+          subject: "您在19屋的订单下单成功"

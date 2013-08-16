@@ -3,7 +3,7 @@ module AlipayGeneratable
   extend ActiveSupport::Concern
 
   included do
-    hide_action :generate_pay_link_by_order
+    hide_action :generate_pay_link_by_order if respond_to?(:hide_action)
     helper_method :generate_pay_link_by_order
   end
 
