@@ -11,8 +11,8 @@ describe OrderMailer do
         subject { OrderMailer.notify_user_created(order) }
         its(:subject) { should eql '您在19屋的订单下单成功' }
         its(:from) { should eql [Settings.email.from] }
-        its(:to) { should eql [user.email] }
-        its('body.decoded') { should match '发票将快递到以下地址' }
+        its(:to) { should eql [order.user.email] }
+        its('body.decoded') { should match '收货人信息' }
       end
     end
 
