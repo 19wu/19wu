@@ -34,6 +34,12 @@ describe EventOrder do
           it { should_not be_nil }
         end
       end
+      describe 'organizer' do
+        describe 'order created' do
+          before { OrderMailer.should_receive(:notify_organizer_created).and_return(mail) }
+          it { should_not be_nil }
+        end
+      end
     end
     describe '#status' do
       its(:pending?) { should be_true }

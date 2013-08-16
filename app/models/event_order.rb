@@ -24,6 +24,7 @@ class EventOrder < ActiveRecord::Base
 
   after_create do
     OrderMailer.notify_user_created(self).deliver
+    OrderMailer.notify_organizer_created(self).deliver
   end
 
   def self.build_order(user, event, params)
