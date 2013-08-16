@@ -12,8 +12,8 @@ p 订单总额 ：#{@order.price} 元
 
 - if @order.require_invoice
   div 您提交的订单门票可以提交发票。
-  div 发票将快递到以下地址：
-  div = @order.shipping_address.address
+  div 发票抬头：#{@order.shipping_address.invoice_title}
+  div 收货人信息：#{@order.shipping_address.info}
 
 p
   |如果您尚未付款，请您尽快付款。您可以点击
