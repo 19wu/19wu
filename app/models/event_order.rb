@@ -48,6 +48,10 @@ class EventOrder < ActiveRecord::Base
     end
   end
 
+  def free?
+    self.price_in_cents.zero?
+  end
+
   def pending?
     self.status.to_sym == :pending
   end

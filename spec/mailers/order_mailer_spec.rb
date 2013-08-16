@@ -13,6 +13,10 @@ describe OrderMailer do
         its(:from) { should eql [Settings.email.from] }
         its(:to) { should eql [order.user.email] }
         its('body.decoded') { should match '收货人信息' }
+        context 'free' do
+          let(:order) { create(:order_with_items, tickets_price: 0, require_invoice: true, event: event) }
+          its('body.decoded') { should_not match '如果您尚未付款' }
+        end
       end
       describe "order paid" do
         subject { OrderMailer.notify_user_paid(order) }

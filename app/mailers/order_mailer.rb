@@ -6,7 +6,7 @@ class OrderMailer < ActionMailer::Base
     @order = order
     @event = order.event
     @user = order.user
-    @pay_link = generate_pay_link_by_order(order)
+    @pay_link = generate_pay_link_by_order(order) unless @order.free?
     mail(to: @user.email_with_login, subject: I18n.t('email.order.user.created.subject')).deliver
   end
 
