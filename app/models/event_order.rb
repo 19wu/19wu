@@ -84,10 +84,6 @@ class EventOrder < ActiveRecord::Base
     items.map(&:require_invoice).any?
   end
 
-  def pay(trade_no)
-    self.update_attributes status: 'paid', trade_no: trade_no if pending?
-  end
-
   private
   def quantity_cannot_be_greater_than_event_quantity
     order_quantity = self.quantity || 0
