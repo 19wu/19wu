@@ -46,6 +46,13 @@ describe EventOrder do
           before { OrderMailer.should_receive(:notify_organizer_created).and_return(mail) }
           it { should_not be_nil }
         end
+        describe 'order paid' do
+          before do
+            OrderMailer.should_receive(:notify_organizer_paid).and_return(mail)
+            order.pay! trade_no
+          end
+          it { should_not be_nil }
+        end
       end
     end
     describe '#status' do

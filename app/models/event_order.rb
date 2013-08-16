@@ -63,6 +63,7 @@ class EventOrder < ActiveRecord::Base
     return false unless pending?
     self.update_attributes status: 'paid', trade_no: trade_no
     OrderMailer.delay.notify_user_paid(self)
+    OrderMailer.delay.notify_organizer_paid(self)
   end
 
   def cancel!
