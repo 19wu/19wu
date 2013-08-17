@@ -7,7 +7,7 @@ describe UserOrdersController do
 
   describe 'alipay' do
     let(:trade_no) { '2013080841700373' }
-    let(:order) { create(:order_with_items, event: event) }
+    let(:order) { create(:order_with_items, event: event, user: user) }
     let(:attrs) { { trade_no: trade_no, out_trade_no: order.id, trade_status: trade_status, total_fee: order.price } }
     describe "GET alipay_done" do
       context 'trade is success' do

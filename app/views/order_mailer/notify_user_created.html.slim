@@ -1,0 +1,24 @@
+p #{@user.login}, 您好：
+
+p 您在#{@event.title}提交订单成功。
+
+p 订单号：#{@order.id}
+
+p 订单包含以下门票：
+
+- @order.items.each do |item|
+  div #{item.quantity} x #{item.name}  单价：#{item.unit_price} 元
+p 订单总额 ：#{@order.price} 元
+
+- if @order.require_invoice
+  div 您提交的订单门票可以提交发票。
+  div 发票抬头：#{@order.shipping_address.invoice_title}
+  div 收货人信息：#{@order.shipping_address.info}
+
+- if @pay_link
+  p
+    |如果您尚未付款，请您尽快付款。您可以点击
+    = link_to '这里', @pay_link
+    |前往支付宝支付
+
+p 谢谢。

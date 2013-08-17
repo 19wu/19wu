@@ -8,7 +8,7 @@ FactoryGirl.define do
     province "440000"
     city "440300"
     district "440305"
-    address "tech park"
+    address "科技园南区"
     name "saberma"
     phone "13928452888"
   end

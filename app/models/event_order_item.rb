@@ -49,4 +49,12 @@ class EventOrderItem < ActiveRecord::Base
   def calculate_price_in_cents
     ticket.price_in_cents * quantity
   end
+
+  def unit_price
+    self.price_in_cents / self.quantity / 100.0
+  end
+
+  def name
+    self.ticket ? self.ticket.name : 'deleted'
+  end
 end

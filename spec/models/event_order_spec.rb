@@ -25,6 +25,36 @@ describe EventOrder do
         its([:shipping_address]) { should_not be_nil }
       end
     end
+    describe 'notification' do
+      let(:mail) { double('mail') }
+      before { mail.should_receive(:deliver) }
+      describe 'user' do
+        describe 'order created' do
+          before { OrderMailer.should_receive(:notify_user_created).and_return(mail) }
+          it { should_not be_nil }
+        end
+        describe 'order paid' do
+          before do
+            OrderMailer.should_receive(:notify_user_paid).and_return(mail)
+            order.pay! trade_no
+          end
+          it { should_not be_nil }
+        end
+      end
+      describe 'organizer' do
+        describe 'order created' do
+          before { OrderMailer.should_receive(:notify_organizer_created).and_return(mail) }
+          it { should_not be_nil }
+        end
+        describe 'order paid' do
+          before do
+            OrderMailer.should_receive(:notify_organizer_paid).and_return(mail)
+            order.pay! trade_no
+          end
+          it { should_not be_nil }
+        end
+      end
+    end
     describe '#status' do
       its(:pending?) { should be_true }
       its(:paid?) { should be_false }
@@ -34,7 +64,7 @@ describe EventOrder do
       its(:shipping_address) { should_not be_nil }
     end
     context 'free' do
-      let(:order) { create(:order_with_items, price: 0, event: event) }
+      let(:order) { create(:order_with_items, tickets_price: 0, event: event) }
       its(:pending?) { should be_false }
       its(:paid?) { should be_true }
     end
