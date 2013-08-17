@@ -74,7 +74,7 @@ article.event ng-init=init_event(@event)
     .span4
       .actions
         .event-sidebar
-          - if current_user
+          - if false && current_user
             div ng-controller="CheckinCtrl" ng-show='user.joined' ng-init=init_checkin(@event)
               p.alert ng-show='alert' ng-class="{false: 'alert-success'}[keep]" {{message}}
               form.form-inline ng-submit="checkin()" ng-show="keep"
