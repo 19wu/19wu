@@ -45,16 +45,16 @@ feature 'user orders', js: true do
       event.update! start_time: 8.days.since, end_time: 9.days.since
 
       visit user_orders_path
-      expect(page).to have_content(I18n.t('views.my_orders.refund'))
+      expect(page).to have_content(I18n.t('views.my_orders.request_refund'))
 
-      find('a', text: I18n.t('views.my_orders.refund')).click
-      expect(page).to have_content(I18n.t('views.my_orders.pay_status.refunding'))
+      find('a', text: I18n.t('views.my_orders.request_refund')).click
+      expect(page).to have_content(I18n.t('views.my_orders.pay_status.request_refund'))
     end
 
     scenario 'I can not refund order when event draws near' do
       visit user_orders_path
 
-      expect(page).to have_no_content(I18n.t('views.my_orders.refund'))
+      expect(page).to have_no_content(I18n.t('views.my_orders.request_refund'))
     end
   end
 end

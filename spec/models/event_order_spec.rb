@@ -48,10 +48,10 @@ describe EventOrder do
       its(:canceled?) { should be_false }
       its(:trade_no) { should eql trade_no }
     end
-    context 'refunding' do # only pending order can be pay
-      before { subject.update_attribute :status, 'refunding' }
+    context 'request_refund' do # only pending order can be pay
+      before { subject.update_attribute :status, 'request_refund' }
       its(:paid?) { should be_false }
-      its(:refunding?) { should be_true }
+      its(:request_refund?) { should be_true }
     end
   end
 
@@ -61,19 +61,19 @@ describe EventOrder do
     its(:tickets_quantity) { should eql 400 }
   end
 
-  describe "can not refund when event start draws near" do
+  describe "can not request refund when event start draws near" do
     before do
       order.pay!(trade_no)
     end
     subject { order }
-    its(:refund!) { should be_false }
+    its(:request_refund!) { should be_false }
   end
 
-  describe "refund order back its ticket's quantity immediately" do
+  describe "request refund order back its ticket's quantity immediately" do
     before do
       event.update! start_time: 8.days.since, end_time: 9.days.since
       order.pay!(trade_no)
-      order.refund!
+      order.request_refund!
     end
     subject { event }
     its(:tickets_quantity) { should eql 400 }

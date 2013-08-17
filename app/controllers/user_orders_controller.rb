@@ -16,11 +16,11 @@ class UserOrdersController < ApplicationController
     end
   end
 
-  def refund
+  def request_refund
     order = current_user.orders.find params[:id]
 
-    order.refund!
-    redirect_to user_orders_path, notice: t('flash.my_orders.refunding')
+    order.request_refund!
+    redirect_to user_orders_path, notice: t('flash.my_orders.request_refund')
   end
 
   def cancel

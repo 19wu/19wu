@@ -16,14 +16,14 @@ module UserOrdersHelper
     end
   end
 
-  def refund_link(order)
-    if order.can_refund?
-      link_to t('views.my_orders.refund'), refund_user_order_path(order),
+  def request_refund_link(order)
+    if order.can_request_refund?
+      link_to t('views.my_orders.request_refund'), request_refund_user_order_path(order),
               data: {confirm: t('confirmations.my_orders.refund')}
     end
   end
 
   def operations(order)
-    [pay_link(order), cancel_link(order), refund_link(order)].compact.join(' | ').html_safe
+    [pay_link(order), cancel_link(order), request_refund_link(order)].compact.join(' | ').html_safe
   end
 end

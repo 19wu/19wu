@@ -34,12 +34,12 @@ class EventOrder < ActiveRecord::Base
     self.status.to_sym == :canceled
   end
 
-  def refunding?
-    self.status.to_sym == :refunding
+  def request_refund?
+    self.status.to_sym == :request_refund
   end
 
-  def refunded?
-    self.status.to_sym == :refunded
+  def complete_refund?
+    self.status.to_sym == :complete_refund
   end
 
   def can_pay?
@@ -50,13 +50,13 @@ class EventOrder < ActiveRecord::Base
     pending? && !event.finished?
   end
 
-  def can_refund?
+  def can_request_refund?
     # TODO: can not refund if attended
     paid? && (event.start_time - Time.now > 7.days)
   end
 
-  def can_refunded?
-    refunding?
+  def can_complete_refund?
+    request_refund?
   end
 
   def pay!(trade_no)
@@ -72,17 +72,17 @@ class EventOrder < ActiveRecord::Base
     event.increment! :tickets_quantity, self.quantity if event.tickets_quantity
   end
 
-  def refund!
-    return false unless can_refund?
+  def request_refund!
+    return false unless can_request_refund?
 
-    self.update_attributes status: 'refunding'
+    self.update_attributes status: 'request_refund'
     event.increment! :tickets_quantity, self.quantity if event.tickets_quantity
   end
 
-  def refunded!
-    return false unless can_refunded?
+  def complete_refund!
+    return false unless can_complete_refund?
 
-    self.update_attributes status: 'refunded'
+    self.update_attributes status: 'complete_refund'
   end
 
   def require_invoice
