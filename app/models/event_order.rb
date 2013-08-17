@@ -2,7 +2,7 @@ class EventOrder < ActiveRecord::Base
   belongs_to :event
   belongs_to :user
   has_many :items, class_name: 'EventOrderItem', foreign_key: "order_id"
-  has_many :participants, class_name: 'EventOrderParticipant', foreign_key: "order_id"
+  has_one :participant     , class_name: 'EventOrderParticipant'    , foreign_key: "order_id"
   has_one :shipping_address, class_name: 'EventOrderShippingAddress', foreign_key: "order_id"
   priceable :price
 
@@ -19,8 +19,11 @@ class EventOrder < ActiveRecord::Base
 
   before_create do
     self.status = :pending
-    self.status = :paid if self.price_in_cents.zero?
     event.decrement! :tickets_quantity, self.quantity if event.tickets_quantity
+  end
+
+  after_create do
+    pay! if self.price_in_cents.zero?
   end
 
   def self.build_order(user, event, params)
@@ -55,9 +58,10 @@ class EventOrder < ActiveRecord::Base
     self.status.to_sym == :canceled
   end
 
-  def pay!(trade_no)
+  def pay!(trade_no = nil)
     return false unless pending?
     self.update_attributes status: 'paid', trade_no: trade_no
+    self.create_participant
   end
 
   def cancel!

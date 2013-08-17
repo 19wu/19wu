@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 20130817025041) do
   create_table "event_order_participants", force: true do |t|
     t.integer  "order_id",               null: false
     t.integer  "event_id",               null: false
+    t.integer  "user_id",                null: false
     t.string   "checkin_code", limit: 6, null: false
     t.datetime "checkin_at"
     t.datetime "created_at"

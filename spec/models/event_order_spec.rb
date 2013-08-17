@@ -52,6 +52,7 @@ describe EventOrder do
       before { subject.update_attribute :status, 'refund' }
       its(:paid?) { should be_false }
     end
+    its(:participant) { should_not be_nil }
   end
 
   describe 'cancel order' do
