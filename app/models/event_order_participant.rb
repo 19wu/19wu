@@ -12,6 +12,10 @@ class EventOrderParticipant < ActiveRecord::Base
     self.checkin_code = self.class.unique_code(self.event)
   end
 
+  def joined
+    self.checkin_at
+  end
+
   def send_sms
     ChinaSMS.delay.to user.phone, I18n.t('sms.event.order.checkin_code', event_title: event.title, checkin_code: self.checkin_code, event_start_time: I18n.localize(event.start_time, format: :short))
   end

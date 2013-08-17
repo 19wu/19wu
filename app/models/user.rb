@@ -66,7 +66,7 @@ class User < ActiveRecord::Base
 
   def checked_in?(event)
     participant = event.participants.find_by_user_id(self.id)
-    !!(participant && participant.checkin_at)
+    !!(participant && participant.joined?)
   end
 
   def email_with_login
