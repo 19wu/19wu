@@ -216,3 +216,14 @@ zh-CN:
     event:
       change:
         subject: "「重要」%{title} 变更通知"
+    order:
+      user:
+        created:
+          subject: "您在19屋的订单下单成功"
+        paid:
+          subject: "订单 %{id} 完成支付"
+      organizer:
+        created:
+          subject: "%{title} 订单 %{id}，%{login} 下单"
+        paid:
+          subject: "%{title} 订单 %{id}，%{login} 完成支付"

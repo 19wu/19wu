@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class EventObserver < ActiveRecord::Observer
   def before_create(event)
     save_group event

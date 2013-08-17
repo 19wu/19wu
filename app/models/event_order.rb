@@ -22,6 +22,29 @@ class EventOrder < ActiveRecord::Base
     event.decrement! :tickets_quantity, self.quantity if event.tickets_quantity
   end
 
+  after_create do
+    OrderMailer.delay.notify_user_created(self)
+    OrderMailer.delay.notify_organizer_created(self)
+  end
+
+  def self.build_order(user, event, params)
+    items_attributes = EventOrderItem.filter_attributes(
+      event,
+      params[:items_attributes]
+    )
+    order_params = {
+      user: user,
+      status: :pending,
+      items_attributes: items_attributes
+    }
+    order_params[:shipping_address_attributes] = params[:shipping_address_attributes] if params[:shipping_address_attributes]
+    event.orders.build order_params
+  end
+
+  def free?
+    self.price_in_cents.zero?
+  end
+
   def pending?
     self.status.to_sym == :pending
   end
@@ -63,6 +86,8 @@ class EventOrder < ActiveRecord::Base
     return false unless can_pay?
 
     self.update_attributes status: 'paid', trade_no: trade_no
+    OrderMailer.delay.notify_user_paid(self)
+    OrderMailer.delay.notify_organizer_paid(self)
   end
 
   def cancel!
