@@ -2,6 +2,7 @@ class EventOrder < ActiveRecord::Base
   belongs_to :event
   belongs_to :user
   has_many :items, class_name: 'EventOrderItem', foreign_key: "order_id"
+  has_many :participants, class_name: 'EventOrderParticipant', foreign_key: "order_id"
   has_one :shipping_address, class_name: 'EventOrderShippingAddress', foreign_key: "order_id"
   priceable :price
 
