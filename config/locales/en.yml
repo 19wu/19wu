@@ -44,7 +44,7 @@ en:
     menu:
       activities: 最新动态
       created_events: 发起的活动
-      joined_events: 参加的活动
+      ordered_events: 参加的活动
     body:
       empty: 暂时没有内容
 

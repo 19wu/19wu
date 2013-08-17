@@ -83,22 +83,16 @@ describe Event do
     end
   end
 
-  describe '#participated_users.recent' do
+  describe '#ordered_users.recent' do
     let(:event) { create(:event) }
-
-    it 'sorts participants by join date' do
-      first = create(:user)
-      second = create(:user)
-
-      EventParticipant.create({ :user_id => first.id, :event_id => event.id, :created_at => '2012-01-01' })
-      EventParticipant.create({ :user_id => second.id, :event_id => event.id, :created_at => '2012-01-02' })
-
-      event.participated_users.recent.should == [second, first]
+    let(:order1) { create(:order_with_items, event: event) }
+    let(:order2) { create(:order_with_items, event: event) }
+    before { [ order1, order2 ] }
+    it 'sorts users by join date' do
+      event.ordered_users.recent.should == [order1, order2]
     end
-
-    it 'can limit the number of participants' do
-      event.participated_users << create_list(:user, 2)
-      event.participated_users.recent(1).should have(1).user
+    it 'can limit the number of users' do
+      event.ordered_users.recent(1).should have(1).user
     end
   end
 

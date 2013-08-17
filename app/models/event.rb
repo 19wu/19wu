@@ -55,8 +55,8 @@ class Event < ActiveRecord::Base
 
   def self.remind_participants
     Event.upcoming.find_each do |e|
-      e.participated_users.each do |participant|
-        UserMailer.delay.reminder_email participant, e
+      e.ordered_users.each do |user|
+        UserMailer.delay.reminder_email user, e
       end
     end
   end

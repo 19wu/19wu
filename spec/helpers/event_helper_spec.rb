@@ -91,7 +91,7 @@ describe EventHelper do
   end
 
   describe '#history_url_text' do
-    it 'should return string contains event date along with number of participated users' do
+    it 'should return string contains event date along with number of ordered users' do
       event = create(:event, :start_time => Time.at(1368969404)) # Time.at(1368969404) == "2013-05-19 21:16:44 +0800"
       event.participated_users << create(:user)
       event.participated_users << create(:user)

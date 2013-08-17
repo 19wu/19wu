@@ -13,9 +13,9 @@
         |，50字/条短信；
       p.muted
         |报名用户共有 
-        span.label = @event.participated_users.size
+        span.label = @event.ordered_users.size
         |&nbsp;人，将通过邮件通知他们，其中 
-        span.label = @event.participated_users.with_phone.size
+        span.label = @event.ordered_users.with_phone.size
         |&nbsp;人登记了手机号码，将收到短信通知。
       p.alert.alert-error ng-show="form.$invalid" 变更内容 不能超过 100 个字
       .form-actions

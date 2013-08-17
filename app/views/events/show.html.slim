@@ -74,13 +74,6 @@ article.event ng-init=init_event(@event)
     .span4
       .actions
         .event-sidebar
-          - if false && current_user
-            div ng-controller="CheckinCtrl" ng-show='user.joined' ng-init=init_checkin(@event)
-              p.alert ng-show='alert' ng-class="{false: 'alert-success'}[keep]" {{message}}
-              form.form-inline ng-submit="checkin()" ng-show="keep"
-                .input-append
-                  input#appendedInputButton.input-medium ng-model="code" type="text" placeholder="请在会场输入签到码"
-                  button.btn.btn-info = t('labels.check_in_button')
           ul.unstyled
             li
               i.icon-calendar

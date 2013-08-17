@@ -58,9 +58,7 @@ module EventHelper
   def init_event(event)
     {
       'event.id' => event.id,
-      'event.started' => event.started?,
-      'user.joined' => joined?(event),
-      'user.checked_in' => checked_in?(event)
+      'event.started' => event.started?
     }.to_ng_init
   end
 
@@ -78,11 +76,7 @@ module EventHelper
   end
 
   def history_url_text(event)
-    event.start_time.strftime("%Y-%m-%d ") + I18n.t('views.history.participants', number: event.participated_users.size)
-  end
-
-  def display_checkin_form?(event, user)
-    event.start_time.today? && !user.checkin?(event)
+    event.start_time.strftime("%Y-%m-%d ") + I18n.t('views.history.participants', number: event.ordered_users.size)
   end
 
 end
