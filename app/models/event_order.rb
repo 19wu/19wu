@@ -17,28 +17,13 @@ class EventOrder < ActiveRecord::Base
   end
 
   before_create do
-    self.status = :pending
-    self.status = :paid if self.price_in_cents.zero?
+    self.status = free? ? :paid : :pending
     event.decrement! :tickets_quantity, self.quantity if event.tickets_quantity
   end
 
   after_create do
     OrderMailer.delay.notify_user_created(self)
     OrderMailer.delay.notify_organizer_created(self)
-  end
-
-  def self.build_order(user, event, params)
-    items_attributes = EventOrderItem.filter_attributes(
-      event,
-      params[:items_attributes]
-    )
-    order_params = {
-      user: user,
-      status: :pending,
-      items_attributes: items_attributes
-    }
-    order_params[:shipping_address_attributes] = params[:shipping_address_attributes] if params[:shipping_address_attributes]
-    event.orders.build order_params
   end
 
   def free?
