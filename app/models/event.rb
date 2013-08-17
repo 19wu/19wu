@@ -8,9 +8,9 @@ class Event < ActiveRecord::Base
   has_many :changes,      :class_name => "EventChange"
   has_many :tickets,      :class_name => "EventTicket"
   has_many :orders,       :class_name => "EventOrder"
-  has_many :participated_users, :source => :user, :through => :participants do
+  has_many :ordered_users, :source => :user, :through => :orders do
     def recent(count = nil)
-      order('event_participants.created_at DESC').limit(count)
+      order('event_order.created_at DESC').limit(count)
     end
     def with_phone
       where("users.phone is not null and users.phone != ''")
