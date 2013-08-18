@@ -17,35 +17,13 @@ class EventOrder < ActiveRecord::Base
   end
 
   before_create do
-    self.status = :pending
-    self.status = :paid if self.price_in_cents.zero?
+    self.status = free? ? :paid : :pending
     event.decrement! :tickets_quantity, self.quantity if event.tickets_quantity
   end
 
   after_create do
     OrderMailer.delay.notify_user_created(self)
     OrderMailer.delay.notify_organizer_created(self)
-  end
-
-  def self.build_order(user, event, params)
-    items_attributes = EventOrderItem.filter_attributes(
-      event,
-      params[:items_attributes]
-    )
-    order_params = {
-      user: user,
-      status: :pending,
-      items_attributes: items_attributes
-    }
-    order_params[:shipping_address_attributes] = params[:shipping_address_attributes] if params[:shipping_address_attributes]
-    event.orders.build order_params
-  end
-  
-  # TODO: validate, event and its inventory, #457, #467
-  def self.place_order(user, event, params)
-    build_order(user, event, params).tap do |order|
-      order.save!
-    end
   end
 
   def free?
@@ -59,22 +37,104 @@ class EventOrder < ActiveRecord::Base
   def paid?
     self.status.to_sym == :paid
   end
+
   def canceled?
     self.status.to_sym == :canceled
   end
 
+  def request_refund?
+    self.status.to_sym == :request_refund
+  end
+
+  def complete_refund?
+    self.status.to_sym == :complete_refund
+  end
+
+  def can_pay?
+    pending? && !event.finished?
+  end
+
+  def can_cancel?
+    pending? && !event.finished?
+  end
+
+  def can_request_refund?
+    # TODO: can not refund if attended
+    paid? && (event.start_time - Time.now > 7.days)
+  end
+
+  def can_complete_refund?
+    request_refund?
+  end
+
   def pay!(trade_no)
-    return false unless pending?
+    return false unless can_pay?
+
     self.update_attributes status: 'paid', trade_no: trade_no
     OrderMailer.delay.notify_user_paid(self)
     OrderMailer.delay.notify_organizer_paid(self)
   end
 
   def cancel!
-    return false unless pending?
+    return false unless can_cancel?
 
-    self.update_attributes status: 'canceled', canceled_at: Time.now
+    self.update_attributes status: 'canceled'
     event.increment! :tickets_quantity, self.quantity if event.tickets_quantity
+  end
+
+  def request_refund!
+    return false unless can_request_refund?
+
+    self.update_attributes status: 'request_refund'
+    event.increment! :tickets_quantity, self.quantity if event.tickets_quantity
+  end
+
+  def complete_refund!
+    return false unless can_complete_refund?
+
+    self.update_attributes status: 'complete_refund'
+  end
+
+  def require_invoice
+    items.map(&:require_invoice).any?
+  end
+
+  class<< self
+    def build_order(user, event, params)
+      items_attributes = EventOrderItem.filter_attributes(
+          event,
+          params[:items_attributes]
+      )
+      order_params = {
+          user: user,
+          status: :pending,
+          items_attributes: items_attributes
+      }
+      order_params[:shipping_address_attributes] = params[:shipping_address_attributes] if params[:shipping_address_attributes]
+      event.orders.build order_params
+    end
+
+    # TODO: validate, event and its inventory, #457, #467
+    def place_order(user, event, params)
+      build_order(user, event, params).tap do |order|
+        order.save!
+      end
+    end
+  end
+
+  private
+
+  def quantity_cannot_be_greater_than_event_quantity
+    order_quantity = self.quantity || 0
+    if event.tickets_quantity == 0 || order_quantity > event.tickets_quantity
+      errors.add(:quantity, I18n.t('errors.messages.quantity_overflow'))
+    end
+  end
+
+  def invoice_should_has_address
+    if self.require_invoice && shipping_address.nil?
+      errors.add(:shipping_address, I18n.t('errors.messages.event_order.miss_shipping_address'))
+    end
   end
 
   def calculate_quantity
@@ -83,22 +143,5 @@ class EventOrder < ActiveRecord::Base
 
   def calculate_price_in_cents
     items.map(&:price_in_cents).sum
-  end
-
-  def require_invoice
-    items.map(&:require_invoice).any?
-  end
-
-  private
-  def quantity_cannot_be_greater_than_event_quantity
-    order_quantity = self.quantity || 0
-    if event.tickets_quantity == 0 || order_quantity > event.tickets_quantity
-      errors.add(:quantity, I18n.t('errors.messages.quantity_overflow'))
-    end
-  end
-  def invoice_should_has_address
-    if self.require_invoice && shipping_address.nil?
-      errors.add(:shipping_address, I18n.t('errors.messages.event_order.miss_shipping_address'))
-    end
   end
 end
