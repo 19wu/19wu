@@ -4,6 +4,7 @@ class EventOrder < ActiveRecord::Base
   has_many :items, class_name: 'EventOrderItem', foreign_key: "order_id"
   has_one :shipping_address, class_name: 'EventOrderShippingAddress', foreign_key: "order_id"
   priceable :price
+  has_many :event_order_status_transitions
 
   accepts_nested_attributes_for :items, :shipping_address
 
@@ -31,6 +32,8 @@ class EventOrder < ActiveRecord::Base
   end
 
   state_machine :status, :initial => :pending do
+    store_audit_trail
+
     state :pending
     state :paid, :request_refund, :complete_refund do
       validates :trade_no, :presence => true

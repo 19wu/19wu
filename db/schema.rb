@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130814191134) do
+ActiveRecord::Schema.define(version: 20130818175826) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,18 @@ ActiveRecord::Schema.define(version: 20130814191134) do
 
   add_index "event_changes", ["event_id"], name: "index_event_changes_on_event_id", using: :btree
 
+  create_table "event_order_histories", force: true do |t|
+    t.integer  "event_order_id"
+    t.string   "transition_from"
+    t.string   "transition_to",   null: false
+    t.string   "note"
+    t.string   "raw_meta"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "event_order_histories", ["event_order_id"], name: "index_event_order_histories_on_event_order_id", using: :btree
+
   create_table "event_order_items", force: true do |t|
     t.integer  "order_id",                   null: false
     t.integer  "ticket_id",                  null: false
@@ -62,6 +74,16 @@ ActiveRecord::Schema.define(version: 20130814191134) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "event_order_status_transitions", force: true do |t|
+    t.integer  "event_order_id"
+    t.string   "event"
+    t.string   "from"
+    t.string   "to"
+    t.datetime "created_at"
+  end
+
+  add_index "event_order_status_transitions", ["event_order_id"], name: "index_event_order_status_transitions_on_event_order_id", using: :btree
 
   create_table "event_orders", force: true do |t|
     t.integer  "event_id",                              null: false

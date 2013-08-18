@@ -351,6 +351,8 @@ GEM
     sqlite3 (1.3.7)
     sqlite3 (1.3.7-x86-mingw32)
     state_machine (1.2.0)
+    state_machine-audit_trail (0.1.3)
+      state_machine
     subexec (0.2.3)
     tabs_on_rails (2.2.0)
     temple (0.6.6)
@@ -452,6 +454,7 @@ DEPENDENCIES
   slim-rails (~> 1.1.1)
   sqlite3
   state_machine
+  state_machine-audit_trail
   tabs_on_rails
   thin (~> 1.5.0)
   uglifier (>= 1.3.0)

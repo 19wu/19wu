@@ -48,6 +48,7 @@ gem 'alipay', github: 'chloerei/alipay'
 gem 'priceable'
 gem 'jbuilder'
 gem 'state_machine'
+gem 'state_machine-audit_trail'
 gem 'ruby-graphviz', :require => 'graphviz'
 
 group :pg do
