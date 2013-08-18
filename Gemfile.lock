@@ -27,6 +27,12 @@ GIT
     friendly_id (5.0.0.beta1)
 
 GIT
+  remote: git://github.com/saberma/priceable.git
+  revision: 72f6322f798353ae2d740306bf4d38563a21e631
+  specs:
+    priceable (0.0.7)
+
+GIT
   remote: git://github.com/scambra/devise_invitable.git
   revision: 9e5a9a7e0e5ad489206386865efdfca5b87de62b
   specs:
@@ -246,7 +252,6 @@ GEM
       faye-websocket (>= 0.4.4, < 0.5.0)
       http_parser.rb (~> 0.5.3)
     polyglot (0.3.3)
-    priceable (0.0.7)
     pry (0.9.12.2)
       coderay (~> 1.0.5)
       method_source (~> 0.8)
@@ -431,7 +436,7 @@ DEPENDENCIES
   mysql2 (= 0.3.11)
   pg
   poltergeist
-  priceable
+  priceable!
   pry-nav
   pry-rails
   quiet_assets

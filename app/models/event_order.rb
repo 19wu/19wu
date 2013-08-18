@@ -89,6 +89,7 @@ class EventOrder < ActiveRecord::Base
 
   private
   def quantity_cannot_be_greater_than_event_quantity
+    return unless event.tickets_quantity
     order_quantity = self.quantity || 0
     if event.tickets_quantity == 0 || order_quantity > event.tickets_quantity
       errors.add(:quantity, I18n.t('errors.messages.quantity_overflow'))

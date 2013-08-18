@@ -8,7 +8,7 @@ class MoveEventParticipantToOrderParticipant < ActiveRecord::Migration
   module ChinaSMS; def to(*params); end; end # don't send sms
 
   def up
-    EventParticipant.each do |participant|
+    EventParticipant.all.each do |participant|
       event = participant.event
       ticket = event.tickets.first_or_create name: '门票', price: 0
       order = event.orders.create user: participant.user, items_attributes: [{ticket: ticket, quantity: 1}]
@@ -23,14 +23,15 @@ class MoveEventParticipantToOrderParticipant < ActiveRecord::Migration
     create_table :event_participants do |t|
       t.integer :event_id
       t.integer :user_id
+      t.boolean :joined, null: false, default: false
 
       t.timestamps
     end
     add_index :event_participants, :event_id
     add_index :event_participants, :user_id
 
-    EventOrderParticipant.each do |participant|
-      EventParticipant.create event: participant.event, user: user, joined: participant.joined?
+    EventOrderParticipant.all.each do |participant|
+      EventParticipant.create event: participant.event, user: participant.user, joined: !!participant.joined?
     end
   end
 end

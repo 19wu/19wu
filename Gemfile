@@ -45,7 +45,7 @@ gem "tabs_on_rails"
 gem "china_sms"
 gem 'china_city'
 gem 'alipay', github: 'chloerei/alipay'
-gem 'priceable'
+gem 'priceable', github: 'saberma/priceable' # fixed: migration break.
 gem 'jbuilder'
 
 group :pg do
