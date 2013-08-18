@@ -6,15 +6,15 @@ class EventChangesController < ApplicationController
   set_tab :changes   , :sidebar, only: [:index]
 
   def index
-    @changes = @event.changes
+    @changes = @event.updates
   end
 
   def new
-    @change = @event.changes.build
+    @change = @event.updates.build
   end
 
   def create
-    @change = @event.changes.build(event_change_params)
+    @change = @event.updates.build(event_change_params)
     if @change.save
       redirect_to event_changes_path(@event)
     else
