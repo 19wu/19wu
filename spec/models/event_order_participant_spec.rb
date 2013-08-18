@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 require 'spec_helper'
 
 describe EventOrderParticipant do
@@ -6,7 +7,7 @@ describe EventOrderParticipant do
   let(:order) { create(:order_with_items, event: event) }
 
   describe 'create' do
-    subject { order.participants.create }
+    subject { order.create_participant }
     describe 'checkin_code' do
       its(:checkin_code) { should_not be_blank }
     end

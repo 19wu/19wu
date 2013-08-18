@@ -12,7 +12,7 @@ class EventOrderParticipant < ActiveRecord::Base
     self.checkin_code = self.class.unique_code(self.event)
   end
 
-  def joined
+  def joined?
     self.checkin_at
   end
 

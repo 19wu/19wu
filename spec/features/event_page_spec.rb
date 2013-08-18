@@ -18,11 +18,12 @@ feature 'event page' do
     page.should have_selector('.event-body li', :text => 'list')
   end
 
-  scenario 'I see list of participants', js: true do
-    users = create_list(:user, 5)
-    event.participated_users << users
-
-    visit event_path(event)
-    page.should have_selector('.event-participants img.gravatar', :count => 5)
+  context 'with orders' do
+    let(:orders) { create_list(:order_with_items, 5, event: event) }
+    before { orders }
+    scenario 'I see list of participants', js: true do
+      visit event_path(event)
+      page.should have_selector('.event-participants img.gravatar', :count => 5)
+    end
   end
 end

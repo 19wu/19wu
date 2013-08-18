@@ -18,3 +18,9 @@
 #= require_self
 $ ->
   $("a[data-toggle='tooltip']").tooltip()
+  $("a[rel='popover']").each ->
+    $target = $($(this).data('target'))
+    $(this).popover
+      html: true
+      title: $target.find('.popover-title').html()
+      content: $target.find('.popover-content').html()

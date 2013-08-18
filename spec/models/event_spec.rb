@@ -89,7 +89,7 @@ describe Event do
     let(:order2) { create(:order_with_items, event: event) }
     before { [ order1, order2 ] }
     it 'sorts users by join date' do
-      event.ordered_users.recent.should == [order1, order2]
+      event.ordered_users.recent.should == [order1.user, order2.user]
     end
     it 'can limit the number of users' do
       event.ordered_users.recent(1).should have(1).user
@@ -120,17 +120,18 @@ describe Event do
   describe '#remind_participants' do
     let(:user) { create(:user, :confirmed) }
     let(:event) { create(:event, start_time: 1.day.since, end_time: nil, user: user) }
+    let(:order) { create(:order_with_items, event: event) }
     subject { ActionMailer::Base.deliveries.last }
 
     before do
+      order
       ActionMailer::Base.deliveries.clear
-      event.participated_users << user
     end
 
     it 'should remind all participants' do
       Event.remind_participants
       subject.subject.should eql '19屋活动提醒'
-      subject.to.should eql [user.email]
+      subject.to.should eql [order.user.email]
     end
   end
 
@@ -201,23 +202,6 @@ describe Event do
     it "should return the checkin code of event" do
       event = create(:event, slug: "ruby", created_at: '2013-05-05 23:12:08')
       expect(event.checkin_code).to eq '328'
-    end
-  end
-
-  describe '#has?' do
-    let(:user) { create(:user) }
-    before { event.save }
-
-    context 'when user has joined' do
-      before { event.participated_users << user }
-      it 'returns true' do
-        expect(event.has?(user)).to be(true)
-      end
-    end
-    context 'when user has not joined yet' do
-      it 'returns false' do
-        expect(event.has?(user)).to be(false)
-      end
     end
   end
 

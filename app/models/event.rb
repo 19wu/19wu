@@ -8,9 +8,9 @@ class Event < ActiveRecord::Base
   has_many :changes,      :class_name => "EventChange"
   has_many :tickets,      :class_name => "EventTicket"
   has_many :orders,       :class_name => "EventOrder"
-  has_many :ordered_users, :source => :user, :through => :orders do
+  has_many :ordered_users, :source => :user, :through => :orders do # TODO: uniq
     def recent(count = nil)
-      order('event_order.created_at DESC').limit(count)
+      order('event_orders.created_at DESC').limit(count)
     end
     def with_phone
       where("users.phone is not null and users.phone != ''")
@@ -37,13 +37,6 @@ class Event < ActiveRecord::Base
     tomorrow = today.since(1.day)
     where(:start_time => tomorrow.beginning_of_day..tomorrow.end_of_day)
   }
-
-  # Must return boolean, because angularjs depends on the value to update UI.
-  # @see EventsController#join
-  # @see EventsController#quit
-  def has?(user)
-    return !!(user && participants.exists?(user_id: user.id))
-  end
 
   def sibling_events
     group.events.latest.select { |e| e != self }

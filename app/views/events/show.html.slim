@@ -92,30 +92,27 @@ article.event ng-init=init_event(@event)
               = link_to @event.user.login, user_path(@event.user)
               = @event.user.phone
 
-          div ng-controller="ParticipantsCtrl"
+          div
             hr
             h3
               |已参加用户
-              span.label.amount
-                | {{participants.length}}
+              span.label.amount = @event.ordered_users.size
             ul.event-participants
-              li ng-repeat="user in participants"
-                .popover.top id="participant-{{user.id}}"
-                  .arrow
-                    h3.popover-title
-                      .user-title
-                        |{{user.login}}
-                        small ng-show="user.profile.name"
-                          |{{user.profile.name}}
-                    .popover-content
-                      ul.user-info.unstyled.inline.muted
-                        li ng-show="user.profile.website"
-                          |{{user.profile.website}}
-                        li
-                          |{{user.created_at | date:'yyyy-MM-dd'}} 加入
-                      .user-body ng-bind-html-unsafe="user.profile.bio_html"
-                a ng-href="/{{user.login}}" bs-popover-custom="" data-placement="left" data-target="#participant-{{user.id}}" data-trigger="hover" rel="popover"
-                  img.gravatar ng-src="{{user.avatar_url}}"
+              - @event.ordered_users.recent(10).each do |user|
+                li
+                  .popover.top id="participant-#{user.id}"
+                    .arrow
+                      h3.popover-title
+                        .user-title
+                          = user.login
+                          small = user.profile.try(:name)
+                      .popover-content
+                        ul.user-info.unstyled.inline.muted
+                          li = user.profile.try(:website)
+                          li = user.created_at.to_date.to_s(:db)
+                        .user-body = raw user.profile.try(:bio_html)
+                  = link_to user_path(user), rel: "popover", data: { target: "#participant-#{user.id}", trigger: 'hover', placement: 'left' } do
+                    = image_tag user.gravatar_url(:size => 40), :class => 'gravatar'
       - if @event.sibling_events.any?
         .sibling-events
           .event-sidebar
