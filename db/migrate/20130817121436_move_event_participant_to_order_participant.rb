@@ -6,6 +6,8 @@ class MoveEventParticipantToOrderParticipant < ActiveRecord::Migration
   end
 
   module ChinaSMS; def to(*params); end; end # don't send sms
+  class OrderMailer; def self.delay; self; end; end # and don't send email
+  class OrderMailer; def self.method_missing(*a); end; end
 
   def up
     EventParticipant.all.each do |participant|
