@@ -3,17 +3,21 @@
 FactoryGirl.define do
   factory :event_order do
     event_id 1
-    user_id 1
+    user
     price 1.5
 
     factory :order_with_items do
       ignore do
         items_count 1
-        price 299
+        tickets_price 299
+        require_invoice false
       end
       before(:create) do |order, evaluator|
-        FactoryGirl.create_list(:ticket, evaluator.items_count, price: evaluator.price, event: order.event).each do |ticket|
+        FactoryGirl.create_list(:ticket, evaluator.items_count, price: evaluator.tickets_price, require_invoice: evaluator.require_invoice, event: order.event).each do |ticket|
           order.items.build ticket: ticket, quantity: 1, price: ticket.price
+        end
+        if order.require_invoice
+          order.shipping_address_attributes = attributes_for(:shipping_address)
         end
       end
     end

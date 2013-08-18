@@ -23,7 +23,9 @@ class EventOrder < ActiveRecord::Base
   end
 
   after_create do
-    pay! if self.price_in_cents.zero?
+    pay! if self.free?
+    OrderMailer.delay.notify_user_created(self)
+    OrderMailer.delay.notify_organizer_created(self)
   end
 
   def self.build_order(user, event, params)
@@ -47,6 +49,10 @@ class EventOrder < ActiveRecord::Base
     end
   end
 
+  def free?
+    self.price_in_cents.zero?
+  end
+
   def pending?
     self.status.to_sym == :pending
   end
@@ -62,6 +68,10 @@ class EventOrder < ActiveRecord::Base
     return false unless pending?
     self.update_attributes status: 'paid', trade_no: trade_no
     self.create_participant
+    unless self.free?
+      OrderMailer.delay.notify_user_paid(self)
+      OrderMailer.delay.notify_organizer_paid(self)
+    end
   end
 
   def cancel!
@@ -81,10 +91,6 @@ class EventOrder < ActiveRecord::Base
 
   def require_invoice
     items.map(&:require_invoice).any?
-  end
-
-  def pay(trade_no)
-    self.update_attributes status: 'paid', trade_no: trade_no if pending?
   end
 
   private
