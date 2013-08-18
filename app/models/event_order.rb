@@ -17,7 +17,7 @@ class EventOrder < ActiveRecord::Base
   end
 
   before_create do
-    self.status = free? ? :paid : :pending
+    self.status = free? ? 'paid' : 'pending'
     event.decrement! :tickets_quantity, self.quantity if event.tickets_quantity
   end
 
@@ -30,70 +30,99 @@ class EventOrder < ActiveRecord::Base
     self.price_in_cents.zero?
   end
 
-  def pending?
-    self.status.to_sym == :pending
+  state_machine :status, :initial => :pending do
+    state :pending
+    state :paid, :request_refund, :complete_refund do
+      validates :trade_no, :presence => true
+    end
+
+    event :pay do
+      transition :pending => :paid, :if => ->(order) { !order.event.finished? }
+    end
+
+    event :cancel do
+      transition :pending => :canceled, :if => ->(order) { !order.event.finished? }
+    end
+
+    event :request_refund do
+      transition :paid => :request_refund, :if => ->(order) { order.event.start_time - Time.now > 7.days }
+    end
+
+    event :complete_refund do
+      transition :request_refund => :complete_refund
+    end
   end
 
-  def paid?
-    self.status.to_sym == :paid
+  # override state_machine generated method to accept trade_no
+  def pay(trade_no)
+    self.trade_no = trade_no
+    super
   end
 
-  def canceled?
-    self.status.to_sym == :canceled
-  end
-
-  def request_refund?
-    self.status.to_sym == :request_refund
-  end
-
-  def complete_refund?
-    self.status.to_sym == :complete_refund
-  end
-
-  def can_pay?
-    pending? && !event.finished?
-  end
-
-  def can_cancel?
-    pending? && !event.finished?
-  end
-
-  def can_request_refund?
-    # TODO: can not refund if attended
-    paid? && (event.start_time - Time.now > 7.days)
-  end
-
-  def can_complete_refund?
-    request_refund?
-  end
-
-  def pay!(trade_no)
-    return false unless can_pay?
-
-    self.update_attributes status: 'paid', trade_no: trade_no
-    OrderMailer.delay.notify_user_paid(self)
-    OrderMailer.delay.notify_organizer_paid(self)
-  end
-
-  def cancel!
-    return false unless can_cancel?
-
-    self.update_attributes status: 'canceled'
-    event.increment! :tickets_quantity, self.quantity if event.tickets_quantity
-  end
-
-  def request_refund!
-    return false unless can_request_refund?
-
-    self.update_attributes status: 'request_refund'
-    event.increment! :tickets_quantity, self.quantity if event.tickets_quantity
-  end
-
-  def complete_refund!
-    return false unless can_complete_refund?
-
-    self.update_attributes status: 'complete_refund'
-  end
+  #def pending?
+  #  self.status.to_sym == :pending
+  #end
+  #
+  #def paid?
+  #  self.status.to_sym == :paid
+  #end
+  #
+  #def canceled?
+  #  self.status.to_sym == :canceled
+  #end
+  #
+  #def request_refund?
+  #  self.status.to_sym == :request_refund
+  #end
+  #
+  #def complete_refund?
+  #  self.status.to_sym == :complete_refund
+  #end
+  #
+  #def can_pay?
+  #  pending? && !event.finished?
+  #end
+  #
+  #def can_cancel?
+  #  pending? && !event.finished?
+  #end
+  #
+  #def can_request_refund?
+  #  # TODO: can not refund if attended
+  #  paid? && (event.start_time - Time.now > 7.days)
+  #end
+  #
+  #def can_complete_refund?
+  #  request_refund?
+  #end
+  #
+  #def pay!(trade_no)
+  #  return false unless can_pay?
+  #
+  #  self.update_attributes status: 'paid', trade_no: trade_no
+  #  OrderMailer.delay.notify_user_paid(self)
+  #  OrderMailer.delay.notify_organizer_paid(self)
+  #end
+  #
+  #def cancel!
+  #  return false unless can_cancel?
+  #
+  #  self.update_attributes status: 'canceled'
+  #  event.increment! :tickets_quantity, self.quantity if event.tickets_quantity
+  #end
+  #
+  #def request_refund!
+  #  return false unless can_request_refund?
+  #
+  #  self.update_attributes status: 'request_refund'
+  #  event.increment! :tickets_quantity, self.quantity if event.tickets_quantity
+  #end
+  #
+  #def complete_refund!
+  #  return false unless can_complete_refund?
+  #
+  #  self.update_attributes status: 'complete_refund'
+  #end
 
   def require_invoice
     items.map(&:require_invoice).any?

@@ -47,6 +47,8 @@ gem 'china_city'
 gem 'alipay', github: 'chloerei/alipay'
 gem 'priceable'
 gem 'jbuilder'
+gem 'state_machine'
+gem 'ruby-graphviz', :require => 'graphviz'
 
 group :pg do
   gem 'pg', :platform => [:ruby, :mswin, :mingw]
