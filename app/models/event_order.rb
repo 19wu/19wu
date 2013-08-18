@@ -1,10 +1,10 @@
 class EventOrder < ActiveRecord::Base
   belongs_to :event
   belongs_to :user
+  has_many :event_order_status_transitions
   has_many :items, class_name: 'EventOrderItem', foreign_key: "order_id"
   has_one :shipping_address, class_name: 'EventOrderShippingAddress', foreign_key: "order_id"
   priceable :price
-  has_many :event_order_status_transitions
 
   accepts_nested_attributes_for :items, :shipping_address
 

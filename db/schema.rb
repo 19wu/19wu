@@ -41,18 +41,6 @@ ActiveRecord::Schema.define(version: 20130818175826) do
 
   add_index "event_changes", ["event_id"], name: "index_event_changes_on_event_id", using: :btree
 
-  create_table "event_order_histories", force: true do |t|
-    t.integer  "event_order_id"
-    t.string   "transition_from"
-    t.string   "transition_to",   null: false
-    t.string   "note"
-    t.string   "raw_meta"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "event_order_histories", ["event_order_id"], name: "index_event_order_histories_on_event_order_id", using: :btree
-
   create_table "event_order_items", force: true do |t|
     t.integer  "order_id",                   null: false
     t.integer  "ticket_id",                  null: false

@@ -73,6 +73,5 @@ module NineteenWu
       g.helper_specs false
       g.view_specs false
     end
-
   end
 end
