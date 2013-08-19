@@ -14,7 +14,7 @@ describe EventOrderParticipant do
     describe 'notification' do
       describe 'by sms' do
         before do
-          event.update_attribute :start_time, Time.local(2013, 8, 18, 15, 30, 20)
+          event.update_attribute :start_time, Time.zone.local(2013, 8, 18, 15, 30, 20)
           EventOrderParticipant.stub(:random_code).and_return('123456')
         end
         it 'should be send' do

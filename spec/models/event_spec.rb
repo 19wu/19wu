@@ -85,11 +85,10 @@ describe Event do
 
   describe '#ordered_users.recent' do
     let(:event) { create(:event) }
-    let(:order1) { create(:order_with_items, event: event) }
-    let(:order2) { create(:order_with_items, event: event) }
-    before { [ order1, order2 ] }
+    let!(:order1) { create(:order_with_items, event: event) }
+    let!(:order2) { create(:order_with_items, event: event) }
     it 'sorts users by join date' do
-      event.ordered_users.recent.should == [order1.user, order2.user]
+      event.ordered_users.recent.should == [order2.user, order1.user]
     end
     it 'can limit the number of users' do
       event.ordered_users.recent(1).should have(1).user
