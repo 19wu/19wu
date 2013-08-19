@@ -27,6 +27,12 @@ GIT
     friendly_id (5.0.0.beta1)
 
 GIT
+  remote: git://github.com/saberma/priceable.git
+  revision: 72f6322f798353ae2d740306bf4d38563a21e631
+  specs:
+    priceable (0.0.7)
+
+GIT
   remote: git://github.com/scambra/devise_invitable.git
   revision: 9e5a9a7e0e5ad489206386865efdfca5b87de62b
   specs:
@@ -246,7 +252,6 @@ GEM
       faye-websocket (>= 0.4.4, < 0.5.0)
       http_parser.rb (~> 0.5.3)
     polyglot (0.3.3)
-    priceable (0.0.7)
     pry (0.9.12.2)
       coderay (~> 1.0.5)
       method_source (~> 0.8)
@@ -306,6 +311,7 @@ GEM
       rspec-core (~> 2.14.0)
       rspec-expectations (~> 2.14.0)
       rspec-mocks (~> 2.14.0)
+    ruby-graphviz (1.0.9)
     rubyzip (0.9.9)
     rvm-capistrano (1.4.3)
       capistrano (>= 2.15.4)
@@ -349,6 +355,9 @@ GEM
       sprockets (~> 2.8)
     sqlite3 (1.3.7)
     sqlite3 (1.3.7-x86-mingw32)
+    state_machine (1.2.0)
+    state_machine-audit_trail (0.1.3)
+      state_machine
     subexec (0.2.3)
     tabs_on_rails (2.2.0)
     temple (0.6.6)
@@ -431,7 +440,7 @@ DEPENDENCIES
   mysql2 (= 0.3.11)
   pg
   poltergeist
-  priceable
+  priceable!
   pry-nav
   pry-rails
   quiet_assets
@@ -440,6 +449,7 @@ DEPENDENCIES
   rails-observers
   rails-timeago
   rspec-rails
+  ruby-graphviz
   rvm-capistrano
   sass-rails (~> 4.0.0)
   selenium-webdriver
@@ -448,6 +458,8 @@ DEPENDENCIES
   simplecov
   slim-rails (~> 1.1.1)
   sqlite3
+  state_machine
+  state_machine-audit_trail
   tabs_on_rails
   thin (~> 1.5.0)
   uglifier (>= 1.3.0)

@@ -27,7 +27,7 @@ module NineteenWu
 
     # Activate observers that should always be running.
     # config.active_record.observers = :cacher, :garbage_collector, :forum_observer
-    config.active_record.observers = :event_observer
+    config.active_record.observers = :event_observer, :event_order_observer
 
     # @see config/initializers/setup_locale.rb
     # config.time_zone = 'Beijing'
@@ -73,6 +73,5 @@ module NineteenWu
       g.helper_specs false
       g.view_specs false
     end
-
   end
 end

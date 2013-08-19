@@ -45,8 +45,11 @@ gem "tabs_on_rails"
 gem "china_sms"
 gem 'china_city'
 gem 'alipay', github: 'chloerei/alipay'
-gem 'priceable'
+gem 'priceable', github: 'saberma/priceable' # fixed: migration break.
 gem 'jbuilder'
+gem 'state_machine'
+gem 'state_machine-audit_trail'
+gem 'ruby-graphviz', :require => 'graphviz'
 
 group :pg do
   gem 'pg', :platform => [:ruby, :mswin, :mingw]
