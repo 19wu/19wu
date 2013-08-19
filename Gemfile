@@ -49,7 +49,6 @@ gem 'priceable', github: 'saberma/priceable' # fixed: migration break.
 gem 'jbuilder'
 gem 'state_machine'
 gem 'state_machine-audit_trail'
-gem 'ruby-graphviz', :require => 'graphviz'
 
 group :pg do
   gem 'pg', :platform => [:ruby, :mswin, :mingw]
@@ -88,6 +87,9 @@ group :development do
   gem 'guard-delayed', github: 'jasl/guard-delayed'
   gem 'guard-rails'
   gem 'guard-zeus'
+
+  # Export state_machine transition diagram
+  gem 'ruby-graphviz', :require => 'graphviz'
 end
 
 group :development, :test do
