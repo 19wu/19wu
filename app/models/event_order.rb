@@ -26,7 +26,6 @@ class EventOrder < ActiveRecord::Base
   after_create do
     OrderMailer.delay.notify_user_created(self)
     OrderMailer.delay.notify_organizer_created(self)
-    pay! if self.free?
   end
 
   def free?

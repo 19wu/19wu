@@ -29,7 +29,7 @@ feature 'event tickets' do
     end
     scenario 'I can destroy it', js: true do
       visit event_tickets_path(ticket.event)
-      page.execute_script("window.confirm = function(msg) { return true; }")
+      stub_confirm
       click_on I18n.t('views.destroy')
       within '.tickets-list' do
         expect(page).not_to have_content(ticket.name)

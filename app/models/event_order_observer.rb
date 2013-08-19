@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 class EventOrderObserver < ActiveRecord::Observer
   def after_pay(order, transition)
+    order.create_participant
     OrderMailer.delay.notify_user_paid(order)
     OrderMailer.delay.notify_organizer_paid(order)
   end

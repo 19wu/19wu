@@ -32,6 +32,7 @@ feature 'user orders', js: true do
     scenario 'I can cancel order' do
       visit user_orders_path
 
+      stub_confirm
       find('a', text: I18n.t('views.my_orders.cancel')).click
 
       expect(page).to have_content(I18n.t('views.my_orders.pay_status.canceled'))
@@ -47,6 +48,7 @@ feature 'user orders', js: true do
       visit user_orders_path
       expect(page).to have_content(I18n.t('views.my_orders.request_refund'))
 
+      stub_confirm
       find('a', text: I18n.t('views.my_orders.request_refund')).click
       expect(page).to have_content(I18n.t('views.my_orders.pay_status.request_refund'))
     end
