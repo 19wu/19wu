@@ -19,14 +19,13 @@ class EventOrder < ActiveRecord::Base
 
   before_create do
     self.status = :pending
-    pay! if self.free?
     event.decrement! :tickets_quantity, self.quantity if event.tickets_quantity
   end
 
   after_create do
-    pay! if self.free?
     OrderMailer.delay.notify_user_created(self)
     OrderMailer.delay.notify_organizer_created(self)
+    pay! if self.free?
   end
 
   def free?
