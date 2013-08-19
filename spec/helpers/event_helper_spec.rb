@@ -91,13 +91,11 @@ describe EventHelper do
   end
 
   describe '#history_url_text' do
-    it 'should return string contains event date along with number of participated users' do
-      event = create(:event, :start_time => Time.at(1368969404)) # Time.at(1368969404) == "2013-05-19 21:16:44 +0800"
-      event.participated_users << create(:user)
-      event.participated_users << create(:user)
-
-      history_url_text(event).should == "2013-05-19 " + I18n.t('views.history.participants', number: 2)
-    end
+    let(:event) { create(:event, :start_time => Time.at(1368969404)) } # Time.at(1368969404) == "2013-05-19 21:16:44 +0800"
+    let!(:order1) { create(:order_with_items, event: event) }
+    let!(:order2) { create(:order_with_items, event: event) }
+    subject { history_url_text(event) }
+    it { should eql "2013-05-19 " + I18n.t('views.history.participants', number: 2) }
   end
 
   describe '#build_summary_title' do

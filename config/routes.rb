@@ -28,7 +28,7 @@ NineteenWu::Application.routes.draw do
 
   get ":slug" => "group#event", :constraints => SlugConstraint, :as => :slug_event
   get ":slug/followers" => "group#followers"
-  get 'joined_events', to: "events#joined"
+  get 'ordered_events', to: "events#ordered"
   post '/photos', to: "photo#create"
   post "/content/preview/" => "home#content_preview"
 

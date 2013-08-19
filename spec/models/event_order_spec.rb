@@ -83,6 +83,7 @@ describe EventOrder do
       its(:paid?) { should be_false }
       its(:request_refund?) { should be_true }
     end
+    its(:participant) { should_not be_nil }
   end
 
   describe 'cancel order' do

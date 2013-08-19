@@ -76,32 +76,6 @@ describe User do
     end
   end
 
-  describe '#joined' do
-    let(:event) { build(:event) }
-    subject { user.joined?(event) }
-    context 'without event' do
-      it { should be false }
-    end
-    context 'with event' do
-      let(:participant) { create(:event_participant, user: user, event: event) }
-      before { participant }
-      it { should be true }
-    end
-  end
-
-  describe '#checked_in?' do
-    let(:event) { build(:event) }
-    subject { user.checked_in?(event) }
-    context 'without event' do
-      it { should be false }
-    end
-    context 'with event' do
-      let(:participant) { create(:event_participant, user: user, event: event, joined: true) }
-      before { participant }
-      it { should be true }
-    end
-  end
-
   describe '#send_reset_password_instructions' do # issue#287
     context 'user is waiting for invite' do
       let(:user) { User.invite! email: 'demo@19wu.com', skip_invitation: true }

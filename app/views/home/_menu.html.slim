@@ -6,7 +6,7 @@ ul.home-nav
     = link_to events_path do
       = t('home.menu.created_events')
       span.label.amount = current_user.events.size
-  li class=active?(current, :joined_events)
-    = link_to joined_events_path do
-      = t('home.menu.joined_events')
-      span.label.amount = current_user.joined_events.size
+  li class=active?(current, :ordered_events)
+    = link_to ordered_events_path do
+      = t('home.menu.ordered_events')
+      span.label.amount = current_user.ordered_events.size

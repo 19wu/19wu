@@ -22,7 +22,7 @@ defaults: &defaults
   sms:
     tui3:
       username: 'saberma'
-      api_key: '666666'
+      password: '666666'
 
   email: &email
     # Edit according to the smtp account domain.
@@ -75,7 +75,7 @@ development:
   sms: []
   email:
     <<: *email
-    from: 'development@19wu.com'
+    from: '19wu <development@19wu.com>'
     delivery_method: :file
 
 test:

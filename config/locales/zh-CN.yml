@@ -57,7 +57,7 @@ zh-CN:
     menu:
       activities: 最新动态
       created_events: 发起的活动
-      joined_events: 参加的活动
+      ordered_events: 参加的活动
     body:
       empty: 暂时没有内容
 
@@ -199,6 +199,8 @@ zh-CN:
   sms:
     event:
       change: 活动通知：%{content}【19屋】
+      order:
+        checkin_code: '%{event_title} 签到码：%{checkin_code}。请您于%{event_start_time}前到达现场并出示签到码。谢谢。【19屋】'
     user:
       phone_code: 尊敬的用户,您的手机绑定码是%{code},谢谢【19屋】
   email:

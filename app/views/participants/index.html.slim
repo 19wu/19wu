@@ -11,7 +11,7 @@
               = image_tag user.gravatar_url(:size => '132'), :class => 'gravatar', :title => "#{user.login}", :alt => "#{user.login}"
               p.participant-login-name = user.login
               p.participant-name = user.profile.name
-              - if participant.joined
+              - if participant.joined?
                 button.btn.disabled disabled="disabled" id="check-in-event-participant-#{participant.id}" = I18n.t('labels.has_checked_in_button')
               - else
                 = form_for('', :url => event_participant_path(@event, participant), :method => :patch, :html => {:style=>"margin-bottom: 10px;"}) do |f|

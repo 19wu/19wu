@@ -10,11 +10,11 @@ describe EventsController do
     end
   end
 
-  describe "GET 'joined'" do
+  describe "GET 'ordered'" do
     login_user
     it "renders the event list" do
-      get 'joined'
-      response.should render_template('joined')
+      get 'ordered'
+      response.should render_template('ordered')
     end
   end
 
@@ -156,171 +156,19 @@ describe EventsController do
     end
   end
 
-  describe "POST 'join'" do
-    let(:event) { FactoryGirl.create(:event, :user => FactoryGirl.create(:user)) }
-    context 'when user has signed in' do
-      let(:user) { login_user }
-      before { user }
-      it 'with join a event' do
-        expect {
-          post 'join', id: event.id
-        }.to change{event.participants.count}.by(1)
-        user.following?(event.group).should be_true
-        response.should be_success
-      end
-      context 'and has already joined' do
-        before { event.participants.create(user_id: user.id) }
-        it 'should do nothing' do
-          expect do
-            post 'join', id: event.id
-          end.not_to change{event.participants.count}
-        end
-      end
-    end
-    context 'when user has not yet signed in' do
-      it 'should be redirect to user login view' do
-        post 'join', id: event.id
-        response.should redirect_to(new_user_session_path)
-      end
-    end
-  end
-
-  describe "participant" do
+  describe "follower" do
     let(:event) { create(:event, :user => create(:user)) }
-    let(:participant) { login_user }
+    let(:user) { login_user }
     subject { event.group }
     context 'follow' do
-      before { participant }
+      before { user }
       before { post :follow, id: event.id }
-      its('followers.first') { should eql participant }
+      its('followers.first') { should eql user }
     end
     context 'unfollow' do
-      before { participant.follow(subject) }
+      before { user.follow(subject) }
       before { post :unfollow, id: event.id }
       its(:followers) { should be_empty }
-    end
-  end
-
-  describe "GET checkin" do
-    context "event.start_time.today? == true" do
-      context "user has joined this event" do
-        context "with valid checkin code" do
-          it "should alert user if user already checked in" do
-            event = create(:event, start_time: Time.now)
-            user  = create(:user, :confirmed)
-            participant = create(:event_participant, event: event, user: user)
-            participant.joined = true
-            participant.save
-            login_user user
-
-            get :checkin, id: event.id, checkin_code: event.checkin_code
-            expect(flash[:alert]).to eq(I18n.t('flash.participants.checkin_more_than_1_time'))
-          end
-
-          it "should checkin user"  do
-            event = create(:event, start_time: Time.now)
-            user  = create(:user, :confirmed)
-            participant = create(:event_participant, event: event, user: user)
-            login_user user
-
-            get :checkin, id: event.id, checkin_code: event.checkin_code
-            expect(participant.reload.joined).to be_true
-          end
-
-          it "should redirect to event page" do
-            event = create(:event, start_time: Time.now)
-            user  = create(:user, :confirmed)
-            participant = create(:event_participant, event: event, user: user)
-            login_user user
-
-            get :checkin, id: event.id, checkin_code: event.checkin_code
-            expect(response).to redirect_to event_path(event)
-          end
-
-          it "should set welcome message" do
-            event = create(:event, start_time: Time.now)
-            user  = create(:user, :confirmed)
-            participant = create(:event_participant, event: event, user: user)
-            login_user user
-
-            get :checkin, id: event.id, checkin_code: event.checkin_code
-            expect(flash[:notice]).to eq(I18n.t('flash.participants.checkin_welcome'))
-          end
-        end
-
-        context "with invalid checkin code" do
-          it "should redirect to event page" do
-            event = create(:event, start_time: Time.now)
-            user  = create(:user, :confirmed)
-            participant = create(:event_participant, event: event, user: user)
-            login_user user
-
-            get :checkin, id: event.id, checkin_code: event.checkin_code + "not_valid"
-            expect(response).to redirect_to event_path(event)
-          end
-
-          it "should set error message" do
-            event = create(:event, start_time: Time.now)
-            user  = create(:user, :confirmed)
-            participant = create(:event_participant, event: event, user: user)
-            login_user user
-
-            get :checkin, id: event.id, checkin_code: event.checkin_code + "not_valid"
-            expect(flash[:alert]).to eq(I18n.t('flash.participants.checkin_wrong_checkin_code'))
-          end
-        end
-      end
-
-      context "user hasn't join this event yet" do
-        it "should redirect user to event page" do
-          event = create(:event, start_time: Time.now)
-          user  = create(:user, :confirmed)
-          login_user user
-
-          get :checkin, id: event.id, checkin_code: event.checkin_code
-          expect(response).to redirect_to event_path(event)
-        end
-
-        it "should set error message" do
-          event = create(:event, start_time: Time.now)
-          user  = create(:user, :confirmed)
-          login_user user
-
-          get :checkin, id: event.id, checkin_code: event.checkin_code
-          expect(flash[:alert]).to eq(I18n.t('flash.participants.checkin_need_join_first'))
-        end
-      end
-
-      context "user hasn't sign in" do
-        it "should redirect to login page" do
-          event = create(:event, start_time: Time.now)
-
-          get :checkin, id: event.id, checkin_code: event.checkin_code
-          expect(response).to redirect_to(new_user_session_path)
-        end
-      end
-    end
-
-    context "event.start_time.today? == false" do
-      it "should set error message" do
-        event = create(:event, start_time: Time.now + 1.day)
-        user  = create(:user, :confirmed)
-        participant = create(:event_participant, event: event, user: user)
-        login_user user
-
-        get :checkin, id: event.id, checkin_code: event.checkin_code
-        expect(flash[:alert]).to eq(I18n.t('flash.participants.checkin_in_need_the_same_day_of_event_starttime'))
-      end
-
-      it "should redirect to event page" do
-        event = create(:event, start_time: Time.now + 1.day)
-        user  = create(:user, :confirmed)
-        participant = create(:event_participant, event: event, user: user)
-        login_user user
-
-        get :checkin, id: event.id, checkin_code: event.checkin_code
-        expect(response).to redirect_to event_path(event)
-      end
     end
   end
 end

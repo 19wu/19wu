@@ -35,8 +35,8 @@ ActiveRecord::Schema.define(version: 20130818175826) do
   create_table "event_changes", force: true do |t|
     t.integer  "event_id"
     t.string   "content"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_index "event_changes", ["event_id"], name: "index_event_changes_on_event_id", using: :btree
@@ -49,6 +49,18 @@ ActiveRecord::Schema.define(version: 20130818175826) do
     t.datetime "updated_at"
     t.integer  "price_in_cents", default: 0, null: false
   end
+
+  create_table "event_order_participants", force: true do |t|
+    t.integer  "order_id",               null: false
+    t.integer  "event_id",               null: false
+    t.integer  "user_id",                null: false
+    t.string   "checkin_code", limit: 6, null: false
+    t.datetime "checkin_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "event_order_participants", ["event_id", "checkin_code"], name: "index_event_order_participants_on_event_id_and_checkin_code", unique: true, using: :btree
 
   create_table "event_order_shipping_addresses", force: true do |t|
     t.integer  "order_id",                 null: false
@@ -87,17 +99,6 @@ ActiveRecord::Schema.define(version: 20130818175826) do
   add_index "event_orders", ["event_id"], name: "index_event_orders_on_event_id", using: :btree
   add_index "event_orders", ["user_id"], name: "index_event_orders_on_user_id", using: :btree
 
-  create_table "event_participants", force: true do |t|
-    t.integer  "event_id"
-    t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.boolean  "joined",     default: false, null: false
-  end
-
-  add_index "event_participants", ["event_id"], name: "index_event_participants_on_event_id", using: :btree
-  add_index "event_participants", ["user_id"], name: "index_event_participants_on_user_id", using: :btree
-
   create_table "event_summaries", force: true do |t|
     t.text    "content"
     t.integer "event_id"
@@ -121,8 +122,8 @@ ActiveRecord::Schema.define(version: 20130818175826) do
     t.datetime "end_time"
     t.string   "location"
     t.text     "content"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
     t.integer  "user_id",                      null: false
     t.text     "location_guide"
     t.integer  "group_id",                     null: false
@@ -134,8 +135,8 @@ ActiveRecord::Schema.define(version: 20130818175826) do
   create_table "fallback_urls", force: true do |t|
     t.string   "origin"
     t.string   "change_to"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_index "fallback_urls", ["origin"], name: "index_fallback_urls_on_origin", unique: true, using: :btree
@@ -146,8 +147,8 @@ ActiveRecord::Schema.define(version: 20130818175826) do
     t.integer  "follower_id",                     null: false
     t.string   "follower_type",                   null: false
     t.boolean  "blocked",         default: false, null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
   end
 
   add_index "follows", ["followable_id", "followable_type"], name: "fk_followables", using: :btree
@@ -156,16 +157,16 @@ ActiveRecord::Schema.define(version: 20130818175826) do
   create_table "group_collaborators", force: true do |t|
     t.integer  "group_id"
     t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "group_topic_replies", force: true do |t|
     t.text     "body"
     t.integer  "group_topic_id", null: false
     t.integer  "user_id",        null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
   add_index "group_topic_replies", ["group_topic_id"], name: "index_group_topic_replies_on_group_topic_id", using: :btree
@@ -175,8 +176,8 @@ ActiveRecord::Schema.define(version: 20130818175826) do
     t.text     "body"
     t.integer  "user_id",                   null: false
     t.integer  "group_id",                  null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
     t.integer  "replies_count", default: 0
   end
 
@@ -185,8 +186,8 @@ ActiveRecord::Schema.define(version: 20130818175826) do
   create_table "groups", force: true do |t|
     t.integer  "user_id",    null: false
     t.string   "slug",       null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_index "groups", ["slug"], name: "index_groups_on_slug", unique: true, using: :btree
@@ -194,8 +195,8 @@ ActiveRecord::Schema.define(version: 20130818175826) do
   create_table "photos", force: true do |t|
     t.integer  "user_id",    null: false
     t.string   "image"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "profiles", force: true do |t|
@@ -203,8 +204,8 @@ ActiveRecord::Schema.define(version: 20130818175826) do
     t.string   "website"
     t.text     "bio"
     t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_index "profiles", ["user_id"], name: "index_profiles_on_user_id", using: :btree
@@ -220,8 +221,8 @@ ActiveRecord::Schema.define(version: 20130818175826) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                        null: false
+    t.datetime "updated_at",                                        null: false
     t.string   "login"
     t.string   "confirmation_token"
     t.datetime "confirmed_at"

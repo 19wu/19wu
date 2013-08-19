@@ -7,8 +7,8 @@ class User < ActiveRecord::Base
   has_many :orders,       :class_name => "EventOrder"
   has_many :groups
   has_many :photos
-  has_many :event_participants
-  has_many :joined_events, :through => :event_participants, :source => :event
+  has_many :event_orders
+  has_many :ordered_events, :through => :event_orders, :source => :event
   # Include default devise modules. Others available are:
   # :token_authenticatable
   # :lockable, :timeoutable and :omniauthable
@@ -58,15 +58,6 @@ class User < ActiveRecord::Base
   def owns?(slug)
     group = Group.find_by_slug(slug)
     group.nil? or group.user == self or group.collaborator?(self)
-  end
-
-  def joined?(event)
-    event.has?(self)
-  end
-
-  def checked_in?(event)
-    participant = event.participants.find_by_user_id(self.id)
-    !!(participant && participant.joined)
   end
 
   def email_with_login

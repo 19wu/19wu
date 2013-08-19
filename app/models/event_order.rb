@@ -3,6 +3,7 @@ class EventOrder < ActiveRecord::Base
   belongs_to :user
   has_many :event_order_status_transitions
   has_many :items, class_name: 'EventOrderItem', foreign_key: "order_id"
+  has_one :participant     , class_name: 'EventOrderParticipant'    , foreign_key: "order_id"
   has_one :shipping_address, class_name: 'EventOrderShippingAddress', foreign_key: "order_id"
   priceable :price
 
@@ -92,6 +93,7 @@ class EventOrder < ActiveRecord::Base
   private
 
   def quantity_cannot_be_greater_than_event_quantity
+    return unless event.tickets_quantity
     order_quantity = self.quantity || 0
     if event.tickets_quantity == 0 || order_quantity > event.tickets_quantity
       errors.add(:quantity, I18n.t('errors.messages.quantity_overflow'))
