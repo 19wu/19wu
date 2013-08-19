@@ -50,7 +50,7 @@ describe EventOrdersController do
     end
 
     describe "with user information" do
-      before {  post :create, event_id: event.id, order: order_params, user: user_params }
+      before { post :create, event_id: event.id, order: order_params, user: user_params }
       context 'profile is not a new record' do
         let(:user) { create(:user, :confirmed, :with_profile) }
         it "should be update" do

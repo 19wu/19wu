@@ -16,6 +16,7 @@ class EventOrdersController < ApplicationController
   end
 
   private
+
   def user_params
     params.fetch(:user, {}).permit(:phone, profile_attributes: [:name])
   end

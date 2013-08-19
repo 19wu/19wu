@@ -8,11 +8,24 @@ class UserOrdersController < ApplicationController
 
   def pay
     order = current_user.orders.find params[:id]
-    redirect_to generate_pay_link_by_order(order)
+
+    if order.pending?
+      redirect_to generate_pay_link_by_order(order)
+    else
+      redirect_to user_orders_path
+    end
+  end
+
+  def request_refund
+    order = current_user.orders.find params[:id]
+
+    order.request_refund!
+    redirect_to user_orders_path, notice: t('flash.my_orders.request_refund')
   end
 
   def cancel
     order = current_user.orders.find params[:id]
+
     order.cancel!
     redirect_to user_orders_path, notice: t('flash.my_orders.canceled')
   end

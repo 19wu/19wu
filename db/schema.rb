@@ -84,7 +84,6 @@ ActiveRecord::Schema.define(version: 20130817121436) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "price_in_cents",            default: 0, null: false
-    t.datetime "canceled_at"
   end
 
   add_index "event_orders", ["event_id"], name: "index_event_orders_on_event_id", using: :btree

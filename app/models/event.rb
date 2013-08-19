@@ -5,7 +5,7 @@ class Event < ActiveRecord::Base
   belongs_to :group
   has_one :event_summary
   has_many :participants, :class_name => "EventOrderParticipant"
-  has_many :changes,      :class_name => "EventChange"
+  has_many :updates,      :class_name => "EventChange"
   has_many :tickets,      :class_name => "EventTicket"
   has_many :orders,       :class_name => "EventOrder"
   has_many :ordered_users, :source => :user, :through => :orders do # TODO: uniq

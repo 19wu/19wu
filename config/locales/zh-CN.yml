@@ -120,6 +120,12 @@ zh-CN:
       quited: "您已经取消参与此活动"
     my_orders:
       canceled: '你已经成功取消订单。'
+      request_refund: '请等待管理员处理您的退款请求.'
+
+  confirmations:
+    my_orders:
+      cancel: '确定要取消订单么？'
+      refund: '确定要退款么？该操作无法撤销！'
 
   views:
     edit: "修改"
@@ -181,12 +187,14 @@ zh-CN:
       operations: '操作'
       pay: '支付'
       cancel: '取消'
-      confirm:
-        cancel: '确定要取消订单么？'
+      request_refund: '退款'
       pay_status:
         pending: '未支付'
         paid: '已支付'
         canceled: '已取消'
+        request_refund: '等待处理退款'
+        approve_refund: '退款处理中'
+        complete_refund: '退款成功'
 
   sms:
     event:
