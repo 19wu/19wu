@@ -60,6 +60,10 @@ class User < ActiveRecord::Base
     group.nil? or group.user == self or group.collaborator?(self)
   end
 
+  def ordered?(event)
+    orders.exists?(event_id: event.id)
+  end
+
   def email_with_login
     "#{login} <#{email}>"
   end
