@@ -20,7 +20,8 @@ describe EventChange do
     end
     describe 'by sms' do
       it 'should be success' do
-        ChinaSMS.stub(:to).with([order2.user.phone, order1.user.phone], I18n.t('sms.event.change', content: attributes_for(:event_change)[:content]))
+        phones = [order2.user.phone, order1.user.phone].sort
+        ChinaSMS.stub(:to).with(phones, I18n.t('sms.event.change', content: attributes_for(:event_change)[:content]))
         change
       end
     end
