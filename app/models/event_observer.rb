@@ -3,6 +3,7 @@ class EventObserver < ActiveRecord::Observer
   def before_create(event)
     save_group event
   end
+
   def after_create(event)
     notify_followers event
     event.tickets.create name: '门票', price: 0
@@ -26,10 +27,12 @@ class EventObserver < ActiveRecord::Observer
   end
 
   private
+
   def save_group(event)
     group = event.user.groups.where(:slug => event.slug).first_or_create!
     event.group = group
   end
+
   def notify_followers(event)
     event.group.followers.each do |follower|
       UserMailer.delay.notify_email follower, event

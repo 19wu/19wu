@@ -1,6 +1,7 @@
 class EventOrder < ActiveRecord::Base
   belongs_to :event
   belongs_to :user
+  has_many :event_order_status_transitions
   has_many :items, class_name: 'EventOrderItem', foreign_key: "order_id"
   has_one :participant     , class_name: 'EventOrderParticipant'    , foreign_key: "order_id"
   has_one :shipping_address, class_name: 'EventOrderShippingAddress', foreign_key: "order_id"
@@ -18,7 +19,7 @@ class EventOrder < ActiveRecord::Base
   end
 
   before_create do
-    self.status = :pending
+    self.status = free? ? 'paid' : 'pending'
     event.decrement! :tickets_quantity, self.quantity if event.tickets_quantity
   end
 
@@ -32,71 +33,35 @@ class EventOrder < ActiveRecord::Base
     self.price_in_cents.zero?
   end
 
-  def pending?
-    self.status.to_sym == :pending
-  end
+  state_machine :status, :initial => :pending do
+    store_audit_trail
 
-  def paid?
-    self.status.to_sym == :paid
-  end
+    state :pending
+    state :paid, :request_refund, :complete_refund do
+      validates :trade_no, :presence => true
+    end
 
-  def canceled?
-    self.status.to_sym == :canceled
-  end
+    event :pay do
+      transition :pending => :paid, :if => ->(order) { !order.event.finished? }
+    end
 
-  def request_refund?
-    self.status.to_sym == :request_refund
-  end
+    event :cancel do
+      transition :pending => :canceled, :if => ->(order) { !order.event.finished? }
+    end
 
-  def complete_refund?
-    self.status.to_sym == :complete_refund
-  end
+    event :request_refund do
+      transition :paid => :request_refund, :if => ->(order) { order.event.start_time - Time.now > 7.days }
+    end
 
-  def can_pay?
-    pending? && !event.finished?
-  end
-
-  def can_cancel?
-    pending? && !event.finished?
-  end
-
-  def can_request_refund?
-    # TODO: can not refund if attended
-    paid? && (event.start_time - Time.now > 7.days)
-  end
-
-  def can_complete_refund?
-    request_refund?
-  end
-
-  def pay!(trade_no = nil)
-    return false unless can_pay?
-    self.update_attributes status: 'paid', trade_no: trade_no
-    self.create_participant
-    unless self.free?
-      OrderMailer.delay.notify_user_paid(self)
-      OrderMailer.delay.notify_organizer_paid(self)
+    event :complete_refund do
+      transition :request_refund => :complete_refund
     end
   end
 
-  def cancel!
-    return false unless can_cancel?
-
-    self.update_attributes status: 'canceled'
-    event.increment! :tickets_quantity, self.quantity if event.tickets_quantity
-  end
-
-  def request_refund!
-    return false unless can_request_refund?
-
-    self.update_attributes status: 'request_refund'
-    event.increment! :tickets_quantity, self.quantity if event.tickets_quantity
-  end
-
-  def complete_refund!
-    return false unless can_complete_refund?
-
-    self.update_attributes status: 'complete_refund'
+  # override state_machine generated method to accept trade_no
+  def pay(trade_no)
+    self.trade_no = trade_no
+    super
   end
 
   def require_invoice

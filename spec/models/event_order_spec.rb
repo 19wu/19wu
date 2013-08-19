@@ -71,7 +71,7 @@ describe EventOrder do
   end
 
   describe '#pay' do
-    before { subject.pay!(trade_no) }
+    before { subject.pay(trade_no) }
     context 'pending' do
       its(:pending?) { should be_false }
       its(:paid?) { should be_true }
@@ -87,7 +87,7 @@ describe EventOrder do
   end
 
   describe 'cancel order' do
-    before { order.cancel! }
+    before { order.cancel }
     subject { event }
     its(:tickets_quantity) { should eql 400 }
   end
@@ -97,14 +97,14 @@ describe EventOrder do
       order.pay!(trade_no)
     end
     subject { order }
-    its(:request_refund!) { should be_false }
+    its(:request_refund) { should be_false }
   end
 
   describe "request refund order back its ticket's quantity immediately" do
     before do
       event.update! start_time: 8.days.since, end_time: 9.days.since
-      order.pay!(trade_no)
-      order.request_refund!
+      order.pay(trade_no)
+      order.request_refund
     end
     subject { event }
     its(:tickets_quantity) { should eql 400 }
