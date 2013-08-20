@@ -12,7 +12,7 @@ class UserOrdersController < ApplicationController
     if order.pending?
       redirect_to generate_pay_link_by_order(order)
     else
-      redirect_to user_orders_path
+      redirect_back_or user_orders_path
     end
   end
 
@@ -20,7 +20,7 @@ class UserOrdersController < ApplicationController
     order = current_user.orders.find params[:id]
 
     order.request_refund!
-    redirect_to user_orders_path, notice: t('flash.my_orders.request_refund')
+    redirect_back_or user_orders_path, notice: t('flash.my_orders.request_refund')
   end
 
   def cancel
