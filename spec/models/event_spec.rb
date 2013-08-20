@@ -85,8 +85,16 @@ describe Event do
 
   describe '#ordered_users.recent' do
     let(:event) { create(:event) }
-    let!(:order1) { create(:order_with_items, event: event) }
-    let!(:order2) { create(:order_with_items, event: event) }
+    let!(:order1) {
+      Timecop.freeze('2010-11-12') do
+        create(:order_with_items, event: event)
+      end
+    }
+    let!(:order2) {
+      Timecop.freeze('2010-11-13') do
+        create(:order_with_items, event: event)
+      end
+    }
     it 'sorts users by join date' do
       event.ordered_users.recent.should == [order2.user, order1.user]
     end

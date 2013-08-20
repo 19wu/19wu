@@ -369,6 +369,7 @@ GEM
     thread_safe (0.1.2)
       atomic
     tilt (1.4.1)
+    timecop (0.6.3)
     treetop (1.4.14)
       polyglot
       polyglot (>= 0.3.1)
@@ -462,6 +463,7 @@ DEPENDENCIES
   state_machine-audit_trail
   tabs_on_rails
   thin (~> 1.5.0)
+  timecop
   uglifier (>= 1.3.0)
   unicorn
   whenever

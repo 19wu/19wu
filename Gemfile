@@ -110,6 +110,7 @@ group :test do
   gem 'poltergeist'
   gem 'simplecov', :require => false
   gem 'coveralls', require: false
+  gem 'timecop'
 end
 
 # group :assets do
