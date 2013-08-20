@@ -4,6 +4,7 @@ class UserOrdersController < ApplicationController
 
   def index
     @orders = current_user.orders.includes(items: :ticket)
+    filter_orders
   end
 
   def pay
@@ -50,6 +51,14 @@ class UserOrdersController < ApplicationController
       render text: 'success'
     else
       render text: 'fail'
+    end
+  end
+
+  private
+  def filter_orders
+    if params[:event_id].present?
+      event = Event.find(params[:event_id])
+      @orders = @orders.where(event_id: event.id)
     end
   end
 end
