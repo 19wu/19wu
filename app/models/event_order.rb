@@ -49,11 +49,11 @@ class EventOrder < ActiveRecord::Base
     end
 
     event :request_refund do
-      transition :paid => :request_refund, :if => ->(order) { order.event.start_time - Time.now > 7.days }
+      transition :paid => :refund_pending, :if => ->(order) { order.event.start_time - Time.now > 7.days }
     end
 
     event :complete_refund do
-      transition :request_refund => :complete_refund
+      transition :request_pending => :refunded
     end
   end
 

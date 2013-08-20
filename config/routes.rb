@@ -48,8 +48,9 @@ NineteenWu::Application.routes.draw do
     resources :user_orders, only: [:index], format: false do
       member do
         get 'pay'
-        get 'cancel'
-        get 'request_refund'
+
+        put 'cancel'
+        put 'request_refund'
 
         get 'alipay_done'
         post 'alipay_notify'

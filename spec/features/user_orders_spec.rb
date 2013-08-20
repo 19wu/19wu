@@ -1,7 +1,7 @@
 # encoding: utf-8
 require File.expand_path('../../spec_helper', __FILE__)
 
-feature 'user orders', js: true do
+feature 'user orders' do
   given(:user) { create(:user, :confirmed) }
   given(:event) { create(:event, user: user) }
   given(:order) { create(:order_with_items, items_count: 2, event: event, user: user) }
@@ -29,7 +29,7 @@ feature 'user orders', js: true do
       expect(page).to have_no_content("| #{I18n.t('views.my_orders.cancel')}")
     end
 
-    scenario 'I can cancel order' do
+    scenario 'I can cancel order', js: true do
       visit user_orders_path
 
       stub_confirm
@@ -42,7 +42,7 @@ feature 'user orders', js: true do
   context 'has paid' do
     before { order.pay!('2013080841700373') }
 
-    scenario 'I can refund at least 7 days before event starts' do
+    scenario 'I can refund at least 7 days before event starts', js: true do
       event.update! start_time: 8.days.since, end_time: 9.days.since
 
       visit user_orders_path
@@ -50,7 +50,7 @@ feature 'user orders', js: true do
 
       stub_confirm
       find('a', text: I18n.t('views.my_orders.request_refund')).click
-      expect(page).to have_content(I18n.t('views.my_orders.pay_status.request_refund'))
+      expect(page).to have_content(I18n.t('views.my_orders.pay_status.refund_pending'))
     end
 
     scenario 'I can not refund order when event draws near' do
