@@ -1,4 +1,11 @@
 h2 = t('labels.my_orders')
+
+- if orders_filtered?
+  p.alert.alert-info
+    = t('views.my_orders.orders_filtered')
+    = ', '
+    = link_to t('views.my_orders.view_all_orders'), user_orders_path
+
 table.table.table-striped.table-bordered
   thead
     tr
