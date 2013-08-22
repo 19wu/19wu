@@ -12,6 +12,17 @@ class EventOrderParticipant < ActiveRecord::Base
     self.checkin_code = self.class.unique_code(self.event)
   end
 
+  before_validation do
+    if checkin_at_changed?
+      message = I18n.t('errors.messages.event_order_participant.used', time: checkin_at.to_s(:db))
+      errors.add(:checkin_at, message)
+    end
+  end
+
+  def checkin!
+    self.update_attributes! checkin_at: Time.zone.now
+  end
+
   def joined?
     self.checkin_at
   end

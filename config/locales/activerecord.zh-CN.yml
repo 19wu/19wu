@@ -7,6 +7,7 @@ zh-CN:
         miss_shipping_address: 购买的门票包含发票，但没有提供收货地址
       event_order_participant:
         invalid_code: 签到码不正确。
+        used: 已于 %{time} 使用，请勿重复签到。
   activerecord:
     models:
       user: "用户"
@@ -44,6 +45,8 @@ zh-CN:
       event_order:
         quantity: '门票数量'
         items: '门票'
+      event_order_participant:
+        checkin_at: '签到码'
       event_ticket:
         name: "名称"
         price: "价格"

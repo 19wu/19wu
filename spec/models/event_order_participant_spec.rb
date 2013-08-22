@@ -5,9 +5,10 @@ describe EventOrderParticipant do
   let(:user) { create(:user, :confirmed) }
   let(:event) { create(:event, user: user) }
   let(:order) { create(:order_with_items, event: event) }
+  let(:participant) { order.create_participant }
 
   describe 'create' do
-    subject { order.create_participant }
+    subject { participant }
     describe 'checkin_code' do
       its(:checkin_code) { should_not be_blank }
     end
@@ -21,6 +22,14 @@ describe EventOrderParticipant do
           ChinaSMS.should_receive(:to).with(order.user.phone, I18n.t('sms.event.order.checkin_code', event_title: event.title,  checkin_code: '123456', event_start_time: '8月18日 15:30'))
           subject
         end
+      end
+    end
+  end
+
+  describe 'checkin' do
+    context 'used code' do
+      it 'should raise error' do
+        expect{participant.checkin!}.to raise_error ActiveRecord::RecordInvalid
       end
     end
   end

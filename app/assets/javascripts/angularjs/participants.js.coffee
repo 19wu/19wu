@@ -6,8 +6,8 @@
     request.success (data) ->
       $scope.code = ''
       $scope.data = data
-      $scope.wait = false # TODO: use always
+      $scope.wait = false # TODO: use always method
     request.error (data) ->
-      $scope.error = data['error']
+      $scope.error = data['errors'].join(',')
       $scope.wait = false
 ]
