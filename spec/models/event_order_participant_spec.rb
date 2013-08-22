@@ -27,7 +27,13 @@ describe EventOrderParticipant do
   end
 
   describe 'checkin' do
+    context 'valid code' do
+      it 'should not raise error' do
+        expect{participant.checkin!}.not_to raise_error
+      end
+    end
     context 'used code' do
+      before { participant.checkin! }
       it 'should raise error' do
         expect{participant.checkin!}.to raise_error ActiveRecord::RecordInvalid
       end
