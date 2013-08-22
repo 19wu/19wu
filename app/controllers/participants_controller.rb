@@ -2,21 +2,17 @@ class ParticipantsController < ApplicationController
   before_filter :authenticate_user!
   before_filter :authorize_event!
   set_tab :check_in
-  set_tab :checkin_code, :sidebar, only: [:qcode]
-  set_tab :participants, :sidebar, only: [:index]
 
   def index
     @participants = @event.participants.joins(:user).order('users.login ASC').includes(:user => :profile)
   end
 
-  def qcode
-  end
-
-  def update
-    participant = @event.participants.find(params[:id])
-    participant.joined = true
-    participant.save
-
-    redirect_to event_participants_path(@event), notice: I18n.t('flash.participants.checked_in', :name => participant.user.login)
+  def checkin
+    participant = @event.participants.where(checkin_code: params[:code]).first
+    if participant
+      participant.update_attribute :checkin_at, Time.now
+    else
+    end
+    redirect_to event_participants_path
   end
 end

@@ -1,18 +1,21 @@
 = render 'events/header'
-.row
-  = render 'participants/submenu'
-  .span9
-    - @participants.each_slice(4) do |line_participant|
-      .participant-list
-        .row
-          = div_for(line_participant, :class => "span3") do |participant|
-            - user = participant.user
-            .center
-              = image_tag user.gravatar_url(:size => '132'), :class => 'gravatar', :title => "#{user.login}", :alt => "#{user.login}"
-              p.participant-login-name = user.login
-              p.participant-name = user.profile.name
-              - if participant.joined?
-                button.btn.disabled disabled="disabled" id="check-in-event-participant-#{participant.id}" = I18n.t('labels.has_checked_in_button')
-              - else
-                = form_for('', :url => event_participant_path(@event, participant), :method => :patch, :html => {:style=>"margin-bottom: 10px;"}) do |f|
-                  button.btn.btn-info type="submit" id="check-in-event-participant-#{participant.id}" = I18n.t('labels.check_in_button')
+= form_tag checkin_event_participants_path, method: :patch, html: { class: ['pull-right'] } do
+  input.input-medium.margin-right name="code" type="text" placeholder="请输入6位数字签到码"
+  button.btn type="submit" 签到
+table.table
+  thead
+    th 签到码
+    th 门票
+    th 姓名
+    th 状态
+  tbody
+    - @participants.each do |participant|
+      tr
+        td
+          = participant.checkin_code
+          span （总票数:#{participant.order.quantity}）
+        td
+          - participant.order.items.each do |item|
+            div #{item.quantity} x #{item.name}
+        td = participant.user.name
+        td = participant.joined? ? '已签到' : '未签到'
