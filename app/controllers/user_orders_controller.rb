@@ -4,6 +4,7 @@ class UserOrdersController < ApplicationController
 
   def index
     @orders = current_user.orders.includes(items: :ticket)
+    filter_orders
   end
 
   def pay
@@ -12,7 +13,7 @@ class UserOrdersController < ApplicationController
     if order.pending?
       redirect_to generate_pay_link_by_order(order)
     else
-      redirect_to user_orders_path
+      redirect_back_or user_orders_path
     end
   end
 
@@ -20,7 +21,7 @@ class UserOrdersController < ApplicationController
     order = current_user.orders.find params[:id]
 
     order.request_refund!
-    redirect_to user_orders_path, notice: t('flash.my_orders.request_refund')
+    redirect_back_or user_orders_path, notice: t('flash.my_orders.request_refund')
   end
 
   def cancel
@@ -50,6 +51,14 @@ class UserOrdersController < ApplicationController
       render text: 'success'
     else
       render text: 'fail'
+    end
+  end
+
+  private
+  def filter_orders
+    if params[:event_id].present?
+      event = Event.find(params[:event_id])
+      @orders = @orders.where(event_id: event.id)
     end
   end
 end

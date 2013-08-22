@@ -33,4 +33,16 @@ describe UserOrdersController do
       end
     end
   end
+
+  describe 'GET index' do
+    let(:another_event) { create(:event, slug: 'another') }
+    let!(:order) { create(:order_with_items, event: event, user: user) }
+    let!(:another_order) { create(:order_with_items, event: another_event, user: user) }
+    describe 'event_id filter' do
+      it 'returns orders for the specified event' do
+        get 'index', event_id: event.id
+        expect(assigns[:orders]).to eq([order])
+      end
+    end
+  end
 end

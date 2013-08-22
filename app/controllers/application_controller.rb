@@ -25,7 +25,14 @@ class ApplicationController < ActionController::Base
 
   def store_location
     # store last url as long as it isn't a /users path
-    session[:previous_url] = request.fullpath unless request.fullpath =~ /\/(users|api)/
+    if request.get? && request.fullpath !~ /\/(users|api)/
+      session[:previous_url] = request.fullpath
+    end
+  end
+
+  def redirect_back_or(url, *args)
+    url = session.delete(:previous_url) || url
+    redirect_to url, *args
   end
 
   def after_sign_in_path_for(resource)

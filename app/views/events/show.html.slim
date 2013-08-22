@@ -56,6 +56,8 @@ article.event ng-init=init_event(@event)
                 input.input-medium name='shipping_phone' ng-model="shipping_phone" type="text" placeholder='收货人联系电话'
             a.btn.btn-info.span1.pull-right ng-hide='status' ng-disabled='disabled' ng-click='create()' ng-init={labels: t('views.order.labels')}.to_ng_init
               |{{labels[disabled]}}
+            - if current_user && current_user.ordered?(@event)
+              = link_to t('labels.my_orders'), user_orders_path(event_id: @event.id), class: 'btn pull-right', 'ng-hide' => 'status'
             p.text-info ng-show="status=='paid'" 您已经提交了订单，订单号为{{id}}，此订单为免费订单，不需要支付，谢谢。
             .pending-order-tip ng-show='pay_url'
               p.text-info 您已经提交了订单，订单号为{{id}}，请尽快支付。

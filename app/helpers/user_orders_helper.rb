@@ -30,4 +30,8 @@ module UserOrdersHelper
   def operations(order)
     [pay_link(order), cancel_link(order), request_refund_link(order)].compact.join(' | ').html_safe
   end
+
+  def orders_filtered?
+    params[:event_id].present?
+  end
 end
