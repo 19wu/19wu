@@ -10,7 +10,10 @@ NineteenWu::Application.routes.draw do
       get 'followers'
     end
     resources :participants , :only => [:index] do
-      get :checkin, on: :collection
+      collection do
+        get :checkin
+        post :update
+      end
     end
     resources :collaborators, :only => [:index, :create, :destroy]
     resources :topics       , :only => [:new, :create, :show] do

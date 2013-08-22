@@ -5,6 +5,8 @@ zh-CN:
       invalid_login: 只允许大小写字母、数字和下划线
       event_order:
         miss_shipping_address: 购买的门票包含发票，但没有提供收货地址
+      event_order_participant:
+        invalid_code: 签到码不正确。
   activerecord:
     models:
       user: "用户"

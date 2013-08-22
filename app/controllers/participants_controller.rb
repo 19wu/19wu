@@ -13,11 +13,10 @@ class ParticipantsController < ApplicationController
   end
 
   def update
-    participant = @event.participants.where(checkin_code: params[:code]).first
-    if participant
-      participant.update_attribute :checkin_at, Time.now
-    else
+    @participant = @event.participants.where(checkin_code: params[:code]).first
+    unless @participant
+      render(json: { error: I18n.t('errors.messages.event_order_participant.invalid_code') }, status: 404) and return
     end
-    redirect_to event_participants_path
+    @participant.update_attributes! checkin_at: Time.now
   end
 end
