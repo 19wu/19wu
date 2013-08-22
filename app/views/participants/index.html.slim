@@ -1,21 +1,21 @@
 = render 'events/header'
-= form_tag checkin_event_participants_path, method: :patch, html: { class: ['pull-right'] } do
-  input.input-medium.margin-right name="code" type="text" placeholder="请输入6位数字签到码"
-  button.btn type="submit" 签到
-table.table
-  thead
-    th 签到码
-    th 门票
-    th 姓名
-    th 状态
-  tbody
-    - @participants.each do |participant|
-      tr
-        td
-          = participant.checkin_code
-          span （总票数:#{participant.order.quantity}）
-        td
-          - participant.order.items.each do |item|
-            div #{item.quantity} x #{item.name}
-        td = participant.user.name
-        td = participant.joined? ? '已签到' : '未签到'
+.row
+  = render 'participants/submenu'
+  .span9
+    table.table
+      thead
+        th 签到码
+        th 门票
+        th 姓名
+        th 状态
+      tbody
+        - @participants.each do |participant|
+          tr
+            td
+              = participant.checkin_code
+              span （总票数:#{participant.order.quantity}）
+            td
+              - participant.order.items.each do |item|
+                div #{item.quantity} x #{item.name}
+            td = participant.user.name
+            td = participant.joined? ? '已签到' : '未签到'
