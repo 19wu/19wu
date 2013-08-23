@@ -4,6 +4,7 @@ class EventOrderParticipant < ActiveRecord::Base
   belongs_to :order, class_name: 'EventOrder'
 
   validates :checkin_code, uniqueness: { scope: :event_id }
+  validate :cannot_checkin_again, :order_is_valid, on: :update
   after_create :send_sms
 
   before_create do
@@ -12,10 +13,17 @@ class EventOrderParticipant < ActiveRecord::Base
     self.checkin_code = self.class.unique_code(self.event)
   end
 
-  before_validation do
+  def cannot_checkin_again
     if checkin_at_changed? and !checkin_at_was.nil?
       message = I18n.t('errors.messages.event_order_participant.used', time: checkin_at.to_s(:db))
       errors.add(:checkin_at, message)
+    end
+  end
+
+  def order_is_valid
+    unless self.order.status?(:paid)
+      message = I18n.t('errors.messages.event_order_participant.invalid_order', status: I18n.t("views.my_orders.pay_status.#{order.status}"))
+      errors.add(:order, message)
     end
   end
 

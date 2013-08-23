@@ -8,6 +8,7 @@ zh-CN:
       event_order_participant:
         invalid_code: 签到码不正确。
         used: 已于 %{time} 使用，请勿重复签到。
+        invalid_order: 状态为 %{status}，不能签到。
   activerecord:
     models:
       user: "用户"
@@ -46,6 +47,7 @@ zh-CN:
         quantity: '门票数量'
         items: '门票'
       event_order_participant:
+        order: '订单'
         checkin_at: '签到码'
       event_ticket:
         name: "名称"
