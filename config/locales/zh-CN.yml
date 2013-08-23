@@ -193,13 +193,6 @@ zh-CN:
       request_refund: '退款'
       orders_filtered: '结果已被过滤'
       view_all_orders: '查看全部订单'
-      pay_status:
-        pending: '未支付'
-        paid: '已支付'
-        canceled: '已取消'
-        refund_pending: '等待处理退款'
-        refund_approved: '退款处理中'
-        refunded: '退款成功'
 
   sms:
     event:

@@ -21,8 +21,8 @@ class EventOrderParticipant < ActiveRecord::Base
   end
 
   def order_is_valid
-    unless self.order.status?(:paid)
-      message = I18n.t('errors.messages.event_order_participant.invalid_order', status: I18n.t("views.my_orders.pay_status.#{order.status}"))
+    unless self.order.paid?
+      message = I18n.t('errors.messages.event_order_participant.invalid_order', status: order.status_name)
       errors.add(:order, message)
     end
   end

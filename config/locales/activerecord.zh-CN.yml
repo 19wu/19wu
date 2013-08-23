@@ -62,3 +62,12 @@ zh-CN:
       group_topic:
         title: "标题"
         body: "正文"
+    state_machines:
+      event_order:
+        states:
+          pending: '未支付'
+          paid: '已支付'
+          canceled: '已取消'
+          refund_pending: '等待处理退款'
+          refund_approved: '退款处理中'
+          refunded: '退款成功'
