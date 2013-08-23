@@ -13,7 +13,6 @@
 #= require datetime
 #= require upload
 #= require map
-#= require checkin
 #= require_self
 $ ->
   $("a[data-toggle='tooltip']").tooltip()
