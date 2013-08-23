@@ -1,9 +1,0 @@
-= render 'events/header'
-.row
-  = render 'participants/submenu'
-  .span9
-    h2.muted
-      |请扫描二维码，或在活动页面输入 
-      span.text-error #{@event.checkin_code} 
-      |签到
-    #qrcode data-checkin-url="#{checkin_event_url(@event, checkin_code: @event.checkin_code)}"
