@@ -21,6 +21,7 @@ class EventOrder < ActiveRecord::Base
   before_create do
     self.status = free? ? 'paid' : 'pending'
     event.decrement! :tickets_quantity, self.quantity if event.tickets_quantity
+    self.number = Sequence.get
   end
 
   after_create do

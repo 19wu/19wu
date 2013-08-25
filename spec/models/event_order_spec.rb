@@ -56,6 +56,11 @@ describe EventOrder do
         end
       end
     end
+    describe '#number' do
+      before { Timecop.freeze('2013-08-25') }
+      after { Timecop.return }
+      its(:number) { should eql '201308250001' }
+    end
     describe '#status' do
       its(:pending?) { should be_true }
       its(:paid?) { should be_false }
