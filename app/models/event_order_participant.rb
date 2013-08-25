@@ -15,7 +15,7 @@ class EventOrderParticipant < ActiveRecord::Base
 
   def cannot_checkin_again
     if checkin_at_changed? and !checkin_at_was.nil?
-      message = I18n.t('errors.messages.event_order_participant.used', time: checkin_at.to_s(:db))
+      message = I18n.t('errors.messages.event_order_participant.used', time: checkin_at_was.to_s(:db))
       errors.add(:checkin_at, message)
     end
   end
