@@ -8,7 +8,7 @@ describe UserOrdersController do
   describe 'alipay' do
     let(:trade_no) { '2013080841700373' }
     let(:order) { create(:order_with_items, event: event, user: user) }
-    let(:attrs) { { trade_no: trade_no, out_trade_no: order.id, trade_status: trade_status, total_fee: order.price } }
+    let(:attrs) { { trade_no: trade_no, out_trade_no: order.number, trade_status: trade_status, total_fee: order.price } }
     describe "GET alipay_done" do
       context 'trade is success' do
         let(:trade_status) { 'TRADE_SUCCESS' }
@@ -21,7 +21,7 @@ describe UserOrdersController do
     end
 
     describe "POST alipay_notify" do
-      let(:attrs) { { trade_no: trade_no, out_trade_no: order.id, notify_id: '123', trade_status: trade_status, total_fee: order.price } }
+      let(:attrs) { { trade_no: trade_no, out_trade_no: order.number, notify_id: '123', trade_status: trade_status, total_fee: order.price } }
       before { Alipay::Notify.stub(:verify?).and_return(true) }
       context 'trade is success' do
         let(:trade_status) { 'TRADE_SUCCESS' }

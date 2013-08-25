@@ -221,9 +221,9 @@ zh-CN:
         created:
           subject: "您在19屋的订单下单成功"
         paid:
-          subject: "订单 %{id} 完成支付"
+          subject: "订单 %{number} 完成支付"
       organizer:
         created:
-          subject: "%{title} 订单 %{id}，%{login} 下单"
+          subject: "%{title} 订单 %{number}，%{login} 下单"
         paid:
-          subject: "%{title} 订单 %{id}，%{login} 完成支付"
+          subject: "%{title} 订单 %{number}，%{login} 完成支付"
