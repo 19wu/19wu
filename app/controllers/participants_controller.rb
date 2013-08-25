@@ -1,22 +1,27 @@
 class ParticipantsController < ApplicationController
+  include HasApiResponse
   before_filter :authenticate_user!
   before_filter :authorize_event!
   set_tab :check_in
-  set_tab :checkin_code, :sidebar, only: [:qcode]
-  set_tab :participants, :sidebar, only: [:index]
+  set_tab :participants_checkin, :sidebar, only: [:checkin]
+  set_tab :participants_index  , :sidebar, only: [:index]
+
+  rescue_from ActiveRecord::RecordNotFound, with: :render_record_no_found_error
 
   def index
     @participants = @event.participants.joins(:user).order('users.login ASC').includes(:user => :profile)
   end
 
-  def qcode
+  def checkin
   end
 
   def update
-    participant = @event.participants.find(params[:id])
-    participant.joined = true
-    participant.save
+    @participant = @event.participants.where(checkin_code: params[:code]).first!
+    @participant.checkin!
+  end
 
-    redirect_to event_participants_path(@event), notice: I18n.t('flash.participants.checked_in', :name => participant.user.login)
+  private
+  def render_record_no_found_error(exception)
+    render json: { errors: [I18n.t('errors.messages.event_order_participant.invalid_code')] }, status: :not_found
   end
 end

@@ -2,6 +2,9 @@
 module HasApiResponse
   extend ActiveSupport::Concern
 
+  # rails http response status code to symbol mapping
+  # http://guides.rubyonrails.org/layouts_and_rendering.html#the-status-option
+
   included do
     rescue_from ActiveRecord::RecordInvalid, with: :render_record_invalid_error
   end

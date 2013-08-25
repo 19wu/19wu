@@ -35,7 +35,7 @@ feature 'user orders' do
       stub_confirm
       find('a', text: I18n.t('views.my_orders.cancel')).click
 
-      expect(page).to have_content(I18n.t('views.my_orders.pay_status.canceled'))
+      expect(page).to have_content(I18n.t('canceled', scope: 'activerecord.state_machines.event_order.states'))
     end
   end
 
@@ -50,7 +50,7 @@ feature 'user orders' do
 
       stub_confirm
       find('a', text: I18n.t('views.my_orders.request_refund')).click
-      expect(page).to have_content(I18n.t('views.my_orders.pay_status.refund_pending'))
+      expect(page).to have_content(I18n.t('refund_pending', scope: 'activerecord.state_machines.event_order.states'))
     end
 
     scenario 'I can not refund order when event draws near' do

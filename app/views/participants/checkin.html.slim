@@ -1,0 +1,15 @@
+= render 'events/header'
+.row
+  = render 'participants/submenu'
+  .span9 ng-controller='ParticipantsCtrl'
+    form.form-search.checkin-form
+      input.input-medium.margin-right name="code" ng-model='code' type="text" placeholder="请输入6位数字签到码"
+      button.btn.btn-info type="submit" ng-click='checkin()' 签到
+    p.alert.alert-success ng-show='data'
+      |{{data.checkin_code}} 签到成功，门票总数：{{data.quantity}} 张
+      ul
+        li ng-repeat='item in data.items'
+          |{{item.quantity}} x {{item.name}}
+    p.alert.alert-error ng-show='error'
+      |{{error}}
+    p.alert ng-show='wait' 正在提交签到码...

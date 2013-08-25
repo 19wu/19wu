@@ -8,10 +8,13 @@ NineteenWu::Application.routes.draw do
       post 'follow'
       post 'unfollow'
       get 'followers'
-      get 'checkin/:checkin_code', to: 'events#checkin', as: :checkin
     end
-    get 'qcode', to: 'participants#qcode'
-    resources :participants , :only => [:index, :update]
+    resources :participants , :only => [:index] do
+      collection do
+        get :checkin
+        post :update
+      end
+    end
     resources :collaborators, :only => [:index, :create, :destroy]
     resources :topics       , :only => [:new, :create, :show] do
       resource :reply       , :only => [:create]                  , :controller => 'topic_reply'

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 require 'spec_helper'
 
 describe EventOrder do
@@ -58,6 +59,7 @@ describe EventOrder do
     describe '#status' do
       its(:pending?) { should be_true }
       its(:paid?) { should be_false }
+      its(:status_name) { should eql '未支付' }
     end
     describe '#shipping_address' do
       let(:order) { create(:order_with_items, shipping_address_attributes: attributes_for(:shipping_address), event: event) }

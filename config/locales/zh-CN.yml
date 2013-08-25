@@ -127,6 +127,11 @@ zh-CN:
       cancel: '确定要取消订单么？'
       refund: '确定要退款么？该操作无法撤销！'
 
+  menus:
+    submenu:
+      participants:
+        checkin: 签到
+        index: 列表
   views:
     edit: "修改"
     destroy: "删除"
@@ -135,8 +140,6 @@ zh-CN:
     summary: "总结"
     previous_summary: "往期活动总结"
     check_in: "签到"
-    check_in_code: "签到码"
-    manual_check_in: "手动签到"
     map_preview: "地图预览"
     events:
       new:
@@ -190,13 +193,6 @@ zh-CN:
       request_refund: '退款'
       orders_filtered: '结果已被过滤'
       view_all_orders: '查看全部订单'
-      pay_status:
-        pending: '未支付'
-        paid: '已支付'
-        canceled: '已取消'
-        refund_pending: '等待处理退款'
-        refund_approved: '退款处理中'
-        refunded: '退款成功'
 
   sms:
     event:

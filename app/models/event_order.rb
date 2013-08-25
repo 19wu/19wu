@@ -32,6 +32,10 @@ class EventOrder < ActiveRecord::Base
     self.price_in_cents.zero?
   end
 
+  def status_name
+    I18n.t(self.status, scope: 'activerecord.state_machines.event_order.states')
+  end
+
   state_machine :status, :initial => :pending do
     store_audit_trail
 

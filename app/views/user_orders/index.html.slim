@@ -23,6 +23,6 @@ table.table.table-striped.table-bordered
           ul = render partial: 'user_orders/order_item', collection: order.items, as: 'item'
         td = order.price
         td = order.trade_no
-        td = order_status(order)
+        td = order.status_name
         td
           = operations(order)
