@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class Sequence < ActiveRecord::Base
   def self.get
     date = Time.zone.today
