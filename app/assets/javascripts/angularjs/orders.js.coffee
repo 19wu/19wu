@@ -13,6 +13,7 @@
     request = $http.post("/events/#{$scope.event.id}/orders", $scope.postData())
     request.success (data) ->
       $scope.id = data['id']
+      $scope.number = data['number']
       $scope.status = data['status']
       $scope.pay_url = data['link']
     request.error (data) ->

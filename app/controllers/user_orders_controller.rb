@@ -34,7 +34,7 @@ class UserOrdersController < ApplicationController
   def alipay_done
     callback_params = params.except(*request.path_parameters.keys)
     if callback_params.any? && Alipay::Sign.verify?(callback_params) && params[:trade_status] == 'TRADE_SUCCESS'
-      @order = current_user.orders.find params[:out_trade_no]
+      @order = current_user.orders.find params[:id]
       @order.pay!(params[:trade_no])
     end
   end
@@ -42,7 +42,7 @@ class UserOrdersController < ApplicationController
   def alipay_notify
     notify_params = params.except(*request.path_parameters.keys)
     if Alipay::Sign.verify?(notify_params) && Alipay::Notify.verify?(notify_params)
-      @order = EventOrder.find params[:out_trade_no]
+      @order = EventOrder.find params[:id]
       if ['TRADE_SUCCESS', 'TRADE_FINISHED'].include?(params[:trade_status])
         @order.pay!(params[:trade_no])
       elsif params[:trade_status] == 'TRADE_CLOSED'

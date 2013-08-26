@@ -21,7 +21,7 @@ describe OrderMailer do
       end
       describe "order paid" do
         subject { OrderMailer.notify_user_paid(order) }
-        its(:subject) { should eql "订单 #{order.id} 完成支付" }
+        its(:subject) { should eql "订单 #{order.number} 完成支付" }
         its(:from) { should eql [Settings.email.from] }
         its(:to) { should eql [order.user.email] }
         its('body.decoded') { should match '我们已收到您支付的款项' }
@@ -31,14 +31,14 @@ describe OrderMailer do
     describe "organizer" do
       describe "order created" do
         subject { OrderMailer.notify_organizer_created(order) }
-        its(:subject) { should eql "#{event.title} 订单 #{order.id}，#{order.user.login} 下单" }
+        its(:subject) { should eql "#{event.title} 订单 #{order.number}，#{order.user.login} 下单" }
         its(:from) { should eql [Settings.email.from] }
         its(:to) { should eql [event.user.email] }
         its('body.decoded') { should match '刚刚新增了订单' }
       end
       describe "order paid" do
         subject { OrderMailer.notify_organizer_paid(order) }
-        its(:subject) { should eql "#{event.title} 订单 #{order.id}，#{order.user.login} 完成支付" }
+        its(:subject) { should eql "#{event.title} 订单 #{order.number}，#{order.user.login} 完成支付" }
         its(:from) { should eql [Settings.email.from] }
         its(:to) { should eql [event.user.email] }
         its('body.decoded') { should match '成功支付款项' }

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130818175826) do
+ActiveRecord::Schema.define(version: 20130825132914) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -94,6 +94,7 @@ ActiveRecord::Schema.define(version: 20130818175826) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "price_in_cents",            default: 0, null: false
+    t.string   "number",         limit: 16,             null: false
   end
 
   add_index "event_orders", ["event_id"], name: "index_event_orders_on_event_id", using: :btree
@@ -209,6 +210,15 @@ ActiveRecord::Schema.define(version: 20130818175826) do
   end
 
   add_index "profiles", ["user_id"], name: "index_profiles_on_user_id", using: :btree
+
+  create_table "sequences", force: true do |t|
+    t.date     "date",                   null: false
+    t.integer  "number",     default: 0, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "sequences", ["date"], name: "index_sequences_on_date", unique: true, using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                             default: "",    null: false

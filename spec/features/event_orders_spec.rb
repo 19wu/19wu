@@ -10,6 +10,7 @@ feature 'event orders', js: true do
   before do
     sign_in user
     event.update_attribute :tickets_quantity, 20
+    Timecop.travel(Date.parse('2013-08-25'))
   end
 
   context 'with user name and phone' do
@@ -21,7 +22,7 @@ feature 'event orders', js: true do
         select '1'
       end
       find('a', text: '购买').click
-      expect(page).to have_content('您已经提交了订单，订单号为1，请尽快支付')
+      expect(page).to have_content('您已经提交了订单，订单号为 201308250001，请尽快支付')
       expect(page).to have_content('使用支付宝支付')
     end
 
@@ -49,7 +50,7 @@ feature 'event orders', js: true do
         select '1'
       end
       find('a', text: '购买').click
-      expect(page).to have_content('您已经提交了订单，订单号为1，此订单为免费订单，不需要支付，谢谢。')
+      expect(page).to have_content('您已经提交了订单，订单号为 201308250001，此订单为免费订单，不需要支付，谢谢。')
     end
 
     scenario 'I want to buy tickets, but sold out' do
@@ -71,7 +72,7 @@ feature 'event orders', js: true do
         fill_in 'user_phone', with: '13928452888'
       end
       find('a', text: '购买').click
-      expect(page).to have_content('您已经提交了订单，订单号为1，此订单为免费订单，不需要支付，谢谢。')
+      expect(page).to have_content('您已经提交了订单，订单号为 201308250001，此订单为免费订单，不需要支付，谢谢。')
     end
   end
 end
