@@ -10,9 +10,8 @@ feature 'event orders', js: true do
   before do
     sign_in user
     event.update_attribute :tickets_quantity, 20
-    Timecop.freeze('2013-08-25')
+    Timecop.travel(Date.parse('2013-08-25'))
   end
-  after { Timecop.return }
 
   context 'with user name and phone' do
     before { user.profile.update_attribute :name, 'saberma' }
