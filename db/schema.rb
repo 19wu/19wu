@@ -218,6 +218,8 @@ ActiveRecord::Schema.define(version: 20130825132914) do
     t.datetime "updated_at"
   end
 
+  add_index "sequences", ["date"], name: "index_sequences_on_date", unique: true, using: :btree
+
   create_table "users", force: true do |t|
     t.string   "email",                             default: "",    null: false
     t.string   "encrypted_password",                default: ""

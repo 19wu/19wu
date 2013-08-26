@@ -6,5 +6,6 @@ class CreateSequences < ActiveRecord::Migration
 
       t.timestamps
     end
+    add_index :sequences, :date, unique: true
   end
 end

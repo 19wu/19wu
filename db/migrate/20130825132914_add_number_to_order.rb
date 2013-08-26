@@ -3,7 +3,6 @@ class AddNumberToOrder < ActiveRecord::Migration
     add_column :event_orders, :number, :string, limit: 16
     EventOrder.all.each do |order|
       order.update_column :number, Sequence.get
-      puts order.reload.number
     end
     change_column :event_orders, :number, :string, limit: 16, null: false
   end
