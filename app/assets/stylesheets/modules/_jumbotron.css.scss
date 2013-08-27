@@ -46,13 +46,3 @@
     margin: $baseLineHeight * 4 $gridColumnWidth + $gridGutterWidth;
   }
 }
-
-.alpha-alert {
-  @extend .alert, .alert-block, .alert-info;
-  margin: (3 * $baseLineHeight) 0 (2 * $baseLineHeight);
-  padding: 1.5 * $baseLineHeight;
-  text-align: center;
-  a {
-    padding: 4px;
-  }
-}

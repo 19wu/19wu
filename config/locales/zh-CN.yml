@@ -19,9 +19,9 @@ zh-CN:
     sponsors:
       title: 感谢19屋的赞助商：
       sms: 本站免费短信由推立方赞助
-    opensource: 本站开放源代码 @GitHub
+    opensource: 源代码@GitHub
     contact_us: "联系我们"
-    alpha_alert: "您可以通过 %{email} 或者 %{github} 向我们反馈问题。"
+    feedback: "反馈问题"
     title: "19屋－让活动更好"
     copyright: "版权所有"
 
