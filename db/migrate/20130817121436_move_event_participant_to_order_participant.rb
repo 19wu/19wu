@@ -14,6 +14,7 @@ class MoveEventParticipantToOrderParticipant < ActiveRecord::Migration
       event = participant.event
       ticket = event.tickets.first_or_create name: '门票', price: 0
       order = event.orders.create user: participant.user, items_attributes: [{ticket: ticket, quantity: 1}]
+      order.create_participant
       if participant.joined
         order.participant.update_attribute :checkin_at, participant.updated_at
       end
