@@ -1,4 +1,5 @@
 class RegistrationsController < Devise::RegistrationsController
+  include HasApiResponse
   layout 'settings', :only => [:edit, :update]
 
   def create

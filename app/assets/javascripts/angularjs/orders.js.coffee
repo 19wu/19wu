@@ -27,7 +27,7 @@
       $scope.user = data
       $scope.create()
     request.error (data) ->
-      alert data['errors']
+      alert data['error'] # http://git.io/C-1_Iw
 
   $scope.create = ->
     $scope.errors = {}
