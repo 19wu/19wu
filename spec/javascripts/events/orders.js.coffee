@@ -9,7 +9,7 @@ describe "orders", ->
 
   describe "create", ->
     describe 'when user logined', ->
-      beforeEach -> inject ($rootScope) -> $rootScope.user = {id: 1}
+      beforeEach -> inject ($rootScope) -> $rootScope.user = {id: 1, name: '张三', phone: '13928452888'}
       describe 'when event is not start', ->
         beforeEach ->
           inject ($rootScope, $injector, $http, $window, $controller) ->
