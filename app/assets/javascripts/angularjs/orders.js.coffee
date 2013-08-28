@@ -56,7 +56,7 @@
     $scope.errors['user_info'] || $scope.errors['invoice_info']
 
   $scope.validate_user_info = ->
-    $scope.errors['user_info'] = true unless $scope.name && $scope.phone
+    $scope.errors['user_info'] = true unless $scope.user.name && $scope.user.phone
 
   $scope.require_invoice = ->
     for ticket in $scope.tickets
@@ -89,9 +89,9 @@
       items_attributes: items,
       shipping_address_attributes: shipping_address
     user:
-      phone: $scope.phone
+      phone: $scope.user.phone
       profile_attributes:
-        name: $scope.name
+        name: $scope.user.name
 
   $scope.user_login_with = (data) ->
     $scope.update_csrf_token(data['token'])
