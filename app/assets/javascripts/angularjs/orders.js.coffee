@@ -2,6 +2,16 @@
   $scope.disabled = $scope.event.started
   $scope.errors = {}
 
+  $scope.signup = ->
+    request = $http.post("/users", user: { login: $scope.user_login, email: $scope.user_email, password: $scope.user_password })
+    request.success (data) ->
+      $('meta[name="csrf-token"]').attr('content', data['token'])
+      $http.defaults.headers.common['X-CSRF-Token'] = data['token']
+      $scope.user = data
+      $scope.create()
+    request.error (data) ->
+      alert data['errors']
+
   $scope.login = ->
     request = $http.post("/users/sign_in", user: { email: $scope.email, password: $scope.password })
     request.success (data) ->
@@ -15,7 +25,7 @@
   $scope.create = ->
     $scope.errors = {}
     return if $scope.disabled
-    return if $scope.validate_user_session()
+    return if $scope.validate_user_register() || $scope.validate_user_session()
     return if $scope.validate_quantity()
     return if $scope.validate_form()
     return if $scope.validate_invoice_info()
@@ -35,6 +45,9 @@
       return false if parseInt(ticket.quantity, 10) > 0
     $scope.errors['tickets'] = true
     true
+
+  $scope.validate_user_register = ->
+    $scope.errors['user_register'] = true unless ($scope.user? && $scope.user.id)
 
   $scope.validate_user_session = ->
     $scope.errors['user_session'] = true unless ($scope.user? && $scope.user.id)

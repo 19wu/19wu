@@ -29,15 +29,24 @@ article.event ng-init=init_event(@event)
                   |{{ticket.price | money }}
                 td
                   select.span1 ng-model='ticket.quantity' = options_for_select(0..10)
-          .sign-up.clearfix
-            div ng-show="errors['user_session']"
-              div
-                p.text-warning 请先登录
-                label.control-label for="email" Email
-                input.input-large id='email' ng-model="email" ng-init="email='demo@19wu.com'" type="text"
-                label.control-label for="password" 密码
-                input.input-large id='password' ng-model="password" ng-init="password='666666'" type="password"
-              a.btn.btn-info.span1.pull-right ng-click='login()' 登录
+          .signup.clearfix ng-show="errors['user_register']"
+            div
+              p.text-warning 请先注册
+              label.control-label for="user_login" 登录名
+              input.input-large id='user_login' ng-model="user_login" ng-init="user_login='saberma'" type="text"
+              label.control-label for="user_email" Email
+              input.input-large id='user_email' ng-model="user_email" ng-init="user_email='demo@19wu.com'" type="text"
+              label.control-label for="user_password" 密码
+              input.input-large id='user_password' ng-model="user_password" ng-init="user_password='666666'" type="password"
+            a.btn.btn-info.span1.pull-right ng-click='signup()' 注册
+          .login.clearfix ng-show="errors['user_session']"
+            div
+              p.text-warning 请先登录
+              label.control-label for="email" Email
+              input.input-large id='email' ng-model="email" ng-init="email='demo@19wu.com'" type="text"
+              label.control-label for="password" 密码
+              input.input-large id='password' ng-model="password" ng-init="password='666666'" type="password"
+            a.btn.btn-info.span1.pull-right ng-click='login()' 登录
           .payment.clearfix
             p.text-warning ng-show="errors['tickets']" 请先选择门票数量。
             div ng-show="errors['user_info']"
