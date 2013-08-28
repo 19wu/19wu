@@ -3,6 +3,6 @@
 }
 
 .alpha {
-  @extend .label, .label-important;
+  @extend .label;
   margin-left: 10px;
 }

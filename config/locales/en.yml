@@ -18,7 +18,7 @@ en:
   layout:
     opensource: "Fork us"
     contact_us: "Contact us"
-    alpha_alert: "%{19wu}正在 Alpha 阶段，如果您有任何意见或建议，可以通过%{email}或者%{github}联系我们。"
+    feedback: "反馈问题"
     title: "19wu - Make events better"
     copyright: "All rights reserved."
 

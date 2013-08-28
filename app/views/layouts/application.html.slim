@@ -34,7 +34,6 @@ html ng-app='19wu'
         #content
           .container
             = content_for?(:content) ? yield(:content) : yield
-            .alpha-alert = raw t('layout.alpha_alert', :email => link_to('Email', 'mailto:mahb45@gmail.com'), :github => link_to('Github', 'https://github.com/saberma/19wu/issues'))
 
     footer#footer
       .container
@@ -44,9 +43,10 @@ html ng-app='19wu'
             = link_to image_tag('sponsors/tui3.png'), 'http://tui3.com', target: '_blank', title: t('layout.sponsors.sms'), data: {toggle: 'tooltip'}
           .span4
             ul.pull-right
-              li #{link_to('19WU.COM', root_url)} &copy; #{Date.current.year} #{t('layout.copyright')}
-              li = link_to t('layout.opensource'), "http://github.com/saberma/19wu"
+              li = link_to t('layout.feedback'),  "https://github.com/saberma/19wu/issues/new"
               li = link_to t('layout.contact_us'), "mailto:mahb45@gmail.com"
+              li = link_to t('layout.opensource'), "http://github.com/saberma/19wu"
+              -#li &copy; #{Date.current.year} #{t('layout.copyright')}
 
     = javascript_include_tag "application"
     = javascript_include_tag "locales/#{locale}"
