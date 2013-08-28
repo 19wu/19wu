@@ -29,14 +29,36 @@ article.event ng-init=init_event(@event)
                   |{{ticket.price | money }}
                 td
                   select.span1 ng-model='ticket.quantity' = options_for_select(0..10)
+          .signup.clearfix ng-show="errors['user_session'] && user_form=='register'"
+            div
+              p.text-warning
+                |请先注册，或者
+                a href='javascript:void(0)' ng-click='use_login_form()' 登录
+              label.control-label for="user_login" 登录名
+              input.input-large id='user_login' ng-model="user_login" type="text"
+              label.control-label for="user_email" Email
+              input.input-large id='user_email' ng-model="user_email" type="text"
+              label.control-label for="user_password" 密码
+              input.input-large id='user_password' ng-model="user_password" type="password"
+            a.btn.btn-info.span1.pull-right ng-click='signup()' 注册
+          .login.clearfix ng-show="errors['user_session'] && user_form=='login'"
+            div
+              p.text-warning
+                |请先登录，或者
+                a href='javascript:void(0)' ng-click='use_register_form()' 注册
+              label.control-label for="email" Email
+              input.input-large id='email' ng-model="email" type="text"
+              label.control-label for="password" 密码
+              input.input-large id='password' ng-model="password" type="password"
+            a.btn.btn-info.span1.pull-right ng-click='login()' 登录
           .payment.clearfix
             p.text-warning ng-show="errors['tickets']" 请先选择门票数量。
             div ng-show="errors['user_info']"
               p.text-warning 请完善用户信息，完成订单后您的手机将收到签到码
               label.control-label for="user_name" 姓名
-              input.input-large name='user_name' ng-model="name" type="text" ng-init="name='#{current_user.try(:name)}'"
+              input.input-large name='user_name' ng-model="user.name" type="text"
               label.control-label for="user_phone" 手机
-              input.input-large name='user_phone' ng-model="phone" type="text" ng-init="phone='#{current_user.try(:phone)}'"
+              input.input-large name='user_phone' ng-model="user.phone" type="text"
             div ng-show="errors['invoice_info']"
               p.muted 您购买的门票可以提供发票，请填写以下信息：
               label.control-label for="invoice_title" 发票抬头
@@ -54,7 +76,7 @@ article.event ng-init=init_event(@event)
               .shipping_info
                 input.input-medium.margin-right name='shipping_name' ng-model="shipping_name" type="text" placeholder='收货人姓名'
                 input.input-medium name='shipping_phone' ng-model="shipping_phone" type="text" placeholder='收货人联系电话'
-            a.btn.btn-info.span1.pull-right ng-hide='status' ng-disabled='disabled' ng-click='create()' ng-init={labels: t('views.order.labels')}.to_ng_init
+            a.btn.btn-info.span1.pull-right ng-hide="status || errors['user_session']" ng-disabled='disabled' ng-click='create()' ng-init={labels: t('views.order.labels')}.to_ng_init
               |{{labels[disabled]}}
             - if current_user && current_user.ordered?(@event)
               = link_to t('labels.my_orders'), user_orders_path(event_id: @event.id), class: 'btn pull-right', 'ng-hide' => 'status'

@@ -12,7 +12,7 @@ feature 'user registration' do
     fill_in 'user_email', with: user.email
     fill_in 'user_password', with: user.password
     click_button I18n.t('labels.sign_up')
-    expect(page).to have_content(I18n.t('devise.registrations.signed_up_but_unconfirmed'))
+    expect(page).to have_content(I18n.t('devise.registrations.signed_up'))
 
     open_email(user.email)
     current_email.click_link '激活帐号'
@@ -52,7 +52,7 @@ feature 'user registration' do
     fill_in 'user_email', with: user.email
     fill_in 'user_password', with: user.password
     click_button I18n.t('labels.sign_up')
-    expect(page).to have_content(I18n.t('devise.registrations.signed_up_but_unconfirmed'))
+    expect(page).to have_content(I18n.t('devise.registrations.signed_up'))
 
     open_email(user.email)
     current_email.click_link '激活帐号'
