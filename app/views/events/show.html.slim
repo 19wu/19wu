@@ -29,9 +29,11 @@ article.event ng-init=init_event(@event)
                   |{{ticket.price | money }}
                 td
                   select.span1 ng-model='ticket.quantity' = options_for_select(0..10)
-          .signup.clearfix ng-show="errors['user_register']"
+          .signup.clearfix ng-show="errors['user_session'] && user_form=='register'"
             div
-              p.text-warning 请先注册
+              p.text-warning
+                |请先注册，或者
+                a href='javascript:void(0)' ng-click='use_login_form()' 登录
               label.control-label for="user_login" 登录名
               input.input-large id='user_login' ng-model="user_login" ng-init="user_login='saberma'" type="text"
               label.control-label for="user_email" Email
@@ -39,9 +41,11 @@ article.event ng-init=init_event(@event)
               label.control-label for="user_password" 密码
               input.input-large id='user_password' ng-model="user_password" ng-init="user_password='666666'" type="password"
             a.btn.btn-info.span1.pull-right ng-click='signup()' 注册
-          .login.clearfix ng-show="errors['user_session']"
+          .login.clearfix ng-show="errors['user_session'] && user_form=='login'"
             div
-              p.text-warning 请先登录
+              p.text-warning
+                |请先登录，或者
+                a href='javascript:void(0)' ng-click='use_register_form()' 注册
               label.control-label for="email" Email
               input.input-large id='email' ng-model="email" ng-init="email='demo@19wu.com'" type="text"
               label.control-label for="password" 密码

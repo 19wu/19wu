@@ -1,6 +1,13 @@
 @OrdersCtrl = ['$scope', '$http', '$window', ($scope, $http, $window) ->
   $scope.disabled = $scope.event.started
+  $scope.user_form = 'register'
   $scope.errors = {}
+
+  $scope.use_login_form = ->
+    $scope.user_form = 'login'
+
+  $scope.use_register_form = ->
+    $scope.user_form = 'register'
 
   $scope.signup = ->
     request = $http.post("/users", user: { login: $scope.user_login, email: $scope.user_email, password: $scope.user_password })
@@ -25,7 +32,7 @@
   $scope.create = ->
     $scope.errors = {}
     return if $scope.disabled
-    return if $scope.validate_user_register() || $scope.validate_user_session()
+    return if $scope.validate_user_session()
     return if $scope.validate_quantity()
     return if $scope.validate_form()
     return if $scope.validate_invoice_info()
@@ -45,9 +52,6 @@
       return false if parseInt(ticket.quantity, 10) > 0
     $scope.errors['tickets'] = true
     true
-
-  $scope.validate_user_register = ->
-    $scope.errors['user_register'] = true unless ($scope.user? && $scope.user.id)
 
   $scope.validate_user_session = ->
     $scope.errors['user_session'] = true unless ($scope.user? && $scope.user.id)
