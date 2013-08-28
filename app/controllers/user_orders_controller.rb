@@ -1,6 +1,7 @@
 class UserOrdersController < ApplicationController
   include AlipayGeneratable
   before_filter :authenticate_user!
+  skip_before_filter :authenticate_user!, only: :alipay_notify
   skip_before_filter  :verify_authenticity_token, :alipay_notify
 
   def index
