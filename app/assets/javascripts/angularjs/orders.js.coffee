@@ -12,28 +12,22 @@
   $scope.signup = ->
     request = $http.post("/users", user: { login: $scope.user_login, email: $scope.user_email, password: $scope.user_password })
     request.success (data) ->
-      $('meta[name="csrf-token"]').attr('content', data['token'])
-      $http.defaults.headers.common['X-CSRF-Token'] = data['token']
-      $scope.user = data
-      $scope.create()
+      $scope.user_login_with data
     request.error (data) ->
       alert data['errors']
 
   $scope.login = ->
     request = $http.post("/users/sign_in", user: { email: $scope.email, password: $scope.password })
     request.success (data) ->
-      $('meta[name="csrf-token"]').attr('content', data['token'])
-      $http.defaults.headers.common['X-CSRF-Token'] = data['token']
-      $scope.user = data
-      $scope.create()
+      $scope.user_login_with data
     request.error (data) ->
       alert data['error'] # http://git.io/C-1_Iw
 
   $scope.create = ->
     $scope.errors = {}
     return if $scope.disabled
-    return if $scope.validate_user_session()
     return if $scope.validate_quantity()
+    return if $scope.validate_user_session()
     return if $scope.validate_form()
     return if $scope.validate_invoice_info()
 
@@ -98,4 +92,13 @@
       phone: $scope.phone
       profile_attributes:
         name: $scope.name
+
+  $scope.user_login_with = (data) ->
+    $scope.update_csrf_token(data['token'])
+    $scope.user = data
+    $scope.create()
+
+  $scope.update_csrf_token = (token) ->
+    $('meta[name="csrf-token"]').attr('content', token)
+    $http.defaults.headers.common['X-CSRF-Token'] = token
 ]
