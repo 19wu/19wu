@@ -2,10 +2,20 @@
   $scope.disabled = $scope.event.started
   $scope.errors = {}
 
+  $scope.login = ->
+    request = $http.post("/users/sign_in", user: { email: $scope.email, password: $scope.password })
+    request.success (data) ->
+      $('meta[name="csrf-token"]').attr('content', data['token'])
+      $http.defaults.headers.common['X-CSRF-Token'] = data['token']
+      $scope.user = data
+      $scope.create()
+    request.error (data) ->
+      alert data['errors']
+
   $scope.create = ->
     $scope.errors = {}
     return if $scope.disabled
-    return if $scope.validate_login()
+    return if $scope.validate_user_session()
     return if $scope.validate_quantity()
     return if $scope.validate_form()
     return if $scope.validate_invoice_info()
@@ -26,6 +36,9 @@
     $scope.errors['tickets'] = true
     true
 
+  $scope.validate_user_session = ->
+    $scope.errors['user_session'] = true unless ($scope.user? && $scope.user.id)
+
   $scope.validate_form = ->
     $scope.validate_user_info()
     $scope.validate_invoice_info()
@@ -43,12 +56,6 @@
     if $scope.require_invoice()
       unless $scope.invoice_title && $scope.province && $scope.city && $scope.district && $scope.address && $scope.shipping_name && $scope.shipping_phone
         $scope.errors['invoice_info'] = true
-
-  $scope.validate_login = ->
-    if !($scope.user? && $scope.user.id)
-      $window.location.href = "/users/sign_in"
-      return true
-    false
 
   $scope.postData = ->
     items = []

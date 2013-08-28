@@ -29,6 +29,15 @@ article.event ng-init=init_event(@event)
                   |{{ticket.price | money }}
                 td
                   select.span1 ng-model='ticket.quantity' = options_for_select(0..10)
+          .sign-up.clearfix
+            div ng-show="errors['user_session']"
+              div
+                p.text-warning 请先登录
+                label.control-label for="email" Email
+                input.input-large id='email' ng-model="email" ng-init="email='demo@19wu.com'" type="text"
+                label.control-label for="password" 密码
+                input.input-large id='password' ng-model="password" ng-init="password='666666'" type="password"
+              a.btn.btn-info.span1.pull-right ng-click='login()' 登录
           .payment.clearfix
             p.text-warning ng-show="errors['tickets']" 请先选择门票数量。
             div ng-show="errors['user_info']"
@@ -54,7 +63,7 @@ article.event ng-init=init_event(@event)
               .shipping_info
                 input.input-medium.margin-right name='shipping_name' ng-model="shipping_name" type="text" placeholder='收货人姓名'
                 input.input-medium name='shipping_phone' ng-model="shipping_phone" type="text" placeholder='收货人联系电话'
-            a.btn.btn-info.span1.pull-right ng-hide='status' ng-disabled='disabled' ng-click='create()' ng-init={labels: t('views.order.labels')}.to_ng_init
+            a.btn.btn-info.span1.pull-right ng-hide="status || errors['user_session']" ng-disabled='disabled' ng-click='create()' ng-init={labels: t('views.order.labels')}.to_ng_init
               |{{labels[disabled]}}
             - if current_user && current_user.ordered?(@event)
               = link_to t('labels.my_orders'), user_orders_path(event_id: @event.id), class: 'btn pull-right', 'ng-hide' => 'status'

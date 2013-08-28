@@ -66,7 +66,7 @@ NineteenWu::Application.routes.draw do
       get 'account' => 'registrations#edit', :as => 'account'
     end
   end
-  devise_for :users, :controllers => { :registrations => "registrations", :invitations => 'invitations' }
+  devise_for :users, :controllers => { :sessions => "sessions", :registrations => "registrations", :invitations => 'invitations' }
 
   namespace :api, defaults: {format: 'json'} do
     get '/events/:id/participants', to: "events#participants"
