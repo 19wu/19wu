@@ -11,6 +11,6 @@ p 订单包含以下门票：
 p 订单总额 ：#{@order.price} 元
 
 - if @order.require_invoice
-  div 订单门票可以提交发票。
+  div 订单门票可以提供发票。
   div 发票抬头：#{@order.shipping_address.invoice_title}
   div 收货人信息：#{@order.shipping_address.info}
