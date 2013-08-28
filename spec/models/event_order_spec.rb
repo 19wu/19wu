@@ -70,6 +70,9 @@ describe EventOrder do
       let(:order) { create(:order_with_items, shipping_address_attributes: attributes_for(:shipping_address), event: event) }
       its(:shipping_address) { should_not be_nil }
     end
+    it 'should let user to follow event' do
+      expect{order}.to change{event.group.followers}
+    end
     context 'free' do
       let(:order) { create(:order_with_items, tickets_price: 0, event: event) }
       its(:pending?) { should be_false }
