@@ -15,10 +15,10 @@ p 订单总额 ：#{@order.price} 元
   div 发票抬头：#{@order.shipping_address.invoice_title}
   div 收货人信息：#{@order.shipping_address.info}
 
-- if @pay_link
+- unless @order.free?
   p
     |如果您尚未付款，请您尽快付款。您可以点击
-    = link_to '这里', @pay_link
-    |前往支付宝支付
+    = link_to '这里', user_orders_path(event_id: @event.id)
+    |查看订单，重新支付
 
 p 谢谢。
