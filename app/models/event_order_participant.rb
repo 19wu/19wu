@@ -5,7 +5,7 @@ class EventOrderParticipant < ActiveRecord::Base
 
   validates :checkin_code, uniqueness: { scope: :event_id }
   validate :cannot_checkin_again, :order_is_valid, on: :update
-  after_create :send_sms
+  after_create :send_sms, :send_email, unless: 'self.order.event.finished?'
 
   before_create do
     self.event = self.order.event
@@ -35,8 +35,12 @@ class EventOrderParticipant < ActiveRecord::Base
     self.checkin_at
   end
 
+  def send_email
+    OrderMailer.delay.notify_user_checkin_code(self)
+  end
+
   def send_sms
-    ChinaSMS.delay.to user.phone, I18n.t('sms.event.order.checkin_code', event_title: event.title, checkin_code: self.checkin_code, event_start_time: I18n.localize(event.start_time, format: :short)) unless self.order.event.finished?
+    ChinaSMS.delay.to user.phone, I18n.t('sms.event.order.checkin_code', event_title: event.title, checkin_code: self.checkin_code, event_start_time: I18n.localize(event.start_time, format: :short))
   end
 
   class << self
