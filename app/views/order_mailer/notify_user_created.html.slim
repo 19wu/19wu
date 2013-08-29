@@ -18,7 +18,7 @@ p 订单总额 ：#{@order.price} 元
 - unless @order.free?
   p
     |如果您尚未付款，请您尽快付款。您可以点击
-    = link_to '这里', user_orders_path(event_id: @event.id)
+    = link_to '这里', user_orders_url(event_id: @event.id)
     |查看订单，重新支付
 
 p 谢谢。
