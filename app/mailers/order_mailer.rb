@@ -6,21 +6,21 @@ class OrderMailer < ActionMailer::Base
     @order = order
     @event = order.event
     @user = order.user
-    mail(to: @user.email_with_login, subject: I18n.t('email.order.user.created.subject')).deliver
+    mail(to: @user.email_with_login, subject: I18n.t('email.order.user.created.subject'))
   end
 
   def notify_organizer_created(order)
     @order = order
     @event = order.event
     @user = order.user
-    mail(to: @event.user.email_with_login, subject: I18n.t('email.order.organizer.created.subject', title: @event.title, number: @order.number, login: @user.login )).deliver
+    mail(to: @event.user.email_with_login, subject: I18n.t('email.order.organizer.created.subject', title: @event.title, number: @order.number, login: @user.login ))
   end
 
   def notify_user_paid(order)
     @order = order
     @event = order.event
     @user = order.user
-    mail(to: @user.email_with_login, subject: I18n.t('email.order.user.paid.subject', number: order.number)).deliver
+    mail(to: @user.email_with_login, subject: I18n.t('email.order.user.paid.subject', number: order.number))
   end
 
   def notify_user_checkin_code(participant)
@@ -28,13 +28,13 @@ class OrderMailer < ActionMailer::Base
     @order = participant.order
     @event = @order.event
     @user = @order.user
-    mail(to: @user.email_with_login, subject: I18n.t('email.order.user.checkin_code.subject', number: @order.number, code: participant.checkin_code)).deliver
+    mail(to: @user.email_with_login, subject: I18n.t('email.order.user.checkin_code.subject', number: @order.number, code: participant.checkin_code))
   end
 
   def notify_organizer_paid(order)
     @order = order
     @event = order.event
     @user = order.user
-    mail(to: @event.user.email_with_login, subject: I18n.t('email.order.organizer.paid.subject', title: @event.title, number: @order.number, login: @user.login )).deliver
+    mail(to: @event.user.email_with_login, subject: I18n.t('email.order.organizer.paid.subject', title: @event.title, number: @order.number, login: @user.login ))
   end
 end
