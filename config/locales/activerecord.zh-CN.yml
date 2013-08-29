@@ -20,7 +20,7 @@ zh-CN:
       group_topic: "贴子"
     attributes:
       user:
-        login: "登录名"
+        login: "用户名"
         email: "Email 地址"
         phone: "手机号码"
         phone_valid_code: "校验码"
