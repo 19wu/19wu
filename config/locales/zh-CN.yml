@@ -187,6 +187,7 @@ zh-CN:
       status: '状态'
       trade_no: '订单编号'
       created_at: '下单时间'
+      checkin_code: '签到码'
       operations: '操作'
       pay: '支付'
       cancel: '取消'
