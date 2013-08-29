@@ -222,6 +222,8 @@ zh-CN:
           subject: "您在19屋的订单下单成功"
         paid:
           subject: "订单 %{number} 完成支付"
+        checkin_code:
+          subject: "订单 %{number} 活动签到码 %{code}"
       organizer:
         created:
           subject: "%{title} 订单 %{number}，%{login} 下单"
