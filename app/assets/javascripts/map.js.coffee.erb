@@ -1,4 +1,4 @@
-$(document).ready ->
+window.init_map = ->
   if $("#mapPreview").length or $("#baiduMap").length
     if $("#mapPreview").length
       map = new BMap.Map("mapPreview")
@@ -38,3 +38,9 @@ $(document).ready ->
       $(this).on 'click', ->
         mapModal.modal('show')
         mapModal.css('margin-left', -(mapModal.outerWidth() / 2))
+
+$ ->
+  if $('#baiduMap, #mapPreview')[0]
+    script = document.createElement("script")
+    script.src = 'http://api.map.baidu.com/api?v=1.5&ak=<%=Settings.baidumap_ak%>&callback=init_map'
+    document.body.appendChild(script)
