@@ -10,10 +10,20 @@ describe UserOrdersController do
     let(:order) { create(:order_with_items, event: event, user: user) }
     let(:attrs) { { trade_no: trade_no, out_trade_no: order.number, trade_status: trade_status, total_fee: order.price } }
     describe "GET alipay_done" do
+      let(:trade_status) { 'TRADE_SUCCESS' }
       context 'trade is success' do
-        let(:trade_status) { 'TRADE_SUCCESS' }
         it "should be success" do
           get :alipay_done, attrs.merge(id: order.id, sign_type: 'md5', sign: Alipay::Sign.generate(attrs))
+          expect(response).to be_success
+          expect(order.reload.paid?).to be_true
+        end
+      end
+      context 'order has paid by alipay notify page request' do
+        before { order.pay!(trade_no) }
+        it "should be success" do
+          expect do
+            get :alipay_done, attrs.merge(id: order.id, sign_type: 'md5', sign: Alipay::Sign.generate(attrs))
+          end.not_to raise_error #StateMachine::InvalidTransition
           expect(response).to be_success
           expect(order.reload.paid?).to be_true
         end

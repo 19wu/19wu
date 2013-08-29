@@ -37,7 +37,7 @@ class UserOrdersController < ApplicationController
     callback_params = params.except(*request.path_parameters.keys)
     if callback_params.any? && Alipay::Sign.verify?(callback_params) && params[:trade_status] == 'TRADE_SUCCESS'
       @order = current_user.orders.find params[:id]
-      @order.pay!(params[:trade_no])
+      @order.pay!(params[:trade_no]) if @order.pending?
     end
   end
 
