@@ -187,6 +187,7 @@ zh-CN:
       status: '状态'
       trade_no: '订单编号'
       created_at: '下单时间'
+      checkin_code: '签到码'
       operations: '操作'
       pay: '支付'
       cancel: '取消'
@@ -222,6 +223,8 @@ zh-CN:
           subject: "您在19屋的订单下单成功"
         paid:
           subject: "订单 %{number} 完成支付"
+        checkin_code:
+          subject: "订单 %{number} 活动签到码 %{code}"
       organizer:
         created:
           subject: "%{title} 订单 %{number}，%{login} 下单"

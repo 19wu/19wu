@@ -5,6 +5,7 @@ describe OrderMailer do
   let(:user) { create(:user, :confirmed) }
   let(:event) { create(:event, user: user) }
   let(:order) { create(:order_with_items, require_invoice: true, event: event) }
+  let(:participant) { order.create_participant }
 
   describe "notify" do
     describe "user" do
@@ -25,6 +26,13 @@ describe OrderMailer do
         its(:from) { should eql [Settings.email.from] }
         its(:to) { should eql [order.user.email] }
         its('body.decoded') { should match '我们已收到您支付的款项' }
+      end
+      describe "order checkin code" do
+        subject { OrderMailer.notify_user_checkin_code(participant) }
+        its(:subject) { should eql "订单 #{order.number} 活动签到码 #{participant.checkin_code}" }
+        its(:from) { should eql [Settings.email.from] }
+        its(:to) { should eql [order.user.email] }
+        its('body.decoded') { should match "#{event.title} 签到码：#{participant.checkin_code}。" }
       end
     end
 

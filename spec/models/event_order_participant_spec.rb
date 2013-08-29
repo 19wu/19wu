@@ -14,11 +14,31 @@ describe EventOrderParticipant do
       its(:checkin_code) { should_not be_blank }
     end
     describe 'notification' do
-      describe 'by sms' do
-        before do
-          event.update_attribute :start_time, Time.zone.local(2013, 8, 18, 15, 30, 20)
-          EventOrderParticipant.stub(:random_code).and_return('123456')
+      before do
+        event.update_attribute :start_time, Time.zone.local(2013, 8, 18, 15, 30, 20)
+        EventOrderParticipant.stub(:random_code).and_return('123456')
+      end
+      describe 'by email' do
+        let(:mail) { double('mail') }
+        context 'event is not finished' do
+          it 'should be send' do
+            mail.should_receive(:deliver)
+            OrderMailer.should_receive(:notify_user_checkin_code).and_return(mail)
+            subject
+          end
         end
+        context 'event is finished' do
+          before do
+            Timecop.travel(2013, 8, 28, 15, 30, 20)
+            event.update_attribute :end_time, Time.zone.local(2013, 8, 18, 15, 30, 20)
+          end
+          it 'should not be send' do
+            OrderMailer.should_not_receive(:notify_user_checkin_code)
+            subject
+          end
+        end
+      end
+      describe 'by sms' do
         context 'event is not finished' do
           it 'should be send' do
             ChinaSMS.should_receive(:to).with(order.user.phone, I18n.t('sms.event.order.checkin_code', event_title: event.title,  checkin_code: '123456', event_start_time: '8月18日 15:30'))

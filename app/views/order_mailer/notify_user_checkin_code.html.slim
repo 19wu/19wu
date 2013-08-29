@@ -1,0 +1,7 @@
+p #{@user.login}, 您好：
+
+p #{@event.title} 签到码：#{@participant.checkin_code}。
+
+p 请您于#{I18n.localize(@event.start_time, format: :short)}前到达现场并出示签到码。
+
+p 谢谢。
