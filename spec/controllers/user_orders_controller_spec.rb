@@ -22,11 +22,21 @@ describe UserOrdersController do
 
     describe "POST alipay_notify" do
       let(:attrs) { { trade_no: trade_no, out_trade_no: order.number, notify_id: '123', trade_status: trade_status, total_fee: order.price } }
+      let(:trade_status) { 'TRADE_SUCCESS' }
       before { Alipay::Notify.stub(:verify?).and_return(true) }
       context 'trade is success' do
-        let(:trade_status) { 'TRADE_SUCCESS' }
         it "should be success" do
           post :alipay_notify, attrs.merge(id: order.id, sign_type: 'md5', sign: Alipay::Sign.generate(attrs))
+          expect(response).to be_success
+          expect(order.reload.paid?).to be_true
+        end
+      end
+      context 'order has paid by alipay done page request' do
+        before { order.pay!(trade_no) }
+        it "should be success" do
+          expect do
+            post :alipay_notify, attrs.merge(id: order.id, sign_type: 'md5', sign: Alipay::Sign.generate(attrs))
+          end.not_to raise_error #StateMachine::InvalidTransition
           expect(response).to be_success
           expect(order.reload.paid?).to be_true
         end
