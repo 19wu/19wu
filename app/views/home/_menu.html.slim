@@ -9,4 +9,4 @@ ul.home-nav
   li class=active?(current, :ordered_events)
     = link_to ordered_events_path do
       = t('home.menu.ordered_events')
-      span.label.amount = current_user.ordered_events.size
+      span.label.amount = current_user.ordered_events.uniq.size

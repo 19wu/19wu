@@ -9,7 +9,7 @@ class EventsController < ApplicationController
   end
 
   def ordered
-    @events = current_user.ordered_events.latest
+    @events = current_user.ordered_events.latest.uniq
   end
 
   def show
