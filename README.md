@@ -1,5 +1,8 @@
 ## 19wu
-[![Build Status](https://travis-ci.org/19wu/19wu.png?branch=master)](https://travis-ci.org/saberma/19wu) [![Code Climate](https://codeclimate.com/github/19wu/19wu.png)](https://codeclimate.com/github/19wu/19wu) [![Dependency Status](https://gemnasium.com/saberma/19wu.png)](https://gemnasium.com/saberma/19wu) [![Coverage Status](https://coveralls.io/repos/saberma/19wu/badge.png?branch=master)](https://coveralls.io/r/saberma/19wu)
+[![Build Status](https://travis-ci.org/19wu/19wu.png?branch=master)](https://travis-ci.org/saberma/19wu)
+[![Code Climate](https://codeclimate.com/github/19wu/19wu.png)](https://codeclimate.com/github/19wu/19wu)
+[![Dependency Status](https://gemnasium.com/19wu/19wu.png)](https://gemnasium.com/19wu/19wu)
+[![Coverage Status](https://coveralls.io/repos/saberma/19wu/badge.png?branch=master)](https://coveralls.io/r/saberma/19wu)
 
 这里是 [19wu.com](http://19wu.com) 网站源代码.
 
