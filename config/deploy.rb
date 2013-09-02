@@ -23,7 +23,7 @@ role :db,  ENV['CAP_DB_HOST'], primary: true            # This is where Rails mi
 
 set :delayed_job_command, 'bin/delayed_job'
 
-set :repository,  "git://github.com/saberma/#{application}.git"
+set :repository,  "git://github.com/19wu/#{application}.git"
 set :scm, :git
 set :deploy_to, "/u/apps/#{application}" # default
 set :deploy_via, :remote_cache # 不要每次都获取全新的repository
