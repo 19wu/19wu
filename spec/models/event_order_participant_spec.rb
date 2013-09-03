@@ -32,6 +32,7 @@ describe EventOrderParticipant do
             Timecop.travel(2013, 8, 28, 15, 30, 20)
             event.update_attribute :end_time, Time.zone.local(2013, 8, 18, 15, 30, 20)
           end
+          after { Timecop.return }
           it 'should not be send' do
             OrderMailer.should_not_receive(:notify_user_checkin_code)
             subject
@@ -50,6 +51,7 @@ describe EventOrderParticipant do
             Timecop.travel(2013, 8, 28, 15, 30, 20)
             event.update_attribute :end_time, Time.zone.local(2013, 8, 18, 15, 30, 20)
           end
+          after { Timecop.return }
           it 'should not be send' do
             ChinaSMS.should_not_receive(:to)
             subject
