@@ -35,7 +35,9 @@ feature 'group collaborators', js: true do
         find('input').set partner.login
         find('.typeahead.dropdown-menu li').click
         click_on I18n.t('helpers.submit.add')
-        page.should have_content(partner.login)
+        within '.list' do
+          page.should have_content(partner.login)
+        end
       end
     end
   end
