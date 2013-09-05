@@ -40,7 +40,9 @@ window.init_map = ->
         mapModal.css('margin-left', -(mapModal.outerWidth() / 2))
 
 $ ->
-  if $('#baiduMap, #mapPreview')[0]
-    script = document.createElement("script")
-    script.src = 'http://api.map.baidu.com/api?v=1.5&ak=<%=Settings.baidumap_ak%>&callback=init_map'
-    document.body.appendChild(script)
+  <% unless Rails.env.test? %> # do not load baidu map in test environment
+    if $('#baiduMap, #mapPreview')[0]
+      script = document.createElement("script")
+      script.src = 'http://api.map.baidu.com/api?v=1.5&ak=<%=Settings.baidumap_ak%>&callback=init_map'
+      document.body.appendChild(script)
+  <% end %>
