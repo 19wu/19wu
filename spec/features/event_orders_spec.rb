@@ -12,6 +12,8 @@ feature 'event orders', js: true do
     Timecop.travel(Date.parse('2013-08-25'))
   end
 
+  after { Timecop.return }
+
   context 'login user' do
     before { sign_in user }
     context 'with user name and phone' do
