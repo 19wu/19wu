@@ -1,7 +1,7 @@
 # http://about.travis-ci.org/docs/user/build-configuration/
 language: ruby
 
-bundler_args: '--without production development -j8'
+bundler_args: '--without production development -j16'
 
 script: bundle exec rake travis:script
 
