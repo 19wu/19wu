@@ -3,16 +3,13 @@ class EventOrdersController < ApplicationController
   include AlipayGeneratable
   include HasApiResponse
   before_filter :authenticate_user!, only: [:create]
-  before_filter :authorize_event!, only: [:index]
+  before_filter :authorize_event!, only: [:stats, :index]
 
-  set_tab :order, only: [:index]
+  set_tab :order, only: [:stats, :index]
 
-  set_tab :all, :sidebar, only: [:index]
-  set_tab :pending, :sidebar, only: [:index]
-  set_tab :paid, :sidebar, only: [:index]
-  set_tab :canceled, :sidebar, only: [:index]
-  set_tab :refund_pending, :sidebar, only: [:index]
-  set_tab :refunded, :sidebar, only: [:index]
+  %i(all pending paid canceled refund_pending refunded).each do |item|
+    set_tab item, :sidebar, only: [:stats, :index]
+  end
 
   def create
     event = Event.find params[:event_id]
@@ -30,6 +27,10 @@ class EventOrdersController < ApplicationController
     if params[:status] && EventOrder.state_machines[:status].states.map(&:name).include?(params[:status].to_sym)
       @orders = @orders.where status: params[:status]
     end
+  end
+
+  def stats
+    @orders = @event.orders.includes(items: :ticket)
   end
 
   private

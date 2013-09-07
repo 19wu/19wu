@@ -41,7 +41,7 @@ class EventOrder < ActiveRecord::Base
   state_machine :status, :initial => :pending do
     store_audit_trail
 
-    state :pending
+    state :pending, :canceled
     state :paid, :refund_pending, :refunded do
       validates :trade_no, :presence => true
     end

@@ -3,6 +3,12 @@
 .row
   = render 'event_orders/submenu'
   .span8
+    dl.dl-horizontal
+      dt 总金额
+      dd = @orders.map(&:price).reduce(&:+)
+      dt 总票数
+      dd = @orders.map(&:quantity).reduce(&:+)
+
     table.table.table-striped.table-bordered
       thead
         tr
