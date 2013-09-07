@@ -1,0 +1,9 @@
+.span3
+  .submenu
+    = tabs_tag namespace: :sidebar, builder: EventOrdersSubmenu do |tab|
+      = tab.all t('menus.submenu.orders.all'), event_orders_path(@event), current_path
+      = tab.pending t('menus.submenu.orders.pending'), filter_event_orders_path(@event, :pending), current_path
+      = tab.paid t('menus.submenu.orders.paid'), filter_event_orders_path(@event, :paid), current_path
+      = tab.canceled t('menus.submenu.orders.canceled'), filter_event_orders_path(@event, :canceled), current_path
+      = tab.refund_pending t('menus.submenu.orders.refund_pending'), filter_event_orders_path(@event, :refund_pending), current_path
+      = tab.refunded t('menus.submenu.orders.refunded'), filter_event_orders_path(@event, :refunded), current_path

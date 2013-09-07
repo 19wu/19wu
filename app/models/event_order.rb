@@ -42,7 +42,7 @@ class EventOrder < ActiveRecord::Base
     store_audit_trail
 
     state :pending
-    state :paid, :request_refund, :complete_refund do
+    state :paid, :refund_pending, :refunded do
       validates :trade_no, :presence => true
     end
 
@@ -59,7 +59,7 @@ class EventOrder < ActiveRecord::Base
     end
 
     event :complete_refund do
-      transition :request_pending => :refunded
+      transition :refund_pending => :refunded
     end
   end
 

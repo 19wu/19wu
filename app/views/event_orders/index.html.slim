@@ -1,0 +1,22 @@
+= render 'events/header'
+
+.row
+  = render 'event_orders/submenu'
+  .span8
+    table.table.table-striped.table-bordered
+      thead
+        tr
+          th = t('views.my_orders.user')
+          th = t('views.my_orders.items')
+          th = t('views.my_orders.price')
+          th = t('views.my_orders.trade_no')
+          th = t('views.my_orders.status')
+      tbody
+        - @orders.each do |order|
+          tr
+            td = link_to order.user.login, order.user, target: '_blank'
+            td
+              ul = render partial: 'user_orders/order_item', collection: order.items, as: 'item'
+            td = order.price
+            td = order.number
+            td = order.status_name
