@@ -2,12 +2,15 @@
 
 .row
   = render 'event_orders/submenu'
-  .span8
-    dl.dl-horizontal
-      dt 总金额
-      dd = stats_tickets_price(@orders)
-      dt 总票数
-      dd = stats_tickets_quantity (@orders)
+  .span9
+    .well
+      ul.orders-stats
+        li.orders-stat
+          h2 #{stats_tickets_price(@orders)} 元
+          p.muted 总金额
+        li.orders-stat.last
+          h2 #{stats_tickets_quantity (@orders)} 张
+          p.muted 总票数
 
     table.table.table-striped.table-bordered
       thead
