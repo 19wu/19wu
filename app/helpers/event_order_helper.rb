@@ -4,6 +4,6 @@ module EventOrderHelper
   end
 
   def stats_tickets_price(orders)
-    orders.map(&:price).reduce(&:+) || 0
+    (orders.map(&:price_in_cents).reduce(&:+) || 0) / 100.0
   end
 end
