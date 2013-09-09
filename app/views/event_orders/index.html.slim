@@ -5,9 +5,9 @@
   .span8
     dl.dl-horizontal
       dt 总金额
-      dd = @orders.map(&:price).reduce(&:+)
+      dd = stats_tickets_price(@orders)
       dt 总票数
-      dd = @orders.map(&:quantity).reduce(&:+)
+      dd = stats_tickets_quantity (@orders)
 
     table.table.table-striped.table-bordered
       thead

@@ -24,7 +24,7 @@ class EventOrdersController < ApplicationController
 
   def index
     @orders = @event.orders.includes(items: :ticket)
-    if params[:status] && EventOrder.state_machines[:status].states.map(&:name).include?(params[:status].to_sym)
+    if params[:status] && EventOrder.statuses.include?(params[:status].to_sym)
       @orders = @orders.where status: params[:status]
     end
   end

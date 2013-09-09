@@ -94,6 +94,10 @@ class EventOrder < ActiveRecord::Base
         order.save!
       end
     end
+
+    def statuses
+      state_machines[:status].states.map(&:name)
+    end
   end
 
   private
