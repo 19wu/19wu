@@ -75,4 +75,8 @@ module ApplicationHelper
   def baidu_map_enabled?
     ! Settings.baidumap_ak.empty?
   end
+
+  def current_path
+    request.path
+  end
 end

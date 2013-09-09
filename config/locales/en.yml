@@ -98,6 +98,19 @@ en:
       cancel: '确定要取消订单么？'
       refund: '确定要退款么？该操作无法撤销！'
 
+  menus:
+    submenu:
+      participants:
+        checkin: 签到
+        index: 列表
+      orders:
+        pending: '未支付'
+        paid: '已支付'
+        canceled: '已取消'
+        refund_pending: '等待处理退款'
+        refunded: '退款成功'
+        all: '全部'
+
   views:
     edit: "Edit"
     change: "Change"

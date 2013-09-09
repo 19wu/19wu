@@ -82,17 +82,18 @@ describe EventOrder do
 
   describe '#pay' do
     before { subject.pay(trade_no) }
-    context 'pending' do
+    context 'paid' do
       its(:pending?) { should be_false }
       its(:paid?) { should be_true }
       its(:canceled?) { should be_false }
       its(:trade_no) { should eql trade_no }
     end
-    context 'request_refund' do # only pending order can be pay
-      before { subject.update_attribute :status, 'request_refund' }
+    context 'refund' do
+      before { subject.request_refund! }
       its(:paid?) { should be_false }
-      its(:request_refund?) { should be_true }
+      its(:refund_pending?) { should be_true }
     end
+
     its(:participant) { should_not be_nil }
   end
 
@@ -104,6 +105,7 @@ describe EventOrder do
 
   describe "can not request refund when event start draws near" do
     before do
+      event.update_attributes! start_time: 1.days.since, end_time: 2.days.since
       order.pay!(trade_no)
     end
     subject { order }

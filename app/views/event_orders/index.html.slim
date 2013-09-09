@@ -1,0 +1,31 @@
+= render 'events/header'
+
+.row
+  = render 'event_orders/submenu'
+  .span9
+    .well
+      ul.orders-stats
+        li.orders-stat
+          h2 #{stats_tickets_price(@orders)} 元
+          p.muted 总金额
+        li.orders-stat.last
+          h2 #{stats_tickets_quantity (@orders)} 张
+          p.muted 总票数
+
+    table.table.table-striped.table-bordered
+      thead
+        tr
+          th = t('views.my_orders.user')
+          th = t('views.my_orders.items')
+          th = t('views.my_orders.price')
+          th = t('views.my_orders.trade_no')
+          th = t('views.my_orders.status')
+      tbody
+        - @orders.each do |order|
+          tr
+            td = link_to order.user.login, order.user, target: '_blank'
+            td
+              ul = render partial: 'user_orders/order_item', collection: order.items, as: 'item'
+            td = order.price
+            td = order.number
+            td = order.status_name

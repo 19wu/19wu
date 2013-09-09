@@ -132,11 +132,20 @@ zh-CN:
       participants:
         checkin: 签到
         index: 列表
+      orders:
+        pending: '未支付'
+        paid: '已支付'
+        canceled: '已取消'
+        refund_pending: '等待处理退款'
+        refunded: '退款成功'
+        all: '全部'
+
   views:
     edit: "修改"
     destroy: "删除"
     ticket: "门票"
     change: "变更"
+    sell: '销售'
     summary: "总结"
     previous_summary: "往期活动总结"
     check_in: "签到"
@@ -182,6 +191,7 @@ zh-CN:
       event_time: "活动时间"
     my_orders:
       event: '活动'
+      user: '用户'
       items: '票种'
       price: '价格（￥）'
       status: '状态'

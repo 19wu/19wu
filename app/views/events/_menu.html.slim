@@ -8,6 +8,7 @@
       = tabs_tag builder: EventMenu do |tab|
         = tab.edit t('views.edit'), edit_event_path(@event)
         = tab.ticket t('views.ticket'), event_tickets_path(@event)
+        = tab.order t('views.sell'), event_orders_path(@event)
         = tab.export t('views.export.export_link'), event_export_index_path(@event)
         = tab.change t('views.change'), new_event_change_path(@event)
         = tab.check_in t('views.check_in'), checkin_event_participants_path(@event)

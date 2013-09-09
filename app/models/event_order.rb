@@ -41,8 +41,8 @@ class EventOrder < ActiveRecord::Base
   state_machine :status, :initial => :pending do
     store_audit_trail
 
-    state :pending
-    state :paid, :request_refund, :complete_refund do
+    state :pending, :canceled
+    state :paid, :refund_pending, :refunded do
       validates :trade_no, :presence => true
     end
 
@@ -59,7 +59,7 @@ class EventOrder < ActiveRecord::Base
     end
 
     event :complete_refund do
-      transition :request_pending => :refunded
+      transition :refund_pending => :refunded
     end
   end
 
@@ -93,6 +93,10 @@ class EventOrder < ActiveRecord::Base
       build_order(user, event, params).tap do |order|
         order.save!
       end
+    end
+
+    def statuses
+      state_machines[:status].states.map(&:name)
     end
   end
 

@@ -1,0 +1,14 @@
+// event show
+.orders-stats {
+  @extend .unstyled, .inline;
+  text-align: center;
+  margin-bottom: 0;
+
+  .orders-stat {
+    padding: 0 60px;
+    border-right: 1px solid $hrBorder;
+    &.last {
+      border-right: 0;
+    }
+  }
+}

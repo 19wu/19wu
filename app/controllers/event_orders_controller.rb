@@ -2,7 +2,14 @@
 class EventOrdersController < ApplicationController
   include AlipayGeneratable
   include HasApiResponse
-  before_filter :authenticate_user!, only: [:create, :alipay_done]
+  before_filter :authenticate_user!, only: [:create]
+  before_filter :authorize_event!, only: [:stats, :index]
+
+  set_tab :order, only: [:stats, :index]
+
+  %i(all pending paid canceled refund_pending refunded).each do |item|
+    set_tab item, :sidebar, only: [:stats, :index]
+  end
 
   def create
     event = Event.find params[:event_id]
@@ -13,6 +20,17 @@ class EventOrdersController < ApplicationController
     respond_to do |format|
       format.json
     end
+  end
+
+  def index
+    @orders = @event.orders.includes(items: :ticket)
+    if params[:status] && EventOrder.statuses.include?(params[:status].to_sym)
+      @orders = @orders.where status: params[:status]
+    end
+  end
+
+  def stats
+    @orders = @event.orders.includes(items: :ticket)
   end
 
   private

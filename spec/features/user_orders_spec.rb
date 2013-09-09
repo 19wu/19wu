@@ -43,8 +43,6 @@ feature 'user orders' do
     before { order.pay!('2013080841700373') }
 
     scenario 'I can refund at least 7 days before event starts', js: true do
-      event.update! start_time: 8.days.since, end_time: 9.days.since
-
       visit user_orders_path
       expect(page).to have_content(I18n.t('views.my_orders.request_refund'))
 
@@ -54,6 +52,8 @@ feature 'user orders' do
     end
 
     scenario 'I can not refund order when event draws near' do
+      event.update! start_time: 1.days.since, end_time: 2.days.since
+
       visit user_orders_path
 
       expect(page).to have_no_content(I18n.t('views.my_orders.request_refund'))
