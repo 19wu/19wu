@@ -69,6 +69,10 @@ class EventOrder < ActiveRecord::Base
     super
   end
 
+  def pay_with_bank_transfer?
+    self.trade_no.blank? # for now, only bank transfer was supported.
+  end
+
   def require_invoice
     items.map(&:require_invoice).any?
   end

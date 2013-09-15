@@ -97,6 +97,11 @@ describe EventOrder do
     its(:participant) { should_not be_nil }
   end
 
+  describe '#pay_with_bank_transfer?' do
+    before { subject.pay }
+    its(:pay_with_bank_transfer?) { should be_true }
+  end
+
   describe 'cancel order' do
     before { order.cancel }
     subject { event }

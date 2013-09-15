@@ -2,5 +2,5 @@ p #{@event.title} 的管理员, 您好：
 
 p #{@user.login} 刚刚成功支付款项：#{@order.price} 元。
 
-- if @order.trade_no.blank?
+- if @order.pay_with_bank_transfer?
   p 支付方式：银行汇款。
