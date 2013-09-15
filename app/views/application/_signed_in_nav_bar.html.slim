@@ -1,4 +1,6 @@
 ul.nav
   - if can? :invite, User
     li = link_to t('labels.invitations'), invitations_path
+  - if can? :admin, EventOrder
+    li = link_to t('labels.admin_orders'), admin_orders_path
   li = link_to t('labels.my_orders'), user_orders_path

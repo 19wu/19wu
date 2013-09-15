@@ -1,0 +1,23 @@
+h2 = t('labels.admin_orders')
+= form_for admin_orders_path, method: 'get', html: { class: 'form-search' } do
+  = text_field_tag :number, params[:number], placeholder: t('views.my_orders.trade_no'),  class: ['input-medium', 'margin-right']
+  = submit_tag t('buttons.search'),  class: 'btn'
+table.table.table-striped.table-bordered
+  thead
+    tr
+      th = t('views.my_orders.event')
+      th = t('views.my_orders.items')
+      th = t('views.my_orders.price')
+      th = t('views.my_orders.trade_no')
+      th = t('views.my_orders.status')
+      th = t('views.my_orders.operations')
+  tbody
+    - @orders.each do |order|
+      tr
+        td = link_to order.event.title, order.event, target: '_blank'
+        td
+          ul = render partial: 'user_orders/order_item', collection: order.items, as: 'item'
+        td = order.price
+        td = order.number
+        td = order.status_name
+        td = link_to t('views.my_orders.pay'), admin_orders_pay_path(order), method: :patch, data: { confirm: t('confirmation.orders.pay') }
