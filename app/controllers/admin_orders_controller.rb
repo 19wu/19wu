@@ -10,11 +10,11 @@ class AdminOrdersController < ApplicationController
   def pay
     @order = EventOrder.find params[:id]
     @order.pay! if @order.pending?
-    redirect_to admin_orders_path
+    redirect_to admin_orders_path(number: @order.number)
   end
 
   private
   def authorize_order!
-    authorize! :admin, EventOrder
+    authorize! :confirm_pay, EventOrder
   end
 end

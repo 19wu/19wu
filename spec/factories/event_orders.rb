@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :event_order do
-    event_id 1
+    event
     user
     price 1.5
 

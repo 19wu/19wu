@@ -20,4 +20,4 @@ table.table.table-striped.table-bordered
         td = order.price
         td = order.number
         td = order.status_name
-        td = link_to t('views.my_orders.pay'), admin_orders_pay_path(order), method: :patch, data: { confirm: t('confirmation.orders.pay') }
+        td = link_to(t('views.my_orders.pay'), admin_orders_pay_path(order), method: :patch, data: { confirm: t('confirmation.orders.pay') }) if order.pending?
