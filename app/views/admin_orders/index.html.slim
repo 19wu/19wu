@@ -17,6 +17,9 @@ table.table.table-striped.table-bordered
         td = link_to order.event.title, order.event, target: '_blank'
         td
           ul = render partial: 'user_orders/order_item', collection: order.items, as: 'item'
+          - if order.shipping_address
+            div = order.shipping_address.invoice_title
+            div = order.shipping_address.info
         td = order.price
         td = order.number
         td = order.status_name
