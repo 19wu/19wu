@@ -18,7 +18,7 @@ table.table.table-striped.table-bordered
         td
           ul = render partial: 'user_orders/order_item', collection: order.items, as: 'item'
           - if order.shipping_address
-            div = order.shipping_address.invoice_title
+            .label.label-info = order.shipping_address.invoice_title
             div = order.shipping_address.info
         td = order.price
         td = order.number
