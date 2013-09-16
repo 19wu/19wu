@@ -23,10 +23,10 @@ class EventOrdersController < ApplicationController
   end
 
   def index
-    @orders = @event.orders.includes(items: :ticket)
-    if params[:status] && EventOrder.statuses.include?(params[:status].to_sym)
-      @orders = @orders.where status: params[:status]
-    end
+    params[:q] ||= {}
+    params[:q][:status_eq] = params[:status]
+    @search = @event.orders.search params[:q]
+    @orders = @search.result
   end
 
   def stats
