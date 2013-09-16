@@ -95,6 +95,8 @@ zh-CN:
       get_code_until: 重新获取短信校验码（等待 {{timeleft}} 秒）
     event_ticket:
       new: 新增
+    orders:
+      submit_refund: 退款
 
   flash:
     created: "新增成功!"

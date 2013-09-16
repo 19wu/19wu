@@ -20,21 +20,42 @@
       = f.hidden_field :status_eq
       = f.submit class: 'btn', value: '查询'
 
-    table.table.table-striped.table-bordered
-      thead
-        tr
-          th = t('views.my_orders.user')
-          th = t('views.my_orders.items')
-          th = t('views.my_orders.price')
-          th = t('views.my_orders.trade_no')
-          th = t('views.my_orders.operation')
-      tbody
-        - @orders.each do |order|
+    .orders-list ng-init=init_event_orders
+      table.table.table-bordered ng-controller='EventOrdersCtrl'
+        thead
+          tr
+            th width='100px' = t('views.my_orders.user')
+            th = t('views.my_orders.items')
+            th width='100px' = t('views.my_orders.price')
+            th width='140px' = t('views.my_orders.trade_no')
+            th width='100px' = t('views.my_orders.operation')
+        tbody ng-repeat='order in orders'
           tr
             td
-              = link_to order.user.login, order.user, target: '_blank'
+              a ng-href="/{{order.user.login}}" target="_blank"
+                |{{order.user.login}}
             td
-              ul.tickets-list = render partial: 'user_orders/order_item', collection: order.items, as: 'item'
-            td = order.price
-            td = order.number
-            td = mail_to order.user.email, '邮件'
+              ul.tickets-list
+                li ng-repeat='item in order.items'
+                  |{{item.name}}（{{item.price}}元） x {{item.quantity}}
+            td
+              |{{order.price}}
+            td
+              |{{order.number}}
+            td.table-operate
+              a href='javascript:void(0)' ng-click="show($index)" = t('buttons.orders.submit_refund')
+              a ng-href="mailto:{{order.user.email}" 邮件
+          tr
+            td colspan=5 ng-show='order.submit_refund_form'
+              form.form-horizontal
+                .control-group
+                  label.control-label for="price" 退款金额
+                  .controls
+                    input.input-large id='price' ng-model="price" type="text"
+                .control-group
+                  label.control-label for="reason" 退款原因
+                  .controls
+                    input.input-large id='reason' ng-model="reason" type="text"
+                .form-actions
+                  button.btn.btn-info ng-click='submit()' 提交
+                  button.btn ng-click='show($index)' 取消
