@@ -87,6 +87,7 @@ describe EventOrder do
       its(:paid?) { should be_true }
       its(:canceled?) { should be_false }
       its(:trade_no) { should eql trade_no }
+      its(:paid_amount) { should eql subject.price }
     end
     context 'refund' do
       before { subject.request_refund! }

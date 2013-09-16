@@ -5,7 +5,7 @@ class EventOrder < ActiveRecord::Base
   has_many :items, class_name: 'EventOrderItem', foreign_key: "order_id"
   has_one :participant     , class_name: 'EventOrderParticipant'    , foreign_key: "order_id"
   has_one :shipping_address, class_name: 'EventOrderShippingAddress', foreign_key: "order_id"
-  priceable :price
+  priceable :price, :paid_amount, :refunded_amount
 
   accepts_nested_attributes_for :items, :shipping_address
 
