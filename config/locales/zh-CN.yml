@@ -195,6 +195,7 @@ zh-CN:
       items: '票种'
       price: '价格（￥）'
       status: '状态'
+      operation: '操作'
       trade_no: '订单编号'
       created_at: '下单时间'
       checkin_code: '签到码'

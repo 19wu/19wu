@@ -19,13 +19,14 @@
           th = t('views.my_orders.items')
           th = t('views.my_orders.price')
           th = t('views.my_orders.trade_no')
-          th = t('views.my_orders.status')
+          th = t('views.my_orders.operation')
       tbody
         - @orders.each do |order|
           tr
-            td = link_to order.user.login, order.user, target: '_blank'
             td
-              ul = render partial: 'user_orders/order_item', collection: order.items, as: 'item'
+              = link_to order.user.login, order.user, target: '_blank'
+            td
+              ul.tickets-list = render partial: 'user_orders/order_item', collection: order.items, as: 'item'
             td = order.price
             td = order.number
-            td = order.status_name
+            td = mail_to order.user.email, '邮件'
