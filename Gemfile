@@ -29,6 +29,7 @@ end
 gem 'rails', '~> 4.0.0'
 gem 'slim-rails', '~> 1.1.1'
 gem 'simple_form', '~> 3.0.0.rc'
+gem 'ransack'
 gem 'html-pipeline'
 # html-pipeline depends on escape_utils, lock its version for Windows
 gem 'escape_utils', '0.2.4'
