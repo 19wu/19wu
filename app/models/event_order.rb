@@ -3,6 +3,7 @@ class EventOrder < ActiveRecord::Base
   belongs_to :user
   has_many :event_order_status_transitions
   has_many :items, class_name: 'EventOrderItem', foreign_key: "order_id"
+  has_many :refunds, class_name: 'EventOrderRefund', foreign_key: "order_id"
   has_one :participant     , class_name: 'EventOrderParticipant'    , foreign_key: "order_id"
   has_one :shipping_address, class_name: 'EventOrderShippingAddress', foreign_key: "order_id"
   priceable :price, :paid_amount, :refunded_amount
