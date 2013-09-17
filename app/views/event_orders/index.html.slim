@@ -55,7 +55,8 @@
                 .control-group
                   label.control-label for="reason" 退款原因
                   .controls
-                    input.input-large id='reason' ng-model="reason" type="text"
+                    textarea.input-large id='reason' ng-model="reason" rows="3"
+                    span.help-block 退款申请提交后将由 19屋 进行退款操作，您和下单用户都将收到邮件通知。
                 .form-actions
                   button.btn.btn-info ng-click='submit()' 提交
                   button.btn ng-click='show($index)' 取消
