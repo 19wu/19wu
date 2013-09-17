@@ -21,7 +21,7 @@ describe EventOrderRefund do
     its(:pending?) { should be_true }
     its(:amount) { should eql 10.0 }
     its(:reason) { should eql 'test' }
-    describe 'ordedr' do
+    describe 'order' do
       subject { refund.order }
       its(:refunded_amount) { should eql 0.0 }
     end
@@ -29,23 +29,31 @@ describe EventOrderRefund do
     context 'submited' do
       before { refund.submit! }
       its(:submited?) { should be_true }
-      describe 'ordedr' do
+      describe 'order' do
         subject { refund.order }
         its(:refunded_amount) { should eql 0.0 }
+        describe 'refunds' do
+          subject { order.refunds }
+          it(:refunding?) { should be_true }
+        end
       end
 
       context 'confirmed' do
         before { refund.confirm! }
         its(:confirmed?) { should be_true }
-        describe 'ordedr' do
+        describe 'order' do
           subject { refund.order }
           its(:refunded_amount) { should eql 0.0 }
+          describe 'refunds' do
+            subject { order.refunds }
+            it(:refunding?) { should be_true }
+          end
         end
 
         context 'refunded' do
           before { refund.reload.refund! }
           its(:refunded?) { should be_true }
-          describe 'ordedr' do
+          describe 'order' do
             subject { refund.order }
             its(:refunded_amount) { should eql 10.0 }
           end

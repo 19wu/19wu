@@ -5,8 +5,12 @@ class EventOrderRefund < ActiveRecord::Base
   validates :amount_in_cents, presence: true, numericality: { greater_than: 0 }
   validates :status, presence: true
 
+  def self.refunding
+    self.where(status: [:submited, :confirmed]).last
+  end
+
   def self.submit(params= {})
-    self.create(params).submit!
+    self.create(params).tap(&:submit!)
   end
 
   state_machine :status, :initial => :pending do

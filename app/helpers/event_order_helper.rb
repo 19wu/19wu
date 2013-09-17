@@ -9,9 +9,10 @@ module EventOrderHelper
 
   def init_event_orders(orders = @orders)
     orders = Jbuilder.new do |json|
-      json.array! @orders do |order|
+      json.array! orders do |order|
+        refunding = order.refunds.refunding
         json.(order, :id, :number, :price)
-        json.submit_refund_form false
+        json.refund refunding, :amount, :reason if refunding
         json.user order.user, :login, :email
         json.items order.items, :price, :quantity, :name
       end

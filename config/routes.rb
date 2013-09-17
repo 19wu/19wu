@@ -26,6 +26,9 @@ NineteenWu::Application.routes.draw do
       collection do
         get 'status/:status', :to => 'event_orders#index', :as => :filter
       end
+      member do
+        post "refund/submit", to: 'order_refunds#submit'
+      end
     end
   end
 
