@@ -4,7 +4,8 @@ require "spec_helper"
 describe OrderMailer do
   let(:user) { create(:user, :confirmed) }
   let(:event) { create(:event, user: user) }
-  let(:order) { create(:order_with_items, require_invoice: true, event: event) }
+  let(:trade_no) { '2013080841700373' }
+  let(:order) { create(:order_with_items, require_invoice: true, event: event, trade_no: trade_no) }
   let(:participant) { order.create_participant }
 
   describe "notify" do
@@ -26,6 +27,13 @@ describe OrderMailer do
         its(:from) { should eql [Settings.email.from] }
         its(:to) { should eql [order.user.email] }
         its('body.decoded') { should match '我们已收到您支付的款项' }
+        context 'from alipay' do
+          its('body.decoded') { should_not match '支付方式：银行汇款' }
+        end
+        context 'from bank transfer' do
+          before { order.trade_no = nil }
+          its('body.decoded') { should match '支付方式：银行汇款' }
+        end
       end
       describe "order checkin code" do
         subject { OrderMailer.notify_user_checkin_code(participant) }
@@ -50,6 +58,13 @@ describe OrderMailer do
         its(:from) { should eql [Settings.email.from] }
         its(:to) { should eql [event.user.email] }
         its('body.decoded') { should match '成功支付款项' }
+        context 'from alipay' do
+          its('body.decoded') { should_not match '支付方式：银行汇款' }
+        end
+        context 'from bank transfer' do
+          before { order.trade_no = nil }
+          its('body.decoded') { should match '支付方式：银行汇款' }
+        end
       end
     end
   end

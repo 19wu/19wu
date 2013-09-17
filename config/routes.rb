@@ -46,6 +46,8 @@ NineteenWu::Application.routes.draw do
     root to: 'home#page'
     get 'cohort' => 'users#cohort'
     get 'invitations' => 'invitations#index'
+    get 'admin_orders' => 'admin_orders#index'
+    patch 'admin_orders/:id/pay' => 'admin_orders#pay', :as => :admin_orders_pay
     patch '/invitations/:id/mail' => 'invitations#mail', :as => :mail_invitation
     get 'invitations/upgrade' => 'invitations#upgrade', :as => :upgrade_invitation
     patch 'invitations/:id/upgrade_invite' => 'invitations#upgrade_invite', :as => :upgrade_invite_invitation

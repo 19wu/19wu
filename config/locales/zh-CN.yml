@@ -76,6 +76,7 @@ zh-CN:
     apply_sign_up: "申请注册"
     sign_up_to_launch_event: "注册，发起活动"
     invitations: "邀请列表"
+    admin_orders: "管理订单"
     launch_event: "发起活动"
     show_event: "查看活动"
     cancel: "取消"
@@ -88,13 +89,18 @@ zh-CN:
 
   confirmation:
     destroy: 您确定要删除吗？
+    orders:
+      pay: 您确认已经收到款项了吗?
 
   buttons:
+    search: 查询
     user_phone:
       get_code: 获取短信校验码
       get_code_until: 重新获取短信校验码（等待 {{timeleft}} 秒）
     event_ticket:
       new: 新增
+    orders:
+      confirm_pay: 确认收款
 
   flash:
     created: "新增成功!"

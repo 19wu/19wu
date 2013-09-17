@@ -5,10 +5,15 @@ describe Ability do
   subject { Ability.new(user) }
   context "when user has not signed in" do
     let(:user) { nil }
-    it{ should_not be_able_to(:update, create(:event)) }
+    context 'event' do
+      it{ should_not be_able_to(:update, create(:event)) }
+    end
+    context 'order' do
+      it{ should_not be_able_to(:confirm_pay, EventOrder) }
+    end
   end
 
-  context "whan user has signed in" do
+  context "when user has signed in" do
     let(:user) { create(:user) }
     context 'event' do
       context 'belongs to him' do
@@ -26,6 +31,16 @@ describe Ability do
           it{ should be_able_to(:create, Event) }
           it{ should be_able_to(:update, event) }
         end
+      end
+      context 'order' do
+        it{ should_not be_able_to(:confirm_pay, EventOrder) }
+      end
+    end
+
+    context "when admin has signed in" do
+      let(:user) { create(:user, :admin) }
+      context 'order' do
+        it{ should be_able_to(:confirm_pay, EventOrder) }
       end
     end
   end
