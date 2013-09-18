@@ -17,7 +17,7 @@ class RefundBatch < ActiveRecord::Base
     options = {
         batch_no:   self.batch_no,
         data:       data,
-        notify_url: Rails.application.routes.url_helpers.refunds_notify_url(host: Settings.host)
+        notify_url: Rails.application.routes.url_helpers.refunds_alipay_notify_url(host: Settings.host)
     }
     logger.info data
     Alipay::Service.create_refund_url(options)

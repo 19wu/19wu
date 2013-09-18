@@ -7,7 +7,7 @@ class EventOrderRefund < ActiveRecord::Base
   validates :status, presence: true
 
   def self.refunding
-    self.where(status: [:submited, :confirmed]).last
+    self.where(status: 'submited').last
   end
 
   def self.submit(params= {})
@@ -15,18 +15,14 @@ class EventOrderRefund < ActiveRecord::Base
   end
 
   state_machine :status, :initial => :pending do
-    state :pending, :submited, :confirmed, :refunded
+    state :pending, :submited, :refunded
 
     event :submit do
       transition :pending => :submited
     end
 
-    event :confirm do
-      transition :submited => :confirmed
-    end
-
     event :refund do
-      transition :confirmed => :refunded
+      transition :submited => :refunded
     end
   end
 end

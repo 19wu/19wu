@@ -17,4 +17,16 @@ describe EventOrderRefundObserver do
       refund.submit!
     end
   end
+
+  context 'refund' do
+    before { refund.submit! }
+    describe 'order' do
+      before do
+        order.update_attribute :refunded_amount, 15
+        refund.reload.refund!
+      end
+      subject { order.reload }
+      its(:refunded_amount) { should eql 25.0 }
+    end
+  end
 end
