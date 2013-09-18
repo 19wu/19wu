@@ -45,7 +45,7 @@ gem 'whenever', :require => false
 gem "tabs_on_rails"
 gem "china_sms"
 gem 'china_city'
-gem 'alipay', '~> 0.0.2'
+gem 'alipay', github: 'saberma/alipay'
 gem 'priceable', github: 'saberma/priceable' # fixed: migration break.
 gem 'jbuilder'
 gem 'state_machine'
