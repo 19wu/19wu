@@ -1,6 +1,6 @@
 h2  = t('activerecord.models.event_order_refund')
 - @refund_batches.each do |batch|
-  = link_to '退款', '/', :class => "btn btn-link pull-right"
+  = link_to '退款', batch.refund_link, :class => "btn btn-link pull-right"
   =render 'order_refunds/refunds', refunds: batch.refunds
 
 - unless @refunds.empty?

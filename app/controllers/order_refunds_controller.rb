@@ -9,7 +9,6 @@ class OrderRefundsController < ApplicationController
   end
 
   def index
-    authorize! :refund, EventOrder
     @refund_batches = RefundBatch.where(status: 'pending')
     @refunds = EventOrderRefund.where(status: 'submited', refund_batch_id: nil)
   end
