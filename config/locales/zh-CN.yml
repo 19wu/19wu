@@ -196,6 +196,7 @@ zh-CN:
       user: '用户'
       items: '票种'
       price: '价格（￥）'
+      paid_amount: '已支付（￥）'
       status: '状态'
       operation: '操作'
       trade_no: '订单编号'
