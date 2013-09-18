@@ -2,8 +2,7 @@
 
 FactoryGirl.define do
   factory :event_order_refund do
-    order_id 1
-    amount_in_cents 1
-    reason "MyString"
+    amount '1'
+    reason "test"
   end
 end

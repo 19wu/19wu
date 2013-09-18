@@ -37,4 +37,11 @@ class OrderMailer < ActionMailer::Base
     @user = order.user
     mail(to: @event.user.email_with_login, subject: I18n.t('email.order.organizer.paid.subject', title: @event.title, number: @order.number, login: @user.login ))
   end
+
+  def notify_support_refund(refund)
+    @refund = refund
+    @order = refund.order
+    @event = @order.event
+    mail(to: Settings.email[:from], subject: I18n.t('email.order.support.refund.subject', title: @event.title, number: @order.number))
+  end
 end

@@ -243,3 +243,6 @@ zh-CN:
           subject: "%{title} 订单 %{number}，%{login} 下单"
         paid:
           subject: "%{title} 订单 %{number}，%{login} 完成支付"
+      support:
+        refund:
+          subject: "%{title} 订单 %{number}，主办方申请退款"
