@@ -50,6 +50,7 @@ NineteenWu::Application.routes.draw do
     get 'cohort' => 'users#cohort'
     get 'invitations' => 'invitations#index'
     get "refunds" => 'order_refunds#index'
+    get "refunds/archive" => 'order_refunds#archive'
     patch '/invitations/:id/mail' => 'invitations#mail', :as => :mail_invitation
     get 'invitations/upgrade' => 'invitations#upgrade', :as => :upgrade_invitation
     patch 'invitations/:id/upgrade_invite' => 'invitations#upgrade_invite', :as => :upgrade_invite_invitation

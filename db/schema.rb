@@ -64,6 +64,7 @@ ActiveRecord::Schema.define(version: 20130916145506) do
 
   create_table "event_order_refunds", force: true do |t|
     t.integer  "order_id",                   null: false
+    t.integer  "refund_batch_id"
     t.integer  "amount_in_cents",            null: false
     t.string   "reason"
     t.string   "status",          limit: 16, null: false
@@ -221,6 +222,13 @@ ActiveRecord::Schema.define(version: 20130916145506) do
   end
 
   add_index "profiles", ["user_id"], name: "index_profiles_on_user_id", using: :btree
+
+  create_table "refund_batches", force: true do |t|
+    t.string   "batch_no",   limit: 24, null: false
+    t.string   "status",     limit: 16, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "sequences", force: true do |t|
     t.date     "date",                   null: false
