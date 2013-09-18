@@ -18,6 +18,7 @@ zh-CN:
       event_ticket: "门票"
       profile: "资料"
       group_topic: "贴子"
+      event_order_refund: "退款申请"
     attributes:
       user:
         login: "用户名"
@@ -46,6 +47,9 @@ zh-CN:
       event_order:
         quantity: '门票数量'
         items: '门票'
+      event_order_refund:
+        amount: '退款金额'
+        reason: '退款原因'
       event_order_participant:
         order: '订单'
         checkin_at: '签到码'

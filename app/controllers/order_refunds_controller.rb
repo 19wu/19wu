@@ -6,4 +6,9 @@ class OrderRefundsController < ApplicationController
     order = @event.orders.find(params[:id])
     @refund = order.refunds.submit(params.require(:refund).permit(:amount, :reason))
   end
+
+  def index
+    authorize! :refund, EventOrder
+    @refunds = EventOrderRefund.where(status: 'submited')
+  end
 end

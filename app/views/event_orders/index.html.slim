@@ -55,11 +55,11 @@
             td colspan=5 ng-hide='order.refund'
               form.form-horizontal
                 .control-group
-                  label.control-label for="amount-{{order.id}}" 退款金额
+                  label.control-label for="amount-{{order.id}}" = t('activerecord.attributes.event_order_refund.amount')
                   .controls
                     input.input-large id='amount-{{order.id}}' ng-model="order.amount" type="text"
                 .control-group
-                  label.control-label for="reason-{{order.id}}" 退款原因
+                  label.control-label for="reason-{{order.id}}" = t('activerecord.attributes.event_order_refund.reason')
                   .controls
                     textarea.input-large id='reason-{{order.id}}' ng-model="order.reason" rows="3"
                     span.help-block 提交后19屋将进行退款，您和下单用户将收到邮件通知。
