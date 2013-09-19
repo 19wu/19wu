@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class OrderRefundsController < ApplicationController
   include HasApiResponse
   before_filter :authenticate_user!, except: :alipay_notify
