@@ -9,6 +9,9 @@ zh-CN:
         invalid_code: 签到码不正确。
         used: 已于 %{time} 使用，请勿重复签到。
         invalid_order: 状态为 %{status}，不能签到。
+      event_order_refund:
+        amount_in_cents:
+          less_than: 必须小于已支付金额 %{paid_amount} 元。
   activerecord:
     models:
       user: "用户"
@@ -49,6 +52,7 @@ zh-CN:
         items: '门票'
       event_order_refund:
         amount: '退款金额'
+        amount_in_cents: '退款金额'
         reason: '退款原因'
       event_order_participant:
         order: '订单'

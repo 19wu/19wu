@@ -1,4 +1,5 @@
 class OrderRefundsController < ApplicationController
+  include HasApiResponse
   before_filter :authenticate_user!, except: :alipay_notify
   before_filter :authorize_event!, only: [:submit]          # organizer
   before_filter :authorize_refund!, only: [:index, :archive] # 19wu admin
@@ -6,7 +7,7 @@ class OrderRefundsController < ApplicationController
 
   def submit
     order = @event.orders.find(params[:id])
-    @refund = order.refunds.submit(params.require(:refund).permit(:amount, :reason))
+    @refund = order.refunds.submit(params.fetch(:refund).permit(:amount, :reason))
   end
 
   def index
@@ -14,6 +15,7 @@ class OrderRefundsController < ApplicationController
     @refunds = EventOrderRefund.where(status: 'submited', refund_batch_id: nil)
   end
 
+  # 19屋管理员获取退款批次号
   def archive
     @refunds = EventOrderRefund.where(status: 'submited', refund_batch_id: nil)
     unless @refunds.empty?
