@@ -5,6 +5,7 @@ describe OrderMailer do
   let(:user) { create(:user, :confirmed) }
   let(:event) { create(:event, user: user) }
   let(:order) { create(:order_with_items, require_invoice: true, event: event) }
+  let(:trade_no) { '2013080841700373' }
   let(:participant) { order.create_participant }
   let(:refund) { create :event_order_refund, :submited, order: order }
 
@@ -36,6 +37,7 @@ describe OrderMailer do
         its('body.decoded') { should match "#{event.title} 签到码：#{participant.checkin_code}。" }
       end
       describe "order refunded" do
+        before { order.pay(trade_no) }
         subject { OrderMailer.notify_user_refunded(refund) }
         its(:subject) { should eql "#{event.title} 订单 #{order.number}，已退款 #{refund.amount} 元" }
         its(:from) { should eql [Settings.email.from] }
@@ -59,7 +61,8 @@ describe OrderMailer do
         its(:to) { should eql [event.user.email] }
         its('body.decoded') { should match '成功支付款项' }
       end
-      describe "order refund" do
+      describe "order refunded" do
+        before { order.pay(trade_no) }
         subject { OrderMailer.notify_organizer_refunded(refund) }
         its(:subject) { should eql "#{event.title} 订单 #{order.number}，已向 #{order.user.login} 退款 #{refund.amount} 元" }
         its(:from) { should eql [Settings.email.from] }
@@ -70,6 +73,7 @@ describe OrderMailer do
 
     describe "support" do
       describe "refund submit" do
+        before { order.pay(trade_no) }
         subject { OrderMailer.notify_support_refund(refund) }
         its(:subject) { should eql "#{event.title} 订单 #{order.number}，主办方申请退款" }
         its(:from) { should eql [Settings.email.from] }
