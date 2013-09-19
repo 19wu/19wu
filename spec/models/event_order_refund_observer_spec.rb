@@ -24,6 +24,10 @@ describe EventOrderRefundObserver do
       before { refund.reload.refund! }
       subject { order.reload }
       its(:paid_amount) { should eql 289.0 }
+      context 'paid_amount is zero' do
+        let(:refund) { create :event_order_refund, :submited, order: order, amount: order.price }
+        its(:canceled?) { should be_true }
+      end
     end
     describe 'mail to' do
       let(:mail) { double('mail') }

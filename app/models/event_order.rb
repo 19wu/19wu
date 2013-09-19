@@ -52,7 +52,7 @@ class EventOrder < ActiveRecord::Base
     end
 
     event :cancel do
-      transition :pending => :canceled, :if => ->(order) { !order.event.finished? }
+      transition  [:pending, :paid] => :canceled, :if => ->(order) { !order.event.finished? }
     end
 
     event :request_refund do
