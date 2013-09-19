@@ -22,7 +22,7 @@ describe OrderRefundsController do
       expect(response).to be_success
       expect(refund_batch.reload.completed?).to be_true
       expect(refund.reload.refunded?).to be_true
-      expect(order.reload.refunded_amount).to eql 10.0
+      expect(order.reload.paid_amount).to eql 289.0
     end
   end
 end

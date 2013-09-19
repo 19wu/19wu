@@ -96,17 +96,16 @@ ActiveRecord::Schema.define(version: 20130916145506) do
   add_index "event_order_status_transitions", ["event_order_id"], name: "index_event_order_status_transitions_on_event_order_id", using: :btree
 
   create_table "event_orders", force: true do |t|
-    t.integer  "event_id",                                        null: false
-    t.integer  "user_id",                                         null: false
-    t.integer  "quantity",                                        null: false
-    t.string   "status",                   limit: 16
-    t.string   "trade_no",                 limit: 16
+    t.integer  "event_id",                                    null: false
+    t.integer  "user_id",                                     null: false
+    t.integer  "quantity",                                    null: false
+    t.string   "status",               limit: 16
+    t.string   "trade_no",             limit: 16
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "price_in_cents",                      default: 0, null: false
-    t.string   "number",                   limit: 16,             null: false
-    t.integer  "paid_amount_in_cents",                default: 0, null: false
-    t.integer  "refunded_amount_in_cents",            default: 0, null: false
+    t.integer  "price_in_cents",                  default: 0, null: false
+    t.string   "number",               limit: 16,             null: false
+    t.integer  "paid_amount_in_cents",            default: 0, null: false
   end
 
   add_index "event_orders", ["event_id"], name: "index_event_orders_on_event_id", using: :btree

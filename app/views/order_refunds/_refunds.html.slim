@@ -13,12 +13,7 @@ table.table.table-striped.table-bordered
         td = link_to refund.order.event.title, refund.order.event, target: '_blank'
         td
           ul.tickets-list = render partial: 'user_orders/order_item', collection: refund.order.items, as: 'item'
-        td
-          = refund.order.paid_amount
-          - unless refund.order.refunded_amount_in_cents.zero?
-            span title='已退款金额'
-              |-
-              = refund.order.refunded_amount
+        td = refund.order.paid_amount
         td = refund.order.number
         td = refund.amount
         td = refund.reason
