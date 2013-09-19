@@ -28,5 +28,15 @@ describe EventOrderRefundObserver do
       subject { order.reload }
       its(:refunded_amount) { should eql 25.0 }
     end
+    describe 'mail to' do
+      let(:mail) { double('mail') }
+      describe 'organizer' do
+        it 'should be done' do
+          mail.should_receive(:deliver)
+          OrderMailer.should_receive(:notify_organizer_refunded).and_return(mail)
+          refund.refund!
+        end
+      end
+    end
   end
 end
