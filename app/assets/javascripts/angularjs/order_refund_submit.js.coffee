@@ -8,7 +8,7 @@
     if order.submit_refund_form
       order.amount = $scope.amount unless order.amount
       order.reason = $scope.reason unless order.reason
-  $scope.do = (index) ->
+  $scope.submit = (index) ->
     order = $scope.orders[index]
     request = $http.post("/events/#{$scope.event.id}/orders/#{order.id}/refund/submit", refund: { amount: order.amount, reason: order.reason })
     request.success (data) ->
