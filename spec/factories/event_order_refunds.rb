@@ -2,7 +2,11 @@
 
 FactoryGirl.define do
   factory :event_order_refund do
-    amount '1'
+    amount '10'
     reason "test"
+
+    trait :submited do
+      status 'submited'
+    end
   end
 end

@@ -35,6 +35,14 @@ describe OrderMailer do
         its(:to) { should eql [order.user.email] }
         its('body.decoded') { should match "#{event.title} 签到码：#{participant.checkin_code}。" }
       end
+      describe "order refunded" do
+        let(:refund) { create :event_order_refund, :submited, order: order }
+        subject { OrderMailer.notify_user_refunded(refund) }
+        its(:subject) { should eql "#{event.title} 订单 #{order.number}，已退款 #{refund.amount} 元" }
+        its(:from) { should eql [Settings.email.from] }
+        its(:to) { should eql [order.user.email] }
+        its('body.decoded') { should match "已经向您退款 10.0 元" }
+      end
     end
 
     describe "organizer" do
@@ -51,6 +59,14 @@ describe OrderMailer do
         its(:from) { should eql [Settings.email.from] }
         its(:to) { should eql [event.user.email] }
         its('body.decoded') { should match '成功支付款项' }
+      end
+      describe "order refund" do
+        let(:refund) { create :event_order_refund, :submited, order: order }
+        subject { OrderMailer.notify_organizer_refunded(refund) }
+        its(:subject) { should eql "#{event.title} 订单 #{order.number}，已向 #{order.user.login} 退款 #{refund.amount} 元" }
+        its(:from) { should eql [Settings.email.from] }
+        its(:to) { should eql [event.user.email] }
+        its('body.decoded') { should match "已经向 #{order.user.login} 退款 10.0 元" }
       end
     end
 
