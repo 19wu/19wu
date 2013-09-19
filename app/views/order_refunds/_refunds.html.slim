@@ -5,7 +5,7 @@ table.table.table-striped.table-bordered
       th = t('views.my_orders.items')
       th = t('views.my_orders.paid_amount')
       th = t('views.my_orders.trade_no')
-      th = t('activerecord.attributes.event_order_refund.amount')
+      th.text-error = t('activerecord.attributes.event_order_refund.amount')
       th = t('activerecord.attributes.event_order_refund.reason')
   tbody
     - refunds.each do |refund|

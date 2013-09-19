@@ -11,7 +11,7 @@ module EventOrderHelper
     orders = Jbuilder.new do |json|
       json.array! orders do |order|
         refunding = order.refunds.refunding
-        json.(order, :id, :number, :price)
+        json.(order, :id, :number, :price, :paid_amount, :paid_amount_in_cents)
         json.refund refunding, :amount, :reason if refunding
         json.user order.user, :login, :email
         json.items order.items, :price, :quantity, :name
