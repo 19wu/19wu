@@ -28,6 +28,13 @@ describe OrderMailer do
         its(:from) { should eql [Settings.email.from] }
         its(:to) { should eql [order.user.email] }
         its('body.decoded') { should match '我们已收到您支付的款项' }
+        context 'from alipay' do
+          its('body.decoded') { should_not match '支付方式：银行汇款' }
+        end
+        context 'from bank transfer' do
+          before { order.trade_no = nil }
+          its('body.decoded') { should match '支付方式：银行汇款' }
+        end
       end
       describe "order checkin code" do
         subject { OrderMailer.notify_user_checkin_code(participant) }
@@ -60,6 +67,13 @@ describe OrderMailer do
         its(:from) { should eql [Settings.email.from] }
         its(:to) { should eql [event.user.email] }
         its('body.decoded') { should match '成功支付款项' }
+        context 'from alipay' do
+          its('body.decoded') { should_not match '支付方式：银行汇款' }
+        end
+        context 'from bank transfer' do
+          before { order.trade_no = nil }
+          its('body.decoded') { should match '支付方式：银行汇款' }
+        end
       end
       describe "order refunded" do
         before { order.pay(trade_no) }

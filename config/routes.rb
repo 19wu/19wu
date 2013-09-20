@@ -49,12 +49,18 @@ NineteenWu::Application.routes.draw do
     root to: 'home#page'
     get 'cohort' => 'users#cohort'
     get 'invitations' => 'invitations#index'
+
     get "refunds" => 'order_refunds#index'
     get "refunds/archive" => 'order_refunds#archive'
     post "refunds/alipay_notify" => 'order_refunds#alipay_notify'
+
+    get 'admin_orders' => 'admin_orders#index'
+    patch 'admin_orders/:id/pay' => 'admin_orders#pay', :as => :admin_orders_pay
+
     patch '/invitations/:id/mail' => 'invitations#mail', :as => :mail_invitation
     get 'invitations/upgrade' => 'invitations#upgrade', :as => :upgrade_invitation
     patch 'invitations/:id/upgrade_invite' => 'invitations#upgrade_invite', :as => :upgrade_invite_invitation
+
     resource :user_phone, only: [:edit, :update], format: false do
       post 'send_code'
     end

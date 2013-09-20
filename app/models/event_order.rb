@@ -43,7 +43,7 @@ class EventOrder < ActiveRecord::Base
     store_audit_trail
 
     state :pending, :canceled
-    state :paid, :refund_pending, :refunded do
+    state :refund_pending, :refunded do
       validates :trade_no, :presence => true
     end
 
@@ -65,9 +65,13 @@ class EventOrder < ActiveRecord::Base
   end
 
   # override state_machine generated method to accept trade_no
-  def pay(trade_no)
+  def pay(trade_no = nil)
     self.trade_no = trade_no
     super
+  end
+
+  def pay_with_bank_transfer?
+    self.trade_no.blank? # for now, only bank transfer was supported.
   end
 
   def require_invoice
