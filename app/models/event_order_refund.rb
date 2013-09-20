@@ -13,8 +13,7 @@ class EventOrderRefund < ActiveRecord::Base
   end
 
   def self.submit(params= {})
-    params.merge! status: 'submited'
-    self.create!(params)
+    self.create!(params).tap(&:submit!)
   end
 
   def amount_in_cents_cannot_be_great_than_order_paid_amount

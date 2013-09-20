@@ -9,12 +9,12 @@ describe EventOrderRefundObserver do
   before { order.pay(trade_no) }
 
   context 'submit' do
-    let(:refund) { create :event_order_refund, order: order }
+    let(:refund) { order.refunds.submit attributes_for(:event_order_refund) }
     let(:mail) { double('mail') }
-    it 'should notify all followers' do
+    it 'should notify support' do
       mail.should_receive(:deliver)
       OrderMailer.should_receive(:notify_support_refund).and_return(mail)
-      refund.submit!
+      refund
     end
   end
 
