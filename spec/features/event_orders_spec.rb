@@ -14,7 +14,7 @@ feature 'event orders', js: true do
 
   after { Timecop.return }
 
-  context 'login user' do
+  context 'as login customer' do
     before { sign_in user }
     context 'with user name and phone' do
       before { user.profile.update_attribute :name, 'saberma' }
@@ -80,7 +80,7 @@ feature 'event orders', js: true do
     end
   end
 
-  context 'as guest user' do
+  context 'as guest customer' do
     scenario 'I can register and order in place' do
       visit event_path(event)
       within('.event-tickets') { select '1' }
@@ -117,6 +117,30 @@ feature 'event orders', js: true do
       end
       find('a', text: '购买').click
       expect(page).to have_content('您已经提交了订单，订单号为 201308250001，此订单为免费订单，不需要支付，谢谢。')
+    end
+  end
+
+  context 'as organizer' do
+    given(:order) { create(:order_with_items, event: event) }
+    given(:trade_no) { '2013080841700373' }
+    before do
+      order.pay(trade_no)
+      sign_in user
+    end
+    scenario 'I can search order' do
+      visit filter_event_orders_path(event, status: :paid)
+      within '.form-search' do
+        select order.items.first.name
+        fill_in 'q[items_price_in_cents_gteq_price]', with: '300'
+        click_on '查询'
+      end
+      expect(page).not_to have_content(order.number)
+      within '.form-search' do
+        select order.items.first.name
+        fill_in 'q[items_price_in_cents_gteq_price]', with: '299'
+        click_on '查询'
+      end
+      expect(page).to have_content(order.number)
     end
   end
 end

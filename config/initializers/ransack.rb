@@ -1,5 +1,5 @@
 Ransack.configure do |config|
-  config.add_predicate 'gt_price', # Name your predicate
+  config.add_predicate 'gteq_price', # Name your predicate
                        # What non-compound ARel predicate will it use? (eq, matches, etc)
                        :arel_predicate => 'gteq',
                        # Format incoming values as you see fit. (Default: Don't do formatting)

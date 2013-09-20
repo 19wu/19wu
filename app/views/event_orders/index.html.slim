@@ -15,8 +15,8 @@
     = search_form_for @search, url: filter_event_orders_path(@event, status: params[:status]), html: { class: 'form-search' } do |f|
       label.margin-right for="q_items_ticket_id_eq" 包含门票
       = f.select :items_ticket_id_eq, @event.tickets.collect{|p| [ "#{p.name}", p.id ] }, {include_blank: true}, class: ['margin-right', 'span2']
-      label.margin-right for="q_items_price_in_cents_gt_price" 门票单价>=
-      = f.text_field :items_price_in_cents_gt_price, class: ['margin-right', 'span2'], placeholder: '（元）'
+      label.margin-right for="q_items_price_in_cents_gteq_price" 门票单价>=
+      = f.text_field :items_price_in_cents_gteq_price, class: ['margin-right', 'span2'], placeholder: '（元）'
       = f.hidden_field :status_eq
       = f.submit class: 'btn', value: '查询'
 
