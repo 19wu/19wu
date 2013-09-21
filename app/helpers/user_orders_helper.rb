@@ -15,7 +15,7 @@ module UserOrdersHelper
   end
 
   def request_refund_link(order)
-    if order.can_request_refund?
+    if !order.free? && order.paid? && order.can_request_refund?
       link_to t('views.my_orders.request_refund'), request_refund_user_order_path(order),
               data: {confirm: t('confirmations.my_orders.refund')},
               class: 'btn',
