@@ -2,6 +2,7 @@
 class EventOrderObserver < ActiveRecord::Observer
   def after_pay(order, transition)
     order.create_participant
+    order.increment! :paid_amount_in_cents, order.price_in_cents # convenient for refunding
     OrderMailer.delay.notify_user_paid(order)
     OrderMailer.delay.notify_organizer_paid(order)
   end

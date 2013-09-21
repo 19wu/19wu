@@ -100,6 +100,7 @@ zh-CN:
     event_ticket:
       new: 新增
     orders:
+      submit_refund: 退款
       confirm_pay: 确认收款
 
   flash:
@@ -200,6 +201,7 @@ zh-CN:
       user: '用户'
       items: '票种'
       price: '价格（￥）'
+      paid_amount: '已支付（￥）'
       status: '状态'
       operation: '操作'
       trade_no: '订单编号'
@@ -242,8 +244,15 @@ zh-CN:
           subject: "订单 %{number} 完成支付"
         checkin_code:
           subject: "订单 %{number} 活动签到码 %{code}"
+        refund:
+          subject: "%{title} 订单 %{number}，已退款 %{amount} 元"
       organizer:
         created:
           subject: "%{title} 订单 %{number}，%{login} 下单"
         paid:
           subject: "%{title} 订单 %{number}，%{login} 完成支付"
+        refund:
+          subject: "%{title} 订单 %{number}，已向 %{login} 退款 %{amount} 元"
+      support:
+        refund:
+          subject: "%{title} 订单 %{number}，主办方申请退款"

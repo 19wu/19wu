@@ -21,6 +21,12 @@ GIT
     friendly_id (5.0.0.beta1)
 
 GIT
+  remote: git://github.com/saberma/alipay.git
+  revision: 356eff558c1efcf3cf635710eaabc95d2d183445
+  specs:
+    alipay (0.0.2)
+
+GIT
   remote: git://github.com/saberma/priceable.git
   revision: 72f6322f798353ae2d740306bf4d38563a21e631
   specs:
@@ -70,7 +76,6 @@ GEM
       multi_json (~> 1.3)
       thread_safe (~> 0.1)
       tzinfo (~> 0.3.37)
-    alipay (0.0.2)
     angularjs-rails (1.0.7)
     arel (4.0.0)
     atomic (1.1.12)
@@ -246,6 +251,8 @@ GEM
       capybara (~> 2.1.0)
       faye-websocket (>= 0.4.4, < 0.5.0)
       http_parser.rb (~> 0.5.3)
+    polyamorous (0.6.4)
+      activerecord (>= 3.0)
     polyglot (0.3.3)
     pry (0.9.12.2)
       coderay (~> 1.0.5)
@@ -287,6 +294,10 @@ GEM
       thor (>= 0.18.1, < 2.0)
     raindrops (0.11.0)
     rake (10.1.0)
+    ransack (1.0.0)
+      actionpack (>= 3.0)
+      activerecord (>= 3.0)
+      polyamorous (~> 0.6.0)
     rb-fsevent (0.9.3)
     rb-inotify (0.9.1)
       ffi (>= 0.5.0)
@@ -395,7 +406,7 @@ PLATFORMS
 DEPENDENCIES
   activerecord-jdbcpostgresql-adapter
   acts_as_follower!
-  alipay (~> 0.0.2)
+  alipay!
   angularjs-rails
   bootstrap-datepicker-rails
   bootstrap-sass (~> 2.3.2.0)
@@ -444,6 +455,7 @@ DEPENDENCIES
   rails (~> 4.0.0)
   rails-observers
   rails-timeago
+  ransack
   rspec-rails
   ruby-graphviz
   rvm-capistrano

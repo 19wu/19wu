@@ -1,0 +1,19 @@
+table.table.table-striped.table-bordered
+  thead
+    tr
+      th = t('views.my_orders.event')
+      th = t('views.my_orders.items')
+      th = t('views.my_orders.paid_amount')
+      th = t('views.my_orders.trade_no')
+      th.text-error = t('activerecord.attributes.event_order_refund.amount')
+      th = t('activerecord.attributes.event_order_refund.reason')
+  tbody
+    - refunds.each do |refund|
+      tr
+        td = link_to refund.order.event.title, refund.order.event, target: '_blank'
+        td
+          ul.tickets-list = render partial: 'user_orders/order_item', collection: refund.order.items, as: 'item'
+        td = refund.order.paid_amount
+        td = refund.order.number
+        td = refund.amount
+        td = refund.reason

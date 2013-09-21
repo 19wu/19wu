@@ -12,21 +12,59 @@
           h2 #{stats_tickets_quantity (@orders)} 张
           p.muted 总票数
 
-    table.table.table-striped.table-bordered
-      thead
-        tr
-          th = t('views.my_orders.user')
-          th = t('views.my_orders.items')
-          th = t('views.my_orders.price')
-          th = t('views.my_orders.trade_no')
-          th = t('views.my_orders.operation')
-      tbody
-        - @orders.each do |order|
+    = search_form_for @search, url: filter_event_orders_path(@event, status: params[:status]), html: { class: 'form-search' } do |f|
+      label.margin-right for="q_items_ticket_id_eq" 包含门票
+      = f.select :items_ticket_id_eq, @event.tickets.collect{|p| [ "#{p.name}", p.id ] }, {include_blank: true}, class: ['margin-right', 'span2']
+      label.margin-right for="q_items_price_in_cents_gteq_price" 门票单价>=
+      = f.text_field :items_price_in_cents_gteq_price, class: ['margin-right', 'span2'], placeholder: '（元）'
+      = f.hidden_field :status_eq
+      = f.submit class: 'btn', value: '查询'
+
+    .orders-list ng-init=init_event_orders
+      table.table.table-bordered ng-controller='OrderRefundSubmitCtrl'
+        thead
+          tr
+            th width='80px' = t('views.my_orders.user')
+            th = t('views.my_orders.items')
+            th width='120px' = t('views.my_orders.price')
+            th width='100px' = t('views.my_orders.trade_no')
+            th width='100px' = t('views.my_orders.operation')
+        tbody ng-repeat='order in orders'
           tr
             td
-              = link_to order.user.login, order.user, target: '_blank'
+              a ng-href="/{{order.user.login}}" target="_blank"
+                |{{order.user.login}}
             td
-              ul.tickets-list = render partial: 'user_orders/order_item', collection: order.items, as: 'item'
-            td = order.price
-            td = order.number
-            td = mail_to order.user.email, '邮件'
+              ul.tickets-list
+                li ng-repeat='item in order.items'
+                  |{{item.name}}（{{item.price}}元） x {{item.quantity}}
+            td
+              |{{order.price}} 元
+              a data-toggle='tooltip' title='退款中' ng-show='order.refund'
+                i.icon-share
+              p ng-show='order.paid_amount > 0'
+                |已支付：{{order.paid_amount}} 元
+            td
+              |{{order.number}}
+            td.table-operate
+              button.btn-link ng-show='order.paid_amount > 0' ng-click="show($index)" = t('buttons.orders.submit_refund')
+              a ng-href="mailto:{{order.user.email}}" 邮件
+          tr ng-show='order.submit_refund_form'
+            td colspan=5 ng-show='order.refund'
+              p.muted
+                |即将向 {{order.user.login}} 退款 {{order.refund.amount}} 元
+                span ng-show='order.refund.reason' （原因：{{order.refund.reason}}）
+            td colspan=5 ng-hide='order.refund'
+              form.form-horizontal
+                .control-group
+                  label.control-label for="amount-{{order.id}}" = t('activerecord.attributes.event_order_refund.amount')
+                  .controls
+                    input.input-large id='amount-{{order.id}}' ng-model="order.amount" type="text"
+                .control-group
+                  label.control-label for="reason-{{order.id}}" = t('activerecord.attributes.event_order_refund.reason')
+                  .controls
+                    textarea.input-large id='reason-{{order.id}}' ng-model="order.reason" rows="3"
+                    span.help-block 提交后19屋将进行退款，您和下单用户将收到邮件通知。
+                .form-actions
+                  button.btn.btn-info ng-click='submit($index)' 提交
+                  button.btn ng-click='show($index)' 取消

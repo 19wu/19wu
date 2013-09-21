@@ -1,0 +1,9 @@
+h2  = t('activerecord.models.event_order_refund')
+- @refund_batches.each do |batch|
+  .actions = link_to '退款', batch.refund_link, :class => "btn btn-link pull-right", :target => '_blank'
+  =render 'order_refunds/refunds', refunds: batch.refunds
+
+- unless @refunds.empty?
+  .actions = link_to '获取退款链接', refunds_archive_path, :class => "btn btn-link pull-right"
+  p.muted 获取后会生成退款批次号，此号包含当前日期，支付宝要求当天进行退款
+  =render 'order_refunds/refunds', refunds: @refunds

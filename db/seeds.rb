@@ -7,7 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 is_heroku = ['/app/','/app'].include?(ENV['HOME']) # ENV['HOME'] = '/app' in rails console or rake
-email = Settings.email.from.gsub(/(.*<|>)/, '')    # '19wu <support@19wu.com>' => 'support@19wu.com'
+email = Setting.raw_email(Settings.email.from)
 emails = [email]
 emails << 'demo@19wu.com' if Rails.env.development? || is_heroku
 emails.each do |email|
