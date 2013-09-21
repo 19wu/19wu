@@ -121,7 +121,7 @@ feature 'event orders', js: true do
   end
 
   context 'as organizer' do
-    given(:order) { create(:order_with_items, event: event) }
+    given(:order) { create(:order_with_items, event: event, quantity: 2) }
     given(:trade_no) { '2013080841700373' }
     before do
       order.pay(trade_no)
@@ -141,6 +141,7 @@ feature 'event orders', js: true do
         click_on '查询'
       end
       expect(page).to have_content(order.number)
+      expect(page).to have_content("公司票（299元） x 2") # 票种
     end
   end
 end

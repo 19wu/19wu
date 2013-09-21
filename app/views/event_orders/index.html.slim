@@ -37,7 +37,7 @@
             td
               ul.tickets-list
                 li ng-repeat='item in order.items'
-                  |{{item.name}}（{{item.price}}元） x {{item.quantity}}
+                  |{{item.name}}（{{item.unit_price}}元） x {{item.quantity}}
             td
               |{{order.price}} 元
               a data-toggle='tooltip' title='退款中' ng-show='order.refund'
