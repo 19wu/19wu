@@ -131,13 +131,13 @@ feature 'event orders', js: true do
       visit filter_event_orders_path(event, status: :paid)
       within '.form-search' do
         select order.items.first.name
-        fill_in 'q[items_price_in_cents_gteq_price]', with: '300'
+        fill_in 'q[items_unit_price_in_cents_gteq_price]', with: '300'
         click_on '查询'
       end
       expect(page).not_to have_content(order.number)
       within '.form-search' do
         select order.items.first.name
-        fill_in 'q[items_price_in_cents_gteq_price]', with: '299'
+        fill_in 'q[items_unit_price_in_cents_gteq_price]', with: '299'
         click_on '查询'
       end
       expect(page).to have_content(order.number)
