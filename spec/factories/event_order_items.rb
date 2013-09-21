@@ -2,9 +2,8 @@
 
 FactoryGirl.define do
   factory :event_order_item do
-    order_id 1
+    order
     ticket
     quantity 1
-    price 1.5
   end
 end
