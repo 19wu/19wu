@@ -10,6 +10,11 @@ FactoryGirl.define do
     slug "rubyconfchina"
     user
 
+    trait :finished do
+      start_time 8.day.ago
+      end_time 7.days.ago
+    end
+
     trait :markdown do
       content <<-MD
 # Awesome Event #

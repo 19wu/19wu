@@ -103,10 +103,30 @@ describe EventOrder do
     its(:pay_with_bank_transfer?) { should be_true }
   end
 
-  describe 'cancel order' do
-    before { order.cancel }
-    subject { event }
-    its(:tickets_quantity) { should eql 400 }
+  describe '#cancel' do
+    context 'pending order' do
+      before { order.cancel! }
+      describe 'event' do
+        subject { event }
+        its(:tickets_quantity) { should eql 400 }
+      end
+    end
+    context 'paid order' do
+      before { order.pay!(trade_no) }
+      context 'when event has not been finished' do
+        before { order.cancel! }
+        its(:canceled?) { should be_true }
+      end
+      context 'when event has been finished' do
+        before do
+          Timecop.travel(1.day.since(event.end_time))
+          # order.cancel! # it will raise error
+          order.cancel
+        end
+        after { Timecop.return }
+        its(:canceled?) { should be_false }
+      end
+    end
   end
 
   describe "can not request refund when event start draws near" do
