@@ -1,16 +1,17 @@
 class EventOrderItem < ActiveRecord::Base
   belongs_to :order, class_name: 'EventOrder'
   belongs_to :ticket, class_name: 'EventTicket'
-  priceable :price
+  priceable :price, :unit_price
 
   validates :ticket, presence: true, on: :create
   validates :quantity, presence: true, numericality: { greater_than: 0 }
-  validates :price_in_cents, presence: true, numericality: { greater_than_or_equal_to: 0 }
+  validates :price_in_cents, :unit_price_in_cents, presence: true, numericality: { greater_than_or_equal_to: 0 }
   delegate :require_invoice, to: :ticket
 
   before_validation do
     if new_record?
       self.price_in_cents = calculate_price_in_cents
+      self.unit_price_in_cents = ticket.price_in_cents
     end
   end
 
@@ -48,10 +49,6 @@ class EventOrderItem < ActiveRecord::Base
 
   def calculate_price_in_cents
     ticket.price_in_cents * quantity
-  end
-
-  def unit_price
-    self.price_in_cents / self.quantity / 100.0
   end
 
   def name
