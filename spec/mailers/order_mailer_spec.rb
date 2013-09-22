@@ -51,6 +51,7 @@ describe OrderMailer do
         its(:from) { should eql [Settings.email.from] }
         its(:to) { should eql [order.user.email] }
         its('body.decoded') { should match "已经向您退款 10.0 元" }
+        its('body.decoded') { should match "退款原因：test" }
       end
     end
 
@@ -84,6 +85,7 @@ describe OrderMailer do
         its(:from) { should eql [Settings.email.from] }
         its(:to) { should eql [event.user.email] }
         its('body.decoded') { should match "已经向 #{order.user.login} 退款 10.0 元" }
+        its('body.decoded') { should match "退款原因：test" }
       end
     end
 

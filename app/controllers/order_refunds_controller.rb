@@ -30,16 +30,18 @@ class OrderRefundsController < ApplicationController
   def alipay_notify
     notify_params = params.except(*request.path_parameters.keys)
     if Alipay::Notify.verify?(notify_params)
-      refund_batch = RefundBatch.where(batch_no: params[:batch_no]).first
-      refund_batch.complete! if params['success_num'].to_i == refund_batch.refunds.size
-      params['result_details'].split('#').each do |item|
-        # 交易号^退款金额^处理结果$退费账号^退费账户 ID^退费金额^处理结果
-        # 2010031906272929^80^SUCCESS$jax_chuanhang@alipay.com^2088101003147483^0.01^SUCCESS
-        trade_no, amount, result = item.split(/\^|\$/)
-        if result.downcase == 'success'
-          order = EventOrder.where(trade_no: trade_no).first
-          refund = order.refunds.refunding
-          refund.refund!
+      EventOrder.transaction do
+        refund_batch = RefundBatch.where(batch_no: params[:batch_no]).first
+        refund_batch.complete! if params['success_num'].to_i == refund_batch.refunds.size
+        params['result_details'].split('#').each do |item|
+          # 交易号^退款金额^处理结果$退费账号^退费账户 ID^退费金额^处理结果
+          # 2010031906272929^80^SUCCESS$jax_chuanhang@alipay.com^2088101003147483^0.01^SUCCESS
+          trade_no, amount, result = item.split(/\^|\$/)
+          if result.downcase == 'success'
+            order = EventOrder.where(trade_no: trade_no).first
+            refund = order.refunds.refunding
+            refund.refund!
+          end
         end
       end
       render text: 'success'
