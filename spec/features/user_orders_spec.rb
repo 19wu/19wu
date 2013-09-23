@@ -59,4 +59,14 @@ feature 'user orders' do
       expect(page).to have_no_content(I18n.t('views.my_orders.request_refund'))
     end
   end
+
+  context 'has a free event' do
+    given(:free_order) { create(:order_with_items, tickets_price: 0, event: event, user: user) }
+    before { free_order }
+    scenario 'the request_refund button has not show' do
+      free_order.update! status: 'paid'
+      visit user_orders_path
+      expect(page).to have_no_content(I18n.t('views.my_orders.request_refund'))
+    end
+  end
 end
