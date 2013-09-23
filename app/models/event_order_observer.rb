@@ -11,6 +11,10 @@ class EventOrderObserver < ActiveRecord::Observer
     order.event.increment! :tickets_quantity, order.quantity if order.event.tickets_quantity
   end
 
+  def after_close(order, transition)
+    order.event.increment! :tickets_quantity, order.quantity if order.event.tickets_quantity
+  end
+
   def after_request_refund(order, transition)
     order.event.increment! :tickets_quantity, order.quantity if order.event.tickets_quantity
   end

@@ -7,7 +7,7 @@ class EventOrdersController < ApplicationController
 
   set_tab :order, only: [:stats, :index]
 
-  [:pending, :paid, :canceled, :refund_pending, :refunded].each do |item|
+  [:pending, :paid, :canceled, :closed, :refund_pending, :refunded].each do |item|
     set_tab item, :sidebar, only: [:stats, :index]
   end
 
