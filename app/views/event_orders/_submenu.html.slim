@@ -1,5 +1,5 @@
 .span3
   .submenu
     = tabs_tag namespace: :sidebar, builder: EventOrdersSubmenu do |tab|
-      - [:pending, :paid, :canceled, :closed, :refund_pending, :refunded].each do |status|
+      - [:pending, :paid, :canceled, :closed, :refund_pending].each do |status|
         = tab.send status, t("menus.submenu.orders.#{status}"), filter_event_orders_path(@event, status), current_path

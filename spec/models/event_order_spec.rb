@@ -138,16 +138,6 @@ describe EventOrder do
     its(:request_refund) { should be_false }
   end
 
-  describe "request refund order back its ticket's quantity immediately" do
-    before do
-      event.update! start_time: 8.days.since, end_time: 9.days.since
-      order.pay(trade_no)
-      order.request_refund
-    end
-    subject { event }
-    its(:tickets_quantity) { should eql 400 }
-  end
-
   describe 'forbid participant when total quantity is 0' do
     let(:order) { build(:order_with_items, items_count: 600, event: event) }
 

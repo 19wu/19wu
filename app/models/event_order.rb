@@ -39,11 +39,12 @@ class EventOrder < ActiveRecord::Base
     I18n.t(self.status, scope: 'activerecord.state_machines.event_order.states')
   end
 
+  # TODO: use financial status to track partial refund and refunded status
   state_machine :status, :initial => :pending do
     store_audit_trail
 
     state :pending, :canceled, :closed
-    state :refund_pending, :refunded do
+    state :refund_pending do
       validates :trade_no, :presence => true
     end
 
@@ -52,15 +53,11 @@ class EventOrder < ActiveRecord::Base
     end
 
     event :cancel do # use order.cancel instead of order.cancel! if you don't want to raise error when order has been finished.
-      transition  [:pending, :paid] => :canceled, :if => ->(order) { !order.event.finished? }
+      transition  [:pending, :paid, :refund_pending] => :canceled, :if => ->(order) { !order.event.finished? }
     end
 
     event :request_refund do
       transition :paid => :refund_pending, :if => ->(order) { order.event.start_time - Time.now > 7.days }
-    end
-
-    event :complete_refund do
-      transition :refund_pending => :refunded
     end
 
     event :close do
