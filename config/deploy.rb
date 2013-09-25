@@ -7,6 +7,8 @@
 require "rvm/capistrano"                                 # Load RVM's capistrano plugin.
 require "bundler/capistrano" # 集成bundler和rvm
 require "delayed/recipes"
+set :whenever_command, "bundle exec whenever"
+require "whenever/capistrano"
 
 set :rails_env, "production"                             # added for delayed job
 set :rvm_ruby_string, 'ruby-2.0.0'                       # Or whatever env you want it to run in.
