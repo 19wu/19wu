@@ -109,7 +109,6 @@ en:
         canceled: '已取消'
         closed: '已关闭'
         refund_pending: '等待处理退款'
-        refunded: '退款成功'
         all: '全部'
 
   views:
