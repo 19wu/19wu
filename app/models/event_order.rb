@@ -52,7 +52,7 @@ class EventOrder < ActiveRecord::Base
     end
 
     event :cancel do # use order.cancel instead of order.cancel! if you don't want to raise error when order has been finished.
-      transition  [:pending, :paid] => :canceled, :if => ->(order) { !order.event.finished? }
+      transition  [:pending, :paid, :refund_pending] => :canceled, :if => ->(order) { !order.event.finished? }
     end
 
     event :request_refund do
