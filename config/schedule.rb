@@ -22,3 +22,7 @@
 every 1.day, :at => '4:30 am' do
   runner "Event.remind_participants"
 end
+
+every 1.day, :at => '3:00 am' do
+  runner "EventOrder.cleanup_expired"
+end

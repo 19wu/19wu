@@ -42,7 +42,7 @@ class EventOrder < ActiveRecord::Base
   state_machine :status, :initial => :pending do
     store_audit_trail
 
-    state :pending, :canceled
+    state :pending, :canceled, :closed
     state :refund_pending, :refunded do
       validates :trade_no, :presence => true
     end
@@ -61,6 +61,10 @@ class EventOrder < ActiveRecord::Base
 
     event :complete_refund do
       transition :refund_pending => :refunded
+    end
+
+    event :close do
+      transition :pending => :closed
     end
   end
 
@@ -102,6 +106,10 @@ class EventOrder < ActiveRecord::Base
 
     def statuses
       state_machines[:status].states.map(&:name)
+    end
+
+    def cleanup_expired
+      where(status: :pending).where('created_at < ?', 3.days.ago).each(&:close)
     end
   end
 

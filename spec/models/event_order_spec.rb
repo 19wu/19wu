@@ -161,4 +161,14 @@ describe EventOrder do
     before { order }
     its(:tickets_quantity) { should eql 398 }
   end
+
+  describe 'clean up expired orders' do
+    before do
+      order.update_attributes! created_at: 4.days.ago
+      EventOrder.cleanup_expired
+      order.reload
+    end
+    subject { order }
+    its(:closed?) { should be_true }
+  end
 end
