@@ -14,12 +14,12 @@ feature 'profile settings' do
   end
 
   scenario "I update my profile" do
-    fill_in 'profile_name', :with => '19wu'
-    fill_in 'profile_website', :with => 'http://19wu.com'
-    fill_in 'profile_bio', :with => '**Launch your event now**'
+    fill_in 'profile_name',    with: '19wu'
+    fill_in 'profile_website', with: 'http://19wu.com'
+    fill_in 'profile_bio',     with: '**Launch your event now**'
 
-    find('.btn-primary').click
+    click_button '保存资料'
 
-    page.should have_content(expected_flash)
+    expect(page).to have_content(expected_flash)
   end
 end
