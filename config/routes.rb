@@ -25,7 +25,7 @@ NineteenWu::Application.routes.draw do
     resources :tickets      , :controller => 'event_tickets'
     resources :orders       , :only => [:create, :index]          , :controller => 'event_orders' do
       collection do
-        get 'status/:status'       , :to => 'event_orders#index',  :as => :filter
+        get 'status/:status', :to => 'event_orders#index', :as => :filter
       end
       member do
         post "refund/submit", to: 'order_refunds#submit'
