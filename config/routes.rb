@@ -13,6 +13,7 @@ NineteenWu::Application.routes.draw do
       collection do
         get :checkin
         post :update
+        get :export
       end
     end
     resources :collaborators, :only => [:index, :create, :destroy]
@@ -25,7 +26,6 @@ NineteenWu::Application.routes.draw do
     resources :orders       , :only => [:create, :index]          , :controller => 'event_orders' do
       collection do
         get 'status/:status'       , :to => 'event_orders#index',  :as => :filter
-        get 'status/:status/export', :to => 'event_orders#export', :as => :export
       end
       member do
         post "refund/submit", to: 'order_refunds#submit'

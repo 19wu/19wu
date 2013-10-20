@@ -2,6 +2,7 @@
 .row
   = render 'participants/submenu'
   .span9
+    = link_to '导出xls', export_event_participants_path(@event, format: 'xlsx'), class: 'btn btn-info pull-right'
     table.table
       thead
         th 签到码
