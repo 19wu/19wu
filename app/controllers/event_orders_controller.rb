@@ -3,7 +3,7 @@ class EventOrdersController < ApplicationController
   include AlipayGeneratable
   include HasApiResponse
   before_filter :authenticate_user!, only: [:create]
-  before_filter :authorize_event!, only: [:stats, :index]
+  before_filter :authorize_event!, only: [:stats, :index, :export]
 
   set_tab :order, only: [:stats, :index]
 
@@ -27,6 +27,13 @@ class EventOrdersController < ApplicationController
     params[:q][:status_eq] = params[:status]
     @search = @event.orders.search params[:q]
     @orders = @search.result
+  end
+
+  # http://railscasts.com/episodes/362-exporting-csv-and-excel
+  # 导出 csv 格式的兼容性很差，(excel for mac 2011 有中文乱码)，改为导出 xls
+  # http://blog.plataformatec.com.br/2009/09/exporting-data-to-csv-and-excel-in-your-rails-app/
+  def export
+    index
   end
 
   def stats

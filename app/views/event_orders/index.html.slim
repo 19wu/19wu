@@ -19,6 +19,7 @@
       = f.text_field :items_unit_price_in_cents_gteq_price, class: ['margin-right', 'span2'], placeholder: '（元）'
       = f.hidden_field :status_eq
       = f.submit class: 'btn', value: '查询'
+    = link_to '导出xls', export_event_orders_path(@event, status: params[:status], format: 'xls')
 
     .orders-list ng-init=init_event_orders
       table.table.table-bordered ng-controller='OrderRefundSubmitCtrl'
