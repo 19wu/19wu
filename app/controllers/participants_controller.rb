@@ -12,6 +12,10 @@ class ParticipantsController < ApplicationController
     @participants = @event.participants.joins(:user).order('users.login ASC').includes(:user => :profile)
   end
 
+  def export
+    @orders = @event.orders.where(status: :paid).includes(:participant).order('event_order_participants.checkin_code')
+  end
+
   def checkin
   end
 

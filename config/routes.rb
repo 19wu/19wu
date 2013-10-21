@@ -13,6 +13,7 @@ NineteenWu::Application.routes.draw do
       collection do
         get :checkin
         post :update
+        get :export
       end
     end
     resources :collaborators, :only => [:index, :create, :destroy]

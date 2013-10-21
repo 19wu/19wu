@@ -50,6 +50,7 @@ gem 'priceable', github: 'saberma/priceable' # fixed: migration break.
 gem 'jbuilder'
 gem 'state_machine'
 gem 'state_machine-audit_trail'
+gem 'axlsx_rails'
 
 group :pg do
   gem 'pg', :platform => [:ruby, :mswin, :mingw]

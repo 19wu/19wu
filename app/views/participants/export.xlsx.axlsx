@@ -1,0 +1,17 @@
+wb = xlsx_package.workbook
+
+header_style = wb.styles.add_style alignment: { horizontal: :center }, sz: 16, b: true
+body_style   = wb.styles.add_style alignment: { horizontal: :right, wrap_text: true }
+string_style = wb.styles.add_style alignment: { horizontal: :right }, num_fmt: 12
+
+wb.add_worksheet(name: @event.title) do |sheet|
+  sheet.add_row ['打勾', '签到码', '门票', '姓名', 'Email', '金额', '订单号', '订单日期'], style: header_style
+  @orders.each do |order|
+    user = order.user
+    items = order.items.map do |item|
+      "#{item.quantity} x #{item.ticket.name}"
+    end.join(", ")
+    sheet.add_row ['', order.participant.checkin_code, items, user.name, user.email, order.paid_amount, order.number.to_s, order.created_at.to_date.to_s(:db)], style: body_style
+  end
+  sheet["G2:G#{@orders.size+1}"].each { |c| c.style = string_style } # 订单号改为字符串格式
+end
