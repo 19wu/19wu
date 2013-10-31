@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :event_order_fulfillment do
-    order_id 1
-    tracking_number "MyString"
+    order
+    tracking_number '112521197075'
   end
 end

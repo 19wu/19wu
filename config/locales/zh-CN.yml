@@ -247,6 +247,8 @@ zh-CN:
           subject: "订单 %{number} 活动签到码 %{code}"
         refund:
           subject: "%{title} 订单 %{number}，已退款 %{amount} 元"
+        fulfilled:
+          subject: "%{title} 订单 %{number}，已经向您快递发票"
       organizer:
         created:
           subject: "%{title} 订单 %{number}，%{login} 下单"
@@ -254,6 +256,8 @@ zh-CN:
           subject: "%{title} 订单 %{number}，%{login} 完成支付"
         refund:
           subject: "%{title} 订单 %{number}，已向 %{login} 退款 %{amount} 元"
+        fulfilled:
+          subject: "%{title} 订单 %{number}，已经向用户快递发票"
       support:
         refund:
           subject: "%{title} 订单 %{number}，主办方申请退款"
