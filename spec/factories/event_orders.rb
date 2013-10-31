@@ -12,6 +12,7 @@ FactoryGirl.define do
         quantity 1
         tickets_price 299
         require_invoice false
+        paid false
       end
       before(:create) do |order, evaluator|
         FactoryGirl.create_list(:ticket, evaluator.items_count, price: evaluator.tickets_price, require_invoice: evaluator.require_invoice, event: order.event).each do |ticket|
@@ -20,6 +21,9 @@ FactoryGirl.define do
         if order.require_invoice
           order.shipping_address_attributes = attributes_for(:shipping_address)
         end
+      end
+      after(:create) do |order, evaluator|
+        order.pay!('2013080841700373') if evaluator.paid
       end
     end
   end

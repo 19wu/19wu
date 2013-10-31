@@ -77,6 +77,7 @@ zh-CN:
     sign_up_to_launch_event: "注册，发起活动"
     invitations: "邀请列表"
     admin_orders: "管理订单"
+    invoice_orders: "发票订单"
     launch_event: "发起活动"
     show_event: "查看活动"
     cancel: "取消"

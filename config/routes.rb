@@ -89,6 +89,10 @@ NineteenWu::Application.routes.draw do
     get '/events/:id/participants', to: "events#participants"
   end
 
+  namespace :admin do
+    resources :order_fulfillments, only: [:index, :create]
+  end
+
   mount ChinaCity::Engine => '/china_city'
   mount MailsViewer::Engine => '/delivered_mails' if defined?(MailsViewer)
   mount JasmineRails::Engine => "/specs" if defined?(JasmineRails)
