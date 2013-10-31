@@ -1,0 +1,42 @@
+h2 = t('labels.invoice_orders')
+
+.orders-list ng-init=init_event_order_fulfillments
+  table.table.table-bordered.table-hover ng-controller='OrderFulfillmentsCtrl'
+    thead
+      tr
+        th width='100px' = t('views.my_orders.trade_no')
+        th width='80px' = t('views.my_orders.user')
+        th width='120px' = t('views.my_orders.price')
+        th 发票信息
+        th width='100px' = t('views.my_orders.operation')
+    tbody ng-repeat='order in orders'
+      tr
+        td {{order.number}}
+        td
+          a ng-href="/{{order.user.login}}" target="_blank"
+            |{{order.user.login}}
+        td {{order.paid_amount}} 元
+        td
+          | 抬头：
+          .label.label-info {{order.address.invoice_title}}
+          ul.unstyled.tickets-list
+            li ng-repeat='item in order.items'
+              | 金额：
+              span.label.label-info {{item.price}} 元
+              span.muted （{{item.quantity}} x {{item.name}}）
+          div {{order.address.info}}
+        td.table-operate
+      tr ng-show='order.submit_form'
+        td colspan=5 ng-show='order.fulfilled'
+          p.muted
+            |已经发货。
+        td colspan=5 ng-hide='order.fulfilled'
+          form.form-horizontal
+            .control-group
+              label.control-label for="amount-{{order.id}}" = t('activerecord.attributes.event_order_refund.amount')
+              .controls
+                input.input-large id='amount-{{order.id}}' ng-model="order.amount" type="text"
+                span.help-block 提交后发货信息后，用户将收到邮件通知。
+            .form-actions
+              button.btn.btn-info ng-click='submit($index)' 提交
+              button.btn ng-click='show($index)' 取消

@@ -5,5 +5,5 @@ ul.nav
     li = link_to t('activerecord.models.event_order_refund'), refunds_path
   - if can? :admin, EventOrder
     li = link_to t('labels.admin_orders'), admin_orders_path
-    li = link_to t('labels.invoice_orders'), admin_orders_path
+    li = link_to t('labels.invoice_orders'), admin_order_fulfillments_path
   li = link_to t('labels.my_orders'), user_orders_path
