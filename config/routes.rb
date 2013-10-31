@@ -90,7 +90,7 @@ NineteenWu::Application.routes.draw do
   end
 
   namespace :admin do
-    resources :order_fulfillments, only: [:index, :create]
+    resources :fulfillments, only: [:index, :create], controller: 'order_fulfillments'
   end
 
   mount ChinaCity::Engine => '/china_city'
