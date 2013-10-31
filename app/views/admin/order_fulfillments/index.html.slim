@@ -10,20 +10,24 @@ h2 = t('labels.invoice_orders')
         th 发票信息
     tbody ng-repeat='order in orders'
       tr
-        td {{order.number}}
+        td
+          |{{order.number}}
         td
           a ng-href="/{{order.user.login}}" target="_blank"
             |{{order.user.login}}
-        td {{order.paid_amount}} 元
+        td
+          |{{order.paid_amount}} 元
         td
           | 抬头：
           span ng-class="{'label label-info': !order.fulfillment}" {{order.address.invoice_title}}
           ul.unstyled.tickets-list
             li ng-repeat='item in order.items'
               | 金额：
-              span ng-class="{'label label-info': !order.fulfillment}" {{item.price}} 元
+              span ng-class="{'label label-info': !order.fulfillment}"
+                |{{item.price}} 元
               span.muted （{{item.quantity}} x {{item.name}}）
-          div {{order.address.info}}
+          div
+            |{{order.address.info}}
           p
             .label ng-show="order.fulfillment" #{t('activerecord.attributes.event_order_fulfillment.tracking_number')}：{{order.fulfillment.tracking_number}}
             form.form-inline ng-hide="order.fulfillment"
