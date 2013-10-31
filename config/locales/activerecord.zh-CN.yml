@@ -54,6 +54,8 @@ zh-CN:
         amount: '退款金额'
         amount_in_cents: '退款金额'
         reason: '退款原因'
+      event_order_fulfillment:
+        tracking_number: '顺丰快递单号'
       event_order_participant:
         order: '订单'
         checkin_at: '签到码'

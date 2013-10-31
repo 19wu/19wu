@@ -25,7 +25,7 @@ h2 = t('labels.invoice_orders')
               span.muted （{{item.quantity}} x {{item.name}}）
           div {{order.address.info}}
           p
-            .label ng-show="order.fulfillment" 顺丰快递单号：{{order.fulfillment.tracking_number}}
+            .label ng-show="order.fulfillment" #{t('activerecord.attributes.event_order_fulfillment.tracking_number')}：{{order.fulfillment.tracking_number}}
             form.form-inline ng-hide="order.fulfillment"
               | {{order.fulfillment}}
               input.input-medium.margin-right id='fulfillment-{{fulfillment.id}}' ng-model="order.fulfillment_tracking_number" type="text" placeholder="顺丰快递单号"

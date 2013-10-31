@@ -1,4 +1,5 @@
 class Admin::OrderFulfillmentsController < ApplicationController
+  include HasApiResponse
   before_filter :authenticate_user!
   before_filter :authorize_order!
 
@@ -8,7 +9,7 @@ class Admin::OrderFulfillmentsController < ApplicationController
 
   def create
     order = EventOrder.find(params[:order_id])
-    @fulfillment = order.create_fulfillment(params.fetch(:fulfillment).permit(:tracking_number))
+    @fulfillment = order.create_fulfillment!(params.fetch(:fulfillment).permit(:tracking_number))
   end
 
   private
