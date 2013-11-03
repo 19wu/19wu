@@ -4,12 +4,15 @@ h2 = t('labels.invoice_orders')
   table.table.table-bordered.table-hover ng-controller='OrderFulfillmentsCtrl'
     thead
       tr
+        th width='30px' 序号
         th width='100px' = t('views.my_orders.trade_no')
         th width='80px' = t('views.my_orders.user')
         th width='120px' = t('views.my_orders.price')
         th 发票信息
     tbody ng-repeat='order in orders'
       tr
+        td
+          |{{$index+1}}
         td
           |{{order.number}}
         td
