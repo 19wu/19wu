@@ -14,7 +14,7 @@ FactoryGirl.define do
         require_invoice false
         paid false
       end
-      before(:create) do |order, evaluator|
+      after(:build) do |order, evaluator|
         FactoryGirl.create_list(:ticket, evaluator.items_count, price: evaluator.tickets_price, require_invoice: evaluator.require_invoice, event: order.event).each do |ticket|
           order.items.build ticket: ticket, quantity: evaluator.quantity, price: ticket.price
         end
