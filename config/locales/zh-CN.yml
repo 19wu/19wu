@@ -219,9 +219,9 @@ zh-CN:
     event:
       change: 活动通知：%{content}【19屋】
       order:
-        checkin_code: '%{event_title} 签到码：%{checkin_code}。请您于%{event_start_time}前到达现场并出示签到码。谢谢。【19屋】'
+        checkin_code: '%{event_title} 签到验证码：%{checkin_code}。请您于%{event_start_time}前到达现场并出示签到码。谢谢。【19屋】'
     user:
-      phone_code: 尊敬的用户,您的手机绑定码是%{code},谢谢【19屋】
+      phone_code: 尊敬的用户,您的手机绑定验证码是%{code},谢谢【19屋】
   email:
     welcome:
       subject: "欢迎来到19屋"
