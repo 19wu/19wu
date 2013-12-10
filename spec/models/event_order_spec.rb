@@ -76,7 +76,24 @@ describe EventOrder do
     context 'free' do
       let(:order) { create(:order_with_items, tickets_price: 0, event: event) }
       its(:pending?) { should be_false }
+      its(:free?) { should be_true }
       its(:paid?) { should be_true }
+      describe 'participant' do
+        let(:order) { build(:order_with_items, tickets_price: 0, event: event) }
+        it 'should be create' do
+          order.should_receive(:create_participant)
+          order.save
+        end
+      end
+    end
+    context 'business' do # 收费活动
+      let(:order) { create(:order_with_items, event: event) }
+      describe 'participant' do
+        it 'should be create' do
+          order.should_not_receive(:create_participant)
+          order.save
+        end
+      end
     end
   end
 
