@@ -8,6 +8,7 @@
         th 签到码
         th 门票
         th 姓名
+        th 手机
         th 状态
       tbody
         - @participants.each do |participant|
@@ -19,4 +20,5 @@
               - participant.order.items.each do |item|
                 div #{item.quantity} x #{item.name}
             td = participant.user.name
+            td = participant.user.phone
             td = participant.joined? ? '已签到' : '未签到'
