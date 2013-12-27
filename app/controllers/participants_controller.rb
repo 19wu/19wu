@@ -9,7 +9,7 @@ class ParticipantsController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, with: :render_record_no_found_error
 
   def index
-    @participants = @event.participants.joins(:user).order('users.login ASC').includes(:user => :profile)
+    @participants = @event.participants.joins(:user).order('id DESC').includes(:user => :profile)
   end
 
   def export
