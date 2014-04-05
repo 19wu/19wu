@@ -63,7 +63,7 @@ module ApplicationHelper
   def render_settings_tab(label, path, active_controller)
     if controller_name == active_controller
       content_tag :li, :class => 'active' do
-        link_to label, '#settings-main'
+        link_to label, 'javascript:void(0)'
       end
     else
       content_tag :li do

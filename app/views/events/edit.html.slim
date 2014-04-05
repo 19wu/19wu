@@ -1,5 +1,5 @@
 article.event
-  h1 = link_to "{{ title }}", event_path(@event), "ng-model" => "title"
+  h1 = link_to @event.title, event_path(@event), "ng-model" => "title", "ng-bind"=>"title"
   = render 'menu'
   = simple_form_for @event, :html => { :class => "form-horizontal event-form" } do |f|
     = f.error_notification
