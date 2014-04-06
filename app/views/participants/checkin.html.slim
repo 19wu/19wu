@@ -5,11 +5,11 @@
     form.form-search.checkin-form
       input.input-medium.margin-right name="code" ng-model='code' type="text" placeholder="请输入6位数字签到码"
       button.btn.btn-info type="submit" ng-click='checkin()' 签到
-    p.alert.alert-success ng-show='data'
+    p.alert.alert-success ng-show='data' ng-cloak=""
       |{{data.checkin_code}} 签到成功，门票总数：{{data.quantity}} 张
       ul
-        li ng-repeat='item in data.items'
+        li ng-repeat='item in data.items' ng-cloak=""
           |{{item.quantity}} x {{item.name}}
-    p.alert.alert-error ng-show='error'
+    p.alert.alert-error ng-show='error' ng-cloak=""
       |{{error}}
-    p.alert ng-show='wait' 正在提交签到码...
+    p.alert ng-show='wait' ng-cloak="" 正在提交签到码...

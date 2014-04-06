@@ -1,4 +1,5 @@
 /*
+ *= require_self
  *= require jquery.fileupload-ui
  *= require bootstrap-timepicker
  */
@@ -46,3 +47,9 @@
 @import "modules/topic";
 
 @import "modules/event-map";
+
+
+// load cloak css first
+[ng\:cloak], [ng-cloak], .ng-cloak {
+  display: none !important;
+}

@@ -9,7 +9,7 @@ h2 = t('labels.invoice_orders')
         th width='80px' = t('views.my_orders.user')
         th width='120px' = t('views.my_orders.price')
         th 发票信息
-    tbody ng-repeat='order in orders'
+    tbody ng-repeat='order in orders' ng-cloak=""
       tr
         td
           |{{$index+1}}

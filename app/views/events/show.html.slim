@@ -1,6 +1,6 @@
 article.event ng-init=init_event(@event)
   header
-    .actions.pull-right ng-controller="FollowsCtrl" ng-init="init(#{event_follow_info(@event)})"
+    .actions.pull-right ng-cloak="" ng-controller="FollowsCtrl" ng-init="init(#{event_follow_info(@event)})"
       a.btn ng-href='{{href}}' ng-click='follow()' ng-class='{disabled: disabled}' data-toggle="tooltip" title='{{title}}'
         i.icon-star
         |&nbsp;{{labels[followed]}}
@@ -19,7 +19,7 @@ article.event ng-init=init_event(@event)
                 th = t('activerecord.attributes.event_ticket.name')
                 th width='100px' = t('activerecord.attributes.event_ticket.price')
                 th width='100px' 数量
-            tbody ng-init=init_tickets(@event)
+            tbody ng-init=init_tickets(@event) ng-cloak=""
               tr ng-repeat="ticket in tickets"
                 td
                   |{{ticket.name}}
@@ -30,61 +30,62 @@ article.event ng-init=init_event(@event)
                 td
                   select.span1 ng-model='ticket.quantity' = options_for_select(0..10)
           .signup.clearfix ng-show="errors['user_session'] && user_form=='register'"
-            div
-              p.text-warning
-                |请先注册，或者
-                a href='javascript:void(0)' ng-click='use_login_form()' 登录
-              label.control-label for="user_login" 用户名
-              input.input-large id='user_login' ng-model="user_login" type="text"
-              label.control-label for="user_email" Email
-              input.input-large id='user_email' ng-model="user_email" type="text"
-              label.control-label for="user_password" 密码
-              input.input-large id='user_password' ng-model="user_password" type="password"
-            a.btn.btn-info.span1.pull-right ng-click='signup()' 注册
-          .login.clearfix ng-show="errors['user_session'] && user_form=='login'"
-            div
-              p.text-warning
-                |请先登录，或者
-                a href='javascript:void(0)' ng-click='use_register_form()' 注册
-              label.control-label for="email" Email
-              input.input-large id='email' ng-model="email" type="text"
-              label.control-label for="password" 密码
-              input.input-large id='password' ng-model="password" type="password"
-            a.btn.btn-info.span1.pull-right ng-click='login()' 登录
-          .payment.clearfix
-            p.text-warning ng-show="errors['tickets']" 请先选择门票数量。
-            div ng-show="errors['user_info']"
-              p.text-warning 请完善用户信息，完成订单后您的手机将收到签到码
-              label.control-label for="user_name" 姓名
-              input.input-large name='user_name' ng-model="user.name" type="text"
-              label.control-label for="user_phone" 手机
-              input.input-large name='user_phone' ng-model="user.phone" type="text"
-            div ng-show="errors['invoice_info']"
-              p.muted 您购买的门票可以提供发票，请填写以下信息：
-              label.control-label for="invoice_title" 发票抬头
-              input.input-xlarge name='invoice_title' ng-model="invoice_title" type="text"
-              label.control-label for="address" 收货地址
-              .city-group
-                select.city-select.span2.margin-right ng-model="province" ng-init="province=''"
-                  option value='' --省份--
-                  = options_for_select(ChinaCity.list)
-                select.city-select.span2.margin-right ng-model="city" ng-init="city=''"
-                  option value='' --城市--
-                select.city-select.span2 ng-model="district" ng-init="district=''"
-                  option value='' --地区--
-              input.span5 name='address' ng-model="address" type="text" placeholder='详细地址'
-              .shipping_info
-                input.input-medium.margin-right name='shipping_name' ng-model="shipping_name" type="text" placeholder='收货人姓名'
-                input.input-medium name='shipping_phone' ng-model="shipping_phone" type="text" placeholder='收货人联系电话'
-            a.btn.btn-info.span1.pull-right ng-hide="status || errors['user_session']" ng-disabled='disabled' ng-click='create()' ng-init={labels: t('views.order.labels')}.to_ng_init
-              |{{labels[disabled]}}
-            - if current_user && current_user.ordered?(@event)
-              = link_to t('labels.my_orders'), user_orders_path(event_id: @event.id), class: 'btn pull-right', 'ng-hide' => 'status'
-            p.text-info ng-show="status=='paid'" 您已经提交了订单，订单号为 {{number}}，此订单为免费订单，不需要支付，谢谢。
-            .pending-order-tip ng-show='pay_url'
-              p.text-info 您已经提交了订单，订单号为 {{number}}，请尽快支付。
-              p.muted 超过三天未支付的订单会自动取消。
-              a.btn.btn-warning.pull-right ng-href='{{pay_url}}' target='_blank' 使用支付宝支付
+            div ng-cloak=""
+              div
+                p.text-warning
+                  |请先注册，或者
+                  a href='javascript:void(0)' ng-click='use_login_form()' 登录
+                label.control-label for="user_login" 用户名
+                input.input-large id='user_login' ng-model="user_login" type="text"
+                label.control-label for="user_email" Email
+                input.input-large id='user_email' ng-model="user_email" type="text"
+                label.control-label for="user_password" 密码
+                input.input-large id='user_password' ng-model="user_password" type="password"
+              a.btn.btn-info.span1.pull-right ng-click='signup()' 注册
+            .login.clearfix ng-show="errors['user_session'] && user_form=='login'"
+              div ng-cloak=""
+                p.text-warning
+                  |请先登录，或者
+                  a href='javascript:void(0)' ng-click='use_register_form()' 注册
+                label.control-label for="email" Email
+                input.input-large id='email' ng-model="email" type="text"
+                label.control-label for="password" 密码
+                input.input-large id='password' ng-model="password" type="password"
+              a.btn.btn-info.span1.pull-right ng-cloak="" ng-click='login()' 登录
+            .payment.clearfix
+              p.text-warning ng-show="errors['tickets']" ng-cloak="" 请先选择门票数量。
+              div ng-show="errors['user_info']" ng-cloak=""
+                p.text-warning 请完善用户信息，完成订单后您的手机将收到签到码
+                label.control-label for="user_name" 姓名
+                input.input-large name='user_name' ng-model="user.name" type="text"
+                label.control-label for="user_phone" 手机
+                input.input-large name='user_phone' ng-model="user.phone" type="text"
+              div ng-show="errors['invoice_info']" ng-cloak=""
+                p.muted 您购买的门票可以提供发票，请填写以下信息：
+                label.control-label for="invoice_title" 发票抬头
+                input.input-xlarge name='invoice_title' ng-model="invoice_title" type="text"
+                label.control-label for="address" 收货地址
+                .city-group
+                  select.city-select.span2.margin-right ng-model="province" ng-init="province=''"
+                    option value='' --省份--
+                    = options_for_select(ChinaCity.list)
+                  select.city-select.span2.margin-right ng-model="city" ng-init="city=''"
+                    option value='' --城市--
+                  select.city-select.span2 ng-model="district" ng-init="district=''"
+                    option value='' --地区--
+                input.span5 name='address' ng-model="address" type="text" placeholder='详细地址'
+                .shipping_info
+                  input.input-medium.margin-right name='shipping_name' ng-model="shipping_name" type="text" placeholder='收货人姓名'
+                  input.input-medium name='shipping_phone' ng-model="shipping_phone" type="text" placeholder='收货人联系电话'
+              a.btn.btn-info.span1.pull-right ng-hide="status || errors['user_session']" ng-disabled='disabled' ng-click='create()' ng-cloak="" ng-init={labels: t('views.order.labels')}.to_ng_init
+                |{{labels[disabled]}}
+              - if current_user && current_user.ordered?(@event)
+                = link_to t('labels.my_orders'), user_orders_path(event_id: @event.id), class: 'btn pull-right', 'ng-hide' => 'status', 'ng-cloak'=>''
+              p.text-info ng-show="status=='paid'" ng-cloak="" 您已经提交了订单，订单号为 {{number}}，此订单为免费订单，不需要支付，谢谢。
+              .pending-order-tip ng-show='pay_url' ng-cloak=""
+                p.text-info 您已经提交了订单，订单号为 {{number}}，请尽快支付。
+                p.muted 超过三天未支付的订单会自动取消。
+                a.btn.btn-warning.pull-right ng-href='{{pay_url}}' target='_blank' 使用支付宝支付
       - else
         .sold-out.alert.alert-alert
           | 名额已满，停止报名 :(

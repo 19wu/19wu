@@ -1,5 +1,5 @@
 = simple_form_for @user, url: user_phone_path, :html => {name: 'form', novalidate: '', class: 'form-horizontal' } do |f|
-  fieldset ng-controller="UserPhonesCtrl"
+  fieldset ng-controller="UserPhonesCtrl" ng-cloak=""
     legend = t('.title', :scope => 'views')
     .form-inputs
       .control-group
