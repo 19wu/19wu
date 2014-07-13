@@ -9,7 +9,7 @@ wb.add_worksheet(name: @event.title) do |sheet|
   @orders.each do |order|
     user = order.user
     items = order.items.map do |item|
-      "#{item.quantity} x #{item.ticket.name}"
+      "#{item.quantity} x #{item.name}"
     end.join(", ")
     sheet.add_row ['', order.participant.checkin_code, items, user.name, user.email, order.paid_amount, order.number.to_s, order.created_at.to_date.to_s(:db)], style: body_style
   end
