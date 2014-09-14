@@ -19,7 +19,7 @@ class UserPhonesController < ApplicationController
 
   def send_code
     ip_key = "sms:#{request.remote_ip}" # TODO: config to use memcached.
-    send_times = Rails.cache.fetch(ip_key, expires_in: 24.hours){ 10 }
+    send_times = Rails.cache.fetch(ip_key, expires_in: 24.hours){ 100 }
     if send_times > 0
       Rails.cache.decrement ip_key
       code = cookies.signed[:code] || rand(1000..9999)
