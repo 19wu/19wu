@@ -1,5 +1,5 @@
 = render 'events/header'
-.collaborators-list ng-controller='CollaboratorsCtrl' ng-init='items = #{@collaborators.to_json}'
+.collaborators-list ng-controller='CollaboratorsCtrl' ng-init='items = #{@collaborators.to_json}' ng-cloak=""
   .list
     .item.clearfix ng-repeat="item in items"
       .avatar-wrapper

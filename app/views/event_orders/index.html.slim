@@ -4,7 +4,7 @@
   = render 'event_orders/submenu'
   .span9
     .well
-      ul.orders-stats
+      ul.orders-stats ng-cloak=""
         li.orders-stat
           h2 #{stats_tickets_price(@orders)} 元
           p.muted 总金额
@@ -29,7 +29,7 @@
             th width='120px' = t('views.my_orders.price')
             th width='100px' = t('views.my_orders.trade_no')
             th width='100px' = t('views.my_orders.operation')
-        tbody ng-repeat='order in orders'
+        tbody ng-repeat='order in orders' ng-cloak=""
           tr
             td
               a ng-href="/{{order.user.login}}" target="_blank"
