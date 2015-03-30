@@ -101,7 +101,7 @@ describe ApplicationHelper do
           subject.should have_selector('li.active')
         end
         it 'uses #settings-main as link href' do
-          subject.should have_selector('a[href="#settings-main"]')
+          subject.should have_selector('a[href="javascript:void(0)"]')
         end
       end
 
