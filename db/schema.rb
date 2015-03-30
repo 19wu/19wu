@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131125011434) do
+ActiveRecord::Schema.define(version: 20150128225959) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -108,7 +108,7 @@ ActiveRecord::Schema.define(version: 20131125011434) do
     t.integer  "user_id",                                     null: false
     t.integer  "quantity",                                    null: false
     t.string   "status",               limit: 16
-    t.string   "trade_no",             limit: 16
+    t.string   "trade_no",             limit: 32
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "price_in_cents",                  default: 0, null: false
