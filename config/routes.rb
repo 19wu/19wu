@@ -40,7 +40,7 @@ NineteenWu::Application.routes.draw do
   get ":slug" => "group#event", :constraints => SlugConstraint, :as => :slug_event
   get ":slug/followers" => "group#followers"
   get 'ordered_events', to: "events#ordered"
-  post '/photos', to: "photo#create"
+  match '/photos', to: "photo#create", via: [:post, :patch]    # 修改活动时为 patch
   post "/content/preview/" => "home#content_preview"
 
   authenticated :user do
