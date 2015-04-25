@@ -1,4 +1,12 @@
 module ApplicationHelper
+  def title(page_title = nil)
+    if page_title.present?
+      content_for :title, page_title
+    else
+      content_for?(:title) ? "#{content_for(:title)} - #{t('19wu')}" :  t('layout.title')
+    end
+  end
+
   def resource_name
     :user
   end
