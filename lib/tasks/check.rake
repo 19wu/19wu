@@ -15,8 +15,9 @@ task :check do
 
       prices  += price
       refunds += refund
-      # puts number
-      puts "#{number}, #{price}, #{fee}, #{refund}"
+      puts number if refund > 0
+      # puts number if refund > 0 && price != refund
+      # puts "#{number}, #{price}, #{fee}, #{refund}"
     end
 
     puts prices

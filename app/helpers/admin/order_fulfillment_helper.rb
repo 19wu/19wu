@@ -4,7 +4,7 @@ module Admin::OrderFulfillmentHelper
       json.array! orders do |order|
         json.(order, :id, :number, :paid_amount)
         json.user order.user, :login, :email
-        json.address order.shipping_address, :invoice_title, :info
+        json.address order.shipping_address, :invoice_title, :info if order.shipping_address
         json.fulfillment order.fulfillment, :tracking_number if order.fulfillment
         items = order.items.select(&:require_invoice)
         json.items items do |item|
