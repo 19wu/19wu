@@ -56,7 +56,7 @@ rails server
 
 感谢以下赞助商：
 
-* [推立方](http://tui3.com/) 短信赞助商
+* [UCloud](http://www.ucloud.cn/?ref=19wu) 服务器赞助商
 
 ## License
 
