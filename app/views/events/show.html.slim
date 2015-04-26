@@ -2,7 +2,7 @@
 
 article.event ng-init=init_event(@event)
   header
-    .actions.pull-right ng-cloak="" ng-controller="FollowsCtrl" ng-init="init(#{event_follow_info(@event)})"
+    .actions.pull-right.hidden-phone ng-cloak="" ng-controller="FollowsCtrl" ng-init="init(#{event_follow_info(@event)})"
       a.btn ng-href='{{href}}' ng-click='follow()' ng-class='{disabled: disabled}' data-toggle="tooltip" title='{{title}}'
         i.icon-star
         |&nbsp;{{labels[followed]}}
@@ -20,8 +20,8 @@ article.event ng-init=init_event(@event)
               thead
                 tr
                   th = t('activerecord.attributes.event_ticket.name')
-                  th = t('activerecord.attributes.event_ticket.price')
-                  th 数量
+                  th style="min-width: 28px;" = t('activerecord.attributes.event_ticket.price')
+                  th style="min-width: 50px;" 数量
               tbody ng-init=init_tickets(@event) ng-cloak=""
                 tr ng-repeat="ticket in tickets"
                   td
