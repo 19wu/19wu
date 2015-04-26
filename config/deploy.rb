@@ -90,7 +90,9 @@ after 'deploy:migrate'           , 'deploy:seed'
 
 after "deploy:stop",    "delayed_job:stop"
 after "deploy:start",   "delayed_job:start"
-after "deploy:restart", "delayed_job:restart"
+unless ENV['NO_RESTART_DELAYED_JOB']
+  after "deploy:restart", "delayed_job:restart"
+end
 
 before 'deploy:setup', 'rvm:install_rvm'   # install RVM
 before 'deploy:setup', 'rvm:install_ruby'  # install Ruby and create gemset, or:
