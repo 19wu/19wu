@@ -24,6 +24,10 @@
     padding-right: 20px;
     margin-left: -20px;
     margin-right: -20px;
+    ul {
+      float: left;
+      margin-top: $baseLineHeight;
+    }
   }
   .navbar-static-top .container {
     width: auto;
