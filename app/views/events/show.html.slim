@@ -15,22 +15,23 @@ article.event ng-init=init_event(@event)
     .span8
       - if @event.tickets_quantity != 0
         .event-tickets ng-controller='OrdersCtrl'
-          table.table ng-show='tickets'
-            thead
-              tr
-                th = t('activerecord.attributes.event_ticket.name')
-                th width='100px' = t('activerecord.attributes.event_ticket.price')
-                th width='100px' 数量
-            tbody ng-init=init_tickets(@event) ng-cloak=""
-              tr ng-repeat="ticket in tickets"
-                td
-                  |{{ticket.name}}
-                  .muted
-                    |{{ticket.description}}
-                td
-                  |{{ticket.price | money }}
-                td
-                  select.span1 ng-model='ticket.quantity' = options_for_select(0..10)
+          .table-responsive
+            table.table ng-show='tickets'
+              thead
+                tr
+                  th = t('activerecord.attributes.event_ticket.name')
+                  th = t('activerecord.attributes.event_ticket.price')
+                  th 数量
+              tbody ng-init=init_tickets(@event) ng-cloak=""
+                tr ng-repeat="ticket in tickets"
+                  td
+                    |{{ticket.name}}
+                    .muted
+                      |{{ticket.description}}
+                  td
+                    |{{ticket.price | money }}
+                  td
+                    select.span1 ng-model='ticket.quantity' = options_for_select(0..10)
           .signup.clearfix ng-show="errors['user_session'] && user_form=='register'"
             div ng-cloak=""
               p.text-warning
