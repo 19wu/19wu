@@ -4,13 +4,13 @@ require 'spec_helper'
 describe EventHelper do
   describe '#time_merge' do
     let(:event) { build :event, start_time: "#{year}-12-30 08:00", end_time: "#{year}-12-30 10:00" }
-    let(:year) { Time.zone.now.year }
+    let(:year) { 2013 }
     let(:next_year) { year + 1 }
     subject { helper.time_merge(event) }
     context 'when has not end time' do
       before { event.end_time = nil }
       context 'when year is current year' do
-        it { should == '12月30日(一) 上午 08:00' }
+        it { should == '2013年12月30日(一) 上午 08:00' }
       end
       context 'when year is not current year' do
         before { event.start_time = event.start_time.change(year: next_year) }
@@ -21,16 +21,16 @@ describe EventHelper do
       context 'when year is current year' do
         context 'when date is the same' do
           context 'when moon is the same' do
-            it { should == '12月30日(一) 上午 08:00 - 10:00' }
+            it { should == '2013年12月30日(一) 上午 08:00 - 10:00' }
           end
           context 'when moon is not the same' do
             before { event.end_time = event.end_time.change(hour: 15) }
-            it { should == '12月30日(一) 上午 08:00 - 下午 03:00' }
+            it { should == '2013年12月30日(一) 上午 08:00 - 下午 03:00' }
           end
         end
         context 'when date is not the same' do
           before { event.end_time = event.end_time.change(day: 31) }
-          it { should == '12月30日(一) 上午 08:00 - 12月31日(二) 上午 10:00' }
+          it { should == '2013年12月30日(一) 上午 08:00 - 2013年12月31日(二) 上午 10:00' }
         end
       end
       context 'when year is not current year' do
