@@ -6,6 +6,12 @@ class EventOrderItem < ActiveRecord::Base
   validates :ticket, presence: true, on: :create
   validates :quantity, presence: true, numericality: { greater_than: 0 }
   validates :price_in_cents, :unit_price_in_cents, presence: true, numericality: { greater_than_or_equal_to: 0 }
+
+  validate do
+    if ticket.present? && ticket.closed?
+      errors.add(:ticket, I18n.t('errors.messages.ticket.close'))
+    end
+  end
   delegate :require_invoice, to: :ticket
 
   before_validation do
