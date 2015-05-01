@@ -93,6 +93,9 @@ zh-CN:
     destroy: 您确定要删除吗？
     orders:
       pay: 您确认已经收到款项了吗?
+    tickets:
+      close: 确认关闭此门票?
+      open: 确认打开此门票?
 
   buttons:
     search: 查询
@@ -109,6 +112,9 @@ zh-CN:
     created: "新增成功!"
     updated: "更新成功!"
     destroyed: "删除成功!"
+    tickets:
+      closed: '门票已关闭'
+      opened: '门票已打开'
     events:
       created: "活动已经发布"
       updated: "活动已经更新"
@@ -159,6 +165,9 @@ zh-CN:
     previous_summary: "往期活动总结"
     check_in: "签到"
     map_preview: "地图预览"
+    tickets:
+      close: '关闭'
+      open: '打开'
     events:
       new:
         title: "发起活动"

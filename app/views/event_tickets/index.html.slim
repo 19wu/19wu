@@ -10,6 +10,7 @@
             td width='140px'  = t('activerecord.attributes.event_ticket.price')
             td width='200px'  = t('activerecord.attributes.event_ticket.require_invoice')
             td = t('activerecord.attributes.event_ticket.description')
+            td = t('activerecord.attributes.event_ticket.status')
             td width='140px'  &nbsp;
         tbody
           - @tickets.each do |ticket|
@@ -18,7 +19,12 @@
               td = ticket.price
               td = t('simple_form.options.event_ticket.require_invoice')[ticket.require_invoice?]
               td = ticket.description
+              td = t('activerecord.attributes.event_ticket.state_machines.' + ticket.status )
               td.table-operate
+                - if ticket.can_reopen?
+                  = link_to t('views.tickets.open'), open_event_ticket_path(ticket.event, ticket), method: 'POST', data: { confirm: t('confirmation.tickets.open') }
+                - elsif ticket.can_close?
+                  = link_to t('views.tickets.close'), close_event_ticket_path(ticket.event, ticket), method: 'POST', data: { confirm: t('confirmation.tickets.close') }
                 = link_to t('views.edit'), edit_event_ticket_path(ticket.event, ticket)
                 = link_to t('views.destroy'), event_ticket_path(ticket.event, ticket), method: :delete, data: { confirm: t('confirmation.destroy') }
     - if @event.tickets_quantity

@@ -63,6 +63,10 @@ zh-CN:
         name: "名称"
         price: "价格"
         description: "描述"
+        status: '状态'
+        state_machines:
+          opened: '打开中'
+          closed: '已关闭'
         tickets_quantity: "活动总票数"
         require_invoice: "是否提供发票"
       profile:
