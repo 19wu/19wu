@@ -39,6 +39,18 @@ class EventTicketsController < ApplicationController
     redirect_to event_tickets_path(@event), notice: I18n.t('flash.destroyed')
   end
 
+  def open
+    @ticket = @event.tickets.find(params[:id])
+    @ticket.can_reopen? && @ticket.reopen
+    redirect_to event_tickets_path(@event), notice: I18n.t('flash.tickets.opened')
+  end
+
+  def close
+    @ticket = @event.tickets.find(params[:id])
+    @ticket.can_close? && @ticket.close
+    redirect_to event_tickets_path(@event), notice: I18n.t('flash.tickets.closed')
+  end
+
   private
 
   def event_ticket_params

@@ -6,6 +6,18 @@ class EventTicket < ActiveRecord::Base
   attr_writer :tickets_quantity
   delegate :tickets_quantity, to: :event
 
+  scope :opened, -> { where(status: 'opened') }
+
+  state_machine :status, :initial => :opened do
+    event :close do
+      transition :opened => :closed
+    end
+
+    event :reopen do
+      transition :closed => :opened
+    end
+  end
+
   before_save do
     event.update_column :tickets_quantity, @tickets_quantity if @tickets_quantity.present?
   end

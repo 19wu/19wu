@@ -22,7 +22,12 @@ NineteenWu::Application.routes.draw do
     end
     resources :export       , :only => [:index]
     resources :changes      , :only => [:index, :new, :create]    , :controller => 'event_changes'
-    resources :tickets      , :controller => 'event_tickets'
+    resources :tickets      , :controller => 'event_tickets' do
+      member do
+        post :open
+        post :close
+      end
+    end
     resources :orders       , :only => [:create, :index]          , :controller => 'event_orders' do
       collection do
         get 'status/:status', :to => 'event_orders#index', :as => :filter
