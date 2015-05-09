@@ -12,6 +12,8 @@ zh-CN:
       event_order_refund:
         amount_in_cents:
           less_than: 必须小于已支付金额 %{paid_amount} 元。
+      ticket:
+        close: '选择的门票已关闭, 无法购买, 请刷新重试'
   activerecord:
     models:
       user: "用户"
@@ -63,6 +65,10 @@ zh-CN:
         name: "名称"
         price: "价格"
         description: "描述"
+        status: '状态'
+        state_machines:
+          opened: '打开中'
+          closed: '已关闭'
         tickets_quantity: "活动总票数"
         require_invoice: "是否提供发票"
       profile:
