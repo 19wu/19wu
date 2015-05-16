@@ -15,6 +15,8 @@ class EventOrder < ActiveRecord::Base
   validates :quantity, presence: true, numericality: { greater_than: 0 }
   validate :quantity_cannot_be_greater_than_event_quantity, :invoice_should_has_address, on: :create
 
+  scope :paid, -> { where(status: 'paid') }
+
   before_validation do
     self.quantity = calculate_quantity
     self.price_in_cents = calculate_price_in_cents

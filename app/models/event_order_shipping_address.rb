@@ -3,6 +3,10 @@ class EventOrderShippingAddress < ActiveRecord::Base
   validates :invoice_title, :province, :city, :district, :address, :name, :phone, presence: true
 
   def info
-    "#{ChinaCity.get(province)}#{ChinaCity.get(city)}#{ChinaCity.get(district)} #{address} #{name} #{phone}"
+    "#{full_address} #{name} #{phone}"
+  end
+
+  def full_address
+    "#{ChinaCity.get(province)}#{ChinaCity.get(city)}#{ChinaCity.get(district)} #{address}"
   end
 end
