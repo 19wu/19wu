@@ -9,6 +9,10 @@ NineteenWu::Application.routes.draw do
       post 'unfollow'
       get 'followers'
     end
+    # Event 相关的都放在 event 目录
+    scope module: 'event' do
+      resources :invoices     , :only => [:index]
+    end
     resources :participants , :only => [:index] do
       collection do
         get :checkin
