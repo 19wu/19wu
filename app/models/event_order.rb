@@ -79,7 +79,7 @@ class EventOrder < ActiveRecord::Base
     self.trade_no.blank? # for now, only bank transfer was supported.
   end
 
-  def require_invoice
+  def provide_invoice
     items.map(&:require_invoice).any?
   end
 
@@ -95,7 +95,9 @@ class EventOrder < ActiveRecord::Base
           items_attributes: items_attributes
       }
       order_params[:shipping_address_attributes] = params[:shipping_address_attributes] if params[:shipping_address_attributes]
-      event.orders.build order_params
+      order = event.orders.build order_params
+      order.require_invoice = (order.provide_invoice && params[:user_wants_invoice]) if params[:user_wants_invoice]
+      order
     end
 
     # TODO: validate, event and its inventory, #457, #467

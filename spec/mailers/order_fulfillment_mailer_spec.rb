@@ -3,7 +3,7 @@ require "spec_helper"
 
 describe OrderFulfillmentMailer do
   let(:user) { create(:user, :confirmed, :admin) }
-  let(:order) { create(:order_with_items, require_invoice: true, paid: true) }
+  let(:order) { create(:order_with_items, provide_invoice: true, paid: true) }
   let(:event) { order.event }
   let(:fulfillment) { create :event_order_fulfillment, order: order }
 

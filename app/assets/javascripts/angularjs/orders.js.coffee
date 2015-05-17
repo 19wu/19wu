@@ -1,6 +1,7 @@
 @OrdersCtrl = ['$scope', '$http', '$window', ($scope, $http, $window) ->
   $scope.disabled = $scope.event.started
   $scope.user_form = 'register'
+  $scope.user_wants_invoice = true
   $scope.errors = {}
 
   $scope.use_login_form = ->
@@ -59,6 +60,9 @@
     $scope.errors['user_info'] = true unless $scope.user.name && $scope.user.phone
 
   $scope.require_invoice = ->
+    $scope.provide_invoice() && $scope.user_wants_invoice
+
+  $scope.provide_invoice = ->
     for ticket in $scope.tickets
       return true if parseInt(ticket.quantity, 10) > 0 && ticket.require_invoice
     false
@@ -87,7 +91,8 @@
 
     order:
       items_attributes: items,
-      shipping_address_attributes: shipping_address
+      shipping_address_attributes: shipping_address,
+      user_wants_invoice: $scope.user_wants_invoice
     user:
       phone: $scope.user.phone
       profile_attributes:

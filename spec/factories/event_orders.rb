@@ -11,14 +11,14 @@ FactoryGirl.define do
         items_count 1
         quantity 1
         tickets_price 299
-        require_invoice false
+        provide_invoice false
         paid false
       end
       after(:build) do |order, evaluator|
-        FactoryGirl.create_list(:ticket, evaluator.items_count, price: evaluator.tickets_price, require_invoice: evaluator.require_invoice, event: order.event).each do |ticket|
+        FactoryGirl.create_list(:ticket, evaluator.items_count, price: evaluator.tickets_price, require_invoice: evaluator.provide_invoice, event: order.event).each do |ticket|
           order.items.build ticket: ticket, quantity: evaluator.quantity, price: ticket.price
         end
-        if order.require_invoice
+        if order.require_invoice = evaluator.provide_invoice
           order.shipping_address_attributes = attributes_for(:shipping_address)
         end
       end

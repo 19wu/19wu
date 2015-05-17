@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Admin::OrderFulfillmentsController do
   let(:user) { create(:user, :confirmed, :admin) }
-  let!(:order) { create(:order_with_items, require_invoice: true, paid: true) }
+  let!(:order) { create(:order_with_items, provide_invoice: true, paid: true) }
   before { login_user user }
 
   describe "GET index" do

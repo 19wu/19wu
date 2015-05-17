@@ -3,7 +3,7 @@ require File.expand_path('../../../spec_helper', __FILE__)
 
 feature 'orders fulfillments', js: true do
   given(:support) { create(:user, :confirmed, :admin) }
-  given!(:order) { create(:order_with_items, require_invoice: true, paid: true) }
+  given!(:order) { create(:order_with_items, provide_invoice: true, paid: true) }
   given(:tracking_number) { '112521197075' }
 
   before { sign_in support }
