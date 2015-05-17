@@ -29,22 +29,38 @@ feature 'event orders', js: true do
         expect(page).to have_content('使用支付宝支付')
       end
 
-      scenario 'I buy a ticket with invoice' do
-        ticket.update_attributes require_invoice: true, price: 299
-        visit event_path(event)
-        within '.event-tickets' do
-          select '1'
+      context 'when ticket provice invoice' do
+        before do
+          ticket.update_attributes require_invoice: true, price: 299
+          visit event_path(event)
+          within '.event-tickets' do
+            select '1'
+          end
+          find('a', text: '购买').click
         end
-        find('a', text: '购买').click
-        fill_in 'invoice_title', with: address_attributes[:invoice_title]
-        select ChinaCity.get(address_attributes[:province])
-        select ChinaCity.get(address_attributes[:city])
-        select ChinaCity.get(address_attributes[:district])
-        fill_in 'address', with: address_attributes[:address]
-        fill_in 'shipping_name', with: address_attributes[:name]
-        fill_in 'shipping_phone', with: address_attributes[:phone]
-        find('a', text: '购买').click
-        expect(page).to have_content('使用支付宝支付')
+        context 'I wants invoice' do
+          scenario 'I buy a ticket with invoice' do
+            expect(page).to have_content('发票抬头')
+            fill_in 'invoice_title', with: address_attributes[:invoice_title]
+            select ChinaCity.get(address_attributes[:province])
+            select ChinaCity.get(address_attributes[:city])
+            select ChinaCity.get(address_attributes[:district])
+            fill_in 'address', with: address_attributes[:address]
+            fill_in 'shipping_name', with: address_attributes[:name]
+            fill_in 'shipping_phone', with: address_attributes[:phone]
+            find('a', text: '购买').click
+            expect(page).to have_content('使用支付宝支付')
+          end
+        end
+
+        context 'I do not wants invoice' do
+          scenario 'I buy a ticket' do
+            uncheck '需要提供发票'
+            expect(page).not_to have_content('发票抬头')
+            find('a', text: '购买').click
+            expect(page).to have_content('使用支付宝支付')
+          end
+        end
       end
 
       scenario 'I buy a free ticket' do
