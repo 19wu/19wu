@@ -18,12 +18,19 @@ describe EventOrder do
       end
       describe 'shipping_address' do
         let(:ticket) { event.tickets.first }
-        let(:order) { EventOrder.build_order(user, event, items_attributes: [{ticket_id: ticket.id, quantity: 1}]) }
+        let(:order) { EventOrder.build_order(user, event, items_attributes: [{ticket_id: ticket.id, quantity: 1}], user_wants_invoice: user_wants_invoice) }
         before do
           ticket.update_attribute :require_invoice, true
           order.valid?
         end
-        its([:shipping_address]) { should_not be_nil }
+        context 'user wants invoice' do
+          let(:user_wants_invoice) { true }
+          its([:shipping_address]) { should_not be_nil }
+        end
+        context 'user do not wants invoice' do
+          let(:user_wants_invoice) { false }
+          its([:shipping_address]) { should be_nil }
+        end
       end
     end
     describe 'notification' do
@@ -73,6 +80,38 @@ describe EventOrder do
     it 'should let user to follow event' do
       expect{order}.to change{event.group.followers}
     end
+
+    describe '#require_invoice' do
+      let(:ticket) { event.tickets.first }
+      let(:order) { EventOrder.build_order(user, event, items_attributes: [{ticket_id: ticket.id, quantity: 1}], user_wants_invoice: user_wants_invoice) }
+      subject { order.require_invoice } 
+      context 'event provide' do   # 门票提供发票
+        before { ticket.update_attribute :require_invoice, true }
+
+        context 'user require' do   # 用户需要发票
+          let(:user_wants_invoice) { true }
+          it { should be_true }
+        end
+
+        context 'user ignore' do    # 用户不需要发票
+          let(:user_wants_invoice) { false }
+          it { should be_false }
+        end
+      end
+
+      context 'event do not provide' do   # 门票不提供发票
+        context 'user require' do   # 用户需要发票
+          let(:user_wants_invoice) { true }
+          it { should be_false }
+        end
+
+        context 'user ignore' do    # 用户不需要发票
+          let(:user_wants_invoice) { false }
+          it { should be_false }
+        end
+      end
+    end
+
     context 'free' do
       let(:order) { create(:order_with_items, tickets_price: 0, event: event) }
       its(:pending?) { should be_false }
