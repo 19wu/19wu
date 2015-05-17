@@ -64,7 +64,7 @@ article.event ng-init=init_event(@event)
               input.input-large name='user_phone' ng-model="user.phone" type="text"
             div ng-show="errors['invoice_info']" ng-cloak=""
               label.muted.control-label
-                input type="checkbox" checked="checked" ng-model="user_wants_invoice"
+                input type="checkbox" style="margin-top:0px;" checked="checked" ng-model="user_wants_invoice"
                 | &nbsp;需要提供发票
               .invoice-info ng-show="user_wants_invoice"
                 label.control-label for="invoice_title" 发票抬头
