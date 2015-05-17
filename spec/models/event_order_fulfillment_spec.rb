@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe EventOrderFulfillment do
-  let(:order) { create(:order_with_items, require_invoice: true, paid: true) }
+  let(:order) { create(:order_with_items, provide_invoice: true, paid: true) }
 
   describe 'mail to' do
     let(:mail) { double('mail') }

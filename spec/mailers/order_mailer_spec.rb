@@ -4,7 +4,7 @@ require "spec_helper"
 describe OrderMailer do
   let(:user) { create(:user, :confirmed) }
   let(:event) { create(:event, user: user) }
-  let(:order) { create(:order_with_items, require_invoice: true, event: event) }
+  let(:order) { create(:order_with_items, provide_invoice: true, event: event) }
   let(:trade_no) { '2013080841700373' }
   let(:participant) { order.create_participant }
   let(:refund) { create :event_order_refund, :submited, order: order }
@@ -18,7 +18,7 @@ describe OrderMailer do
         its(:to) { should eql [order.user.email] }
         its('body.decoded') { should match '收货人信息' }
         context 'free' do
-          let(:order) { create(:order_with_items, tickets_price: 0, require_invoice: true, event: event) }
+          let(:order) { create(:order_with_items, tickets_price: 0, provide_invoice: true, event: event) }
           its('body.decoded') { should_not match '如果您尚未付款' }
         end
       end
