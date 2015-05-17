@@ -40,7 +40,7 @@ class EventOrdersController < ApplicationController
   end
 
   def order_params
-    params.fetch(:order, {}).permit({
+    params.fetch(:order, {}).permit(:user_wants_invoice, {
       items_attributes: [:ticket_id, :quantity],
       shipping_address_attributes: [:invoice_title, :province, :city, :district, :address, :name, :phone]
     })
