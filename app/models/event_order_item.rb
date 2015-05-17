@@ -12,7 +12,6 @@ class EventOrderItem < ActiveRecord::Base
       errors.add(:ticket, I18n.t('errors.messages.ticket.close'))
     end
   end
-  delegate :require_invoice, to: :ticket
 
   before_validation do
     if new_record?
@@ -59,5 +58,9 @@ class EventOrderItem < ActiveRecord::Base
 
   def name
     self.ticket ? self.ticket.name : 'deleted'
+  end
+
+  def require_invoice
+    self.ticket.try(:require_invoice)
   end
 end
