@@ -1,3 +1,5 @@
 Settings.sms.each do |service, account|
-  ChinaSMS.use service.to_sym, username: account['username'], password: account['password']
+  options = { password: account['password'] }
+  options[:username] = account['username'] if account['username']
+  ChinaSMS.use service.to_sym, options
 end

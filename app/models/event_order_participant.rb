@@ -40,7 +40,8 @@ class EventOrderParticipant < ActiveRecord::Base
   end
 
   def send_sms
-    ChinaSMS.delay.to user.phone, I18n.t('sms.event.order.checkin_code', event_title: event.title, checkin_code: self.checkin_code, event_start_time: I18n.localize(event.start_time, format: :short))
+    tpl_params = { event_title: event.title, checkin_code: self.checkin_code, event_start_time: I18n.localize(event.start_time, format: :short) }
+    ChinaSMS.delay.to user.phone, tpl_params, tpl_id: 586277
   end
 
   class << self
