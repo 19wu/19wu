@@ -25,7 +25,8 @@ class UserPhonesController < ApplicationController
       code = cookies.signed[:code] || rand(1000..9999)
       code = 1234 if Rails.env.test?
       Rails.logger.info "#{send_times}: #{I18n.t('sms.user.phone_code', code: code)}"
-      ChinaSMS.to params[:phone], I18n.t('sms.user.phone_code', code: code)
+      tpl_params = { company: I18n.t('19wu'), code: code }
+      ChinaSMS.to params[:phone], tpl_params, tpl_id: 1
       cookies.signed[:code] = { value: code, expires: 1.hour.from_now }
     end
     render nothing: true

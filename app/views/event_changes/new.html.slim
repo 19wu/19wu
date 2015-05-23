@@ -6,7 +6,7 @@
       = f.label :content
       p.muted 可以输入活动时间、地点等变更信息
       textarea.span5 rows="7" cols="40" name="event_change[content]" ng-init="content='（#{@event.title}）'" ng-maxlength="100" ng-model="content"
-      p.muted
+      /p.muted
         |变更内容将以邮件、短信方式发送，剩余字数：
         span.label.label-important ng-cloak=""
           |{{100 - content.length}}
@@ -14,9 +14,10 @@
       p.muted
         |报名用户共有 
         span.label = @event.ordered_users.size
-        |&nbsp;人，将通过邮件通知他们，其中 
-        span.label = @event.ordered_users.with_phone.size
-        |&nbsp;人登记了手机号码，将收到短信通知。
+        |&nbsp;人，将通过邮件通知他们
+        /|，其中 
+        /span.label = @event.ordered_users.with_phone.size
+        /|&nbsp;人登记了手机号码，将收到短信通知。
       p.alert.alert-error ng-show="form.$invalid" ng-cloak="" 变更内容 不能超过 100 个字
       .form-actions
         = f.button :submit, class: 'btn-info', 'ng-disabled' => "form.$invalid"
