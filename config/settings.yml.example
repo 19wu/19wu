@@ -23,6 +23,8 @@ defaults: &defaults
     tui3:
       username: 'saberma'
       password: '666666'
+    yunpian:
+      password: 'f8128n34224bd382790800a6j8b829f7'
 
   email: &email
     # Edit according to the smtp account domain.
