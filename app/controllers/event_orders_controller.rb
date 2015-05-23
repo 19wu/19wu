@@ -26,7 +26,7 @@ class EventOrdersController < ApplicationController
     params[:q] ||= {}
     params[:q][:status_eq] = params[:status]
     @search = @event.orders.search params[:q]
-    @orders = @search.result
+    @orders = @search.result distinct: true
   end
 
   def stats
