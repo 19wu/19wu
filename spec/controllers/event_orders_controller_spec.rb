@@ -12,6 +12,48 @@ describe EventOrdersController do
   }
   before { login_user user }
 
+  describe "GET index" do
+    context '1 order has two tickets' do    # issue#637
+      let(:ticket2) { create(:event_ticket, event: event, price: 400) }
+      let(:order) do
+        o = event.orders.build user:user
+        o.items.build ticket: ticket , quantity: 2, price: ticket.price
+        o.items.build ticket: ticket2, quantity: 2, price: ticket2.price
+        o.save
+        o
+      end
+
+      it "should not show 2 orders" do    # 订单中包含多个不同的门票时，点击查询时不能出现重复的订单
+        get :index, event_id: order.event.id, status: 'pending', q: { items_unit_price_in_cents_gteq_price: nil }
+        expect(assigns[:orders].load.size).to eql 1
+      end
+
+      describe 'filter' do
+        let(:ticket3) { create(:event_ticket, event: event, price: 600) }
+        let!(:order2) do
+          o = event.orders.build user: user
+          o.items.build ticket: ticket3 , quantity: 2, price: ticket3.price
+          o.save
+          o
+        end
+
+        describe 'tickets' do    # 过滤门票
+          it "should be filter" do
+            get :index, event_id: order.event.id, status: 'pending', q: { items_ticket_id_eq: ticket3.id }
+            expect(assigns[:orders].to_a).to eql [order2]
+          end
+        end
+
+        describe 'prices' do    # 过滤价格
+          it "should be filter" do
+            get :index, event_id: order.event.id, status: 'pending', q: { items_unit_price_in_cents_gteq_price: ticket3.price }
+            expect(assigns[:orders].to_a).to eql [order2]
+          end
+        end
+      end
+    end
+  end
+
   describe "POST create" do
     render_views
 
