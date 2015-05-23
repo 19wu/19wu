@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class EventChange < ActiveRecord::Base
   belongs_to :event
   validates :content, length: { maximum: 100 }

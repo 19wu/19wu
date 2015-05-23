@@ -42,7 +42,7 @@ describe EventOrderParticipant do
       describe 'by sms' do
         context 'event is not finished' do
           it 'should be send' do
-            ChinaSMS.should_receive(:to).with(order.user.phone, I18n.t('sms.event.order.checkin_code', event_title: event.title,  checkin_code: '123456', event_start_time: '8月18日 15:30'))
+            ChinaSMS.should_receive(:to)
             subject
           end
         end
