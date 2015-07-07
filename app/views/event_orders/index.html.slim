@@ -34,6 +34,8 @@
             td
               a ng-href="/{{order.user.login}}" target="_blank"
                 |{{order.user.login}}
+              p.muted ng-show='order.user.phone'
+                |{{order.user.phone}}
             td
               ul.tickets-list
                 li ng-repeat='item in order.items'

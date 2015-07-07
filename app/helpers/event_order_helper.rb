@@ -13,7 +13,7 @@ module EventOrderHelper
         refunding = order.refunds.refunding
         json.(order, :id, :number, :price, :paid_amount, :paid_amount_in_cents)
         json.refund refunding, :amount, :reason if refunding
-        json.user order.user, :login, :email
+        json.user order.user, :login, :email, :phone
         json.items order.items, :price, :unit_price, :quantity, :name
       end
     end.attributes! # http://git.io/DQj7LQ
