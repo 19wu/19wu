@@ -5,7 +5,7 @@ body_style   = wb.styles.add_style alignment: { horizontal: :right, wrap_text: t
 string_style = wb.styles.add_style alignment: { horizontal: :right }, num_fmt: 12
 
 wb.add_worksheet(name: @event.title) do |sheet|
-  sheet.add_row ['打勾', '签到码', '门票', '姓名', '手机', 'Email', '金额（元）', '订单号', '订单日期'], style: header_style
+  sheet.add_row ['打勾', '签到码', '门票', '姓名', 'Email', '手机', '金额（元）', '订单号', '订单日期'], style: header_style
   @orders.each do |order|
     user = order.user
     items = order.items.map do |item|
