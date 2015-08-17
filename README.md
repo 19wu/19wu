@@ -28,7 +28,7 @@ Password：`666666`
 git clone git://github.com/19wu/19wu.git
 cd 19wu
 bundle install --without sqlite3 mysql2
-rake setup
+bundle exec rake setup
 rails server
 ```
 
