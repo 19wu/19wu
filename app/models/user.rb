@@ -68,6 +68,16 @@ class User < ActiveRecord::Base
     "#{login} <#{email}>"
   end
 
+  # 修正活动审核时，用户无法登录的问题
+  # devise_invitable/model.rb:151:in `valid_password?'
+  # devise/lib/devise/models/database_authenticatable.rb:41
+  def valid_password?(password)
+    return false if encrypted_password.blank?
+    bcrypt   = ::BCrypt::Password.new(encrypted_password)
+    password = ::BCrypt::Engine.hash_secret("#{password}#{self.class.pepper}", bcrypt.salt)
+    Devise.secure_compare(password, encrypted_password)
+  end
+
   private
   def login_must_uniq
     if Group.exists?(:slug => login) || !FancyUrl.valid_for_short_url?(login)
