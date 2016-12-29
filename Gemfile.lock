@@ -50,7 +50,7 @@ GIT
       sprockets-rails
 
 GEM
-  remote: http://ruby.taobao.org/
+  remote: https://gems.ruby-china.org/
   specs:
     actionmailer (4.0.0)
       actionpack (= 4.0.0)
@@ -483,3 +483,6 @@ DEPENDENCIES
   uglifier (>= 1.3.0)
   unicorn
   whenever
+
+BUNDLED WITH
+   1.13.7
