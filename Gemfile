@@ -16,7 +16,7 @@ mysql2_group = is_heroku ? :development : :mysql2
 if ENV['TRAVIS']
   source 'https://rubygems.org'
 else
-  source 'http://ruby.taobao.org'
+  source 'https://gems.ruby-china.org'
 end
 
 # if not encoding, `bundle install` command would be error. (Invalid byte sequence in GBK)
